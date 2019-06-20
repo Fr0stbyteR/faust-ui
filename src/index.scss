@@ -1,0 +1,12 @@
+.faust-ui-root {
+    position: relative;
+    display: block;
+    & .faust-ui-group {
+        position: fixed;
+        display: block;
+    }
+    & .faust-ui-item {
+        position: fixed;
+        display: block;
+    }
+}
