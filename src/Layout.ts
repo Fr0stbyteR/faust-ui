@@ -1,5 +1,5 @@
 export class Layout {
-    static padding = 0.5;
+    static padding = 0.2;
     static itemLayoutMap: { [type: string]: TLayoutProp } = {
         hslider: {
             width: 5,
