@@ -142,6 +142,8 @@ export class Layout {
         this.injectLayout(ui);
         const layout = this.adjustLayout(ui);
         this.offsetLayout(ui, "vertical", layout);
+        layout.left = 0;
+        layout.top = 0;
         return { ui, layout };
     }
 }

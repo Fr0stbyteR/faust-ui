@@ -5,10 +5,15 @@ import { Layout } from "./Layout";
 
 export class FaustUIGroup extends React.Component {
     props: { emitter: FaustUI; ui: TFaustUIGroup; grid: number };
-    static getComponent(item: TFaustUIItem, grid: number) {
-        if (item.type === "tgroup" || item.type === "vgroup" || item.type === "hgroup") return undefined;
+    static getComponent(item: TFaustUIInputItem | TFaustUIOutputItem, grid: number) {
         const type = Layout.predictType(item);
-        const props = { width: item.layout.width * grid, height: item.layout.height * grid };
+        const props: LiveProps = {
+            width: item.layout.width * grid,
+            height: item.layout.height * grid,
+            mmin: isFinite(+item.min) ? +item.min : Number.MIN_VALUE,
+            mmax: isFinite(+item.max) ? +item.max : Number.MAX_VALUE,
+            value: "init" in item ? +item.init || 0 : 0
+        };
         if (type === "button") return <LiveText mode={"button"} {...props} text={item.label} />;
         if (type === "checkbox") return <LiveText mode={"toggle"} {...props} text={item.label} />;
         if (type === "nentry") return <LiveNumbox {...props} />;
@@ -39,7 +44,7 @@ export class FaustUIGroup extends React.Component {
             } else if (item.type === "vgroup" || item.type === "hgroup") {
                 items.push(<FaustUIGroup key={item.label} ui={item} emitter={this.props.emitter} grid={this.props.grid} />);
             } else {
-                const itemComponent = FaustUIGroup.getComponent(item, grid);
+                const itemComponent = FaustUIGroup.getComponent(item as TFaustUIInputItem | TFaustUIOutputItem, grid);
                 if (itemComponent) items.push(<div key={(item as TFaustUIInputItem | TFaustUIOutputItem).address} className="faust-ui-item" style={{ left: item.layout.left * grid, top: item.layout.top * grid }}>{itemComponent}</div>);
             }
         });
