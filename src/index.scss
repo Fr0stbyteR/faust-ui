@@ -2,11 +2,11 @@
     position: relative;
     display: block;
     & .faust-ui-group {
-        position: fixed;
+        position: absolute;
         display: block;
     }
     & .faust-ui-item {
-        position: fixed;
+        position: absolute;
         display: block;
     }
 }

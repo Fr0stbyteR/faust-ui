@@ -18,7 +18,7 @@ export class FaustUIRoot extends React.Component {
         const top = (this.props.height - yGrids * grid) / 2;
         return (
             <div className="faust-ui-root" style={{ left, top }}>
-                {this.state.ui.map(group => <FaustUIGroup key={group.label} {...this.props} ui={group} grid={grid} />)}
+                {this.state.ui.map(group => <FaustUIGroup key={group.label} {...this.props} ui={group} grid={grid} outerLeft={0} outerTop={0} />)}
             </div>
         );
     }
