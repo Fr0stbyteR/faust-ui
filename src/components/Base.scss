@@ -1,0 +1,6 @@
+.faust-ui-component {
+    display: inline-block;
+    &:focus {
+        outline: none;
+    }
+}

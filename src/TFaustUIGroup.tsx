@@ -2,23 +2,27 @@ import * as React from "react";
 import { LiveText, LiveNumbox, LiveDial, LiveTab, LiveMeter, LiveSlider } from "live-components";
 import { FaustUI } from "./FaustUI";
 import { Layout } from "./Layout";
+import { FaustUIButton } from "./components/Button";
 
 export class FaustUIGroup extends React.Component {
     props: { emitter: FaustUI; ui: TFaustUIGroup; grid: number; outerLeft: number; outerTop: number };
     static getComponent(item: TFaustUIInputItem | TFaustUIOutputItem, grid: number) {
         const type = Layout.predictType(item);
-        const props: LiveProps = {
-            longname: item.label,
-            shortname: item.label,
-            width: item.layout.width * grid,
-            height: item.layout.height * grid,
+        const { label, min, max, address, layout } = item;
+        const props: FaustUIItemProps<FaustUIItemStyle> = {
+            label,
+            address,
+            style: {
+                width: layout.width * grid,
+                height: layout.height * grid
+            },
             type: "float",
-            mmin: isFinite(+item.min) ? +item.min : Number.MIN_VALUE,
-            mmax: isFinite(+item.max) ? +item.max : Number.MAX_VALUE,
+            min: isFinite(+min) ? +min : Number.MIN_VALUE,
+            max: isFinite(+max) ? +max : Number.MAX_VALUE,
             step: "step" in item ? +item.step : 1,
             value: "init" in item ? +item.init || 0 : 0
         };
-        if (type === "button") return <LiveText mode={"button"} {...props} text={item.label} />;
+        if (type === "button") return <FaustUIButton {...props} />;
         if (type === "checkbox") return <LiveText mode={"toggle"} {...props} text={item.label} />;
         if (type === "nentry") return <LiveNumbox {...props} />;
         if (type === "knob") return <LiveDial showname={false} {...props} />;
