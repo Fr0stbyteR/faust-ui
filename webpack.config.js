@@ -51,6 +51,7 @@ module.exports = (env, argv) => {
     config.output.filename = 'index.js';
   }
   if (argv.mode === 'production') {
+    config.devtool = 'source-map';
     config.output.filename = 'index.min.js';
   }
   return config;

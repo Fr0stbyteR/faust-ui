@@ -33,16 +33,20 @@ export class FaustUIButton extends FaustUIItem<FaustUIButtonStyle> {
         };
     }
     className = "button";
+
     get children() {
         if (!this.isConnected) return <></>;
         const { value, label } = this.state;
         const style = { ...this.initialProps.style, ...this.state.style };
-        return <button style={{
-            backgroundColor: value ? style.bgoncolor : style.bgcolor,
-            borderColor: focus ? style.focusbordercolor : style.bordercolor,
-            color: value ? style.textoncolor : style.textcolor,
-            fontSize: style.fontsize || style.height / 3
-        }}>
+        return <button
+            style={{
+                backgroundColor: value ? style.bgoncolor : style.bgcolor,
+                borderColor: focus ? style.focusbordercolor : style.bordercolor,
+                color: value ? style.textoncolor : style.textcolor,
+                fontSize: style.fontsize || style.height / 3
+            }}
+            {...this.eventHandler}
+        >
             <span>{label}</span>
         </button>;
     }

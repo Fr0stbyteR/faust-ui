@@ -7,6 +7,7 @@ declare interface FaustUIItemProps<T extends FaustUIItemStyle> {
     min?: number;
     max?: number;
     step?: number;
+    tooltip?: string;
     enums?: { [key: string]: number };
     type?: "enum" | "int" | "float";
     unitstyle?: "time" | "hertz" | "decibel" | "%" | "pan" | "semitones" | "midi" | "custom" | "native";

@@ -32,6 +32,21 @@ export class FaustUIItem<T extends FaustUIItemStyle> extends React.Component {
     get div() {
         return this.refDiv.current;
     }
+    get eventHandler() {
+        return {
+            onKeyDown: this.handleKeyDown,
+            onKeyUp: this.handleKeyUp,
+            onTouchStart: this.handleTouchStart,
+            onWheel: this.handleWheel,
+            onClick: this.handleClick,
+            onMouseDown: this.handleMouseDown,
+            onMouseOver: this.handleMouseOver,
+            onMouseOut: this.handleMouseOut,
+            onContextMenu: this.handleContextMenu,
+            onFocus: this.handleFocusIn,
+            onBlur: this.handleFocusOut
+        };
+    }
     get children() {
         return <></>;
     }
@@ -146,17 +161,7 @@ export class FaustUIItem<T extends FaustUIItemStyle> extends React.Component {
                 style={style}
                 className={["faust-ui-component", "faust-ui-component-" + this.className].join(" ")}
                 tabIndex={1}
-                onKeyDown={this.handleKeyDown}
-                onKeyUp={this.handleKeyUp}
-                onTouchStart={this.handleTouchStart}
-                onWheel={this.handleWheel}
-                onClick={this.handleClick}
-                onMouseDown={this.handleMouseDown}
-                onMouseOver={this.handleMouseOver}
-                onMouseOut={this.handleMouseOut}
-                onContextMenu={this.handleContextMenu}
-                onFocus={this.handleFocusIn}
-                onBlur={this.handleFocusOut}
+                title={this.state.tooltip}
                 children={this.children}
             />
         );
