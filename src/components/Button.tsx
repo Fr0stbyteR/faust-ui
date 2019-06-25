@@ -10,7 +10,7 @@ interface FaustUIButtonStyle extends FaustUIItemStyle {
     bgcolor?: string;
     bgoncolor?: string;
     bordercolor?: string;
-    focusbordercolor?: string;
+    borderoncolor?: string;
     textcolor?: string;
     textoncolor?: string;
 }
@@ -24,12 +24,12 @@ export class FaustUIButton extends FaustUIItem<FaustUIButtonStyle> {
                 fontname: "Arial",
                 fontsize: undefined,
                 fontface: "regular",
-                bgcolor: "rgba(90, 90, 90, 1)",
-                bgoncolor: "rgba(195, 195, 195, 1)",
+                bgcolor: "rgba(40, 40, 40, 1)",
+                bgoncolor: "rgba(18, 18, 18, 1)",
                 bordercolor: "rgba(80, 80, 80, 1)",
-                focusbordercolor: "rgba(80, 80, 80, 1)",
-                textcolor: "rgba(255, 255, 255, 1)",
-                textoncolor: "rgba(255, 255, 255, 1)"
+                borderoncolor: "rgba(255, 165, 0, 1)",
+                textcolor: "rgba(226, 222, 255, 0.5)",
+                textoncolor: "rgba(255, 165, 0, 1)"
             }
         };
     }
@@ -42,7 +42,7 @@ export class FaustUIButton extends FaustUIItem<FaustUIButtonStyle> {
         return <button
             style={{
                 backgroundColor: value ? style.bgoncolor : style.bgcolor,
-                borderColor: focus ? style.focusbordercolor : style.bordercolor,
+                borderColor: value ? style.borderoncolor : style.bordercolor,
                 color: value ? style.textoncolor : style.textcolor,
                 fontSize: style.fontsize || style.height / 3
             }}

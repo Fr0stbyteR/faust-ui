@@ -148,10 +148,22 @@ export class FaustUIItem<T extends FaustUIItemStyle> extends React.Component {
     }
     componentDidMount() {
         this.setState(this.props);
-        this.props.emitter.on("paramChangeByDSP", (e) => {
-            if (e.path === this.state.address) this.setState({ value: e.value });
-        });
         this.paint();
+        this.props.emitter.on("paramChangeByDSP", (e) => {
+            if (e.path === this.state.address) {
+                this.setState({ value: e.value });
+                this.paint();
+            }
+        });
+        this.props.emitter.on("layoutChange", () => {
+            const style = this.props.style;
+            this.setState({ style });
+            this.paint();
+        });
+        this.props.emitter.on("uiChange", () => {
+            this.setState(this.props);
+            this.paint();
+        });
     }
     componentDidUpdate() {
         this.paint();

@@ -32,8 +32,15 @@ export class FaustUI extends EventEmitter {
         super();
         const { root, ui: uiIn } = options;
         this.root = root;
-        const rect = this.root.getBoundingClientRect();
         if (uiIn) this.ui = uiIn;
+        this.render();
+        window.addEventListener("resize", () => {
+            this.render();
+            this.emit("layoutChange");
+        });
+    }
+    render() {
+        const rect = this.root.getBoundingClientRect();
         const { layout } = Layout.calcLayout(this.ui);
         ReactDOM.render(<FaustUIRoot emitter={this} width={rect.width} height={rect.height} ui={this.ui} layout={layout} />, this.root);
     }
