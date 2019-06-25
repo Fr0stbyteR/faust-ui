@@ -1,13 +1,14 @@
 import * as React from "react";
-import { LiveText, LiveNumbox, LiveDial, LiveTab, LiveMeter, LiveSlider } from "live-components";
+import { LiveNumbox, LiveDial, LiveTab, LiveMeter, LiveSlider } from "live-components";
 import { FaustUI } from "./FaustUI";
 import { Layout } from "./Layout";
 import { FaustUIButton } from "./components/Button";
 import { FaustUICheckbox } from "./components/Checkbox";
+import { FaustUIItemProps, FaustUIItemStyle } from "./components/types";
 
 export class FaustUIGroup extends React.Component {
     props: { emitter: FaustUI; ui: TFaustUIGroup; grid: number; outerLeft: number; outerTop: number };
-    static getComponent(item: TFaustUIInputItem | TFaustUIOutputItem, grid: number) {
+    static getComponent(item: TFaustUIInputItem | TFaustUIOutputItem, grid: number, emitter: FaustUI) {
         const type = Layout.predictType(item);
         const tooltipMeta = item.meta ? item.meta.find(meta => meta.tooltip) : undefined;
         const tooltip = tooltipMeta ? tooltipMeta.tooltip : undefined;
@@ -16,6 +17,7 @@ export class FaustUIGroup extends React.Component {
             label,
             address,
             tooltip,
+            emitter,
             style: {
                 width: layout.width * grid,
                 height: layout.height * grid
@@ -61,8 +63,9 @@ export class FaustUIGroup extends React.Component {
             } else if (item.type === "vgroup" || item.type === "hgroup") {
                 items.push(<FaustUIGroup key={item.label} ui={item} emitter={this.props.emitter} grid={this.props.grid} outerLeft={outerLeft} outerTop={outerTop} />);
             } else {
-                const itemComponent = FaustUIGroup.getComponent(item as TFaustUIInputItem | TFaustUIOutputItem, grid);
-                if (itemComponent) items.push(<div key={(item as TFaustUIInputItem | TFaustUIOutputItem).address} className="faust-ui-item" style={{ left: itemLeft, top: itemTop }}>{itemComponent}</div>);
+                const ioItem = item as TFaustUIInputItem | TFaustUIOutputItem;
+                const itemComponent = FaustUIGroup.getComponent(ioItem, grid, this.props.emitter);
+                if (itemComponent) items.push(<div key={ioItem.address} className="faust-ui-item" style={{ left: itemLeft, top: itemTop }}>{itemComponent}</div>);
             }
         });
         return (

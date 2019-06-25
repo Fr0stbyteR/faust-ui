@@ -1,6 +1,7 @@
 import * as React from "react";
 import { FaustUIItem } from "./Base";
 import "./Button.scss";
+import { FaustUIItemStyle, FaustUIItemProps } from "./types";
 
 interface FaustUIButtonStyle extends FaustUIItemStyle {
     fontname?: string;

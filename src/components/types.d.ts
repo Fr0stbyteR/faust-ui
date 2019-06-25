@@ -1,3 +1,5 @@
+import { FaustUI } from "../FaustUI";
+
 declare interface FaustUIItemProps<T extends FaustUIItemStyle> {
     value?: number;
     active?: boolean;
@@ -14,7 +16,7 @@ declare interface FaustUIItemProps<T extends FaustUIItemStyle> {
     units?: string;
     exponent?: number;
     style?: T;
-    onChange?: (e: { value: number; displayValue: string }) => any;
+    emitter?: FaustUI;
 }
 declare interface FaustUIItemStyle {
     width: number;

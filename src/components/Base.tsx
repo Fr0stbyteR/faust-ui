@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from "react";
 import { toMIDI } from "./utils";
+import { FaustUIItemStyle, FaustUIItemProps } from "./types";
 import "./Base.scss";
 
 export class FaustUIItem<T extends FaustUIItemStyle> extends React.Component {
@@ -18,8 +19,7 @@ export class FaustUIItem<T extends FaustUIItemStyle> extends React.Component {
         units: "",
         exponent: 1,
         step: 0.01,
-        style: { width: 15, height: 15 },
-        onChange: () => undefined
+        style: { width: 15, height: 15 }
     }
     get initialProps() {
         return (this.constructor as typeof FaustUIItem).defaultProps;
@@ -141,12 +141,16 @@ export class FaustUIItem<T extends FaustUIItemStyle> extends React.Component {
     }
     setValue(value: number) {
         this.setState({ value });
+        this.change(value);
     }
-    change() {
-        if (this.state.onChange) this.state.onChange({ value: this.state.value, displayValue: this.displayValue });
+    change(valueIn?: number) {
+        if (this.props.emitter) this.props.emitter.emit("paramChangeByUI", { value: typeof valueIn === "number" ? valueIn : this.state.value, path: this.state.address });
     }
     componentDidMount() {
         this.setState(this.props);
+        this.props.emitter.on("paramChangeByDSP", (e) => {
+            if (e.path === this.state.address) this.setState({ value: e.value });
+        });
         this.paint();
     }
     componentDidUpdate() {
