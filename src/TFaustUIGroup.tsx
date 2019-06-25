@@ -5,6 +5,7 @@ import { Layout } from "./Layout";
 import { FaustUIButton } from "./components/Button";
 import { FaustUICheckbox } from "./components/Checkbox";
 import { FaustUIItemProps, FaustUIItemStyle } from "./components/types";
+import { FaustUINentry } from "./components/Nentry";
 
 export class FaustUIGroup extends React.Component {
     props: { emitter: FaustUI; ui: TFaustUIGroup; grid: number; outerLeft: number; outerTop: number };
@@ -30,7 +31,7 @@ export class FaustUIGroup extends React.Component {
         };
         if (type === "button") return <FaustUIButton {...props} />;
         if (type === "checkbox") return <FaustUICheckbox {...props} />;
-        if (type === "nentry") return <LiveNumbox {...props} />;
+        if (type === "nentry") return <FaustUINentry {...props} />;
         if (type === "knob") return <LiveDial showname={false} {...props} />;
         if (type === "menu") return <LiveTab {...props} />;
         if (type === "radio") return <LiveTab {...props} />;

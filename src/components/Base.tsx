@@ -19,7 +19,7 @@ export class FaustUIItem<T extends FaustUIItemStyle> extends React.Component {
         units: "",
         exponent: 1,
         step: 0.01,
-        style: { width: 15, height: 15 }
+        style: { width: 45, height: 15 }
     }
     get initialProps() {
         return (this.constructor as typeof FaustUIItem).defaultProps;

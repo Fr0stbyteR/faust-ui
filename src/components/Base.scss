@@ -1,6 +1,12 @@
 .faust-ui-component {
-    display: inline-flex;
+    display: flex;
+    flex-direction: column;
     &:focus {
         outline: none;
+    }
+    & .faust-ui-component-label {
+        position: relative;
+        font-weight: bold;
+        margin: 4px;
     }
 }

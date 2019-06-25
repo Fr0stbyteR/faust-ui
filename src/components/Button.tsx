@@ -1,12 +1,12 @@
 import * as React from "react";
 import { FaustUIItem } from "./Base";
-import "./Button.scss";
 import { FaustUIItemStyle, FaustUIItemProps } from "./types";
+import "./Button.scss";
 
 interface FaustUIButtonStyle extends FaustUIItemStyle {
     fontname?: string;
     fontsize?: number;
-    fontface?: "regular" | "bold" | "italic" | "bold italic";
+    fontface?: "normal" | "bold" | "italic" | "bold italic";
     bgcolor?: string;
     bgoncolor?: string;
     bordercolor?: string;
@@ -23,7 +23,7 @@ export class FaustUIButton extends FaustUIItem<FaustUIButtonStyle> {
                 ...inherited.style,
                 fontname: "Arial",
                 fontsize: undefined,
-                fontface: "regular",
+                fontface: "normal",
                 bgcolor: "rgba(40, 40, 40, 1)",
                 bgoncolor: "rgba(18, 18, 18, 1)",
                 bordercolor: "rgba(80, 80, 80, 1)",
@@ -44,7 +44,9 @@ export class FaustUIButton extends FaustUIItem<FaustUIButtonStyle> {
                 backgroundColor: value ? style.bgoncolor : style.bgcolor,
                 borderColor: value ? style.borderoncolor : style.bordercolor,
                 color: value ? style.textoncolor : style.textcolor,
-                fontSize: style.fontsize || style.height / 3
+                fontSize: style.fontsize || style.height / 4,
+                fontFamily: `${style.fontname}, sans-serif`,
+                fontStyle: style.fontface
             }}
             {...this.eventHandler}
         >
