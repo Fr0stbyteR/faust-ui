@@ -48,7 +48,10 @@ export class FaustUIButton extends FaustUIItem<FaustUIButtonStyle> {
                 fontFamily: `${style.fontname}, sans-serif`,
                 fontStyle: style.fontface
             }}
-            {...this.eventHandler}
+            onMouseDown={this.handlePointerDown}
+            onMouseUp={this.handlePointerUp}
+            onTouchStart={this.handlePointerDown}
+            onTouchEnd={this.handlePointerUp}
         >
             <span>{label}</span>
         </button>;

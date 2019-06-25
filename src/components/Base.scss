@@ -1,6 +1,7 @@
 .faust-ui-component {
     display: flex;
     flex-direction: column;
+    overflow: auto;
     &:focus {
         outline: none;
     }
