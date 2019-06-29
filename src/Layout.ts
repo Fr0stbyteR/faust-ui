@@ -1,6 +1,7 @@
 export class Layout {
     static padding = 0.2;
     static labelHeight = 0.5;
+    static spaceBetween = 0.1;
     static itemLayoutMap: { [type: string]: TLayoutProp } = {
         hslider: {
             width: 5,
@@ -100,16 +101,18 @@ export class Layout {
                 tabs++;
             }
             if (direction === "horizontal") {
-                groupLayout.width += item.layout.width;
+                groupLayout.width += item.layout.width + this.spaceBetween;
                 groupLayout.height = Math.max(groupLayout.height, item.layout.height + 2 * this.padding + this.labelHeight);
             } else if (direction === "vertical") {
                 groupLayout.width = Math.max(groupLayout.width, item.layout.width + 2 * this.padding);
-                groupLayout.height += item.layout.height;
+                groupLayout.height += item.layout.height + this.spaceBetween;
             } else {
                 groupLayout.width = Math.max(groupLayout.width, item.layout.width + 2 * this.padding);
                 groupLayout.height = Math.max(groupLayout.height, item.layout.height + 2 * this.padding + this.labelHeight);
             }
         });
+        if (direction === "horizontal") groupLayout.width -= this.spaceBetween;
+        else if (direction === "vertical") groupLayout.height -= this.spaceBetween;
         if (tabs) {
             groupLayout.height += this.itemLayoutMap.tab.height;
             groupLayout.width = Math.max(groupLayout.width, tabs * this.itemLayoutMap.tab.width + 2 * this.padding);
@@ -134,8 +137,8 @@ export class Layout {
             if (item.type === "hgroup") this.offsetLayout(item.items, "horizontal", item.layout);
             else if (item.type === "vgroup") this.offsetLayout(item.items, "vertical", item.layout);
             else if (item.type === "tgroup") this.offsetLayout(item.items, "stacked", item.layout);
-            if (direction === "horizontal") $left += item.layout.width;
-            else if (direction === "vertical") $top += item.layout.height;
+            if (direction === "horizontal") $left += item.layout.width + this.spaceBetween;
+            else if (direction === "vertical") $top += item.layout.height + this.spaceBetween;
         });
         return uiAdjusted;
     }

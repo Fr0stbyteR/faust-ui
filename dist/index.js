@@ -1778,16 +1778,17 @@ class Layout {
       }
 
       if (direction === "horizontal") {
-        groupLayout.width += item.layout.width;
+        groupLayout.width += item.layout.width + this.spaceBetween;
         groupLayout.height = Math.max(groupLayout.height, item.layout.height + 2 * this.padding + this.labelHeight);
       } else if (direction === "vertical") {
         groupLayout.width = Math.max(groupLayout.width, item.layout.width + 2 * this.padding);
-        groupLayout.height += item.layout.height;
+        groupLayout.height += item.layout.height + this.spaceBetween;
       } else {
         groupLayout.width = Math.max(groupLayout.width, item.layout.width + 2 * this.padding);
         groupLayout.height = Math.max(groupLayout.height, item.layout.height + 2 * this.padding + this.labelHeight);
       }
     });
+    if (direction === "horizontal") groupLayout.width -= this.spaceBetween;else if (direction === "vertical") groupLayout.height -= this.spaceBetween;
 
     if (tabs) {
       groupLayout.height += this.itemLayoutMap.tab.height;
@@ -1813,7 +1814,7 @@ class Layout {
 
       if (direction === "horizontal" || direction === "stacked") item.layout.top += (height - this.labelHeight - item.layout.height) / 2 - this.padding;else if (direction === "vertical" || direction === "stacked") item.layout.left += (width - item.layout.width) / 2 - this.padding;
       if (item.type === "hgroup") this.offsetLayout(item.items, "horizontal", item.layout);else if (item.type === "vgroup") this.offsetLayout(item.items, "vertical", item.layout);else if (item.type === "tgroup") this.offsetLayout(item.items, "stacked", item.layout);
-      if (direction === "horizontal") $left += item.layout.width;else if (direction === "vertical") $top += item.layout.height;
+      if (direction === "horizontal") $left += item.layout.width + this.spaceBetween;else if (direction === "vertical") $top += item.layout.height + this.spaceBetween;
     });
     return uiAdjusted;
   }
@@ -1835,6 +1836,8 @@ class Layout {
 _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(Layout, "padding", 0.2);
 
 _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(Layout, "labelHeight", 0.5);
+
+_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(Layout, "spaceBetween", 0.1);
 
 _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(Layout, "itemLayoutMap", {
   hslider: {
