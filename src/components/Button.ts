@@ -61,6 +61,7 @@ export class FaustUIButton extends FaustUIItem<FaustUIButtonStyle> {
         this.btn.addEventListener("touchend", this.handlePointerUp);
         this.on("style", () => this.setStyle());
         this.on("label", () => this.span.innerText = this.state.label);
+        this.on("value", () => this.setStyle());
     }
     mount() {
         this.btn.appendChild(this.span);
