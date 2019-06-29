@@ -43,10 +43,14 @@ export class FaustUIGroup extends Component<{ emitter: FaustUI; ui: TFaustUIGrou
         if (type === "led") return <LiveMeter orientation="vertical" {...props} />;*/
         return undefined;
     }
+
+    label: HTMLDivElement;
     items: TFaustUIItem[];
     componentWillMount() {
         this.items = [];
         this.container = document.createElement("div");
+        this.label = document.createElement("div");
+        this.label.className = "faust-ui-group-label";
         this.updateUI();
     }
     updateUI() {
@@ -54,6 +58,8 @@ export class FaustUIGroup extends Component<{ emitter: FaustUI; ui: TFaustUIGrou
         const { ui, grid } = this.state;
         let { outerLeft, outerTop } = this.state;
         let { left, top, width, height } = ui.layout;
+        this.label.innerText = ui.label;
+        this.label.title = ui.label;
         left = left * grid - outerLeft;
         top = top * grid - outerTop;
         width *= grid;
@@ -93,6 +99,8 @@ export class FaustUIGroup extends Component<{ emitter: FaustUI; ui: TFaustUIGrou
         const { ui, grid } = this.state;
         let { outerLeft, outerTop } = this.state;
         let { left, top, width, height } = ui.layout;
+        this.label.innerText = ui.label;
+        this.label.title = ui.label;
         left = left * grid - outerLeft;
         top = top * grid - outerTop;
         width *= grid;
@@ -125,5 +133,9 @@ export class FaustUIGroup extends Component<{ emitter: FaustUI; ui: TFaustUIGrou
         this.on("grid", () => this.updateLayout());
         this.on("outerLeft", () => this.updateLayout());
         this.on("outerTop", () => this.updateLayout());
+    }
+    mount() {
+        this.container.appendChild(this.label);
+        return super.mount();
     }
 }

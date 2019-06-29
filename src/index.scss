@@ -7,6 +7,16 @@
         background-color: rgba(80, 80, 80, 0.75);
         border-radius: 4px;
         border: 1px rgba(255, 255, 255, 0.25) solid;
+        & .faust-ui-group-label {
+            position: relative;
+            font-weight: bold;
+            margin: 4px;
+            font-size: 12px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 100%;
+            overflow: hidden;
+        }
     }
     & .faust-ui-item {
         position: absolute;
