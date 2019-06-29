@@ -6,14 +6,13 @@
     "settings": {
     "import/resolver": {
         "node": {
-            "extensions": [".js", ".jsx", ".ts", ".tsx", ".d.ts"]
+            "extensions": [".js", ".ts", ".d.ts"]
         }
     }
     },
     "extends": [
         "airbnb-base",
-        "plugin:@typescript-eslint/recommended",
-        "react-app"
+        "plugin:@typescript-eslint/recommended"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -87,5 +86,5 @@
         "@typescript-eslint/prefer-interface": "off"
     },
     "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint", "react"]
+    "plugins": ["@typescript-eslint"]
 }

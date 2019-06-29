@@ -1,5 +1,3 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
 import { EventEmitter } from "events";
 import { Layout } from "./Layout";
 import { FaustUIRoot } from "./FaustUIRoot";
@@ -27,6 +25,7 @@ export class FaustUI extends EventEmitter {
         return super.emit(type, e);
     }
     root: HTMLDivElement;
+    faustUIRoot: FaustUIRoot;
     private _ui: TFaustUI;
     constructor(options: TOptions) {
         super();
@@ -35,20 +34,28 @@ export class FaustUI extends EventEmitter {
         if (uiIn) this.ui = uiIn;
         this.render();
         window.addEventListener("resize", () => {
-            this.render();
+            this.faustUIRoot.setState(this.calc());
             this.emit("layoutChange");
         });
     }
-    render() {
-        const rect = this.root.getBoundingClientRect();
+    calc() {
+        const { width, height } = this.root.getBoundingClientRect();
         const { layout } = Layout.calcLayout(this.ui);
-        ReactDOM.render(<FaustUIRoot emitter={this} width={rect.width} height={rect.height} ui={this.ui} layout={layout} />, this.root);
+        return { width, height, layout };
+    }
+    render() {
+        const { width, height, layout } = this.calc();
+        this.faustUIRoot = new FaustUIRoot({ width, height, layout, ui: this.ui, emitter: this });
+        const children = this.faustUIRoot.render();
+        children.forEach(e => this.root.appendChild(e));
     }
     get ui() {
         return this._ui;
     }
     set ui(uiIn) {
         this._ui = uiIn;
+        const state = this.calc();
+        if (this.faustUIRoot) this.faustUIRoot.setState({ ...state, ui: this.ui });
         this.emit("uiChange", this._ui);
     }
     changeParamByUI(path: string, value: number) {

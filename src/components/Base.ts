@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import * as React from "react";
 import { toMIDI } from "./utils";
 import { FaustUIItemStyle, FaustUIItemProps } from "./types";
 import "./Base.scss";
+import { Component } from "./Component";
 
-export class FaustUIItem<T extends FaustUIItemStyle> extends React.Component {
+export class FaustUIItem<T extends FaustUIItemStyle> extends Component<FaustUIItemProps<T>> {
     static defaultProps: FaustUIItemProps<FaustUIItemStyle> = {
         value: 0,
         active: true,
@@ -19,45 +19,14 @@ export class FaustUIItem<T extends FaustUIItemStyle> extends React.Component {
         units: "",
         exponent: 1,
         step: 0.01,
-        style: { width: 45, height: 15 }
+        style: { width: 45, height: 15, left: 0, top: 0 }
     }
-    get initialProps() {
-        return (this.constructor as typeof FaustUIItem).defaultProps;
-    }
-    props: FaustUIItemProps<T>;
-    state: FaustUIItemProps<T> = (this.constructor as typeof FaustUIItem).defaultProps as any;
+    container: HTMLDivElement;
     className: string;
-    refDiv = React.createRef<HTMLDivElement>();
-
-    get div() {
-        return this.refDiv.current;
-    }
-    get eventHandler() {
-        return {
-            onKeyDown: this.handleKeyDown,
-            onKeyUp: this.handleKeyUp,
-            onTouchStart: this.handleTouchStart,
-            onWheel: this.handleWheel,
-            onClick: this.handleClick,
-            onMouseDown: this.handleMouseDown,
-            onMouseOver: this.handleMouseOver,
-            onMouseOut: this.handleMouseOut,
-            onContextMenu: this.handleContextMenu,
-            onFocus: this.handleFocusIn,
-            onBlur: this.handleFocusOut
-        };
-    }
-    get children() {
-        return <></>;
-    }
-    get isConnected() {
-        return !!this.refDiv.current;
-    }
-    handleKeyDown = (e: React.KeyboardEvent) => {};
-    handleKeyUp = (e: React.KeyboardEvent) => {};
-    handleTouchStart = (e: React.TouchEvent) => {
-        this.div.focus();
-        const rect = this.div.getBoundingClientRect();
+    handleKeyDown = (e: KeyboardEvent) => {};
+    handleKeyUp = (e: KeyboardEvent) => {};
+    handleTouchStart = (e: TouchEvent) => {
+        const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
         let prevX = e.touches[0].pageX;
         let prevY = e.touches[0].pageY;
         const fromX = prevX - rect.left;
@@ -87,12 +56,12 @@ export class FaustUIItem<T extends FaustUIItemStyle> extends React.Component {
         document.addEventListener("touchmove", handleTouchMove, { passive: false });
         document.addEventListener("touchend", handleTouchEnd, { passive: false });
     };
-    handleWheel = (e: React.WheelEvent) => {};
-    handleClick = (e: React.MouseEvent) => {};
-    handleMouseDown = (e: React.MouseEvent) => {
+    handleWheel = (e: WheelEvent) => {};
+    handleClick = (e: MouseEvent) => {};
+    handleMouseDown = (e: MouseEvent) => {
         e.preventDefault();
-        this.div.focus();
-        const rect = this.div.getBoundingClientRect();
+        (e.currentTarget as HTMLElement).focus();
+        const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
         const fromX = e.pageX - rect.left;
         const fromY = e.pageY - rect.top;
         const prevValue = this.state.value;
@@ -114,15 +83,14 @@ export class FaustUIItem<T extends FaustUIItemStyle> extends React.Component {
         document.addEventListener("mousemove", handleMouseMove);
         document.addEventListener("mouseup", handleMouseUp);
     };
-    handleMouseOver = (e: React.MouseEvent) => {};
-    handleMouseOut = (e: React.MouseEvent) => {};
-    handleContextMenu = (e: React.MouseEvent) => {};
+    handleMouseOver = (e: MouseEvent) => {};
+    handleMouseOut = (e: MouseEvent) => {};
+    handleContextMenu = (e: MouseEvent) => {};
     handlePointerDown = (e: PointerDownEvent) => {};
     handlePointerDrag = (e: PointerDragEvent) => {};
     handlePointerUp = (e: PointerUpEvent) => {};
-    handleFocusIn = (e: React.FocusEvent) => this.setState({ focus: true });
-    handleFocusOut = (e: React.FocusEvent) => this.setState({ focus: false });
-
+    handleFocusIn = (e: FocusEvent) => this.setState({ focus: true });
+    handleFocusOut = (e: FocusEvent) => this.setState({ focus: false });
     get displayValue() {
         const { value, type, unitstyle, units } = this.state;
         if (type === "enum") return Object.keys(this.state.enums).find(key => this.state.enums[key] === value) || "";
@@ -144,42 +112,67 @@ export class FaustUIItem<T extends FaustUIItemStyle> extends React.Component {
         this.change(value);
     }
     change(valueIn?: number) {
-        if (this.props.emitter) this.props.emitter.emit("paramChangeByUI", { value: typeof valueIn === "number" ? valueIn : this.state.value, path: this.state.address });
+        if (this.state.emitter) this.state.emitter.emit("paramChangeByUI", { value: typeof valueIn === "number" ? valueIn : this.state.value, path: this.state.address });
+    }
+    setState(newState: { [key in keyof FaustUIItemProps<T>]?: FaustUIItemProps<T>[key] }) {
+        let shouldUpdate = false;
+        for (const key in newState) {
+            const stateKey = key as keyof FaustUIItemProps<T>;
+            const stateValue = newState[stateKey];
+            if (stateKey === "style") {
+                if (this.state.style) {
+                    for (const styleKey in newState.style) {
+                        if (styleKey in this.state.style && this.state.style[styleKey] !== newState.style[styleKey]) {
+                            this.state.style[styleKey] = newState.style[styleKey];
+                            shouldUpdate = true;
+                        }
+                    }
+                } else {
+                    this.state.style = newState.style;
+                    shouldUpdate = true;
+                }
+            } else if (stateKey in this.state && this.state[stateKey] !== stateValue) {
+                (this.state as any)[stateKey] = stateValue;
+                shouldUpdate = true;
+            } else return;
+            if (shouldUpdate) this.emit(stateKey, this.state[stateKey]);
+        }
+    }
+    componentWillMount() {
+        this.container = document.createElement("div");
+        this.container.className = ["faust-ui-component", "faust-ui-component-" + this.className].join(" ");
+        this.container.tabIndex = 1;
+        this.container.title = this.state.tooltip;
+    }
+    resize() {
+        const style = this.state ? { ...this.defaultProps.style, ...this.state.style } : this.defaultProps.style;
+        this.container.style.width = `${style.width}px`;
+        this.container.style.height = `${style.height}px`;
+        this.container.style.left = `${style.left}px`;
+        this.container.style.top = `${style.top}px`;
     }
     componentDidMount() {
-        this.setState(this.props);
         this.paint();
-        this.props.emitter.on("paramChangeByDSP", (e) => {
+        this.state.emitter.on("paramChangeByDSP", (e) => {
             if (e.path === this.state.address) {
                 this.setState({ value: e.value });
                 this.paint();
             }
         });
-        this.props.emitter.on("layoutChange", () => {
-            const style = this.props.style;
+        this.state.emitter.on("layoutChange", () => {
+            const style = this.state.style;
             this.setState({ style });
             this.paint();
         });
-        this.props.emitter.on("uiChange", () => {
-            this.setState(this.props);
+        this.state.emitter.on("uiChange", () => {
+            this.setState(this.state);
             this.paint();
         });
-    }
-    componentDidUpdate() {
-        this.paint();
+        this.on("style", () => this.resize());
     }
     paint() {}
-    render() {
-        const style = this.state ? { ...this.initialProps.style, ...this.state.style } : this.initialProps.style;
-        return (
-            <div
-                ref={this.refDiv}
-                style={style}
-                className={["faust-ui-component", "faust-ui-component-" + this.className].join(" ")}
-                tabIndex={1}
-                title={this.state.tooltip}
-                children={this.children}
-            />
-        );
+    mount() {
+        this.resize();
+        return super.mount();
     }
 }

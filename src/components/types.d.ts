@@ -21,4 +21,6 @@ declare interface FaustUIItemProps<T extends FaustUIItemStyle> {
 declare interface FaustUIItemStyle {
     width: number;
     height: number;
+    left: number;
+    top: number;
 }
