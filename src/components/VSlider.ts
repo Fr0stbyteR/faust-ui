@@ -23,7 +23,7 @@ export class FaustUIVSlider extends FaustUIItem<FaustUISliderStyle> {
                 bgcolor: "rgba(18, 18, 18, 0)",
                 bordercolor: "rgba(80, 80, 80, 0)",
                 labelcolor: "rgba(226, 222, 255, 0.5)",
-                textcolor: "rgba(226, 222, 255, 0.5)",
+                textcolor: "rgba(18, 18, 18, 1)",
                 sliderwidth: undefined,
                 sliderbgcolor: "rgba(18, 18, 18, 1)",
                 sliderbgoncolor: "rgba(255, 165, 0, 1)",
@@ -111,20 +111,21 @@ export class FaustUIVSlider extends FaustUIItem<FaustUISliderStyle> {
         const drawWidth = sliderwidth || drawHeight * 0.05;
         const left = (width - drawWidth) * 0.5;
         const top = height * 0.05;
+        const borderRadius = drawWidth * 0.25;
         this.interactionRect = [0, top, width, drawHeight];
         // draw upper
         if (distance < 1) {
             ctx.fillStyle = sliderbgcolor;
-            fillRoundedRect(ctx, left, top, drawWidth, drawHeight * (1 - distance), drawWidth * 0.25);
+            fillRoundedRect(ctx, left, top, drawWidth, drawHeight * (1 - distance), borderRadius);
         }
         // draw lower
         if (distance) {
             ctx.fillStyle = sliderbgoncolor;
-            fillRoundedRect(ctx, left, top + drawHeight * (1 - distance), drawWidth, drawHeight * distance, drawWidth * 0.25);
+            fillRoundedRect(ctx, left, top + drawHeight * (1 - distance), drawWidth, drawHeight * distance, borderRadius);
         }
         // draw slider
         ctx.fillStyle = slidercolor;
-        fillRoundedRect(ctx, left - drawWidth, drawHeight * (1 - distance), drawWidth * 3, height * 0.1, drawWidth * 0.25);
+        fillRoundedRect(ctx, left - drawWidth, drawHeight * (1 - distance), drawWidth * 3, height * 0.1, borderRadius);
     }
     get trueSteps() {
         const { type, max, min, step, enums } = this.state;

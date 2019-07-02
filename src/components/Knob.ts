@@ -23,7 +23,7 @@ export class FaustUIKnob extends FaustUIItem<FaustUIKnobStyle> {
                 bgcolor: "rgba(18, 18, 18, 0)",
                 bordercolor: "rgba(80, 80, 80, 0)",
                 labelcolor: "rgba(226, 222, 255, 0.5)",
-                textcolor: "rgba(226, 222, 255, 0.5)",
+                textcolor: "rgba(18, 18, 18, 1)",
                 knobwidth: undefined,
                 knobcolor: "rgba(18, 18, 18, 1)",
                 knoboncolor: "rgba(255, 165, 0, 1)",

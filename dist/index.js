@@ -196,6 +196,20 @@ exports.push([module.i, ".faust-ui-component.faust-ui-component-checkbox > div {
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/components/HSlider.scss":
+/*!********************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/components/HSlider.scss ***!
+  \********************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
+// Module
+exports.push([module.i, ".faust-ui-component.faust-ui-component-hslider {\n  flex-direction: row-reverse; }\n  .faust-ui-component.faust-ui-component-hslider > .faust-ui-component-label {\n    position: absolute;\n    left: 0; }\n  .faust-ui-component.faust-ui-component-hslider canvas {\n    position: relative;\n    display: block;\n    flex: 1 1 auto;\n    height: 100%;\n    min-width: 75%; }\n  .faust-ui-component.faust-ui-component-hslider input {\n    position: relative;\n    display: block;\n    flex: 0 1 auto;\n    text-align: center;\n    background-color: rgba(255, 255, 255, 0.25);\n    margin: auto 5px auto auto;\n    border-width: 0px;\n    border-radius: 4px;\n    max-width: calc(25% - 13px);\n    padding: 2px 4px; }\n", ""]);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/components/Knob.scss":
 /*!*****************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/components/Knob.scss ***!
@@ -205,7 +219,7 @@ exports.push([module.i, ".faust-ui-component.faust-ui-component-checkbox > div {
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".faust-ui-component.faust-ui-component-knob {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-knob canvas {\n    position: relative;\n    display: block;\n    flex: 1 1 auto;\n    min-height: 50%;\n    width: 100%; }\n  .faust-ui-component.faust-ui-component-knob input {\n    position: relative;\n    display: block;\n    flex: 0 1 auto;\n    text-align: center;\n    background-color: rgba(255, 255, 255, 0.25);\n    margin: 0px;\n    border-width: 0px;\n    border-radius: 4px;\n    max-width: 100%; }\n", ""]);
+exports.push([module.i, ".faust-ui-component.faust-ui-component-knob {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-knob canvas {\n    position: relative;\n    display: block;\n    flex: 1 1 auto;\n    min-height: 50%;\n    width: 100%; }\n  .faust-ui-component.faust-ui-component-knob input {\n    position: relative;\n    display: block;\n    flex: 0 1 auto;\n    text-align: center;\n    background-color: rgba(255, 255, 255, 0.25);\n    margin: 0px;\n    border-width: 0px;\n    border-radius: 4px;\n    max-width: 100%;\n    padding: 2px 4px; }\n", ""]);
 
 
 /***/ }),
@@ -219,7 +233,7 @@ exports.push([module.i, ".faust-ui-component.faust-ui-component-knob {\n  align-
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".faust-ui-component.faust-ui-component-nentry {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-nentry input {\n    margin: 0px;\n    text-align: center;\n    border-width: 1px;\n    border-radius: 4px;\n    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5); }\n", ""]);
+exports.push([module.i, ".faust-ui-component.faust-ui-component-nentry {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-nentry input {\n    margin: 0px;\n    text-align: center;\n    border-width: 1px;\n    border-radius: 4px;\n    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);\n    padding: 2px 4px; }\n", ""]);
 
 
 /***/ }),
@@ -233,7 +247,7 @@ exports.push([module.i, ".faust-ui-component.faust-ui-component-nentry {\n  alig
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".faust-ui-component.faust-ui-component-vslider {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-vslider canvas {\n    position: relative;\n    display: block;\n    flex: 1 1 auto;\n    min-height: 75%;\n    width: 100%; }\n  .faust-ui-component.faust-ui-component-vslider input {\n    position: relative;\n    display: block;\n    flex: 0 1 auto;\n    text-align: center;\n    background-color: rgba(255, 255, 255, 0.25);\n    margin: 0px;\n    border-width: 0px;\n    border-radius: 4px;\n    max-width: 100%; }\n", ""]);
+exports.push([module.i, ".faust-ui-component.faust-ui-component-vslider {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-vslider canvas {\n    position: relative;\n    display: block;\n    flex: 1 1 auto;\n    min-height: 75%;\n    width: 100%; }\n  .faust-ui-component.faust-ui-component-vslider input {\n    position: relative;\n    display: block;\n    flex: 0 1 auto;\n    text-align: center;\n    background-color: rgba(255, 255, 255, 0.25);\n    margin: 0px;\n    border-width: 0px;\n    border-radius: 4px;\n    max-width: calc(100% - 8px);\n    padding: 2px 4px; }\n", ""]);
 
 
 /***/ }),
@@ -1475,6 +1489,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Component */ "./src/components/Component.ts");
 /* harmony import */ var _components_Knob__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Knob */ "./src/components/Knob.ts");
 /* harmony import */ var _components_VSlider__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/VSlider */ "./src/components/VSlider.ts");
+/* harmony import */ var _components_HSlider__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/HSlider */ "./src/components/HSlider.ts");
+
 
 
 
@@ -1525,9 +1541,9 @@ class FaustUIGroup extends _components_Component__WEBPACK_IMPORTED_MODULE_6__["C
     if (type === "knob") return new _components_Knob__WEBPACK_IMPORTED_MODULE_7__["FaustUIKnob"](_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, props));
     /*
     if (type === "menu") return <LiveTab {...props} />;
-    if (type === "radio") return <LiveTab {...props} />;
-    if (type === "hslider") return <LiveSlider orientation="horizontal" showname={false} {...props} />;*/
+    if (type === "radio") return <LiveTab {...props} />;*/
 
+    if (type === "hslider") return new _components_HSlider__WEBPACK_IMPORTED_MODULE_9__["FaustUIHSlider"](_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, props));
     if (type === "vslider") return new _components_VSlider__WEBPACK_IMPORTED_MODULE_8__["FaustUIVSlider"](_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, props));
     /*
     if (type === "hbargraph") return <LiveMeter orientation="horizontal" {...props} />;
@@ -2594,6 +2610,122 @@ _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(Com
 
 /***/ }),
 
+/***/ "./src/components/HSlider.scss":
+/*!*************************************!*\
+  !*** ./src/components/HSlider.scss ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/lib/loader.js!./HSlider.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/components/HSlider.scss");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./src/components/HSlider.ts":
+/*!***********************************!*\
+  !*** ./src/components/HSlider.ts ***!
+  \***********************************/
+/*! exports provided: FaustUIHSlider */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FaustUIHSlider", function() { return FaustUIHSlider; });
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js");
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _HSlider_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./HSlider.scss */ "./src/components/HSlider.scss");
+/* harmony import */ var _HSlider_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_HSlider_scss__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils */ "./src/components/utils.ts");
+/* harmony import */ var _VSlider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./VSlider */ "./src/components/VSlider.ts");
+
+
+
+
+
+class FaustUIHSlider extends _VSlider__WEBPACK_IMPORTED_MODULE_4__["FaustUIVSlider"] {
+  constructor() {
+    super(...arguments);
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "className", "hslider");
+  }
+
+  setStyle() {
+    var style = _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, this.defaultProps.style, this.state.style);
+
+    this.input.style.fontSize = "".concat(style.fontsize || style.height * 0.15, "px");
+    this.input.style.color = style.textcolor;
+    this.label.style.fontSize = "".concat(style.height * 0.15, "px");
+    this.label.style.color = style.labelcolor;
+    this.container.style.backgroundColor = style.bgcolor;
+    this.container.style.borderColor = style.bordercolor;
+    this.paint();
+  }
+
+  paint() {
+    var _this$defaultProps$st = _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, this.defaultProps.style, this.state.style),
+        sliderwidth = _this$defaultProps$st.sliderwidth,
+        sliderbgcolor = _this$defaultProps$st.sliderbgcolor,
+        sliderbgoncolor = _this$defaultProps$st.sliderbgoncolor,
+        slidercolor = _this$defaultProps$st.slidercolor;
+
+    var ctx = this.ctx;
+    var canvas = this.canvas;
+    var distance = this.distance;
+
+    var _canvas$getBoundingCl = canvas.getBoundingClientRect(),
+        width = _canvas$getBoundingCl.width,
+        height = _canvas$getBoundingCl.height;
+
+    canvas.width = width;
+    canvas.height = height;
+    var drawWidth = width * 0.9;
+    var drawHeight = sliderwidth || drawWidth * 0.05;
+    var left = width * 0.05;
+    var top = (height - drawHeight) * 0.5;
+    var borderRadius = drawHeight * 0.25;
+    this.interactionRect = [left, 0, drawWidth, height]; // draw right
+
+    if (distance < 1) {
+      ctx.fillStyle = sliderbgcolor;
+      Object(_utils__WEBPACK_IMPORTED_MODULE_3__["fillRoundedRect"])(ctx, left + drawWidth * distance, top, drawWidth * (1 - distance), drawHeight, borderRadius);
+    } // draw left
+
+
+    if (distance) {
+      ctx.fillStyle = sliderbgoncolor;
+      Object(_utils__WEBPACK_IMPORTED_MODULE_3__["fillRoundedRect"])(ctx, left, top, drawWidth * distance, drawHeight, borderRadius);
+    } // draw slider
+
+
+    ctx.fillStyle = slidercolor;
+    Object(_utils__WEBPACK_IMPORTED_MODULE_3__["fillRoundedRect"])(ctx, drawWidth * distance, top - drawHeight, width * 0.1, drawHeight * 3, borderRadius);
+  }
+
+}
+
+/***/ }),
+
 /***/ "./src/components/Knob.scss":
 /*!**********************************!*\
   !*** ./src/components/Knob.scss ***!
@@ -2682,7 +2814,7 @@ class FaustUIKnob extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"] {
         bgcolor: "rgba(18, 18, 18, 0)",
         bordercolor: "rgba(80, 80, 80, 0)",
         labelcolor: "rgba(226, 222, 255, 0.5)",
-        textcolor: "rgba(226, 222, 255, 0.5)",
+        textcolor: "rgba(18, 18, 18, 1)",
         knobwidth: undefined,
         knobcolor: "rgba(18, 18, 18, 1)",
         knoboncolor: "rgba(255, 165, 0, 1)",
@@ -3055,7 +3187,7 @@ class FaustUIVSlider extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"] {
         bgcolor: "rgba(18, 18, 18, 0)",
         bordercolor: "rgba(80, 80, 80, 0)",
         labelcolor: "rgba(226, 222, 255, 0.5)",
-        textcolor: "rgba(226, 222, 255, 0.5)",
+        textcolor: "rgba(18, 18, 18, 1)",
         sliderwidth: undefined,
         sliderbgcolor: "rgba(18, 18, 18, 1)",
         sliderbgoncolor: "rgba(255, 165, 0, 1)",
@@ -3148,22 +3280,23 @@ class FaustUIVSlider extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"] {
     var drawWidth = sliderwidth || drawHeight * 0.05;
     var left = (width - drawWidth) * 0.5;
     var top = height * 0.05;
+    var borderRadius = drawWidth * 0.25;
     this.interactionRect = [0, top, width, drawHeight]; // draw upper
 
     if (distance < 1) {
       ctx.fillStyle = sliderbgcolor;
-      Object(_utils__WEBPACK_IMPORTED_MODULE_4__["fillRoundedRect"])(ctx, left, top, drawWidth, drawHeight * (1 - distance), drawWidth * 0.25);
+      Object(_utils__WEBPACK_IMPORTED_MODULE_4__["fillRoundedRect"])(ctx, left, top, drawWidth, drawHeight * (1 - distance), borderRadius);
     } // draw lower
 
 
     if (distance) {
       ctx.fillStyle = sliderbgoncolor;
-      Object(_utils__WEBPACK_IMPORTED_MODULE_4__["fillRoundedRect"])(ctx, left, top + drawHeight * (1 - distance), drawWidth, drawHeight * distance, drawWidth * 0.25);
+      Object(_utils__WEBPACK_IMPORTED_MODULE_4__["fillRoundedRect"])(ctx, left, top + drawHeight * (1 - distance), drawWidth, drawHeight * distance, borderRadius);
     } // draw slider
 
 
     ctx.fillStyle = slidercolor;
-    Object(_utils__WEBPACK_IMPORTED_MODULE_4__["fillRoundedRect"])(ctx, left - drawWidth, drawHeight * (1 - distance), drawWidth * 3, height * 0.1, drawWidth * 0.25);
+    Object(_utils__WEBPACK_IMPORTED_MODULE_4__["fillRoundedRect"])(ctx, left - drawWidth, drawHeight * (1 - distance), drawWidth * 3, height * 0.1, borderRadius);
   }
 
   get trueSteps() {
