@@ -1,13 +1,17 @@
 .faust-ui-component.faust-ui-component-button {
-    & button {
-        display: block;
+    & > div {
+        display: flex;
         position: relative;
         cursor: pointer;
         border-width: 1px;
         text-align: center;
         border-radius: 4px;
-        margin: 4px;
         flex: 1 0 auto;
         box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
+        border-style: solid;
+        & > span {
+            user-select: none;
+            margin: auto;
+        }
     }
 }

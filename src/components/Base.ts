@@ -26,6 +26,7 @@ export class FaustUIItem<T extends FaustUIItemStyle> extends Component<FaustUIIt
     handleKeyDown = (e: KeyboardEvent) => {};
     handleKeyUp = (e: KeyboardEvent) => {};
     handleTouchStart = (e: TouchEvent) => {
+        e.preventDefault();
         const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
         let prevX = e.touches[0].pageX;
         let prevY = e.touches[0].pageY;
@@ -142,7 +143,7 @@ export class FaustUIItem<T extends FaustUIItemStyle> extends Component<FaustUIIt
         this.container = document.createElement("div");
         this.container.className = ["faust-ui-component", "faust-ui-component-" + this.className].join(" ");
         this.container.tabIndex = 1;
-        this.container.title = this.state.tooltip;
+        if (this.state.tooltip) this.container.title = this.state.tooltip;
     }
     resize() {
         const style = this.state ? { ...this.defaultProps.style, ...this.state.style } : this.defaultProps.style;
@@ -174,5 +175,25 @@ export class FaustUIItem<T extends FaustUIItemStyle> extends Component<FaustUIIt
     mount() {
         this.resize();
         return super.mount();
+    }
+    get trueSteps() {
+        const { type, max, min, step, enums } = this.state;
+        const full = 100;
+        const maxSteps = type === "enum" ? enums.length : type === "int" ? max - min : full;
+        if (step) {
+            if (type === "enum") return enums.length;
+            if (type === "int") return Math.min(Math.floor((max - min) / (Math.round(step) || 1)), maxSteps);
+            return Math.min(Math.floor((max - min) / step), maxSteps);
+        }
+        return maxSteps;
+    }
+    get distance() {
+        const { type, max, min, value, enums } = this.state;
+        return type === "enum" ? value / enums.length : (value - min) / (max - min);
+    }
+    get stepRange() {
+        const full = 100;
+        const trueSteps = this.trueSteps;
+        return full / trueSteps;
     }
 }

@@ -45,6 +45,7 @@ interface FaustUIEventMap {
     "paramChangeByUI": { path: string; value: number };
     "paramChangeByDSP": { path: string; value: number };
     "uiChange": TFaustUI;
+    "uiConnected": TFaustUI;
     "layoutChange": undefined;
 }
 type TLayoutProp = {

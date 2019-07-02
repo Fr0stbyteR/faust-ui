@@ -1,7 +1,8 @@
 .faust-ui-component.faust-ui-component-nentry {
+    align-items: center;
     & input {
-        margin: 0px 4px;
-        padding: 0px 2px;
+        margin: 0px;
+        text-align: center;
         border-width: 1px;
         border-radius: 4px;
         box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);

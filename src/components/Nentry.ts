@@ -2,7 +2,7 @@ import { FaustUIItem } from "./Base";
 import { FaustUIItemStyle, FaustUIItemProps } from "./types";
 import "./Nentry.scss";
 
-interface FaustUINentryStyle extends FaustUIItemStyle {
+export interface FaustUINentryStyle extends FaustUIItemStyle {
     fontname?: string;
     fontsize?: number;
     fontface?: "regular" | "bold" | "italic" | "bold italic";
@@ -39,7 +39,7 @@ export class FaustUINentry extends FaustUIItem<FaustUINentryStyle> {
         this.label.innerText = this.state.label;
         this.input = document.createElement("input");
         this.input.type = "number";
-        this.input.value = this.state.value.toString();
+        this.input.value = (+this.state.value.toFixed(3)).toString();
         this.input.max = this.state.max.toString();
         this.input.min = this.state.min.toString();
         this.input.step = this.state.step.toString();
@@ -55,13 +55,14 @@ export class FaustUINentry extends FaustUIItem<FaustUINentryStyle> {
         this.input.style.color = style.textcolor;
         this.input.style.fontSize = `${style.fontsize || style.height / 4}px`;
         this.label.style.fontSize = `${style.height / 4}px`;
+        this.label.style.color = style.labelcolor;
     }
     componentDidMount() {
         super.componentDidMount();
         this.input.addEventListener("change", this.handleChange);
         this.on("style", () => this.setStyle());
         this.on("label", () => this.label.innerText = this.state.label);
-        this.on("value", () => this.input.value = this.state.value.toString());
+        this.on("value", () => this.input.value = (+this.state.value.toFixed(3)).toString());
         this.on("max", () => this.input.max = this.state.max.toString());
         this.on("min", () => this.input.min = this.state.min.toString());
         this.on("step", () => this.input.step = this.state.step.toString());

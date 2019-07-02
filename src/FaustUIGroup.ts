@@ -6,6 +6,7 @@ import { FaustUICheckbox } from "./components/Checkbox";
 import { FaustUIItemProps, FaustUIItemStyle } from "./components/types";
 import { FaustUINentry } from "./components/Nentry";
 import { Component } from "./components/Component";
+import { FaustUIKnob } from "./components/Knob";
 
 export class FaustUIGroup extends Component<{ emitter: FaustUI; ui: TFaustUIGroup; grid: number; outerLeft: number; outerTop: number }> {
     static getComponent(item: TFaustUIInputItem | TFaustUIOutputItem, emitter: FaustUI, grid: number, itemLeft: number, itemTop: number) {
@@ -32,8 +33,8 @@ export class FaustUIGroup extends Component<{ emitter: FaustUI; ui: TFaustUIGrou
         };
         if (type === "button") return new FaustUIButton({ ...props });
         if (type === "checkbox") return new FaustUICheckbox({ ...props });
-        if (type === "nentry") return new FaustUINentry({ ...props }); /*
-        if (type === "knob") return <LiveDial showname={false} {...props} />;
+        if (type === "nentry") return new FaustUINentry({ ...props });
+        if (type === "knob") return new FaustUIKnob({ ...props }); /*
         if (type === "menu") return <LiveTab {...props} />;
         if (type === "radio") return <LiveTab {...props} />;
         if (type === "hslider") return <LiveSlider orientation="horizontal" showname={false} {...props} />;
@@ -60,6 +61,7 @@ export class FaustUIGroup extends Component<{ emitter: FaustUI; ui: TFaustUIGrou
         let { left, top, width, height } = ui.layout;
         this.label.innerText = ui.label;
         this.label.title = ui.label;
+        this.label.style.fontSize = `${0.25 * grid}px`;
         left = left * grid - outerLeft;
         top = top * grid - outerTop;
         width *= grid;
@@ -101,6 +103,7 @@ export class FaustUIGroup extends Component<{ emitter: FaustUI; ui: TFaustUIGrou
         let { left, top, width, height } = ui.layout;
         this.label.innerText = ui.label;
         this.label.title = ui.label;
+        this.label.style.fontSize = `${0.25 * grid}px`;
         left = left * grid - outerLeft;
         top = top * grid - outerTop;
         width *= grid;

@@ -163,7 +163,7 @@ module.exports = _objectSpread;
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".faust-ui-component {\n  display: flex;\n  position: absolute;\n  flex-direction: column;\n  overflow: hidden; }\n  .faust-ui-component:focus {\n    outline: none; }\n  .faust-ui-component .faust-ui-component-label {\n    position: relative;\n    font-weight: bold;\n    margin: 4px;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    max-width: 100%;\n    overflow: hidden; }\n", ""]);
+exports.push([module.i, ".faust-ui-component {\n  display: flex;\n  position: absolute;\n  flex-direction: column;\n  overflow: hidden; }\n  .faust-ui-component:focus {\n    outline: none; }\n  .faust-ui-component .faust-ui-component-label {\n    position: relative;\n    font-weight: bold;\n    margin-bottom: 4px;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    max-width: 100%;\n    overflow: hidden;\n    user-select: none; }\n", ""]);
 
 
 /***/ }),
@@ -177,7 +177,7 @@ exports.push([module.i, ".faust-ui-component {\n  display: flex;\n  position: ab
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".faust-ui-component.faust-ui-component-button button {\n  display: block;\n  position: relative;\n  cursor: pointer;\n  border-width: 1px;\n  text-align: center;\n  border-radius: 4px;\n  margin: 4px;\n  flex: 1 0 auto;\n  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5); }\n", ""]);
+exports.push([module.i, ".faust-ui-component.faust-ui-component-button > div {\n  display: flex;\n  position: relative;\n  cursor: pointer;\n  border-width: 1px;\n  text-align: center;\n  border-radius: 4px;\n  flex: 1 0 auto;\n  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);\n  border-style: solid; }\n  .faust-ui-component.faust-ui-component-button > div > span {\n    user-select: none;\n    margin: auto; }\n", ""]);
 
 
 /***/ }),
@@ -191,7 +191,21 @@ exports.push([module.i, ".faust-ui-component.faust-ui-component-button button {\
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".faust-ui-component.faust-ui-component-checkbox button {\n  display: block;\n  position: relative;\n  cursor: pointer;\n  border-width: 1px;\n  text-align: center;\n  border-radius: 1px;\n  margin: 4px;\n  flex: 1 0 auto;\n  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5); }\n", ""]);
+exports.push([module.i, ".faust-ui-component.faust-ui-component-checkbox > div {\n  display: flex;\n  position: relative;\n  cursor: pointer;\n  border-width: 1px;\n  text-align: center;\n  border-radius: 1px;\n  flex: 1 0 auto;\n  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);\n  border-style: solid; }\n  .faust-ui-component.faust-ui-component-checkbox > div > span {\n    margin: auto;\n    user-select: none; }\n", ""]);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/components/Knob.scss":
+/*!*****************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/components/Knob.scss ***!
+  \*****************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
+// Module
+exports.push([module.i, ".faust-ui-component.faust-ui-component-knob {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-knob canvas {\n    position: relative;\n    display: block;\n    flex: 1 1 auto;\n    min-height: 50%;\n    width: 100%; }\n  .faust-ui-component.faust-ui-component-knob input {\n    position: relative;\n    display: block;\n    flex: 0 1 auto;\n    text-align: center;\n    background-color: rgba(255, 255, 255, 0.25);\n    margin: 0px;\n    border-width: 0px;\n    border-radius: 4px;\n    max-width: 100%; }\n", ""]);
 
 
 /***/ }),
@@ -205,7 +219,7 @@ exports.push([module.i, ".faust-ui-component.faust-ui-component-checkbox button 
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".faust-ui-component.faust-ui-component-nentry input {\n  margin: 0px 4px;\n  padding: 0px 2px;\n  border-width: 1px;\n  border-radius: 4px;\n  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5); }\n", ""]);
+exports.push([module.i, ".faust-ui-component.faust-ui-component-nentry {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-nentry input {\n    margin: 0px;\n    text-align: center;\n    border-width: 1px;\n    border-radius: 4px;\n    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5); }\n", ""]);
 
 
 /***/ }),
@@ -219,7 +233,7 @@ exports.push([module.i, ".faust-ui-component.faust-ui-component-nentry input {\n
 
 exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".faust-ui-root {\n  position: relative;\n  display: block; }\n  .faust-ui-root .faust-ui-group {\n    position: absolute;\n    display: block;\n    background-color: rgba(80, 80, 80, 0.75);\n    border-radius: 4px;\n    border: 1px rgba(255, 255, 255, 0.25) solid; }\n    .faust-ui-root .faust-ui-group .faust-ui-group-label {\n      position: relative;\n      font-weight: bold;\n      margin: 4px;\n      font-size: 12px;\n      text-overflow: ellipsis;\n      white-space: nowrap;\n      max-width: 100%;\n      overflow: hidden; }\n  .faust-ui-root .faust-ui-item {\n    position: absolute;\n    display: block; }\n", ""]);
+exports.push([module.i, ".faust-ui-root {\n  position: relative;\n  display: block; }\n  .faust-ui-root .faust-ui-group {\n    position: absolute;\n    display: block;\n    background-color: rgba(80, 80, 80, 0.75);\n    border-radius: 4px;\n    border: 1px rgba(255, 255, 255, 0.25) solid; }\n    .faust-ui-root .faust-ui-group .faust-ui-group-label {\n      position: relative;\n      font-weight: bold;\n      margin: 4px;\n      font-size: 12px;\n      text-overflow: ellipsis;\n      white-space: nowrap;\n      max-width: 100%;\n      overflow: hidden;\n      user-select: none; }\n  .faust-ui-root .faust-ui-item {\n    position: absolute;\n    display: block; }\n", ""]);
 
 
 /***/ }),
@@ -1350,6 +1364,7 @@ class FaustUI extends events__WEBPACK_IMPORTED_MODULE_2__["EventEmitter"] {
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "_ui", void 0);
 
+    this.setMaxListeners(100);
     var root = options.root,
         uiIn = options.ui;
     this.root = root;
@@ -1391,6 +1406,7 @@ class FaustUI extends events__WEBPACK_IMPORTED_MODULE_2__["EventEmitter"] {
     });
     var children = this.faustUIRoot.render();
     children.forEach(e => this.root.appendChild(e));
+    this.emit("uiConnected", this.ui);
   }
 
   get ui() {
@@ -1443,6 +1459,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Checkbox__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Checkbox */ "./src/components/Checkbox.ts");
 /* harmony import */ var _components_Nentry__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Nentry */ "./src/components/Nentry.ts");
 /* harmony import */ var _components_Component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Component */ "./src/components/Component.ts");
+/* harmony import */ var _components_Knob__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Knob */ "./src/components/Knob.ts");
+
 
 
 
@@ -1488,8 +1506,8 @@ class FaustUIGroup extends _components_Component__WEBPACK_IMPORTED_MODULE_6__["C
     if (type === "button") return new _components_Button__WEBPACK_IMPORTED_MODULE_3__["FaustUIButton"](_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, props));
     if (type === "checkbox") return new _components_Checkbox__WEBPACK_IMPORTED_MODULE_4__["FaustUICheckbox"](_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, props));
     if (type === "nentry") return new _components_Nentry__WEBPACK_IMPORTED_MODULE_5__["FaustUINentry"](_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, props));
+    if (type === "knob") return new _components_Knob__WEBPACK_IMPORTED_MODULE_7__["FaustUIKnob"](_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, props));
     /*
-    if (type === "knob") return <LiveDial showname={false} {...props} />;
     if (type === "menu") return <LiveTab {...props} />;
     if (type === "radio") return <LiveTab {...props} />;
     if (type === "hslider") return <LiveSlider orientation="horizontal" showname={false} {...props} />;
@@ -1524,6 +1542,7 @@ class FaustUIGroup extends _components_Component__WEBPACK_IMPORTED_MODULE_6__["C
         height = _ui$layout.height;
     this.label.innerText = ui.label;
     this.label.title = ui.label;
+    this.label.style.fontSize = "".concat(0.25 * grid, "px");
     left = left * grid - outerLeft;
     top = top * grid - outerTop;
     width *= grid;
@@ -1589,6 +1608,7 @@ class FaustUIGroup extends _components_Component__WEBPACK_IMPORTED_MODULE_6__["C
         height = _ui$layout2.height;
     this.label.innerText = ui.label;
     this.label.title = ui.label;
+    this.label.style.fontSize = "".concat(0.25 * grid, "px");
     left = left * grid - outerLeft;
     top = top * grid - outerTop;
     width *= grid;
@@ -1835,7 +1855,7 @@ class Layout {
 
 _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(Layout, "padding", 0.2);
 
-_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(Layout, "labelHeight", 0.5);
+_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(Layout, "labelHeight", 0.25);
 
 _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(Layout, "spaceBetween", 0.1);
 
@@ -1867,7 +1887,7 @@ _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(Lay
   },
   knob: {
     width: 1,
-    height: 1,
+    height: 1.5,
     sizing: "none"
   },
   menu: {
@@ -1972,6 +1992,7 @@ class FaustUIItem extends _Component__WEBPACK_IMPORTED_MODULE_4__["Component"] {
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "handleKeyUp", e => {});
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "handleTouchStart", e => {
+      e.preventDefault();
       var rect = e.currentTarget.getBoundingClientRect();
       var prevX = e.touches[0].pageX;
       var prevY = e.touches[0].pageY;
@@ -2165,7 +2186,7 @@ class FaustUIItem extends _Component__WEBPACK_IMPORTED_MODULE_4__["Component"] {
     this.container = document.createElement("div");
     this.container.className = ["faust-ui-component", "faust-ui-component-" + this.className].join(" ");
     this.container.tabIndex = 1;
-    this.container.title = this.state.tooltip;
+    if (this.state.tooltip) this.container.title = this.state.tooltip;
   }
 
   resize() {
@@ -2205,6 +2226,41 @@ class FaustUIItem extends _Component__WEBPACK_IMPORTED_MODULE_4__["Component"] {
   mount() {
     this.resize();
     return super.mount();
+  }
+
+  get trueSteps() {
+    var _this$state2 = this.state,
+        type = _this$state2.type,
+        max = _this$state2.max,
+        min = _this$state2.min,
+        step = _this$state2.step,
+        enums = _this$state2.enums;
+    var full = 100;
+    var maxSteps = type === "enum" ? enums.length : type === "int" ? max - min : full;
+
+    if (step) {
+      if (type === "enum") return enums.length;
+      if (type === "int") return Math.min(Math.floor((max - min) / (Math.round(step) || 1)), maxSteps);
+      return Math.min(Math.floor((max - min) / step), maxSteps);
+    }
+
+    return maxSteps;
+  }
+
+  get distance() {
+    var _this$state3 = this.state,
+        type = _this$state3.type,
+        max = _this$state3.max,
+        min = _this$state3.min,
+        value = _this$state3.value,
+        enums = _this$state3.enums;
+    return type === "enum" ? value / enums.length : (value - min) / (max - min);
+  }
+
+  get stepRange() {
+    var full = 100;
+    var trueSteps = this.trueSteps;
+    return full / trueSteps;
   }
 
 }
@@ -2322,7 +2378,7 @@ class FaustUIButton extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"] {
 
   componentWillMount() {
     super.componentWillMount();
-    this.btn = document.createElement("button");
+    this.btn = document.createElement("div");
     this.span = document.createElement("span");
     this.span.innerText = this.state.label;
     this.setStyle();
@@ -2520,6 +2576,243 @@ _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(Com
 
 /***/ }),
 
+/***/ "./src/components/Knob.scss":
+/*!**********************************!*\
+  !*** ./src/components/Knob.scss ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/lib/loader.js!./Knob.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/components/Knob.scss");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./src/components/Knob.ts":
+/*!********************************!*\
+  !*** ./src/components/Knob.ts ***!
+  \********************************/
+/*! exports provided: FaustUIKnob */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FaustUIKnob", function() { return FaustUIKnob; });
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js");
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Base__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Base */ "./src/components/Base.ts");
+/* harmony import */ var _Knob_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Knob.scss */ "./src/components/Knob.scss");
+/* harmony import */ var _Knob_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_Knob_scss__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils */ "./src/components/utils.ts");
+
+
+
+
+
+class FaustUIKnob extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"] {
+  constructor() {
+    super(...arguments);
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "className", "knob");
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "label", void 0);
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "canvas", void 0);
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "input", void 0);
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "ctx", void 0);
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "handleChange", e => {
+      this.setValue(+e.currentTarget.value);
+      this.paint();
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "handlePointerDrag", e => {
+      var newValue = this.getValueFromDelta(e);
+      if (newValue !== this.state.value) this.setValue(newValue);
+    });
+  }
+
+  static get defaultProps() {
+    var inherited = super.defaultProps;
+    return _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, inherited, {
+      style: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, inherited.style, {
+        fontname: "Arial",
+        fontsize: undefined,
+        fontface: "regular",
+        bgcolor: "rgba(18, 18, 18, 0)",
+        bordercolor: "rgba(80, 80, 80, 0)",
+        labelcolor: "rgba(226, 222, 255, 0.5)",
+        textcolor: "rgba(226, 222, 255, 0.5)",
+        dialwidth: undefined,
+        dialcolor: "rgba(200, 200, 200, 0.75)",
+        dialoncolor: "rgba(255, 165, 0, 1)",
+        needlecolor: "rgba(200, 200, 200, 0.75)"
+      })
+    });
+  }
+
+  componentWillMount() {
+    super.componentWillMount();
+    this.canvas = document.createElement("canvas");
+    this.ctx = this.canvas.getContext("2d");
+    this.label = document.createElement("div");
+    this.label.className = "faust-ui-component-label";
+    this.label.innerText = this.state.label;
+    this.input = document.createElement("input");
+    this.input.type = "number";
+    this.input.value = (+this.state.value.toFixed(3)).toString();
+    this.input.max = this.state.max.toString();
+    this.input.min = this.state.min.toString();
+    this.input.step = this.state.step.toString();
+    this.setStyle();
+  }
+
+  setStyle() {
+    var style = _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, this.defaultProps.style, this.state.style);
+
+    this.input.style.fontSize = "".concat(style.fontsize || style.height * 0.1, "px");
+    this.input.style.color = style.textcolor;
+    this.label.style.fontSize = "".concat(style.height * 0.1, "px");
+    this.label.style.color = style.labelcolor;
+    this.container.style.backgroundColor = style.bgcolor;
+    this.container.style.borderColor = style.bordercolor;
+    this.paint();
+  }
+
+  componentDidMount() {
+    super.componentDidMount();
+    this.state.emitter.on("uiConnected", () => this.paint());
+    this.input.addEventListener("change", this.handleChange);
+    this.canvas.addEventListener("mousedown", this.handleMouseDown);
+    this.canvas.addEventListener("touchstart", this.handleTouchStart, {
+      passive: false
+    });
+    this.on("style", () => this.setStyle());
+    this.on("label", () => this.label.innerText = this.state.label);
+    this.on("value", () => {
+      this.input.value = (+this.state.value.toFixed(3)).toString();
+      this.paint();
+    });
+    this.on("max", () => {
+      this.input.max = this.state.max.toString();
+      this.paint();
+    });
+    this.on("min", () => {
+      this.input.min = this.state.min.toString();
+      this.paint();
+    });
+    this.on("step", () => {
+      this.input.step = this.state.step.toString();
+      this.paint();
+    });
+  }
+
+  mount() {
+    this.container.appendChild(this.label);
+    this.container.appendChild(this.canvas);
+    this.container.appendChild(this.input);
+    return super.mount();
+  }
+
+  paint() {
+    var _this$defaultProps$st = _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, this.defaultProps.style, this.state.style),
+        dialwidth = _this$defaultProps$st.dialwidth,
+        dialcolor = _this$defaultProps$st.dialcolor,
+        dialoncolor = _this$defaultProps$st.dialoncolor,
+        needlecolor = _this$defaultProps$st.needlecolor;
+
+    var ctx = this.ctx;
+    var canvas = this.canvas;
+    var distance = this.distance;
+
+    var _canvas$getBoundingCl = canvas.getBoundingClientRect(),
+        width = _canvas$getBoundingCl.width,
+        height = _canvas$getBoundingCl.height;
+
+    canvas.width = width;
+    canvas.height = height;
+    var start = 5 / 8 * Math.PI;
+    var end = 19 / 8 * Math.PI;
+    var valPos = start + Object(_utils__WEBPACK_IMPORTED_MODULE_4__["toRad"])(distance * 315);
+    var dialHeight = Math.min(width, height) * 0.75;
+    var dialRadius = dialHeight * 0.5;
+    var dialCenterX = width * 0.5;
+    var dialCenterY = height * 0.5; // const arcStartX = dialCenterX + (dialHeight * 0.5 * Math.cos(start));
+    // const arcStartY = dialCenterY + (dialHeight * 0.5 * Math.sin(start));
+    // const arcEndX = dialCenterX + (dialHeight * 0.5 * Math.cos(end));
+    // const arcEndY = dialCenterY + (dialHeight * 0.5 * Math.sin(end));
+
+    var valuePosX = dialCenterX + dialHeight * 0.5 * Math.cos(valPos);
+    var valuePosY = dialCenterY + dialHeight * 0.5 * Math.sin(valPos);
+    var lineWidth = dialwidth || dialRadius * 0.2;
+    ctx.strokeStyle = dialcolor;
+    ctx.fillStyle = ctx.strokeStyle;
+    ctx.lineWidth = lineWidth;
+    ctx.lineCap = "round"; // draw background arc
+
+    ctx.beginPath();
+    ctx.arc(dialCenterX, dialCenterY, dialRadius, valPos, end);
+    ctx.stroke(); // draw value arc
+
+    if (distance) {
+      ctx.strokeStyle = dialoncolor;
+      ctx.fillStyle = ctx.strokeStyle;
+      ctx.beginPath();
+      ctx.arc(dialCenterX, dialCenterY, dialRadius, start, valPos);
+      ctx.stroke();
+    } // draw dial needle
+
+
+    ctx.strokeStyle = needlecolor;
+    ctx.fillStyle = ctx.strokeStyle;
+    ctx.beginPath();
+    ctx.moveTo(dialCenterX, dialCenterY);
+    ctx.lineTo(valuePosX, valuePosY);
+    ctx.stroke();
+  }
+
+  getValueFromDelta(e) {
+    var _this$state = this.state,
+        type = _this$state.type,
+        min = _this$state.min,
+        max = _this$state.max;
+    var stepRange = this.stepRange;
+    var trueSteps = this.trueSteps;
+    var step = type === "enum" ? 1 : (max - min) / trueSteps;
+    var prevSteps = type === "enum" ? e.prevValue : (e.prevValue - min) / step;
+    var dSteps = Math.round((e.fromY - e.y) / stepRange);
+    var steps = Math.min(trueSteps, Math.max(0, prevSteps + dSteps));
+    if (type === "enum") return steps;
+    if (type === "int") return Math.round(steps * step + min);
+    return steps * step + min;
+  }
+
+}
+
+/***/ }),
+
 /***/ "./src/components/Nentry.scss":
 /*!************************************!*\
   !*** ./src/components/Nentry.scss ***!
@@ -2608,7 +2901,7 @@ class FaustUINentry extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"] {
     this.label.innerText = this.state.label;
     this.input = document.createElement("input");
     this.input.type = "number";
-    this.input.value = this.state.value.toString();
+    this.input.value = (+this.state.value.toFixed(3)).toString();
     this.input.max = this.state.max.toString();
     this.input.min = this.state.min.toString();
     this.input.step = this.state.step.toString();
@@ -2623,6 +2916,7 @@ class FaustUINentry extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"] {
     this.input.style.color = style.textcolor;
     this.input.style.fontSize = "".concat(style.fontsize || style.height / 4, "px");
     this.label.style.fontSize = "".concat(style.height / 4, "px");
+    this.label.style.color = style.labelcolor;
   }
 
   componentDidMount() {
@@ -2630,7 +2924,7 @@ class FaustUINentry extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"] {
     this.input.addEventListener("change", this.handleChange);
     this.on("style", () => this.setStyle());
     this.on("label", () => this.label.innerText = this.state.label);
-    this.on("value", () => this.input.value = this.state.value.toString());
+    this.on("value", () => this.input.value = (+this.state.value.toFixed(3)).toString());
     this.on("max", () => this.input.max = this.state.max.toString());
     this.on("min", () => this.input.min = this.state.min.toString());
     this.on("step", () => this.input.step = this.state.step.toString());

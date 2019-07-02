@@ -1,6 +1,6 @@
 export class Layout {
     static padding = 0.2;
-    static labelHeight = 0.5;
+    static labelHeight = 0.25;
     static spaceBetween = 0.1;
     static itemLayoutMap: { [type: string]: TLayoutProp } = {
         hslider: {
@@ -30,7 +30,7 @@ export class Layout {
         },
         knob: {
             width: 1,
-            height: 1,
+            height: 1.5,
             sizing: "none"
         },
         menu: {

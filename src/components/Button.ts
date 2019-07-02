@@ -2,7 +2,7 @@ import { FaustUIItem } from "./Base";
 import { FaustUIItemStyle, FaustUIItemProps } from "./types";
 import "./Button.scss";
 
-interface FaustUIButtonStyle extends FaustUIItemStyle {
+export interface FaustUIButtonStyle extends FaustUIItemStyle {
     fontname?: string;
     fontsize?: number;
     fontface?: "normal" | "bold" | "italic" | "bold italic";
@@ -34,11 +34,11 @@ export class FaustUIButton extends FaustUIItem<FaustUIButtonStyle> {
     }
     className = "button";
 
-    btn: HTMLButtonElement;
+    btn: HTMLDivElement;
     span: HTMLSpanElement;
     componentWillMount() {
         super.componentWillMount();
-        this.btn = document.createElement("button");
+        this.btn = document.createElement("div");
         this.span = document.createElement("span");
         this.span.innerText = this.state.label;
         this.setStyle();

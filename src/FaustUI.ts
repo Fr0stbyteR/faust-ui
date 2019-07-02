@@ -29,6 +29,7 @@ export class FaustUI extends EventEmitter {
     private _ui: TFaustUI;
     constructor(options: TOptions) {
         super();
+        this.setMaxListeners(100);
         const { root, ui: uiIn } = options;
         this.root = root;
         if (uiIn) this.ui = uiIn;
@@ -48,6 +49,7 @@ export class FaustUI extends EventEmitter {
         this.faustUIRoot = new FaustUIRoot({ width, height, layout, ui: this.ui, emitter: this });
         const children = this.faustUIRoot.render();
         children.forEach(e => this.root.appendChild(e));
+        this.emit("uiConnected", this.ui);
     }
     get ui() {
         return this._ui;
