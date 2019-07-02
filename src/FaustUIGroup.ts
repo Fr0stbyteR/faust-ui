@@ -7,6 +7,7 @@ import { FaustUIItemProps, FaustUIItemStyle } from "./components/types";
 import { FaustUINentry } from "./components/Nentry";
 import { Component } from "./components/Component";
 import { FaustUIKnob } from "./components/Knob";
+import { FaustUIVSlider } from "./components/VSlider";
 
 export class FaustUIGroup extends Component<{ emitter: FaustUI; ui: TFaustUIGroup; grid: number; outerLeft: number; outerTop: number }> {
     static getComponent(item: TFaustUIInputItem | TFaustUIOutputItem, emitter: FaustUI, grid: number, itemLeft: number, itemTop: number) {
@@ -37,8 +38,8 @@ export class FaustUIGroup extends Component<{ emitter: FaustUI; ui: TFaustUIGrou
         if (type === "knob") return new FaustUIKnob({ ...props }); /*
         if (type === "menu") return <LiveTab {...props} />;
         if (type === "radio") return <LiveTab {...props} />;
-        if (type === "hslider") return <LiveSlider orientation="horizontal" showname={false} {...props} />;
-        if (type === "vslider") return <LiveSlider orientation="vertical" showname={false} {...props} />;
+        if (type === "hslider") return <LiveSlider orientation="horizontal" showname={false} {...props} />;*/
+        if (type === "vslider") return new FaustUIVSlider({ ...props }); /*
         if (type === "hbargraph") return <LiveMeter orientation="horizontal" {...props} />;
         if (type === "vbargraph") return <LiveMeter orientation="vertical" {...props} />;
         if (type === "led") return <LiveMeter orientation="vertical" {...props} />;*/

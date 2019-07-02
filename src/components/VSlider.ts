@@ -1,17 +1,17 @@
 import { FaustUIItem } from "./Base";
 import { FaustUIItemProps } from "./types";
-import "./Knob.scss";
+import "./VSlider.scss";
 import { FaustUINentryStyle } from "./Nentry";
-import { toRad } from "./utils";
+import { fillRoundedRect } from "./utils";
 
-interface FaustUIKnobStyle extends FaustUINentryStyle {
-    knobwidth?: number;
-    knobcolor?: string;
-    knoboncolor?: string;
-    needlecolor?: string;
+interface FaustUISliderStyle extends FaustUINentryStyle {
+    sliderwidth?: number;
+    sliderbgcolor?: string;
+    sliderbgoncolor?: string;
+    slidercolor?: string;
 }
-export class FaustUIKnob extends FaustUIItem<FaustUIKnobStyle> {
-    static get defaultProps(): FaustUIItemProps<FaustUIKnobStyle> {
+export class FaustUIVSlider extends FaustUIItem<FaustUISliderStyle> {
+    static get defaultProps(): FaustUIItemProps<FaustUISliderStyle> {
         const inherited = super.defaultProps;
         return {
             ...inherited,
@@ -24,19 +24,20 @@ export class FaustUIKnob extends FaustUIItem<FaustUIKnobStyle> {
                 bordercolor: "rgba(80, 80, 80, 0)",
                 labelcolor: "rgba(226, 222, 255, 0.5)",
                 textcolor: "rgba(226, 222, 255, 0.5)",
-                knobwidth: undefined,
-                knobcolor: "rgba(18, 18, 18, 1)",
-                knoboncolor: "rgba(255, 165, 0, 1)",
-                needlecolor: "rgba(200, 200, 200, 0.75)"
+                sliderwidth: undefined,
+                sliderbgcolor: "rgba(18, 18, 18, 1)",
+                sliderbgoncolor: "rgba(255, 165, 0, 1)",
+                slidercolor: "rgba(200, 200, 200, 0.75)"
             }
         };
     }
-    className = "knob";
+    className = "vslider";
 
     label: HTMLDivElement;
     canvas: HTMLCanvasElement;
     input: HTMLInputElement;
     ctx: CanvasRenderingContext2D;
+    interactionRect: number[] = [0, 0, 0, 0];
     componentWillMount() {
         super.componentWillMount();
         this.canvas = document.createElement("canvas");
@@ -58,9 +59,9 @@ export class FaustUIKnob extends FaustUIItem<FaustUIKnobStyle> {
     }
     setStyle() {
         const style = { ...this.defaultProps.style, ...this.state.style };
-        this.input.style.fontSize = `${style.fontsize || style.height * 0.1}px`;
+        this.input.style.fontSize = `${style.fontsize || style.height * 0.05}px`;
         this.input.style.color = style.textcolor;
-        this.label.style.fontSize = `${style.height * 0.1}px`;
+        this.label.style.fontSize = `${style.height * 0.05}px`;
         this.label.style.color = style.labelcolor;
         this.container.style.backgroundColor = style.bgcolor;
         this.container.style.borderColor = style.bordercolor;
@@ -98,7 +99,7 @@ export class FaustUIKnob extends FaustUIItem<FaustUIKnobStyle> {
         return super.mount();
     }
     paint() {
-        const { knobwidth: dialwidth, knobcolor: dialcolor, knoboncolor: dialoncolor, needlecolor } = { ...this.defaultProps.style, ...this.state.style };
+        const { sliderwidth, sliderbgcolor, sliderbgoncolor, slidercolor } = { ...this.defaultProps.style, ...this.state.style };
         const ctx = this.ctx;
         const canvas = this.canvas;
         const distance = this.distance;
@@ -106,59 +107,65 @@ export class FaustUIKnob extends FaustUIItem<FaustUIKnobStyle> {
         canvas.width = width;
         canvas.height = height;
 
-        const start = 5 / 8 * Math.PI;
-        const end = 19 / 8 * Math.PI;
-        const valPos = start + toRad(distance * 315);
-        const dialHeight = Math.min(width, height) * 0.75;
-        const dialRadius = dialHeight * 0.5;
-        const dialCenterX = width * 0.5;
-        const dialCenterY = height * 0.5;
-        // const arcStartX = dialCenterX + (dialHeight * 0.5 * Math.cos(start));
-        // const arcStartY = dialCenterY + (dialHeight * 0.5 * Math.sin(start));
-        // const arcEndX = dialCenterX + (dialHeight * 0.5 * Math.cos(end));
-        // const arcEndY = dialCenterY + (dialHeight * 0.5 * Math.sin(end));
-        const valuePosX = dialCenterX + (dialHeight * 0.5 * Math.cos(valPos));
-        const valuePosY = dialCenterY + (dialHeight * 0.5 * Math.sin(valPos));
-        const lineWidth = dialwidth || dialRadius * 0.2;
-
-        ctx.strokeStyle = dialcolor;
-        ctx.fillStyle = ctx.strokeStyle;
-        ctx.lineWidth = lineWidth;
-        ctx.lineCap = "round";
-        // draw background arc
-        ctx.beginPath();
-        ctx.arc(dialCenterX, dialCenterY, dialRadius, valPos, end);
-        ctx.stroke();
-        // draw value arc
-        if (distance) {
-            ctx.strokeStyle = dialoncolor;
-            ctx.fillStyle = ctx.strokeStyle;
-            ctx.beginPath();
-            ctx.arc(dialCenterX, dialCenterY, dialRadius, start, valPos);
-            ctx.stroke();
+        const drawHeight = height * 0.9;
+        const drawWidth = sliderwidth || drawHeight * 0.05;
+        const left = (width - drawWidth) * 0.5;
+        const top = height * 0.05;
+        this.interactionRect = [0, top, width, drawHeight];
+        // draw upper
+        if (distance < 1) {
+            ctx.fillStyle = sliderbgcolor;
+            fillRoundedRect(ctx, left, top, drawWidth, drawHeight * (1 - distance), drawWidth * 0.25);
         }
-        // draw dial needle
-        ctx.strokeStyle = needlecolor;
-        ctx.fillStyle = ctx.strokeStyle;
-        ctx.beginPath();
-        ctx.moveTo(dialCenterX, dialCenterY);
-        ctx.lineTo(valuePosX, valuePosY);
-        ctx.stroke();
+        // draw lower
+        if (distance) {
+            ctx.fillStyle = sliderbgoncolor;
+            fillRoundedRect(ctx, left, top + drawHeight * (1 - distance), drawWidth, drawHeight * distance, drawWidth * 0.25);
+        }
+        // draw slider
+        ctx.fillStyle = slidercolor;
+        fillRoundedRect(ctx, left - drawWidth, drawHeight * (1 - distance), drawWidth * 3, height * 0.1, drawWidth * 0.25);
     }
-    getValueFromDelta(e: PointerDragEvent) {
+    get trueSteps() {
+        const { type, max, min, step, enums } = this.state;
+        const full = this.interactionRect[this.className === "vslider" ? 3 : 2];
+        const maxSteps = type === "enum" ? enums.length : type === "int" ? max - min : full;
+        if (step) {
+            if (type === "enum") return enums.length;
+            if (type === "int") return Math.min(Math.floor((max - min) / (Math.round(step) || 0)), maxSteps);
+            return Math.min(Math.floor((max - min) / step), maxSteps);
+        }
+        return maxSteps;
+    }
+    get stepRange() {
+        const full = this.interactionRect[this.className === "vslider" ? 3 : 2];
+        const trueSteps = this.trueSteps;
+        return full / trueSteps;
+    }
+    getValueFromPos(e: { x: number; y: number }) {
         const { type, min, max } = this.state;
         const stepRange = this.stepRange;
         const trueSteps = this.trueSteps;
         const step = type === "enum" ? 1 : (max - min) / trueSteps;
-        const prevSteps = type === "enum" ? e.prevValue : (e.prevValue - min) / step;
-        const dSteps = Math.round((e.fromY - e.y) / stepRange);
-        const steps = Math.min(trueSteps, Math.max(0, prevSteps + dSteps));
+        let steps = Math.round((this.className === "vslider" ? this.interactionRect[3] - (e.y - this.interactionRect[1]) : e.x - this.interactionRect[0]) / stepRange);
+        steps = Math.min(trueSteps, Math.max(0, steps));
         if (type === "enum") return steps;
         if (type === "int") return Math.round(steps * step + min);
         return steps * step + min;
     }
+    handlePointerDown = (e: PointerDownEvent) => {
+        const { value } = this.state;
+        if (
+            e.x < this.interactionRect[0]
+            || e.x > this.interactionRect[0] + this.interactionRect[2]
+            || e.y < this.interactionRect[1]
+            || e.y > this.interactionRect[1] + this.interactionRect[3]
+        ) return;
+        const newValue = this.getValueFromPos(e);
+        if (newValue !== value) this.setValue(this.getValueFromPos(e));
+    }
     handlePointerDrag = (e: PointerDragEvent) => {
-        const newValue = this.getValueFromDelta(e);
+        const newValue = this.getValueFromPos(e);
         if (newValue !== this.state.value) this.setValue(newValue);
     }
 }
