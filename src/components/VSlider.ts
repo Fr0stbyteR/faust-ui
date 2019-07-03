@@ -108,24 +108,19 @@ export class FaustUIVSlider extends FaustUIItem<FaustUISliderStyle> {
         canvas.height = height;
 
         const drawHeight = height * 0.9;
-        const drawWidth = sliderwidth || drawHeight * 0.05;
+        const drawWidth = sliderwidth || Math.min(width / 3, drawHeight * 0.05);
         const left = (width - drawWidth) * 0.5;
         const top = height * 0.05;
         const borderRadius = drawWidth * 0.25;
         this.interactionRect = [0, top, width, drawHeight];
-        // draw upper
-        if (distance < 1) {
-            ctx.fillStyle = sliderbgcolor;
-            fillRoundedRect(ctx, left, top, drawWidth, drawHeight * (1 - distance), borderRadius);
-        }
-        // draw lower
-        if (distance) {
-            ctx.fillStyle = sliderbgoncolor;
-            fillRoundedRect(ctx, left, top + drawHeight * (1 - distance), drawWidth, drawHeight * distance, borderRadius);
-        }
+        const grd = ctx.createLinearGradient(0, top, 0, top + drawHeight);
+        grd.addColorStop(Math.max(0, Math.min(1, 1 - distance)), sliderbgcolor);
+        grd.addColorStop(Math.max(0, Math.min(1, 1 - distance)), sliderbgoncolor);
+        ctx.fillStyle = grd;
+        fillRoundedRect(ctx, left, top, drawWidth, drawHeight, borderRadius);
         // draw slider
         ctx.fillStyle = slidercolor;
-        fillRoundedRect(ctx, left - drawWidth, drawHeight * (1 - distance), drawWidth * 3, height * 0.1, borderRadius);
+        fillRoundedRect(ctx, left - drawWidth, top + drawHeight * (1 - distance) - drawWidth, drawWidth * 3, drawWidth * 2, borderRadius);
     }
     get trueSteps() {
         const { type, max, min, step, enums } = this.state;

@@ -1,13 +1,13 @@
-.faust-ui-component.faust-ui-component-vslider {
+.faust-ui-component.faust-ui-component-vbargraph {
     align-items: center;
     & canvas {
         position: relative;
         display: block;
         flex: 1 1 auto;
         min-height: 75%;
-        width: 100%;
+        width: 50%;
     }
-    & input {
+    & span {
         position: relative;
         display: block;
         flex: 0 1 auto;
@@ -16,7 +16,7 @@
         margin: 5px auto auto auto;
         border-width: 0px;
         border-radius: 4px;
-        max-width: calc(100% - 8px);
+        width: calc(100% - 8px);
         padding: 2px 4px;
     }
 }

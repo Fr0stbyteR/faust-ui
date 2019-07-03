@@ -143,6 +143,7 @@ export class FaustUIItem<T extends FaustUIItemStyle> extends Component<FaustUIIt
         this.container = document.createElement("div");
         this.container.className = ["faust-ui-component", "faust-ui-component-" + this.className].join(" ");
         this.container.tabIndex = 1;
+        this.container.id = this.state.address;
         if (this.state.tooltip) this.container.title = this.state.tooltip;
     }
     resize() {

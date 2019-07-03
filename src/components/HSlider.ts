@@ -25,23 +25,18 @@ export class FaustUIHSlider extends FaustUIVSlider {
         canvas.height = height;
 
         const drawWidth = width * 0.9;
-        const drawHeight = sliderwidth || drawWidth * 0.05;
+        const drawHeight = sliderwidth || Math.min(height / 3, drawWidth * 0.05);
         const left = width * 0.05;
         const top = (height - drawHeight) * 0.5;
         const borderRadius = drawHeight * 0.25;
         this.interactionRect = [left, 0, drawWidth, height];
-        // draw right
-        if (distance < 1) {
-            ctx.fillStyle = sliderbgcolor;
-            fillRoundedRect(ctx, left + drawWidth * distance, top, drawWidth * (1 - distance), drawHeight, borderRadius);
-        }
-        // draw left
-        if (distance) {
-            ctx.fillStyle = sliderbgoncolor;
-            fillRoundedRect(ctx, left, top, drawWidth * distance, drawHeight, borderRadius);
-        }
+        const grd = ctx.createLinearGradient(left, 0, left + drawWidth, 0);
+        grd.addColorStop(Math.max(0, Math.min(1, distance)), sliderbgoncolor);
+        grd.addColorStop(Math.max(0, Math.min(1, distance)), sliderbgcolor);
+        ctx.fillStyle = grd;
+        fillRoundedRect(ctx, left, top, drawWidth, drawHeight, borderRadius);
         // draw slider
         ctx.fillStyle = slidercolor;
-        fillRoundedRect(ctx, drawWidth * distance, top - drawHeight, width * 0.1, drawHeight * 3, borderRadius);
+        fillRoundedRect(ctx, left + drawWidth * distance - drawHeight, top - drawHeight, drawHeight * 2, drawHeight * 3, borderRadius);
     }
 }

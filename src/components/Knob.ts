@@ -98,7 +98,7 @@ export class FaustUIKnob extends FaustUIItem<FaustUIKnobStyle> {
         return super.mount();
     }
     paint() {
-        const { knobwidth: dialwidth, knobcolor: dialcolor, knoboncolor: dialoncolor, needlecolor } = { ...this.defaultProps.style, ...this.state.style };
+        const { knobwidth, knobcolor, knoboncolor, needlecolor } = { ...this.defaultProps.style, ...this.state.style };
         const ctx = this.ctx;
         const canvas = this.canvas;
         const distance = this.distance;
@@ -119,10 +119,9 @@ export class FaustUIKnob extends FaustUIItem<FaustUIKnobStyle> {
         // const arcEndY = dialCenterY + (dialHeight * 0.5 * Math.sin(end));
         const valuePosX = dialCenterX + (dialHeight * 0.5 * Math.cos(valPos));
         const valuePosY = dialCenterY + (dialHeight * 0.5 * Math.sin(valPos));
-        const lineWidth = dialwidth || dialRadius * 0.2;
+        const lineWidth = knobwidth || dialRadius * 0.2;
 
-        ctx.strokeStyle = dialcolor;
-        ctx.fillStyle = ctx.strokeStyle;
+        ctx.strokeStyle = knobcolor;
         ctx.lineWidth = lineWidth;
         ctx.lineCap = "round";
         // draw background arc
@@ -131,15 +130,13 @@ export class FaustUIKnob extends FaustUIItem<FaustUIKnobStyle> {
         ctx.stroke();
         // draw value arc
         if (distance) {
-            ctx.strokeStyle = dialoncolor;
-            ctx.fillStyle = ctx.strokeStyle;
+            ctx.strokeStyle = knoboncolor;
             ctx.beginPath();
             ctx.arc(dialCenterX, dialCenterY, dialRadius, start, valPos);
             ctx.stroke();
         }
         // draw dial needle
         ctx.strokeStyle = needlecolor;
-        ctx.fillStyle = ctx.strokeStyle;
         ctx.beginPath();
         ctx.moveTo(dialCenterX, dialCenterY);
         ctx.lineTo(valuePosX, valuePosY);
