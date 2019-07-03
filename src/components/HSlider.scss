@@ -1,27 +1,33 @@
 .faust-ui-component.faust-ui-component-hslider {
-    flex-direction: row-reverse;
     & > .faust-ui-component-label {
-        position: absolute;
-        left: 0;
+        flex: 0 0 auto;
     }
-    & canvas {
+    & > .faust-ui-component-hslider-flexdiv {
         position: relative;
-        display: block;
+        display: flex;
+        flex-direction: row-reverse;
         flex: 1 1 auto;
-        height: 100%;
-        min-width: 75%;
-        margin: auto;
-    }
-    & input {
-        position: relative;
-        display: block;
-        flex: 0 1 auto;
-        text-align: center;
-        background-color: rgba(255, 255, 255, 0.25);
-        margin: auto 5px auto auto;
-        border-width: 0px;
-        border-radius: 4px;
-        max-width: calc(25% - 13px);
-        padding: 2px 4px;
+        width: 100%;
+        & > canvas {
+            position: relative;
+            display: block;
+            flex: 1 1 auto;
+            height: 100%;
+            min-width: 75%;
+            margin: auto;
+        }
+        & > input {
+            position: relative;
+            display: block;
+            flex: 0 1 auto;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.25);
+            margin: auto 5px auto auto;
+            border-width: 0px;
+            border-radius: 4px;
+            max-width: 80px;
+            width: calc(25% - 13px);
+            padding: 2px 4px;
+        }
     }
 }

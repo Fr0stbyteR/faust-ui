@@ -29,7 +29,7 @@ export class FaustUI extends EventEmitter {
     private _ui: TFaustUI;
     constructor(options: TOptions) {
         super();
-        this.setMaxListeners(100);
+        this.setMaxListeners(128);
         const { root, ui: uiIn } = options;
         this.root = root;
         if (uiIn) this.ui = uiIn;

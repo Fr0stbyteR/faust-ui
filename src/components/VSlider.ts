@@ -36,10 +36,13 @@ export class FaustUIVSlider extends FaustUIItem<FaustUISliderStyle> {
     label: HTMLDivElement;
     canvas: HTMLCanvasElement;
     input: HTMLInputElement;
+    flexDiv: HTMLDivElement;
     ctx: CanvasRenderingContext2D;
     interactionRect: number[] = [0, 0, 0, 0];
     componentWillMount() {
         super.componentWillMount();
+        this.flexDiv = document.createElement("div");
+        this.flexDiv.className = `faust-ui-component-${this.className}-flexdiv`;
         this.canvas = document.createElement("canvas");
         this.ctx = this.canvas.getContext("2d");
         this.label = document.createElement("div");
@@ -93,9 +96,10 @@ export class FaustUIVSlider extends FaustUIItem<FaustUISliderStyle> {
         });
     }
     mount() {
+        this.flexDiv.appendChild(this.canvas);
+        this.flexDiv.appendChild(this.input);
         this.container.appendChild(this.label);
-        this.container.appendChild(this.canvas);
-        this.container.appendChild(this.input);
+        this.container.appendChild(this.flexDiv);
         return super.mount();
     }
     paint() {

@@ -205,7 +205,7 @@ exports.push([module.i, ".faust-ui-component.faust-ui-component-checkbox > div {
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".faust-ui-component.faust-ui-component-hbargraph {\n  flex-direction: row-reverse; }\n  .faust-ui-component.faust-ui-component-hbargraph > .faust-ui-component-label {\n    position: absolute;\n    left: 0; }\n  .faust-ui-component.faust-ui-component-hbargraph canvas {\n    position: relative;\n    display: block;\n    flex: 1 1 auto;\n    height: 50%;\n    min-width: 75%;\n    margin: auto; }\n  .faust-ui-component.faust-ui-component-hbargraph span {\n    position: relative;\n    display: block;\n    flex: 0 1 auto;\n    text-align: center;\n    background-color: rgba(255, 255, 255, 0.25);\n    margin: auto 5px auto auto;\n    border-width: 0px;\n    border-radius: 4px;\n    width: calc(25% - 13px);\n    padding: 2px 4px; }\n", ""]);
+exports.push([module.i, ".faust-ui-component.faust-ui-component-hbargraph > .faust-ui-component-label {\n  flex: 0 0 auto; }\n\n.faust-ui-component.faust-ui-component-hbargraph > .faust-ui-component-hbargraph-flexdiv {\n  position: relative;\n  display: flex;\n  flex-direction: row-reverse;\n  flex: 1 1 auto;\n  width: 100%; }\n  .faust-ui-component.faust-ui-component-hbargraph > .faust-ui-component-hbargraph-flexdiv > canvas {\n    position: relative;\n    display: block;\n    flex: 1 1 auto;\n    height: 100%;\n    min-width: 75%;\n    margin: auto; }\n  .faust-ui-component.faust-ui-component-hbargraph > .faust-ui-component-hbargraph-flexdiv > input {\n    position: relative;\n    display: block;\n    flex: 0 1 auto;\n    text-align: center;\n    background-color: rgba(255, 255, 255, 0.25);\n    margin: auto 5px auto auto;\n    border-width: 0px;\n    border-radius: 4px;\n    max-width: 80px;\n    width: calc(25% - 13px);\n    padding: 2px 4px; }\n", ""]);
 
 
 /***/ }),
@@ -219,7 +219,7 @@ exports.push([module.i, ".faust-ui-component.faust-ui-component-hbargraph {\n  f
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".faust-ui-component.faust-ui-component-hslider {\n  flex-direction: row-reverse; }\n  .faust-ui-component.faust-ui-component-hslider > .faust-ui-component-label {\n    position: absolute;\n    left: 0; }\n  .faust-ui-component.faust-ui-component-hslider canvas {\n    position: relative;\n    display: block;\n    flex: 1 1 auto;\n    height: 100%;\n    min-width: 75%;\n    margin: auto; }\n  .faust-ui-component.faust-ui-component-hslider input {\n    position: relative;\n    display: block;\n    flex: 0 1 auto;\n    text-align: center;\n    background-color: rgba(255, 255, 255, 0.25);\n    margin: auto 5px auto auto;\n    border-width: 0px;\n    border-radius: 4px;\n    max-width: calc(25% - 13px);\n    padding: 2px 4px; }\n", ""]);
+exports.push([module.i, ".faust-ui-component.faust-ui-component-hslider > .faust-ui-component-label {\n  flex: 0 0 auto; }\n\n.faust-ui-component.faust-ui-component-hslider > .faust-ui-component-hslider-flexdiv {\n  position: relative;\n  display: flex;\n  flex-direction: row-reverse;\n  flex: 1 1 auto;\n  width: 100%; }\n  .faust-ui-component.faust-ui-component-hslider > .faust-ui-component-hslider-flexdiv > canvas {\n    position: relative;\n    display: block;\n    flex: 1 1 auto;\n    height: 100%;\n    min-width: 75%;\n    margin: auto; }\n  .faust-ui-component.faust-ui-component-hslider > .faust-ui-component-hslider-flexdiv > input {\n    position: relative;\n    display: block;\n    flex: 0 1 auto;\n    text-align: center;\n    background-color: rgba(255, 255, 255, 0.25);\n    margin: auto 5px auto auto;\n    border-width: 0px;\n    border-radius: 4px;\n    max-width: 80px;\n    width: calc(25% - 13px);\n    padding: 2px 4px; }\n", ""]);
 
 
 /***/ }),
@@ -261,7 +261,7 @@ exports.push([module.i, ".faust-ui-component.faust-ui-component-nentry {\n  alig
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".faust-ui-component.faust-ui-component-vbargraph {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-vbargraph canvas {\n    position: relative;\n    display: block;\n    flex: 1 1 auto;\n    min-height: 75%;\n    width: 50%; }\n  .faust-ui-component.faust-ui-component-vbargraph span {\n    position: relative;\n    display: block;\n    flex: 0 1 auto;\n    text-align: center;\n    background-color: rgba(255, 255, 255, 0.25);\n    margin: 5px auto auto auto;\n    border-width: 0px;\n    border-radius: 4px;\n    width: calc(100% - 8px);\n    padding: 2px 4px; }\n", ""]);
+exports.push([module.i, ".faust-ui-component.faust-ui-component-vbargraph {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-label {\n    flex: 0 0 auto; }\n  .faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-vbargraph-flexdiv {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    flex: 1 1 auto;\n    width: 100%; }\n    .faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-vbargraph-flexdiv > canvas {\n      position: relative;\n      display: block;\n      flex: 1 1 auto;\n      min-height: 75%;\n      width: 100%; }\n    .faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-vbargraph-flexdiv > input {\n      position: relative;\n      display: block;\n      flex: 0 1 auto;\n      text-align: center;\n      background-color: rgba(255, 255, 255, 0.25);\n      margin: 5px auto auto auto;\n      border-width: 0px;\n      border-radius: 4px;\n      width: calc(100% - 8px);\n      padding: 2px 4px; }\n", ""]);
 
 
 /***/ }),
@@ -275,7 +275,7 @@ exports.push([module.i, ".faust-ui-component.faust-ui-component-vbargraph {\n  a
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".faust-ui-component.faust-ui-component-vslider {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-vslider canvas {\n    position: relative;\n    display: block;\n    flex: 1 1 auto;\n    min-height: 75%;\n    width: 100%; }\n  .faust-ui-component.faust-ui-component-vslider input {\n    position: relative;\n    display: block;\n    flex: 0 1 auto;\n    text-align: center;\n    background-color: rgba(255, 255, 255, 0.25);\n    margin: 5px auto auto auto;\n    border-width: 0px;\n    border-radius: 4px;\n    max-width: calc(100% - 8px);\n    padding: 2px 4px; }\n", ""]);
+exports.push([module.i, ".faust-ui-component.faust-ui-component-vslider {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-label {\n    flex: 0 0 auto; }\n  .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    flex: 1 1 auto;\n    width: 100%; }\n    .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv canvas {\n      position: relative;\n      display: block;\n      flex: 1 1 auto;\n      min-height: 75%;\n      width: 100%; }\n    .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv input {\n      position: relative;\n      display: block;\n      flex: 0 1 auto;\n      text-align: center;\n      background-color: rgba(255, 255, 255, 0.25);\n      margin: 5px auto auto auto;\n      border-width: 0px;\n      border-radius: 4px;\n      max-width: calc(100% - 8px);\n      padding: 2px 4px; }\n", ""]);
 
 
 /***/ }),
@@ -1420,7 +1420,7 @@ class FaustUI extends events__WEBPACK_IMPORTED_MODULE_2__["EventEmitter"] {
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "_ui", void 0);
 
-    this.setMaxListeners(100);
+    this.setMaxListeners(128);
     var root = options.root,
         uiIn = options.ui;
     this.root = root;
@@ -1545,6 +1545,8 @@ class FaustUIGroup extends _components_Component__WEBPACK_IMPORTED_MODULE_6__["C
     var type = _Layout__WEBPACK_IMPORTED_MODULE_2__["Layout"].predictType(item);
     var tooltipMeta = item.meta ? item.meta.find(meta => meta.tooltip) : undefined;
     var tooltip = tooltipMeta ? tooltipMeta.tooltip : undefined;
+    var unitMeta = item.meta ? item.meta.find(meta => meta.unit) : undefined;
+    var unit = unitMeta ? unitMeta.unit : undefined;
     var label = item.label,
         min = item.min,
         max = item.max,
@@ -1554,6 +1556,7 @@ class FaustUIGroup extends _components_Component__WEBPACK_IMPORTED_MODULE_6__["C
       label,
       address,
       tooltip,
+      unit,
       emitter,
       style: {
         width: layout.width * grid,
@@ -2699,8 +2702,21 @@ class FaustUIHBargraph extends _VBargraph__WEBPACK_IMPORTED_MODULE_3__["FaustUIV
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "className", "hbargraph");
   }
 
+  setStyle() {
+    var style = _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, this.defaultProps.style, this.state.style);
+
+    this.input.style.fontSize = "".concat(style.fontsize || style.height * 0.2, "px");
+    this.input.style.color = style.textcolor;
+    this.label.style.fontSize = "".concat(style.height * 0.2, "px");
+    this.label.style.color = style.labelcolor;
+    this.container.style.backgroundColor = style.bgcolor;
+    this.container.style.borderColor = style.bordercolor;
+    this.paint();
+  }
+
   paint() {
     var _this$defaultProps$st = _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, this.defaultProps.style, this.state.style),
+        barwidth = _this$defaultProps$st.barwidth,
         barbgcolor = _this$defaultProps$st.barbgcolor,
         coldcolor = _this$defaultProps$st.coldcolor,
         warmcolor = _this$defaultProps$st.warmcolor,
@@ -2720,6 +2736,10 @@ class FaustUIHBargraph extends _VBargraph__WEBPACK_IMPORTED_MODULE_3__["FaustUIV
 
     canvas.width = width;
     canvas.height = height;
+    var drawWidth = width * 0.9;
+    var drawHeight = barwidth || Math.min(height / 3, drawWidth * 0.05);
+    var left = width * 0.05;
+    var top = (height - drawHeight) * 0.5;
     this.paintValue = value;
     var paintValue = this.paintValue;
 
@@ -2744,38 +2764,38 @@ class FaustUIHBargraph extends _VBargraph__WEBPACK_IMPORTED_MODULE_3__["FaustUIV
     var warmStop = (-6 - min) / (max - min);
     var hotStop = (-3 - min) / (max - min);
     var overloadStop = -min / (max - min);
-    var gradient = ctx.createLinearGradient(0, 0, width, 0);
+    var gradient = ctx.createLinearGradient(left, 0, drawWidth, 0);
     if (coldStop <= 1 && coldStop >= 0) gradient.addColorStop(coldStop, coldcolor);else if (coldStop > 1) gradient.addColorStop(1, coldcolor);
     if (warmStop <= 1 && warmStop >= 0) gradient.addColorStop(warmStop, warmcolor);
     if (hotStop <= 1 && hotStop >= 0) gradient.addColorStop(hotStop, hotcolor);
     if (overloadStop <= 1 && overloadStop >= 0) gradient.addColorStop(overloadStop, overloadcolor);else if (overloadStop < 0) gradient.addColorStop(0, coldcolor);
     ctx.fillStyle = barbgcolor;
-    if (paintValue < 0) ctx.fillRect(0, 0, width * overloadStop, height);
-    if (paintValue < max) ctx.fillRect(width * overloadStop + 1, 0, width * (1 - overloadStop) - 1, height);
+    if (paintValue < 0) ctx.fillRect(left, top, drawWidth * overloadStop, drawHeight);
+    if (paintValue < max) ctx.fillRect(left + drawWidth * overloadStop + 1, top, drawWidth * (1 - overloadStop) - 1, drawHeight);
     ctx.fillStyle = gradient;
 
     if (paintValue > min) {
-      var drawWidth = (Math.min(0, paintValue) - min) / (max - min);
-      ctx.fillRect(0, 0, drawWidth * width, height);
+      var distance = (Math.min(0, paintValue) - min) / (max - min);
+      ctx.fillRect(left, top, distance * drawWidth, drawHeight);
     }
 
     if (paintValue > 0) {
-      var _drawWidth = Math.min(max, paintValue) / (max - min);
+      var _distance = Math.min(max, paintValue) / (max - min);
 
-      ctx.fillRect(overloadStop * width + 1, 0, _drawWidth * width - 1, height);
+      ctx.fillRect(left + overloadStop * drawWidth + 1, top, _distance * drawWidth - 1, drawHeight);
     }
 
     if (maxValue > paintValue) {
       if (maxValue <= 0) {
-        var _drawWidth2 = (Math.min(0, maxValue) - min) / (max - min);
+        var _distance2 = (Math.min(0, maxValue) - min) / (max - min);
 
-        ctx.fillRect(_drawWidth2 * width - 1, 0, 1, height);
+        ctx.fillRect(left + _distance2 * drawWidth - 1, top, 1, drawHeight);
       }
 
       if (maxValue > 0) {
-        var _drawWidth3 = Math.min(max, maxValue) / (max - min);
+        var _distance3 = Math.min(max, maxValue) / (max - min);
 
-        ctx.fillRect(Math.min(width - 1, (overloadStop + _drawWidth3) * width), 0, 1, height);
+        ctx.fillRect(left + Math.min(drawWidth - 1, (overloadStop + _distance3) * drawWidth), top, 1, drawHeight);
       }
     }
   }
@@ -2847,9 +2867,9 @@ class FaustUIHSlider extends _VSlider__WEBPACK_IMPORTED_MODULE_4__["FaustUIVSlid
   setStyle() {
     var style = _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, this.defaultProps.style, this.state.style);
 
-    this.input.style.fontSize = "".concat(style.fontsize || style.height * 0.15, "px");
+    this.input.style.fontSize = "".concat(style.fontsize || style.height * 0.2, "px");
     this.input.style.color = style.textcolor;
-    this.label.style.fontSize = "".concat(style.height * 0.15, "px");
+    this.label.style.fontSize = "".concat(style.height * 0.2, "px");
     this.label.style.color = style.labelcolor;
     this.container.style.backgroundColor = style.bgcolor;
     this.container.style.borderColor = style.bordercolor;
@@ -3315,7 +3335,9 @@ class FaustUIVBargraph extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"]
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "canvas", void 0);
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "span", void 0);
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "input", void 0);
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "flexDiv", void 0);
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "ctx", void 0);
 
@@ -3342,6 +3364,7 @@ class FaustUIVBargraph extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"]
         bordercolor: "rgba(80, 80, 80, 0)",
         labelcolor: "rgba(226, 222, 255, 0.5)",
         textcolor: "rgba(18, 18, 18, 1)",
+        barwidth: undefined,
         barbgcolor: "rgba(18, 18, 18, 1)",
         coldcolor: "rgba(12, 248, 100, 1)",
         warmcolor: "rgba(195, 248, 100, 1)",
@@ -3353,21 +3376,24 @@ class FaustUIVBargraph extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"]
 
   componentWillMount() {
     super.componentWillMount();
+    this.flexDiv = document.createElement("div");
+    this.flexDiv.className = "faust-ui-component-".concat(this.className, "-flexdiv");
     this.canvas = document.createElement("canvas");
     this.ctx = this.canvas.getContext("2d");
     this.label = document.createElement("div");
     this.label.className = "faust-ui-component-label";
     this.label.innerText = this.state.label;
-    this.span = document.createElement("span");
-    this.span.innerText = (+this.state.value.toFixed(3)).toString() + (this.state.units || "");
+    this.input = document.createElement("input");
+    this.input.disabled = true;
+    this.input.value = (+this.state.value.toFixed(3)).toString() + (this.state.unit || "");
     this.setStyle();
   }
 
   setStyle() {
     var style = _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, this.defaultProps.style, this.state.style);
 
-    this.span.style.fontSize = "".concat(style.fontsize || style.height * 0.05, "px");
-    this.span.style.color = style.textcolor;
+    this.input.style.fontSize = "".concat(style.fontsize || style.height * 0.05, "px");
+    this.input.style.color = style.textcolor;
     this.label.style.fontSize = "".concat(style.height * 0.05, "px");
     this.label.style.color = style.labelcolor;
     this.container.style.backgroundColor = style.bgcolor;
@@ -3378,7 +3404,7 @@ class FaustUIVBargraph extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"]
   componentDidMount() {
     super.componentDidMount();
     this.state.emitter.on("uiConnected", () => this.paint());
-    this.span.addEventListener("change", this.handleChange);
+    this.input.addEventListener("change", this.handleChange);
     this.canvas.addEventListener("mousedown", this.handleMouseDown);
     this.canvas.addEventListener("touchstart", this.handleTouchStart, {
       passive: false
@@ -3386,7 +3412,7 @@ class FaustUIVBargraph extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"]
     this.on("style", () => this.setStyle());
     this.on("label", () => this.label.innerText = this.state.label);
     this.on("value", () => {
-      this.span.innerText = (+this.state.value.toFixed(3)).toString() + (this.state.units || "");
+      this.input.value = (+this.state.value.toFixed(3)).toString() + (this.state.unit || "");
       this.paint();
     });
     this.on("max", () => this.paint());
@@ -3395,14 +3421,16 @@ class FaustUIVBargraph extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"]
   }
 
   mount() {
+    this.flexDiv.appendChild(this.canvas);
+    this.flexDiv.appendChild(this.input);
     this.container.appendChild(this.label);
-    this.container.appendChild(this.canvas);
-    this.container.appendChild(this.span);
+    this.container.appendChild(this.flexDiv);
     return super.mount();
   }
 
   paint() {
     var _this$defaultProps$st = _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, this.defaultProps.style, this.state.style),
+        barwidth = _this$defaultProps$st.barwidth,
         barbgcolor = _this$defaultProps$st.barbgcolor,
         coldcolor = _this$defaultProps$st.coldcolor,
         warmcolor = _this$defaultProps$st.warmcolor,
@@ -3422,6 +3450,10 @@ class FaustUIVBargraph extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"]
 
     canvas.width = width;
     canvas.height = height;
+    var drawHeight = height * 0.9;
+    var drawWidth = barwidth || Math.min(width / 3, drawHeight * 0.05);
+    var left = (width - drawWidth) * 0.5;
+    var top = height * 0.05;
     this.paintValue = value;
     var paintValue = this.paintValue;
 
@@ -3446,38 +3478,38 @@ class FaustUIVBargraph extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"]
     var warmStop = (-6 - min) / (max - min);
     var hotStop = (-3 - min) / (max - min);
     var overloadStop = -min / (max - min);
-    var gradient = ctx.createLinearGradient(0, height, 0, 0);
+    var gradient = ctx.createLinearGradient(0, drawHeight, 0, top);
     if (coldStop <= 1 && coldStop >= 0) gradient.addColorStop(coldStop, coldcolor);else if (coldStop > 1) gradient.addColorStop(1, coldcolor);
     if (warmStop <= 1 && warmStop >= 0) gradient.addColorStop(warmStop, warmcolor);
     if (hotStop <= 1 && hotStop >= 0) gradient.addColorStop(hotStop, hotcolor);
     if (overloadStop <= 1 && overloadStop >= 0) gradient.addColorStop(overloadStop, overloadcolor);else if (overloadStop < 0) gradient.addColorStop(0, coldcolor);
     ctx.fillStyle = barbgcolor;
-    if (paintValue < 0) ctx.fillRect(0, (1 - overloadStop) * height, width, height * overloadStop);
-    if (paintValue < max) ctx.fillRect(0, 0, width, (1 - overloadStop) * height - 1);
+    if (paintValue < 0) ctx.fillRect(left, top + (1 - overloadStop) * drawHeight, drawWidth, drawHeight * overloadStop);
+    if (paintValue < max) ctx.fillRect(left, top, drawWidth, (1 - overloadStop) * drawHeight - 1);
     ctx.fillStyle = gradient;
 
     if (paintValue > min) {
-      var drawHeight = (Math.min(0, paintValue) - min) / (max - min);
-      ctx.fillRect(0, (1 - drawHeight) * height, width, height * drawHeight);
+      var distance = (Math.min(0, paintValue) - min) / (max - min);
+      ctx.fillRect(left, top + (1 - distance) * drawHeight, drawWidth, drawHeight * distance);
     }
 
     if (paintValue > 0) {
-      var _drawHeight = Math.min(max, paintValue) / (max - min);
+      var _distance = Math.min(max, paintValue) / (max - min);
 
-      ctx.fillRect(0, (1 - overloadStop - _drawHeight) * height, width, height * _drawHeight - 1);
+      ctx.fillRect(left, top + (1 - overloadStop - _distance) * drawHeight, drawWidth, drawHeight * _distance - 1);
     }
 
     if (maxValue > paintValue) {
       if (maxValue <= 0) {
-        var _drawHeight2 = (Math.min(0, maxValue) - min) / (max - min);
+        var _distance2 = (Math.min(0, maxValue) - min) / (max - min);
 
-        ctx.fillRect(0, (1 - _drawHeight2) * height, width, 1);
+        ctx.fillRect(left, top + (1 - _distance2) * drawHeight, drawWidth, 1);
       }
 
       if (maxValue > 0) {
-        var _drawHeight3 = Math.min(max, maxValue) / (max - min);
+        var _distance3 = Math.min(max, maxValue) / (max - min);
 
-        ctx.fillRect(0, Math.max(0, (1 - overloadStop - _drawHeight3) * height - 1), width, 1);
+        ctx.fillRect(left, Math.max(0, top + (1 - overloadStop - _distance3) * drawHeight - 1), drawWidth, 1);
       }
     }
   }
@@ -3551,6 +3583,8 @@ class FaustUIVSlider extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"] {
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "input", void 0);
 
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "flexDiv", void 0);
+
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "ctx", void 0);
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "interactionRect", [0, 0, 0, 0]);
@@ -3594,6 +3628,8 @@ class FaustUIVSlider extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"] {
 
   componentWillMount() {
     super.componentWillMount();
+    this.flexDiv = document.createElement("div");
+    this.flexDiv.className = "faust-ui-component-".concat(this.className, "-flexdiv");
     this.canvas = document.createElement("canvas");
     this.ctx = this.canvas.getContext("2d");
     this.label = document.createElement("div");
@@ -3649,9 +3685,10 @@ class FaustUIVSlider extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"] {
   }
 
   mount() {
+    this.flexDiv.appendChild(this.canvas);
+    this.flexDiv.appendChild(this.input);
     this.container.appendChild(this.label);
-    this.container.appendChild(this.canvas);
-    this.container.appendChild(this.input);
+    this.container.appendChild(this.flexDiv);
     return super.mount();
   }
 

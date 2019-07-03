@@ -17,11 +17,14 @@ export class FaustUIGroup extends Component<{ emitter: FaustUI; ui: TFaustUIGrou
         const type = Layout.predictType(item);
         const tooltipMeta = item.meta ? item.meta.find(meta => meta.tooltip) : undefined;
         const tooltip = tooltipMeta ? tooltipMeta.tooltip : undefined;
+        const unitMeta = item.meta ? item.meta.find(meta => meta.unit) : undefined;
+        const unit = unitMeta ? unitMeta.unit : undefined;
         const { label, min, max, address, layout } = item;
         const props: FaustUIItemProps<FaustUIItemStyle> = {
             label,
             address,
             tooltip,
+            unit,
             emitter,
             style: {
                 width: layout.width * grid,

@@ -7,9 +7,9 @@ export class FaustUIHSlider extends FaustUIVSlider {
 
     setStyle() {
         const style = { ...this.defaultProps.style, ...this.state.style };
-        this.input.style.fontSize = `${style.fontsize || style.height * 0.15}px`;
+        this.input.style.fontSize = `${style.fontsize || style.height * 0.2}px`;
         this.input.style.color = style.textcolor;
-        this.label.style.fontSize = `${style.height * 0.15}px`;
+        this.label.style.fontSize = `${style.height * 0.2}px`;
         this.label.style.color = style.labelcolor;
         this.container.style.backgroundColor = style.bgcolor;
         this.container.style.borderColor = style.bordercolor;

@@ -4,8 +4,18 @@ import { FaustUIVBargraph } from "./VBargraph";
 export class FaustUIHBargraph extends FaustUIVBargraph {
     className = "hbargraph";
 
+    setStyle() {
+        const style = { ...this.defaultProps.style, ...this.state.style };
+        this.input.style.fontSize = `${style.fontsize || style.height * 0.2}px`;
+        this.input.style.color = style.textcolor;
+        this.label.style.fontSize = `${style.height * 0.2}px`;
+        this.label.style.color = style.labelcolor;
+        this.container.style.backgroundColor = style.bgcolor;
+        this.container.style.borderColor = style.bordercolor;
+        this.paint();
+    }
     paint() {
-        const { barbgcolor, coldcolor, warmcolor, hotcolor, overloadcolor } = { ...this.defaultProps.style, ...this.state.style };
+        const { barwidth, barbgcolor, coldcolor, warmcolor, hotcolor, overloadcolor } = { ...this.defaultProps.style, ...this.state.style };
         const { min, max, value } = this.state;
         const ctx = this.ctx;
         const canvas = this.canvas;
@@ -13,6 +23,10 @@ export class FaustUIHBargraph extends FaustUIVBargraph {
         canvas.width = width;
         canvas.height = height;
 
+        const drawWidth = width * 0.9;
+        const drawHeight = barwidth || Math.min(height / 3, drawWidth * 0.05);
+        const left = width * 0.05;
+        const top = (height - drawHeight) * 0.5;
         this.paintValue = value;
         const paintValue = this.paintValue;
         if (paintValue > this.maxValue) {
@@ -34,7 +48,7 @@ export class FaustUIHBargraph extends FaustUIVBargraph {
         const warmStop = (-6 - min) / (max - min);
         const hotStop = (-3 - min) / (max - min);
         const overloadStop = -min / (max - min);
-        const gradient = ctx.createLinearGradient(0, 0, width, 0);
+        const gradient = ctx.createLinearGradient(left, 0, drawWidth, 0);
         if (coldStop <= 1 && coldStop >= 0) gradient.addColorStop(coldStop, coldcolor);
         else if (coldStop > 1) gradient.addColorStop(1, coldcolor);
         if (warmStop <= 1 && warmStop >= 0) gradient.addColorStop(warmStop, warmcolor);
@@ -43,25 +57,25 @@ export class FaustUIHBargraph extends FaustUIVBargraph {
         else if (overloadStop < 0) gradient.addColorStop(0, coldcolor);
 
         ctx.fillStyle = barbgcolor;
-        if (paintValue < 0) ctx.fillRect(0, 0, width * overloadStop, height);
-        if (paintValue < max) ctx.fillRect(width * overloadStop + 1, 0, width * (1 - overloadStop) - 1, height);
+        if (paintValue < 0) ctx.fillRect(left, top, drawWidth * overloadStop, drawHeight);
+        if (paintValue < max) ctx.fillRect(left + drawWidth * overloadStop + 1, top, drawWidth * (1 - overloadStop) - 1, drawHeight);
         ctx.fillStyle = gradient;
         if (paintValue > min) {
-            const drawWidth = (Math.min(0, paintValue) - min) / (max - min);
-            ctx.fillRect(0, 0, drawWidth * width, height);
+            const distance = (Math.min(0, paintValue) - min) / (max - min);
+            ctx.fillRect(left, top, distance * drawWidth, drawHeight);
         }
         if (paintValue > 0) {
-            const drawWidth = Math.min(max, paintValue) / (max - min);
-            ctx.fillRect(overloadStop * width + 1, 0, drawWidth * width - 1, height);
+            const distance = Math.min(max, paintValue) / (max - min);
+            ctx.fillRect(left + overloadStop * drawWidth + 1, top, distance * drawWidth - 1, drawHeight);
         }
         if (maxValue > paintValue) {
             if (maxValue <= 0) {
-                const drawWidth = (Math.min(0, maxValue) - min) / (max - min);
-                ctx.fillRect(drawWidth * width - 1, 0, 1, height);
+                const distance = (Math.min(0, maxValue) - min) / (max - min);
+                ctx.fillRect(left + distance * drawWidth - 1, top, 1, drawHeight);
             }
             if (maxValue > 0) {
-                const drawWidth = Math.min(max, maxValue) / (max - min);
-                ctx.fillRect(Math.min(width - 1, (overloadStop + drawWidth) * width), 0, 1, height);
+                const distance = Math.min(max, maxValue) / (max - min);
+                ctx.fillRect(left + Math.min(drawWidth - 1, (overloadStop + distance) * drawWidth), top, 1, drawHeight);
             }
         }
     }
