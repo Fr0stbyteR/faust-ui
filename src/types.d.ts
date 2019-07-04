@@ -55,5 +55,5 @@ type TLayoutProp = {
     height: number;
     sizing: "horizontal" | "vertical" | "both" | "none";
 }
-type TLayoutType = "vgroup" | "hgroup" | "tgroup" | "hbargraph" | "vbargraph" | "vslider" | "hslider" | "button" | "checkbox" | "nentry" | "label" | "knob" | "menu" | "radio" | "led";
+type TLayoutType = "vgroup" | "hgroup" | "tgroup" | "hbargraph" | "vbargraph" | "vslider" | "hslider" | "button" | "checkbox" | "nentry" | "label" | "knob" | "menu" | "radio" | "led" | "numerical";
 type TLayout = { [path: string]: TLayoutProp };

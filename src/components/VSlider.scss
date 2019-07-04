@@ -27,6 +27,12 @@
             border-radius: 4px;
             max-width: calc(100% - 8px);
             padding: 2px 4px;
+            -moz-appearance:textfield;
+            &::-webkit-inner-spin-button, 
+            &::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
         }
     }
 }

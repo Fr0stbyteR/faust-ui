@@ -14,7 +14,7 @@ export class Layout {
             sizing: "vertical"
         },
         nentry: {
-            width: 3,
+            width: 1,
             height: 1,
             sizing: "horizontal"
         },
@@ -48,6 +48,11 @@ export class Layout {
             height: 1,
             sizing: "none"
         },
+        numerical: {
+            width: 1,
+            height: 1,
+            sizing: "none"
+        },
         hbargraph: {
             width: 5,
             height: 1,
@@ -73,6 +78,7 @@ export class Layout {
         ) return item.type;
         if (item.type === "hbargraph" || item.type === "vbargraph") {
             if (item.meta && item.meta.find(meta => meta.style && meta.style.startsWith("led"))) return "led";
+            if (item.meta && item.meta.find(meta => meta.style && meta.style.startsWith("numerical"))) return "numerical";
             return item.type;
         }
         if (item.type === "hslider" || item.type === "nentry" || item.type === "vslider") {
@@ -90,7 +96,10 @@ export class Layout {
         return ui;
     }
     static adjustLayout(uiInjected: TFaustUIItem[], directionIn?: "vertical" | "horizontal" | "stacked") {
-        const groupLayout: TLayoutProp = { width: this.padding * 2, height: this.padding * 2 + this.labelHeight, sizing: "none" };
+        const hasHSizingDesc = this.hasHSizingDesc(uiInjected);
+        const hasVSizingDesc = this.hasVSizingDesc(uiInjected);
+        const sizing = hasHSizingDesc && hasVSizingDesc ? "both" : hasHSizingDesc ? "horizontal" : hasVSizingDesc ? "vertical" : "none";
+        const groupLayout: TLayoutProp = { width: this.padding * 2, height: this.padding * 2 + this.labelHeight, sizing };
         const direction = directionIn || "vertical";
         let tabs = 0;
         uiInjected.forEach((item) => {
@@ -117,16 +126,52 @@ export class Layout {
             groupLayout.height += this.itemLayoutMap.tab.height;
             groupLayout.width = Math.max(groupLayout.width, tabs * this.itemLayoutMap.tab.width + 2 * this.padding);
         }
-        uiInjected.forEach((item) => {
-            if (directionIn !== "horizontal" && (item.layout.sizing === "both" || item.layout.sizing === "horizontal")) item.layout.width = groupLayout.width - 2 * this.padding;
-            if (directionIn !== "vertical" && (item.layout.sizing === "both" || item.layout.sizing === "vertical")) item.layout.height = groupLayout.height - 2 * this.padding - this.labelHeight;
-        });
         return groupLayout;
+    }
+    static expandLayout(uiInjected: TFaustUIItem[], dV: number, dH: number, directionIn: "vertical" | "horizontal" | "stacked", layoutIn: TLayoutProp) {
+        let vExpandItems = 0;
+        let hExpandItems = 0;
+        let tabs = 0;
+        uiInjected.forEach((item) => {
+            if (directionIn === "vertical" && (item.layout.sizing === "both" || item.layout.sizing === "vertical")) vExpandItems++;
+            if (directionIn === "horizontal" && (item.layout.sizing === "both" || item.layout.sizing === "horizontal")) hExpandItems++;
+            if (item.type === "tgroup") tabs++;
+        });
+        uiInjected.forEach((item) => {
+            let dV$ = 0;
+            let dH$ = 0;
+            if (directionIn === "vertical") {
+                if (item.layout.sizing === "both" || item.layout.sizing === "vertical") dV$ = vExpandItems ? dV / vExpandItems : 0;
+                if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") dH$ = layoutIn.width - 2 * this.padding - item.layout.width;
+            } else if (directionIn === "horizontal") {
+                if (item.layout.sizing === "both" || item.layout.sizing === "vertical") dV$ = layoutIn.height - 2 * this.padding - this.labelHeight - (tabs ? this.itemLayoutMap.tab.width : 0) - item.layout.height;
+                if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") dH$ = hExpandItems ? dH / hExpandItems : 0;
+            } else {
+                if (item.layout.sizing === "both" || item.layout.sizing === "vertical") dV$ = layoutIn.height - 2 * this.padding - this.labelHeight - (tabs ? this.itemLayoutMap.tab.width : 0) - item.layout.height;
+                if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") dH$ = layoutIn.width - 2 * this.padding - item.layout.width;
+            }
+            if (item.layout.sizing === "both" || item.layout.sizing === "vertical") item.layout.height += dV$;
+            if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") item.layout.width += dH$;
+            if (item.type === "hgroup" || item.type === "vgroup" || item.type === "tgroup") {
+                const hasVSizingDesc = item.layout.sizing === "vertical" || item.layout.sizing === "both";
+                const hasHSizingDesc = item.layout.sizing === "horizontal" || item.layout.sizing === "both";
+                if (hasVSizingDesc || hasHSizingDesc) {
+                    if (item.type === "hgroup") this.expandLayout(item.items, hasVSizingDesc ? dV$ : 0, hasHSizingDesc ? dH$ : 0, "horizontal", item.layout);
+                    else if (item.type === "vgroup") this.expandLayout(item.items, hasVSizingDesc ? dV$ : 0, hasHSizingDesc ? dH$ : 0, "vertical", item.layout);
+                    else if (item.type === "tgroup") this.expandLayout(item.items, hasVSizingDesc ? dV$ : 0, hasHSizingDesc ? dH$ : 0, "stacked", item.layout);
+                }
+            }
+        });
+        return layoutIn;
     }
     static offsetLayout(uiAdjusted: TFaustUIItem[], directionIn: "vertical" | "horizontal" | "stacked", layoutIn: TLayoutProp) {
         const direction = directionIn || "vertical";
+        let tabs = 0;
+        uiAdjusted.forEach((item) => {
+            if (item.type === "tgroup") tabs++;
+        });
         let $left = (layoutIn.left || 0) + this.padding;
-        let $top = (layoutIn.top || 0) + this.padding + this.labelHeight;
+        let $top = (layoutIn.top || 0) + this.padding + this.labelHeight + (tabs ? this.itemLayoutMap.tab.height : 0);
         const { width, height } = layoutIn;
         uiAdjusted.forEach((item) => {
             item.layout.left = $left;
@@ -142,9 +187,22 @@ export class Layout {
         });
         return uiAdjusted;
     }
+    static hasVSizingDesc(ui: TFaustUIItem[]): boolean {
+        return !!ui.find((item) => {
+            if (item.type === "hgroup" || item.type === "vgroup" || item.type === "tgroup") return this.hasVSizingDesc(item.items);
+            return item.layout.sizing === "vertical" || item.layout.sizing === "both";
+        });
+    }
+    static hasHSizingDesc(ui: TFaustUIItem[]): boolean {
+        return !!ui.find((item) => {
+            if (item.type === "hgroup" || item.type === "vgroup" || item.type === "tgroup") return this.hasHSizingDesc(item.items);
+            return item.layout.sizing === "horizontal" || item.layout.sizing === "both";
+        });
+    }
     static calcLayout(ui: TFaustUI) {
         this.injectLayout(ui);
         const layout = this.adjustLayout(ui);
+        this.expandLayout(ui, 0, 0, "vertical", layout);
         this.offsetLayout(ui, "vertical", layout);
         layout.left = 0;
         layout.top = 0;

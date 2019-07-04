@@ -13,7 +13,7 @@
             display: block;
             flex: 1 1 auto;
             height: 100%;
-            min-width: 75%;
+            min-width: 80%;
             margin: auto;
         }
         & > input {
@@ -25,9 +25,14 @@
             margin: auto 5px auto auto;
             border-width: 0px;
             border-radius: 4px;
-            max-width: 80px;
-            width: calc(25% - 13px);
+            width: calc(20% - 13px);
             padding: 2px 4px;
+            -moz-appearance:textfield;
+            &::-webkit-inner-spin-button, 
+            &::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
         }
     }
 }

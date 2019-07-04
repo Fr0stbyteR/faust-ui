@@ -205,7 +205,7 @@ exports.push([module.i, ".faust-ui-component.faust-ui-component-checkbox > div {
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".faust-ui-component.faust-ui-component-hbargraph > .faust-ui-component-label {\n  flex: 0 0 auto; }\n\n.faust-ui-component.faust-ui-component-hbargraph > .faust-ui-component-hbargraph-flexdiv {\n  position: relative;\n  display: flex;\n  flex-direction: row-reverse;\n  flex: 1 1 auto;\n  width: 100%; }\n  .faust-ui-component.faust-ui-component-hbargraph > .faust-ui-component-hbargraph-flexdiv > canvas {\n    position: relative;\n    display: block;\n    flex: 1 1 auto;\n    height: 100%;\n    min-width: 75%;\n    margin: auto; }\n  .faust-ui-component.faust-ui-component-hbargraph > .faust-ui-component-hbargraph-flexdiv > input {\n    position: relative;\n    display: block;\n    flex: 0 1 auto;\n    text-align: center;\n    background-color: rgba(255, 255, 255, 0.25);\n    margin: auto 5px auto auto;\n    border-width: 0px;\n    border-radius: 4px;\n    max-width: 80px;\n    width: calc(25% - 13px);\n    padding: 2px 4px; }\n", ""]);
+exports.push([module.i, ".faust-ui-component.faust-ui-component-hbargraph > .faust-ui-component-label {\n  flex: 0 0 auto; }\n\n.faust-ui-component.faust-ui-component-hbargraph > .faust-ui-component-hbargraph-flexdiv {\n  position: relative;\n  display: flex;\n  flex-direction: row-reverse;\n  flex: 1 1 auto;\n  width: 100%; }\n  .faust-ui-component.faust-ui-component-hbargraph > .faust-ui-component-hbargraph-flexdiv > canvas {\n    position: relative;\n    display: block;\n    flex: 1 1 auto;\n    height: 100%;\n    min-width: 80%;\n    margin: auto; }\n  .faust-ui-component.faust-ui-component-hbargraph > .faust-ui-component-hbargraph-flexdiv > input {\n    position: relative;\n    display: block;\n    flex: 0 1 auto;\n    text-align: center;\n    background-color: rgba(255, 255, 255, 0.25);\n    margin: auto 5px auto auto;\n    border-width: 0px;\n    border-radius: 4px;\n    width: calc(20% - 13px);\n    padding: 2px 4px;\n    -moz-appearance: textfield; }\n    .faust-ui-component.faust-ui-component-hbargraph > .faust-ui-component-hbargraph-flexdiv > input::-webkit-inner-spin-button, .faust-ui-component.faust-ui-component-hbargraph > .faust-ui-component-hbargraph-flexdiv > input::-webkit-outer-spin-button {\n      -webkit-appearance: none;\n      margin: 0; }\n", ""]);
 
 
 /***/ }),
@@ -219,7 +219,7 @@ exports.push([module.i, ".faust-ui-component.faust-ui-component-hbargraph > .fau
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".faust-ui-component.faust-ui-component-hslider > .faust-ui-component-label {\n  flex: 0 0 auto; }\n\n.faust-ui-component.faust-ui-component-hslider > .faust-ui-component-hslider-flexdiv {\n  position: relative;\n  display: flex;\n  flex-direction: row-reverse;\n  flex: 1 1 auto;\n  width: 100%; }\n  .faust-ui-component.faust-ui-component-hslider > .faust-ui-component-hslider-flexdiv > canvas {\n    position: relative;\n    display: block;\n    flex: 1 1 auto;\n    height: 100%;\n    min-width: 75%;\n    margin: auto; }\n  .faust-ui-component.faust-ui-component-hslider > .faust-ui-component-hslider-flexdiv > input {\n    position: relative;\n    display: block;\n    flex: 0 1 auto;\n    text-align: center;\n    background-color: rgba(255, 255, 255, 0.25);\n    margin: auto 5px auto auto;\n    border-width: 0px;\n    border-radius: 4px;\n    max-width: 80px;\n    width: calc(25% - 13px);\n    padding: 2px 4px; }\n", ""]);
+exports.push([module.i, ".faust-ui-component.faust-ui-component-hslider > .faust-ui-component-label {\n  flex: 0 0 auto; }\n\n.faust-ui-component.faust-ui-component-hslider > .faust-ui-component-hslider-flexdiv {\n  position: relative;\n  display: flex;\n  flex-direction: row-reverse;\n  flex: 1 1 auto;\n  width: 100%; }\n  .faust-ui-component.faust-ui-component-hslider > .faust-ui-component-hslider-flexdiv > canvas {\n    position: relative;\n    display: block;\n    flex: 1 1 auto;\n    height: 100%;\n    min-width: 80%;\n    margin: auto; }\n  .faust-ui-component.faust-ui-component-hslider > .faust-ui-component-hslider-flexdiv > input {\n    position: relative;\n    display: block;\n    flex: 0 1 auto;\n    text-align: center;\n    background-color: rgba(255, 255, 255, 0.25);\n    margin: auto 5px auto auto;\n    border-width: 0px;\n    border-radius: 4px;\n    width: calc(20% - 13px);\n    padding: 2px 4px;\n    -moz-appearance: textfield; }\n    .faust-ui-component.faust-ui-component-hslider > .faust-ui-component-hslider-flexdiv > input::-webkit-inner-spin-button, .faust-ui-component.faust-ui-component-hslider > .faust-ui-component-hslider-flexdiv > input::-webkit-outer-spin-button {\n      -webkit-appearance: none;\n      margin: 0; }\n", ""]);
 
 
 /***/ }),
@@ -233,7 +233,7 @@ exports.push([module.i, ".faust-ui-component.faust-ui-component-hslider > .faust
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".faust-ui-component.faust-ui-component-knob {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-knob canvas {\n    position: relative;\n    display: block;\n    flex: 1 1 auto;\n    min-height: 50%;\n    width: 100%; }\n  .faust-ui-component.faust-ui-component-knob input {\n    position: relative;\n    display: block;\n    flex: 0 1 auto;\n    text-align: center;\n    background-color: rgba(255, 255, 255, 0.25);\n    margin: 0px;\n    border-width: 0px;\n    border-radius: 4px;\n    max-width: 100%;\n    padding: 2px 4px; }\n", ""]);
+exports.push([module.i, ".faust-ui-component.faust-ui-component-knob {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-knob canvas {\n    position: relative;\n    display: block;\n    flex: 1 1 auto;\n    min-height: 50%;\n    width: 100%; }\n  .faust-ui-component.faust-ui-component-knob input {\n    position: relative;\n    display: block;\n    flex: 0 1 auto;\n    text-align: center;\n    background-color: rgba(255, 255, 255, 0.25);\n    margin: 0px;\n    border-width: 0px;\n    border-radius: 4px;\n    max-width: calc(100% - 8px);\n    padding: 2px 4px;\n    -moz-appearance: textfield; }\n    .faust-ui-component.faust-ui-component-knob input::-webkit-inner-spin-button, .faust-ui-component.faust-ui-component-knob input::-webkit-outer-spin-button {\n      -webkit-appearance: none;\n      margin: 0; }\n", ""]);
 
 
 /***/ }),
@@ -247,7 +247,7 @@ exports.push([module.i, ".faust-ui-component.faust-ui-component-knob {\n  align-
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".faust-ui-component.faust-ui-component-nentry {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-nentry input {\n    margin: 0px;\n    text-align: center;\n    border-width: 1px;\n    border-radius: 4px;\n    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);\n    padding: 2px 4px; }\n", ""]);
+exports.push([module.i, ".faust-ui-component.faust-ui-component-nentry {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-nentry input {\n    margin: 0px;\n    text-align: center;\n    border-width: 1px;\n    border-radius: 4px;\n    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);\n    padding: 2px 4px;\n    -moz-appearance: textfield; }\n    .faust-ui-component.faust-ui-component-nentry input::-webkit-inner-spin-button, .faust-ui-component.faust-ui-component-nentry input::-webkit-outer-spin-button {\n      -webkit-appearance: none;\n      margin: 0; }\n", ""]);
 
 
 /***/ }),
@@ -261,7 +261,7 @@ exports.push([module.i, ".faust-ui-component.faust-ui-component-nentry {\n  alig
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".faust-ui-component.faust-ui-component-vbargraph {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-label {\n    flex: 0 0 auto; }\n  .faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-vbargraph-flexdiv {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    flex: 1 1 auto;\n    width: 100%; }\n    .faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-vbargraph-flexdiv > canvas {\n      position: relative;\n      display: block;\n      flex: 1 1 auto;\n      min-height: 75%;\n      width: 100%; }\n    .faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-vbargraph-flexdiv > input {\n      position: relative;\n      display: block;\n      flex: 0 1 auto;\n      text-align: center;\n      background-color: rgba(255, 255, 255, 0.25);\n      margin: 5px auto auto auto;\n      border-width: 0px;\n      border-radius: 4px;\n      width: calc(100% - 8px);\n      padding: 2px 4px; }\n", ""]);
+exports.push([module.i, ".faust-ui-component.faust-ui-component-vbargraph {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-label {\n    flex: 0 0 auto; }\n  .faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-vbargraph-flexdiv {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    flex: 1 1 auto;\n    width: 100%; }\n    .faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-vbargraph-flexdiv > canvas {\n      position: relative;\n      display: block;\n      flex: 1 1 auto;\n      min-height: 75%;\n      width: 100%; }\n    .faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-vbargraph-flexdiv > input {\n      position: relative;\n      display: block;\n      flex: 0 1 auto;\n      text-align: center;\n      background-color: rgba(255, 255, 255, 0.25);\n      margin: 5px auto auto auto;\n      border-width: 0px;\n      border-radius: 4px;\n      width: calc(100% - 8px);\n      padding: 2px 4px;\n      -moz-appearance: textfield; }\n      .faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-vbargraph-flexdiv > input::-webkit-inner-spin-button, .faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-vbargraph-flexdiv > input::-webkit-outer-spin-button {\n        -webkit-appearance: none;\n        margin: 0; }\n", ""]);
 
 
 /***/ }),
@@ -275,7 +275,7 @@ exports.push([module.i, ".faust-ui-component.faust-ui-component-vbargraph {\n  a
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".faust-ui-component.faust-ui-component-vslider {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-label {\n    flex: 0 0 auto; }\n  .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    flex: 1 1 auto;\n    width: 100%; }\n    .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv canvas {\n      position: relative;\n      display: block;\n      flex: 1 1 auto;\n      min-height: 75%;\n      width: 100%; }\n    .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv input {\n      position: relative;\n      display: block;\n      flex: 0 1 auto;\n      text-align: center;\n      background-color: rgba(255, 255, 255, 0.25);\n      margin: 5px auto auto auto;\n      border-width: 0px;\n      border-radius: 4px;\n      max-width: calc(100% - 8px);\n      padding: 2px 4px; }\n", ""]);
+exports.push([module.i, ".faust-ui-component.faust-ui-component-vslider {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-label {\n    flex: 0 0 auto; }\n  .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    flex: 1 1 auto;\n    width: 100%; }\n    .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv canvas {\n      position: relative;\n      display: block;\n      flex: 1 1 auto;\n      min-height: 75%;\n      width: 100%; }\n    .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv input {\n      position: relative;\n      display: block;\n      flex: 0 1 auto;\n      text-align: center;\n      background-color: rgba(255, 255, 255, 0.25);\n      margin: 5px auto auto auto;\n      border-width: 0px;\n      border-radius: 4px;\n      max-width: calc(100% - 8px);\n      padding: 2px 4px;\n      -moz-appearance: textfield; }\n      .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv input::-webkit-inner-spin-button, .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv input::-webkit-outer-spin-button {\n        -webkit-appearance: none;\n        margin: 0; }\n", ""]);
 
 
 /***/ }),
@@ -1831,6 +1831,7 @@ class Layout {
 
     if (item.type === "hbargraph" || item.type === "vbargraph") {
       if (item.meta && item.meta.find(meta => meta.style && meta.style.startsWith("led"))) return "led";
+      if (item.meta && item.meta.find(meta => meta.style && meta.style.startsWith("numerical"))) return "numerical";
       return item.type;
     }
 
@@ -1851,10 +1852,13 @@ class Layout {
   }
 
   static adjustLayout(uiInjected, directionIn) {
+    var hasHSizingDesc = this.hasHSizingDesc(uiInjected);
+    var hasVSizingDesc = this.hasVSizingDesc(uiInjected);
+    var sizing = hasHSizingDesc && hasVSizingDesc ? "both" : hasHSizingDesc ? "horizontal" : hasVSizingDesc ? "vertical" : "none";
     var groupLayout = {
       width: this.padding * 2,
       height: this.padding * 2 + this.labelHeight,
-      sizing: "none"
+      sizing
     };
     var direction = directionIn || "vertical";
     var tabs = 0;
@@ -1882,17 +1886,56 @@ class Layout {
       groupLayout.width = Math.max(groupLayout.width, tabs * this.itemLayoutMap.tab.width + 2 * this.padding);
     }
 
-    uiInjected.forEach(item => {
-      if (directionIn !== "horizontal" && (item.layout.sizing === "both" || item.layout.sizing === "horizontal")) item.layout.width = groupLayout.width - 2 * this.padding;
-      if (directionIn !== "vertical" && (item.layout.sizing === "both" || item.layout.sizing === "vertical")) item.layout.height = groupLayout.height - 2 * this.padding - this.labelHeight;
-    });
     return groupLayout;
+  }
+
+  static expandLayout(uiInjected, dV, dH, directionIn, layoutIn) {
+    var vExpandItems = 0;
+    var hExpandItems = 0;
+    var tabs = 0;
+    uiInjected.forEach(item => {
+      if (directionIn === "vertical" && (item.layout.sizing === "both" || item.layout.sizing === "vertical")) vExpandItems++;
+      if (directionIn === "horizontal" && (item.layout.sizing === "both" || item.layout.sizing === "horizontal")) hExpandItems++;
+      if (item.type === "tgroup") tabs++;
+    });
+    uiInjected.forEach(item => {
+      var dV$ = 0;
+      var dH$ = 0;
+
+      if (directionIn === "vertical") {
+        if (item.layout.sizing === "both" || item.layout.sizing === "vertical") dV$ = vExpandItems ? dV / vExpandItems : 0;
+        if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") dH$ = layoutIn.width - 2 * this.padding - item.layout.width;
+      } else if (directionIn === "horizontal") {
+        if (item.layout.sizing === "both" || item.layout.sizing === "vertical") dV$ = layoutIn.height - 2 * this.padding - this.labelHeight - (tabs ? this.itemLayoutMap.tab.width : 0) - item.layout.height;
+        if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") dH$ = hExpandItems ? dH / hExpandItems : 0;
+      } else {
+        if (item.layout.sizing === "both" || item.layout.sizing === "vertical") dV$ = layoutIn.height - 2 * this.padding - this.labelHeight - (tabs ? this.itemLayoutMap.tab.width : 0) - item.layout.height;
+        if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") dH$ = layoutIn.width - 2 * this.padding - item.layout.width;
+      }
+
+      if (item.layout.sizing === "both" || item.layout.sizing === "vertical") item.layout.height += dV$;
+      if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") item.layout.width += dH$;
+
+      if (item.type === "hgroup" || item.type === "vgroup" || item.type === "tgroup") {
+        var hasVSizingDesc = item.layout.sizing === "vertical" || item.layout.sizing === "both";
+        var hasHSizingDesc = item.layout.sizing === "horizontal" || item.layout.sizing === "both";
+
+        if (hasVSizingDesc || hasHSizingDesc) {
+          if (item.type === "hgroup") this.expandLayout(item.items, hasVSizingDesc ? dV$ : 0, hasHSizingDesc ? dH$ : 0, "horizontal", item.layout);else if (item.type === "vgroup") this.expandLayout(item.items, hasVSizingDesc ? dV$ : 0, hasHSizingDesc ? dH$ : 0, "vertical", item.layout);else if (item.type === "tgroup") this.expandLayout(item.items, hasVSizingDesc ? dV$ : 0, hasHSizingDesc ? dH$ : 0, "stacked", item.layout);
+        }
+      }
+    });
+    return layoutIn;
   }
 
   static offsetLayout(uiAdjusted, directionIn, layoutIn) {
     var direction = directionIn || "vertical";
+    var tabs = 0;
+    uiAdjusted.forEach(item => {
+      if (item.type === "tgroup") tabs++;
+    });
     var $left = (layoutIn.left || 0) + this.padding;
-    var $top = (layoutIn.top || 0) + this.padding + this.labelHeight;
+    var $top = (layoutIn.top || 0) + this.padding + this.labelHeight + (tabs ? this.itemLayoutMap.tab.height : 0);
     var width = layoutIn.width,
         height = layoutIn.height;
     uiAdjusted.forEach(item => {
@@ -1906,9 +1949,24 @@ class Layout {
     return uiAdjusted;
   }
 
+  static hasVSizingDesc(ui) {
+    return !!ui.find(item => {
+      if (item.type === "hgroup" || item.type === "vgroup" || item.type === "tgroup") return this.hasVSizingDesc(item.items);
+      return item.layout.sizing === "vertical" || item.layout.sizing === "both";
+    });
+  }
+
+  static hasHSizingDesc(ui) {
+    return !!ui.find(item => {
+      if (item.type === "hgroup" || item.type === "vgroup" || item.type === "tgroup") return this.hasHSizingDesc(item.items);
+      return item.layout.sizing === "horizontal" || item.layout.sizing === "both";
+    });
+  }
+
   static calcLayout(ui) {
     this.injectLayout(ui);
     var layout = this.adjustLayout(ui);
+    this.expandLayout(ui, 0, 0, "vertical", layout);
     this.offsetLayout(ui, "vertical", layout);
     layout.left = 0;
     layout.top = 0;
@@ -1938,7 +1996,7 @@ _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(Lay
     sizing: "vertical"
   },
   nentry: {
-    width: 3,
+    width: 1,
     height: 1,
     sizing: "horizontal"
   },
@@ -1968,6 +2026,11 @@ _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(Lay
     sizing: "both"
   },
   led: {
+    width: 1,
+    height: 1,
+    sizing: "none"
+  },
+  numerical: {
     width: 1,
     height: 1,
     sizing: "none"
