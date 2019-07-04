@@ -11,6 +11,8 @@ import { FaustUIVSlider } from "./components/VSlider";
 import { FaustUIHSlider } from "./components/HSlider";
 import { FaustUIVBargraph } from "./components/VBargraph";
 import { FaustUIHBargraph } from "./components/HBargraph";
+import { FaustUINumerical } from "./components/Numerical";
+import { FaustUILed } from "./components/Led";
 
 export class FaustUIGroup extends Component<{ emitter: FaustUI; ui: TFaustUIGroup; grid: number; outerLeft: number; outerTop: number }> {
     static getComponent(item: TFaustUIInputItem | TFaustUIOutputItem, emitter: FaustUI, grid: number, itemLeft: number, itemTop: number) {
@@ -48,7 +50,8 @@ export class FaustUIGroup extends Component<{ emitter: FaustUI; ui: TFaustUIGrou
         if (type === "vslider") return new FaustUIVSlider({ ...props });
         if (type === "hbargraph") return new FaustUIHBargraph({ ...props });
         if (type === "vbargraph") return new FaustUIVBargraph({ ...props });
-        // if (type === "led") return <LiveMeter orientation="vertical" {...props} />;*/
+        if (type === "numerical") return new FaustUINumerical({ ...props });
+        if (type === "led") return new FaustUILed({ ...props });
         return undefined;
     }
 

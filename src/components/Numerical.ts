@@ -1,17 +1,9 @@
 import { FaustUIItem } from "./Base";
-import { FaustUIItemStyle, FaustUIItemProps } from "./types";
-import "./Nentry.scss";
+import { FaustUIItemProps } from "./types";
+import "./Numerical.scss";
+import { FaustUINentryStyle } from "./Nentry";
 
-export interface FaustUINentryStyle extends FaustUIItemStyle {
-    fontname?: string;
-    fontsize?: number;
-    fontface?: "regular" | "bold" | "italic" | "bold italic";
-    bgcolor?: string;
-    bordercolor?: string;
-    labelcolor?: string;
-    textcolor?: string;
-}
-export class FaustUINentry extends FaustUIItem<FaustUINentryStyle> {
+export class FaustUINumerical extends FaustUIItem<FaustUINentryStyle> {
     static get defaultProps(): FaustUIItemProps<FaustUINentryStyle> {
         const inherited = super.defaultProps;
         return {
@@ -28,7 +20,7 @@ export class FaustUINentry extends FaustUIItem<FaustUINentryStyle> {
             }
         };
     }
-    className = "nentry";
+    className = "numerical";
 
     label: HTMLDivElement;
     input: HTMLInputElement;
@@ -38,15 +30,9 @@ export class FaustUINentry extends FaustUIItem<FaustUINentryStyle> {
         this.label.className = "faust-ui-component-label";
         this.label.innerText = this.state.label;
         this.input = document.createElement("input");
-        this.input.type = "number";
-        this.input.value = (+this.state.value.toFixed(3)).toString();
-        this.input.max = this.state.max.toString();
-        this.input.min = this.state.min.toString();
-        this.input.step = this.state.step.toString();
+        this.input.disabled = true;
+        this.input.value = (+this.state.value.toFixed(3)).toString() + (this.state.unit || "");
         this.setStyle();
-    }
-    handleChange = (e: Event) => {
-        this.setValue(+(e.currentTarget as HTMLInputElement).value);
     }
     setStyle() {
         const style = { ...this.defaultProps.style, ...this.state.style };
@@ -59,13 +45,9 @@ export class FaustUINentry extends FaustUIItem<FaustUINentryStyle> {
     }
     componentDidMount() {
         super.componentDidMount();
-        this.input.addEventListener("change", this.handleChange);
         this.on("style", () => this.setStyle());
         this.on("label", () => this.label.innerText = this.state.label);
-        this.on("value", () => this.input.value = (+this.state.value.toFixed(3)).toString());
-        this.on("max", () => this.input.max = this.state.max.toString());
-        this.on("min", () => this.input.min = this.state.min.toString());
-        this.on("step", () => this.input.step = this.state.step.toString());
+        this.on("value", () => this.input.value = (+this.state.value.toFixed(3)).toString() + (this.state.unit || ""));
     }
     mount() {
         this.container.appendChild(this.label);

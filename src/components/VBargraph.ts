@@ -55,10 +55,6 @@ export class FaustUIVBargraph extends FaustUIItem<FaustUIBargraphStyle> {
         this.input.value = (+this.state.value.toFixed(3)).toString() + (this.state.unit || "");
         this.setStyle();
     }
-    handleChange = (e: Event) => {
-        this.setValue(+(e.currentTarget as HTMLInputElement).value);
-        this.paint();
-    }
     setStyle() {
         const style = { ...this.defaultProps.style, ...this.state.style };
         this.input.style.fontSize = `${style.fontsize || style.height * 0.05}px`;
@@ -72,7 +68,6 @@ export class FaustUIVBargraph extends FaustUIItem<FaustUIBargraphStyle> {
     componentDidMount() {
         super.componentDidMount();
         this.state.emitter.on("uiConnected", () => this.paint());
-        this.input.addEventListener("change", this.handleChange);
         this.canvas.addEventListener("mousedown", this.handleMouseDown);
         this.canvas.addEventListener("touchstart", this.handleTouchStart, { passive: false });
         this.on("style", () => this.setStyle());

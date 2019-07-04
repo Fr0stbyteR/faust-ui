@@ -7,12 +7,9 @@
         border-radius: 4px;
         box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
         padding: 2px 4px;
-        -moz-appearance:textfield;
         &::-webkit-inner-spin-button, 
         &::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
+            opacity: 1;
         }
     }
-    
 }
