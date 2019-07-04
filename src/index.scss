@@ -18,6 +18,25 @@
             overflow: hidden;
             user-select: none;
         }
+        & .faust-ui-tgroup-tabs {
+            position: absolute;
+            display: inline-block;
+            & .faust-ui-tgroup-tab {
+                position: relative;
+                display: inline-block;
+                border-radius: 5px;
+                cursor: pointer;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                user-select: none;
+                margin: 10px;
+                text-align: center;
+                background-color: rgba(255, 255, 255, 0.5);
+                &:hover {
+                    background-color: rgba(255, 255, 255, 1);
+                }
+            }
+        }
     }
     & .faust-ui-item {
         position: absolute;

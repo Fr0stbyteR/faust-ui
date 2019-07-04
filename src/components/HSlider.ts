@@ -20,7 +20,9 @@ export class FaustUIHSlider extends FaustUIVSlider {
         const ctx = this.ctx;
         const canvas = this.canvas;
         const distance = this.distance;
-        const { width, height } = canvas.getBoundingClientRect();
+        let { width, height } = canvas.getBoundingClientRect();
+        width = Math.floor(width);
+        height = Math.floor(height);
         canvas.width = width;
         canvas.height = height;
 

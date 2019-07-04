@@ -1,4 +1,3 @@
-import { LiveDial, LiveTab, LiveMeter, LiveSlider } from "live-components";
 import { FaustUI } from "./FaustUI";
 import { Layout } from "./Layout";
 import { FaustUIButton } from "./components/Button";
@@ -56,10 +55,13 @@ export class FaustUIGroup extends Component<{ emitter: FaustUI; ui: TFaustUIGrou
     }
 
     label: HTMLDivElement;
+    tabs: HTMLDivElement;
     items: TFaustUIItem[];
     componentWillMount() {
         this.items = [];
         this.container = document.createElement("div");
+        this.tabs = document.createElement("div");
+        this.tabs.className = "faust-ui-tgroup-tabs";
         this.label = document.createElement("div");
         this.label.className = "faust-ui-group-label";
         this.updateUI();
@@ -94,6 +96,7 @@ export class FaustUIGroup extends Component<{ emitter: FaustUI; ui: TFaustUIGrou
                 this.children.push(component);
                 this.items[this.children.length - 1] = item;
             } else if (item.type === "vgroup" || item.type === "hgroup") {
+                tabs.push(item.label);
                 const component = new FaustUIGroup({ grid, outerLeft, outerTop, ui: item, emitter: this.state.emitter });
                 this.children.push(component);
                 this.items[this.children.length - 1] = item;
@@ -106,6 +109,33 @@ export class FaustUIGroup extends Component<{ emitter: FaustUI; ui: TFaustUIGrou
                 }
             }
         });
+        if (ui.type === "tgroup") {
+            this.tabs.innerHTML = "";
+            this.tabs.style.height = `${grid}px`;
+            this.tabs.style.top = `${0.25 * grid}px`;
+            tabs.forEach((label, i) => {
+                const tab = document.createElement("span");
+                tab.innerText = label;
+                tab.className = "faust-ui-tgroup-tab";
+                tab.style.fontSize = `${0.25 * grid}px`;
+                tab.style.width = `${2 * grid - 10}px`;
+                tab.style.height = `${grid - 10}px`;
+                tab.style.lineHeight = `${grid - 10}px`;
+                tab.addEventListener("click", () => {
+                    const groups: HTMLDivElement[] = [];
+                    for (let j = 0; j < this.container.children.length; j++) {
+                        const element = this.container.children[j] as HTMLDivElement;
+                        if (element.classList.contains("faust-ui-group")) groups.push(element);
+                    }
+                    for (let j = 0; j < groups.length; j++) {
+                        const element = groups[j] as HTMLDivElement;
+                        element.style.visibility = i === j ? "visible" : "hidden";
+                    }
+                });
+                this.tabs.appendChild(tab);
+                if (i === 0) this.state.emitter.on("uiConnected", () => tab.click());
+            });
+        }
     }
     updateLayout() {
         const { ui, grid } = this.state;
@@ -124,6 +154,13 @@ export class FaustUIGroup extends Component<{ emitter: FaustUI; ui: TFaustUIGrou
         this.container.style.top = `${top}px`;
         this.container.style.width = `${width}px`;
         this.container.style.height = `${height}px`;
+        for (let i = 0; i < this.tabs.children.length; i++) {
+            const tab = this.tabs.children[i] as HTMLSpanElement;
+            tab.style.fontSize = `${0.25 * grid}px`;
+            tab.style.width = `${2 * grid - 10}px`;
+            tab.style.height = `${grid - 10}px`;
+            tab.style.lineHeight = `${grid - 10}px`;
+        }
         this.children.forEach((child, i) => {
             if (child instanceof FaustUIGroup) {
                 child.setState({ outerLeft, outerTop, grid: this.state.grid });
@@ -149,6 +186,7 @@ export class FaustUIGroup extends Component<{ emitter: FaustUI; ui: TFaustUIGrou
     }
     mount() {
         this.container.appendChild(this.label);
+        this.container.appendChild(this.tabs);
         return super.mount();
     }
 }

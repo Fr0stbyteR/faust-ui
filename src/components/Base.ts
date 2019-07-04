@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { toMIDI } from "./utils";
-import { FaustUIItemStyle, FaustUIItemProps } from "./types";
+import { FaustUIItemStyle, FaustUIItemProps, PointerDownEvent, PointerDragEvent, PointerUpEvent } from "./types";
 import "./Base.scss";
 import { Component } from "./Component";
 
@@ -16,7 +16,7 @@ export class FaustUIItem<T extends FaustUIItemStyle> extends Component<FaustUIIt
         enums: {},
         type: "float",
         unitstyle: "native",
-        units: "",
+        unit: "",
         exponent: 1,
         step: 0.01,
         style: { width: 45, height: 15, left: 0, top: 0 }
@@ -93,7 +93,7 @@ export class FaustUIItem<T extends FaustUIItemStyle> extends Component<FaustUIIt
     handleFocusIn = (e: FocusEvent) => this.setState({ focus: true });
     handleFocusOut = (e: FocusEvent) => this.setState({ focus: false });
     get displayValue() {
-        const { value, type, unitstyle, units } = this.state;
+        const { value, type, unitstyle, unit } = this.state;
         if (type === "enum") return Object.keys(this.state.enums).find(key => this.state.enums[key] === value) || "";
         if (type === "int") return value.toFixed(0);
         if (type === "float") return value.toFixed(2);
@@ -104,7 +104,7 @@ export class FaustUIItem<T extends FaustUIItemStyle> extends Component<FaustUIIt
         if (unitstyle === "pan") return value === 0 ? "C" : (type === "int" ? Math.abs(value) : Math.abs(value).toFixed(2)) + (value < 0 ? " L" : " R");
         if (unitstyle === "semitones") return value.toFixed(type === "int" ? 0 : 2) + " st";
         if (unitstyle === "midi") return toMIDI(value);
-        if (unitstyle === "custom") return value.toFixed(type === "int" ? 0 : 2) + " " + units;
+        if (unitstyle === "custom") return value.toFixed(type === "int" ? 0 : 2) + " " + unit;
         if (unitstyle === "native") return value.toFixed(type === "int" ? 0 : 2);
         return "N/A";
     }

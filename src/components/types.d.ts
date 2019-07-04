@@ -24,3 +24,25 @@ declare interface FaustUIItemStyle {
     left: number;
     top: number;
 }
+declare interface PointerDownEvent {
+    x: number;
+    y: number;
+    originalEvent: MouseEvent | TouchEvent;
+}
+
+declare interface PointerDragEvent {
+    prevValue: number;
+    x: number;
+    y: number;
+    fromX: number;
+    fromY: number;
+    movementX: number;
+    movementY: number;
+    originalEvent: MouseEvent | TouchEvent;
+}
+
+declare interface PointerUpEvent {
+    x: number;
+    y: number;
+    originalEvent: MouseEvent | TouchEvent;
+}

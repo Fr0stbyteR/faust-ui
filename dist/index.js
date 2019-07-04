@@ -261,7 +261,7 @@ exports.push([module.i, ".faust-ui-component.faust-ui-component-led {\n  align-i
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".faust-ui-component.faust-ui-component-nentry {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-nentry input {\n    margin: 0px;\n    text-align: center;\n    border-width: 1px;\n    border-radius: 4px;\n    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);\n    padding: 2px 4px; }\n    .faust-ui-component.faust-ui-component-nentry input::-webkit-inner-spin-button, .faust-ui-component.faust-ui-component-nentry input::-webkit-outer-spin-button {\n      opacity: 1; }\n", ""]);
+exports.push([module.i, ".faust-ui-component.faust-ui-component-nentry {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-nentry input {\n    margin: 0px;\n    text-align: center;\n    border-width: 1px;\n    border-radius: 4px;\n    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);\n    padding: 2px 4px;\n    width: calc(100% - 8px); }\n    .faust-ui-component.faust-ui-component-nentry input::-webkit-inner-spin-button, .faust-ui-component.faust-ui-component-nentry input::-webkit-outer-spin-button {\n      opacity: 1; }\n", ""]);
 
 
 /***/ }),
@@ -289,7 +289,7 @@ exports.push([module.i, ".faust-ui-component.faust-ui-component-numerical {\n  a
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".faust-ui-component.faust-ui-component-vbargraph {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-label {\n    flex: 0 0 auto; }\n  .faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-vbargraph-flexdiv {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    flex: 1 1 auto;\n    width: 100%; }\n    .faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-vbargraph-flexdiv > canvas {\n      position: relative;\n      display: block;\n      flex: 1 1 auto;\n      min-height: 75%;\n      width: 100%; }\n    .faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-vbargraph-flexdiv > input {\n      position: relative;\n      display: block;\n      flex: 0 1 auto;\n      text-align: center;\n      background-color: rgba(255, 255, 255, 0.25);\n      margin: 5px auto auto auto;\n      border-width: 0px;\n      border-radius: 4px;\n      width: calc(100% - 8px);\n      padding: 2px 4px; }\n", ""]);
+exports.push([module.i, ".faust-ui-component.faust-ui-component-vbargraph {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-label {\n    flex: 0 0 auto; }\n  .faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-vbargraph-flexdiv {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    flex: 1 1 auto;\n    width: 100%; }\n    .faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-vbargraph-flexdiv > canvas {\n      position: relative;\n      display: block;\n      flex: 1 1 auto;\n      min-height: 75%;\n      height: 95%;\n      width: 100%; }\n    .faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-vbargraph-flexdiv > input {\n      position: relative;\n      display: block;\n      flex: 0 1 auto;\n      text-align: center;\n      background-color: rgba(255, 255, 255, 0.25);\n      margin: 5px auto auto auto;\n      border-width: 0px;\n      border-radius: 4px;\n      height: 5%;\n      width: calc(100% - 8px);\n      padding: 2px 4px; }\n", ""]);
 
 
 /***/ }),
@@ -303,7 +303,7 @@ exports.push([module.i, ".faust-ui-component.faust-ui-component-vbargraph {\n  a
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".faust-ui-component.faust-ui-component-vslider {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-label {\n    flex: 0 0 auto; }\n  .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    flex: 1 1 auto;\n    width: 100%; }\n    .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv canvas {\n      position: relative;\n      display: block;\n      flex: 1 1 auto;\n      min-height: 75%;\n      width: 100%; }\n    .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv input {\n      position: relative;\n      display: block;\n      flex: 0 1 auto;\n      text-align: center;\n      background-color: rgba(255, 255, 255, 0.25);\n      margin: 5px auto auto auto;\n      border-width: 0px;\n      border-radius: 4px;\n      max-width: calc(100% - 8px);\n      padding: 2px 4px;\n      -moz-appearance: textfield; }\n      .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv input::-webkit-inner-spin-button, .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv input::-webkit-outer-spin-button {\n        -webkit-appearance: none;\n        margin: 0; }\n", ""]);
+exports.push([module.i, ".faust-ui-component.faust-ui-component-vslider {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-label {\n    flex: 0 0 auto; }\n  .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    flex: 1 1 auto;\n    width: 100%; }\n    .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv canvas {\n      position: relative;\n      display: block;\n      flex: 1 1 auto;\n      min-height: 75%;\n      height: 95%;\n      width: 100%; }\n    .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv input {\n      position: relative;\n      display: block;\n      flex: 0 1 auto;\n      text-align: center;\n      background-color: rgba(255, 255, 255, 0.25);\n      margin: 5px auto auto auto;\n      border-width: 0px;\n      border-radius: 4px;\n      height: 5%;\n      max-width: calc(100% - 8px);\n      padding: 2px 4px;\n      -moz-appearance: textfield; }\n      .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv input::-webkit-inner-spin-button, .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv input::-webkit-outer-spin-button {\n        -webkit-appearance: none;\n        margin: 0; }\n", ""]);
 
 
 /***/ }),
@@ -317,7 +317,7 @@ exports.push([module.i, ".faust-ui-component.faust-ui-component-vslider {\n  ali
 
 exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".faust-ui-root {\n  position: relative;\n  display: block; }\n  .faust-ui-root .faust-ui-group {\n    position: absolute;\n    display: block;\n    background-color: rgba(80, 80, 80, 0.75);\n    border-radius: 4px;\n    border: 1px rgba(255, 255, 255, 0.25) solid; }\n    .faust-ui-root .faust-ui-group .faust-ui-group-label {\n      position: relative;\n      font-weight: bold;\n      margin: 4px;\n      font-size: 12px;\n      text-overflow: ellipsis;\n      white-space: nowrap;\n      max-width: 100%;\n      overflow: hidden;\n      user-select: none; }\n  .faust-ui-root .faust-ui-item {\n    position: absolute;\n    display: block; }\n", ""]);
+exports.push([module.i, ".faust-ui-root {\n  position: relative;\n  display: block; }\n  .faust-ui-root .faust-ui-group {\n    position: absolute;\n    display: block;\n    background-color: rgba(80, 80, 80, 0.75);\n    border-radius: 4px;\n    border: 1px rgba(255, 255, 255, 0.25) solid; }\n    .faust-ui-root .faust-ui-group .faust-ui-group-label {\n      position: relative;\n      font-weight: bold;\n      margin: 4px;\n      font-size: 12px;\n      text-overflow: ellipsis;\n      white-space: nowrap;\n      max-width: 100%;\n      overflow: hidden;\n      user-select: none; }\n    .faust-ui-root .faust-ui-group .faust-ui-tgroup-tabs {\n      position: absolute;\n      display: inline-block; }\n      .faust-ui-root .faust-ui-group .faust-ui-tgroup-tabs .faust-ui-tgroup-tab {\n        position: relative;\n        display: inline-block;\n        border-radius: 5px;\n        cursor: pointer;\n        text-overflow: ellipsis;\n        white-space: nowrap;\n        user-select: none;\n        margin: 10px;\n        text-align: center;\n        background-color: rgba(255, 255, 255, 0.5); }\n        .faust-ui-root .faust-ui-group .faust-ui-tgroup-tabs .faust-ui-tgroup-tab:hover {\n          background-color: white; }\n  .faust-ui-root .faust-ui-item {\n    position: absolute;\n    display: block; }\n", ""]);
 
 
 /***/ }),
@@ -1570,6 +1570,8 @@ class FaustUIGroup extends _components_Component__WEBPACK_IMPORTED_MODULE_6__["C
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "label", void 0);
 
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "tabs", void 0);
+
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "items", void 0);
   }
 
@@ -1622,6 +1624,8 @@ class FaustUIGroup extends _components_Component__WEBPACK_IMPORTED_MODULE_6__["C
   componentWillMount() {
     this.items = [];
     this.container = document.createElement("div");
+    this.tabs = document.createElement("div");
+    this.tabs.className = "faust-ui-tgroup-tabs";
     this.label = document.createElement("div");
     this.label.className = "faust-ui-group-label";
     this.updateUI();
@@ -1672,6 +1676,8 @@ class FaustUIGroup extends _components_Component__WEBPACK_IMPORTED_MODULE_6__["C
         this.children.push(component);
         this.items[this.children.length - 1] = item;
       } else if (item.type === "vgroup" || item.type === "hgroup") {
+        tabs.push(item.label);
+
         var _component = new FaustUIGroup({
           grid,
           outerLeft,
@@ -1692,6 +1698,36 @@ class FaustUIGroup extends _components_Component__WEBPACK_IMPORTED_MODULE_6__["C
         }
       }
     });
+
+    if (ui.type === "tgroup") {
+      this.tabs.innerHTML = "";
+      this.tabs.style.height = "".concat(grid, "px");
+      this.tabs.style.top = "".concat(0.25 * grid, "px");
+      tabs.forEach((label, i) => {
+        var tab = document.createElement("span");
+        tab.innerText = label;
+        tab.className = "faust-ui-tgroup-tab";
+        tab.style.fontSize = "".concat(0.25 * grid, "px");
+        tab.style.width = "".concat(2 * grid - 10, "px");
+        tab.style.height = "".concat(grid - 10, "px");
+        tab.style.lineHeight = "".concat(grid - 10, "px");
+        tab.addEventListener("click", () => {
+          var groups = [];
+
+          for (var j = 0; j < this.container.children.length; j++) {
+            var element = this.container.children[j];
+            if (element.classList.contains("faust-ui-group")) groups.push(element);
+          }
+
+          for (var _j = 0; _j < groups.length; _j++) {
+            var _element = groups[_j];
+            _element.style.visibility = i === _j ? "visible" : "hidden";
+          }
+        });
+        this.tabs.appendChild(tab);
+        if (i === 0) this.state.emitter.on("uiConnected", () => tab.click());
+      });
+    }
   }
 
   updateLayout() {
@@ -1719,6 +1755,15 @@ class FaustUIGroup extends _components_Component__WEBPACK_IMPORTED_MODULE_6__["C
     this.container.style.top = "".concat(top, "px");
     this.container.style.width = "".concat(width, "px");
     this.container.style.height = "".concat(height, "px");
+
+    for (var i = 0; i < this.tabs.children.length; i++) {
+      var tab = this.tabs.children[i];
+      tab.style.fontSize = "".concat(0.25 * grid, "px");
+      tab.style.width = "".concat(2 * grid - 10, "px");
+      tab.style.height = "".concat(grid - 10, "px");
+      tab.style.lineHeight = "".concat(grid - 10, "px");
+    }
+
     this.children.forEach((child, i) => {
       if (child instanceof FaustUIGroup) {
         child.setState({
@@ -1752,6 +1797,7 @@ class FaustUIGroup extends _components_Component__WEBPACK_IMPORTED_MODULE_6__["C
 
   mount() {
     this.container.appendChild(this.label);
+    this.container.appendChild(this.tabs);
     return super.mount();
   }
 
@@ -1887,7 +1933,7 @@ class Layout {
   static adjustLayout(uiInjected, directionIn) {
     var hasHSizingDesc = this.hasHSizingDesc(uiInjected);
     var hasVSizingDesc = this.hasVSizingDesc(uiInjected);
-    var sizing = hasHSizingDesc && hasVSizingDesc ? "both" : hasHSizingDesc ? "horizontal" : hasVSizingDesc ? "vertical" : "none";
+    var sizing = directionIn === "stacked" ? "none" : hasHSizingDesc && hasVSizingDesc ? "both" : hasHSizingDesc ? "horizontal" : hasVSizingDesc ? "vertical" : "none";
     var groupLayout = {
       width: this.padding * 2,
       height: this.padding * 2 + this.labelHeight,
@@ -1896,9 +1942,9 @@ class Layout {
     var direction = directionIn || "vertical";
     var tabs = 0;
     uiInjected.forEach(item => {
-      if (item.type === "hgroup") item.layout = this.adjustLayout(item.items, "horizontal");else if (item.type === "vgroup") item.layout = this.adjustLayout(item.items, "vertical");else if (item.type === "tgroup") {
-        item.layout = this.adjustLayout(item.items, "stacked");
-        tabs++;
+      if (item.type.endsWith("group")) {
+        if (direction === "stacked") tabs++;
+        if (item.type === "hgroup") item.layout = this.adjustLayout(item.items, "horizontal");else if (item.type === "vgroup") item.layout = this.adjustLayout(item.items, "vertical");else if (item.type === "tgroup") item.layout = this.adjustLayout(item.items, "stacked");
       }
 
       if (direction === "horizontal") {
@@ -1927,9 +1973,11 @@ class Layout {
     var hExpandItems = 0;
     var tabs = 0;
     uiInjected.forEach(item => {
-      if (directionIn === "vertical" && (item.layout.sizing === "both" || item.layout.sizing === "vertical")) vExpandItems++;
-      if (directionIn === "horizontal" && (item.layout.sizing === "both" || item.layout.sizing === "horizontal")) hExpandItems++;
-      if (item.type === "tgroup") tabs++;
+      if (item.type.endsWith("group")) {
+        if (directionIn === "stacked") tabs++;
+        if (directionIn === "vertical" && (item.layout.sizing === "both" || item.layout.sizing === "vertical")) vExpandItems++;
+        if (directionIn === "horizontal" && (item.layout.sizing === "both" || item.layout.sizing === "horizontal")) hExpandItems++;
+      }
     });
     uiInjected.forEach(item => {
       var dV$ = 0;
@@ -1964,9 +2012,13 @@ class Layout {
   static offsetLayout(uiAdjusted, directionIn, layoutIn) {
     var direction = directionIn || "vertical";
     var tabs = 0;
-    uiAdjusted.forEach(item => {
-      if (item.type === "tgroup") tabs++;
-    });
+
+    if (directionIn === "stacked") {
+      uiAdjusted.forEach(item => {
+        if (item.type.endsWith("group")) tabs++;
+      });
+    }
+
     var $left = (layoutIn.left || 0) + this.padding;
     var $top = (layoutIn.top || 0) + this.padding + this.labelHeight + (tabs ? this.itemLayoutMap.tab.height : 0);
     var width = layoutIn.width,
@@ -1975,7 +2027,8 @@ class Layout {
       item.layout.left = $left;
       item.layout.top = $top; // center the item
 
-      if (direction === "horizontal" || direction === "stacked") item.layout.top += (height - this.labelHeight - item.layout.height) / 2 - this.padding;else if (direction === "vertical" || direction === "stacked") item.layout.left += (width - item.layout.width) / 2 - this.padding;
+      if (direction === "horizontal") item.layout.top += (height - this.labelHeight - item.layout.height) / 2 - this.padding;
+      if (direction === "vertical") item.layout.left += (width - item.layout.width) / 2 - this.padding;
       if (item.type === "hgroup") this.offsetLayout(item.items, "horizontal", item.layout);else if (item.type === "vgroup") this.offsetLayout(item.items, "vertical", item.layout);else if (item.type === "tgroup") this.offsetLayout(item.items, "stacked", item.layout);
       if (direction === "horizontal") $left += item.layout.width + this.spaceBetween;else if (direction === "vertical") $top += item.layout.height + this.spaceBetween;
     });
@@ -2031,7 +2084,7 @@ _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(Lay
   nentry: {
     width: 1,
     height: 1,
-    sizing: "horizontal"
+    sizing: "none"
   },
   button: {
     width: 2,
@@ -2079,8 +2132,8 @@ _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(Lay
     sizing: "vertical"
   },
   tab: {
-    width: 1,
-    height: 2,
+    width: 2,
+    height: 1,
     sizing: "none"
   }
 });
@@ -2287,7 +2340,7 @@ class FaustUIItem extends _Component__WEBPACK_IMPORTED_MODULE_4__["Component"] {
         value = _this$state.value,
         type = _this$state.type,
         unitstyle = _this$state.unitstyle,
-        units = _this$state.units;
+        unit = _this$state.unit;
     if (type === "enum") return Object.keys(this.state.enums).find(key => this.state.enums[key] === value) || "";
     if (type === "int") return value.toFixed(0);
     if (type === "float") return value.toFixed(2);
@@ -2298,7 +2351,7 @@ class FaustUIItem extends _Component__WEBPACK_IMPORTED_MODULE_4__["Component"] {
     if (unitstyle === "pan") return value === 0 ? "C" : (type === "int" ? Math.abs(value) : Math.abs(value).toFixed(2)) + (value < 0 ? " L" : " R");
     if (unitstyle === "semitones") return value.toFixed(type === "int" ? 0 : 2) + " st";
     if (unitstyle === "midi") return Object(_utils__WEBPACK_IMPORTED_MODULE_2__["toMIDI"])(value);
-    if (unitstyle === "custom") return value.toFixed(type === "int" ? 0 : 2) + " " + units;
+    if (unitstyle === "custom") return value.toFixed(type === "int" ? 0 : 2) + " " + unit;
     if (unitstyle === "native") return value.toFixed(type === "int" ? 0 : 2);
     return "N/A";
   }
@@ -2440,7 +2493,7 @@ _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(Fau
   enums: {},
   type: "float",
   unitstyle: "native",
-  units: "",
+  unit: "",
   exponent: 1,
   step: 0.01,
   style: {
@@ -2987,6 +3040,8 @@ class FaustUIHSlider extends _VSlider__WEBPACK_IMPORTED_MODULE_4__["FaustUIVSlid
         width = _canvas$getBoundingCl.width,
         height = _canvas$getBoundingCl.height;
 
+    width = Math.floor(width);
+    height = Math.floor(height);
     canvas.width = width;
     canvas.height = height;
     var drawWidth = width * 0.9;
@@ -3349,7 +3404,7 @@ class FaustUILed extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"] {
   setStyle() {
     var style = _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, this.defaultProps.style, this.state.style);
 
-    this.label.style.fontSize = "".concat(style.height * 0.05, "px");
+    this.label.style.fontSize = "".concat(style.height * 0.25, "px");
     this.label.style.color = style.labelcolor;
     this.container.style.backgroundColor = style.bgcolor;
     this.container.style.borderColor = style.bordercolor;
@@ -3782,9 +3837,10 @@ class FaustUIVBargraph extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"]
   setStyle() {
     var style = _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, this.defaultProps.style, this.state.style);
 
-    this.input.style.fontSize = "".concat(style.fontsize || style.height * 0.05, "px");
+    var fontSize = Math.min(style.height * 0.05, style.width * 0.2);
+    this.input.style.fontSize = "".concat(style.fontsize || fontSize, "px");
     this.input.style.color = style.textcolor;
-    this.label.style.fontSize = "".concat(style.height * 0.05, "px");
+    this.label.style.fontSize = "".concat(fontSize, "px");
     this.label.style.color = style.labelcolor;
     this.container.style.backgroundColor = style.bgcolor;
     this.container.style.borderColor = style.bordercolor;
@@ -4036,9 +4092,10 @@ class FaustUIVSlider extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"] {
   setStyle() {
     var style = _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, this.defaultProps.style, this.state.style);
 
-    this.input.style.fontSize = "".concat(style.fontsize || style.height * 0.05, "px");
+    var fontSize = Math.min(style.height * 0.05, style.width * 0.2);
+    this.input.style.fontSize = "".concat(style.fontsize || fontSize, "px");
     this.input.style.color = style.textcolor;
-    this.label.style.fontSize = "".concat(style.height * 0.05, "px");
+    this.label.style.fontSize = "".concat(fontSize, "px");
     this.label.style.color = style.labelcolor;
     this.container.style.backgroundColor = style.bgcolor;
     this.container.style.borderColor = style.bordercolor;

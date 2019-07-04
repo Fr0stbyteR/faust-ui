@@ -56,7 +56,7 @@ export class FaustUILed extends FaustUIItem<FaustUILedStyle> {
     }
     setStyle() {
         const style = { ...this.defaultProps.style, ...this.state.style };
-        this.label.style.fontSize = `${style.height * 0.05}px`;
+        this.label.style.fontSize = `${style.height * 0.25}px`;
         this.label.style.color = style.labelcolor;
         this.container.style.backgroundColor = style.bgcolor;
         this.container.style.borderColor = style.bordercolor;

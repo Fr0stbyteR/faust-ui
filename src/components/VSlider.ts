@@ -1,5 +1,5 @@
 import { FaustUIItem } from "./Base";
-import { FaustUIItemProps } from "./types";
+import { FaustUIItemProps, PointerDownEvent, PointerDragEvent } from "./types";
 import "./VSlider.scss";
 import { FaustUINentryStyle } from "./Nentry";
 import { fillRoundedRect } from "./utils";
@@ -62,9 +62,10 @@ export class FaustUIVSlider extends FaustUIItem<FaustUISliderStyle> {
     }
     setStyle() {
         const style = { ...this.defaultProps.style, ...this.state.style };
-        this.input.style.fontSize = `${style.fontsize || style.height * 0.05}px`;
+        const fontSize = Math.min(style.height * 0.05, style.width * 0.2);
+        this.input.style.fontSize = `${style.fontsize || fontSize}px`;
         this.input.style.color = style.textcolor;
-        this.label.style.fontSize = `${style.height * 0.05}px`;
+        this.label.style.fontSize = `${fontSize}px`;
         this.label.style.color = style.labelcolor;
         this.container.style.backgroundColor = style.bgcolor;
         this.container.style.borderColor = style.bordercolor;

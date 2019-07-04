@@ -1,5 +1,5 @@
 import { FaustUIItem } from "./Base";
-import { FaustUIItemProps } from "./types";
+import { FaustUIItemProps, PointerDragEvent } from "./types";
 import "./Knob.scss";
 import { FaustUINentryStyle } from "./Nentry";
 import { toRad } from "./utils";

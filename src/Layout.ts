@@ -16,7 +16,7 @@ export class Layout {
         nentry: {
             width: 1,
             height: 1,
-            sizing: "horizontal"
+            sizing: "none"
         },
         button: {
             width: 2,
@@ -64,8 +64,8 @@ export class Layout {
             sizing: "vertical"
         },
         tab: {
-            width: 1,
-            height: 2,
+            width: 2,
+            height: 1,
             sizing: "none"
         }
     }
@@ -98,16 +98,16 @@ export class Layout {
     static adjustLayout(uiInjected: TFaustUIItem[], directionIn?: "vertical" | "horizontal" | "stacked") {
         const hasHSizingDesc = this.hasHSizingDesc(uiInjected);
         const hasVSizingDesc = this.hasVSizingDesc(uiInjected);
-        const sizing = hasHSizingDesc && hasVSizingDesc ? "both" : hasHSizingDesc ? "horizontal" : hasVSizingDesc ? "vertical" : "none";
+        const sizing = directionIn === "stacked" ? "none" : hasHSizingDesc && hasVSizingDesc ? "both" : hasHSizingDesc ? "horizontal" : hasVSizingDesc ? "vertical" : "none";
         const groupLayout: TLayoutProp = { width: this.padding * 2, height: this.padding * 2 + this.labelHeight, sizing };
         const direction = directionIn || "vertical";
         let tabs = 0;
         uiInjected.forEach((item) => {
-            if (item.type === "hgroup") item.layout = this.adjustLayout(item.items, "horizontal");
-            else if (item.type === "vgroup") item.layout = this.adjustLayout(item.items, "vertical");
-            else if (item.type === "tgroup") {
-                item.layout = this.adjustLayout(item.items, "stacked");
-                tabs++;
+            if (item.type.endsWith("group")) {
+                if (direction === "stacked") tabs++;
+                if (item.type === "hgroup") item.layout = this.adjustLayout(item.items, "horizontal");
+                else if (item.type === "vgroup") item.layout = this.adjustLayout(item.items, "vertical");
+                else if (item.type === "tgroup") item.layout = this.adjustLayout(item.items, "stacked");
             }
             if (direction === "horizontal") {
                 groupLayout.width += item.layout.width + this.spaceBetween;
@@ -133,9 +133,11 @@ export class Layout {
         let hExpandItems = 0;
         let tabs = 0;
         uiInjected.forEach((item) => {
-            if (directionIn === "vertical" && (item.layout.sizing === "both" || item.layout.sizing === "vertical")) vExpandItems++;
-            if (directionIn === "horizontal" && (item.layout.sizing === "both" || item.layout.sizing === "horizontal")) hExpandItems++;
-            if (item.type === "tgroup") tabs++;
+            if (item.type.endsWith("group")) {
+                if (directionIn === "stacked") tabs++;
+                if (directionIn === "vertical" && (item.layout.sizing === "both" || item.layout.sizing === "vertical")) vExpandItems++;
+                if (directionIn === "horizontal" && (item.layout.sizing === "both" || item.layout.sizing === "horizontal")) hExpandItems++;
+            }
         });
         uiInjected.forEach((item) => {
             let dV$ = 0;
@@ -167,9 +169,11 @@ export class Layout {
     static offsetLayout(uiAdjusted: TFaustUIItem[], directionIn: "vertical" | "horizontal" | "stacked", layoutIn: TLayoutProp) {
         const direction = directionIn || "vertical";
         let tabs = 0;
-        uiAdjusted.forEach((item) => {
-            if (item.type === "tgroup") tabs++;
-        });
+        if (directionIn === "stacked") {
+            uiAdjusted.forEach((item) => {
+                if (item.type.endsWith("group")) tabs++;
+            });
+        }
         let $left = (layoutIn.left || 0) + this.padding;
         let $top = (layoutIn.top || 0) + this.padding + this.labelHeight + (tabs ? this.itemLayoutMap.tab.height : 0);
         const { width, height } = layoutIn;
@@ -177,8 +181,8 @@ export class Layout {
             item.layout.left = $left;
             item.layout.top = $top;
             // center the item
-            if (direction === "horizontal" || direction === "stacked") item.layout.top += (height - this.labelHeight - item.layout.height) / 2 - this.padding;
-            else if (direction === "vertical" || direction === "stacked") item.layout.left += (width - item.layout.width) / 2 - this.padding;
+            if (direction === "horizontal") item.layout.top += (height - this.labelHeight - item.layout.height) / 2 - this.padding;
+            if (direction === "vertical") item.layout.left += (width - item.layout.width) / 2 - this.padding;
             if (item.type === "hgroup") this.offsetLayout(item.items, "horizontal", item.layout);
             else if (item.type === "vgroup") this.offsetLayout(item.items, "vertical", item.layout);
             else if (item.type === "tgroup") this.offsetLayout(item.items, "stacked", item.layout);
