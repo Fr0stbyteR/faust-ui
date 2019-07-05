@@ -252,6 +252,20 @@ exports.push([module.i, ".faust-ui-component.faust-ui-component-led {\n  align-i
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/components/Menu.scss":
+/*!*****************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/components/Menu.scss ***!
+  \*****************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
+// Module
+exports.push([module.i, ".faust-ui-component.faust-ui-component-menu {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-menu > select {\n    margin: 0px;\n    text-align: center;\n    border-width: 1px;\n    border-radius: 4px;\n    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);\n    padding: 2px 4px;\n    width: calc(100% - 8px); }\n", ""]);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/components/Nentry.scss":
 /*!*******************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/components/Nentry.scss ***!
@@ -276,6 +290,20 @@ exports.push([module.i, ".faust-ui-component.faust-ui-component-nentry {\n  alig
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
 exports.push([module.i, ".faust-ui-component.faust-ui-component-numerical {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-numerical > input {\n    position: relative;\n    display: block;\n    flex: 0 1 auto;\n    text-align: center;\n    background-color: rgba(255, 255, 255, 0.25);\n    margin: auto;\n    border-width: 0px;\n    border-radius: 4px;\n    width: calc(100% - 8px);\n    padding: 2px 4px; }\n", ""]);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/components/Radio.scss":
+/*!******************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/components/Radio.scss ***!
+  \******************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
+// Module
+exports.push([module.i, ".faust-ui-component.faust-ui-component-radio {\n  align-items: center; }\n  .faust-ui-component.faust-ui-component-radio > .faust-ui-component-label {\n    flex: 0 0 auto;\n    margin-top: auto; }\n  .faust-ui-component.faust-ui-component-radio > .faust-ui-component-radio-group {\n    flex: 0 0 auto;\n    margin-bottom: auto;\n    border-width: 1px;\n    border-radius: 4px;\n    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);\n    padding: 2px 4px;\n    width: calc(100% - 8px); }\n    .faust-ui-component.faust-ui-component-radio > .faust-ui-component-radio-group > div {\n      text-overflow: ellipsis;\n      white-space: nowrap;\n      overflow: hidden; }\n", ""]);
 
 
 /***/ }),
@@ -317,7 +345,7 @@ exports.push([module.i, ".faust-ui-component.faust-ui-component-vslider {\n  ali
 
 exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".faust-ui-root {\n  position: relative;\n  display: block; }\n  .faust-ui-root .faust-ui-group {\n    position: absolute;\n    display: block;\n    background-color: rgba(80, 80, 80, 0.75);\n    border-radius: 4px;\n    border: 1px rgba(255, 255, 255, 0.25) solid; }\n    .faust-ui-root .faust-ui-group .faust-ui-group-label {\n      position: relative;\n      font-weight: bold;\n      margin: 4px;\n      font-size: 12px;\n      text-overflow: ellipsis;\n      white-space: nowrap;\n      max-width: 100%;\n      overflow: hidden;\n      user-select: none; }\n    .faust-ui-root .faust-ui-group .faust-ui-tgroup-tabs {\n      position: absolute;\n      display: inline-block; }\n      .faust-ui-root .faust-ui-group .faust-ui-tgroup-tabs .faust-ui-tgroup-tab {\n        position: relative;\n        display: inline-block;\n        border-radius: 5px;\n        cursor: pointer;\n        text-overflow: ellipsis;\n        white-space: nowrap;\n        user-select: none;\n        margin: 10px;\n        text-align: center;\n        background-color: rgba(255, 255, 255, 0.5); }\n        .faust-ui-root .faust-ui-group .faust-ui-tgroup-tabs .faust-ui-tgroup-tab:hover {\n          background-color: white; }\n  .faust-ui-root .faust-ui-item {\n    position: absolute;\n    display: block; }\n", ""]);
+exports.push([module.i, ".faust-ui-root {\n  position: relative;\n  display: block; }\n  .faust-ui-root .faust-ui-group {\n    position: absolute;\n    display: block;\n    background-color: rgba(80, 80, 80, 0.75);\n    border-radius: 4px;\n    border: 1px rgba(255, 255, 255, 0.25) solid; }\n    .faust-ui-root .faust-ui-group .faust-ui-group-label {\n      position: relative;\n      font-weight: bold;\n      margin: 4px;\n      font-size: 12px;\n      text-overflow: ellipsis;\n      white-space: nowrap;\n      max-width: 100%;\n      overflow: hidden;\n      user-select: none;\n      color: white; }\n    .faust-ui-root .faust-ui-group .faust-ui-tgroup-tabs {\n      position: absolute;\n      display: inline-block; }\n      .faust-ui-root .faust-ui-group .faust-ui-tgroup-tabs .faust-ui-tgroup-tab {\n        position: relative;\n        display: inline-block;\n        border-radius: 5px;\n        cursor: pointer;\n        text-overflow: ellipsis;\n        white-space: nowrap;\n        user-select: none;\n        margin: 10px;\n        text-align: center;\n        background-color: rgba(255, 255, 255, 0.5); }\n        .faust-ui-root .faust-ui-group .faust-ui-tgroup-tabs .faust-ui-tgroup-tab:hover {\n          background-color: white; }\n        .faust-ui-root .faust-ui-group .faust-ui-tgroup-tabs .faust-ui-tgroup-tab.active {\n          background-color: #282828;\n          color: white; }\n  .faust-ui-root .faust-ui-item {\n    position: absolute;\n    display: block; }\n", ""]);
 
 
 /***/ }),
@@ -1550,6 +1578,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_HBargraph__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/HBargraph */ "./src/components/HBargraph.ts");
 /* harmony import */ var _components_Numerical__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Numerical */ "./src/components/Numerical.ts");
 /* harmony import */ var _components_Led__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Led */ "./src/components/Led.ts");
+/* harmony import */ var _components_Menu__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Menu */ "./src/components/Menu.ts");
+/* harmony import */ var _components_Radio__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Radio */ "./src/components/Radio.ts");
+
+
 
 
 
@@ -1575,12 +1607,45 @@ class FaustUIGroup extends _components_Component__WEBPACK_IMPORTED_MODULE_6__["C
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "items", void 0);
   }
 
+  static parseMeta(metaIn) {
+    var metaObject = {};
+    if (!metaIn) return {
+      metaObject
+    };
+    metaIn.forEach(m => Object.assign(metaObject, m));
+
+    if (metaObject.style) {
+      var enumsRegex = /\{(?:(?:'|_)(.+?)(?:'|_):([-+]?[0-9]*\.?[0-9]+?);)+(?:(?:'|_)(.+?)(?:'|_):([-+]?[0-9]*\.?[0-9]+?))\}/;
+      var matched = metaObject.style.match(enumsRegex);
+
+      if (matched) {
+        var enums = {};
+
+        for (var i = 1; i < matched.length; i += 2) {
+          enums[matched[i]] = +matched[i + 1];
+        }
+
+        return {
+          metaObject,
+          enums
+        };
+      }
+    }
+
+    return {
+      metaObject
+    };
+  }
+
   static getComponent(item, emitter, grid, itemLeft, itemTop) {
     var type = _Layout__WEBPACK_IMPORTED_MODULE_2__["Layout"].predictType(item);
-    var tooltipMeta = item.meta ? item.meta.find(meta => meta.tooltip) : undefined;
-    var tooltip = tooltipMeta ? tooltipMeta.tooltip : undefined;
-    var unitMeta = item.meta ? item.meta.find(meta => meta.unit) : undefined;
-    var unit = unitMeta ? unitMeta.unit : undefined;
+
+    var _this$parseMeta = this.parseMeta(item.meta),
+        metaObject = _this$parseMeta.metaObject,
+        enums = _this$parseMeta.enums;
+
+    var tooltip = metaObject.tooltip,
+        unit = metaObject.unit;
     var label = item.label,
         min = item.min,
         max = item.max,
@@ -1592,6 +1657,7 @@ class FaustUIGroup extends _components_Component__WEBPACK_IMPORTED_MODULE_6__["C
       tooltip,
       unit,
       emitter,
+      enums,
       style: {
         width: layout.width * grid,
         height: layout.height * grid,
@@ -1608,10 +1674,8 @@ class FaustUIGroup extends _components_Component__WEBPACK_IMPORTED_MODULE_6__["C
     if (type === "checkbox") return new _components_Checkbox__WEBPACK_IMPORTED_MODULE_4__["FaustUICheckbox"](_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, props));
     if (type === "nentry") return new _components_Nentry__WEBPACK_IMPORTED_MODULE_5__["FaustUINentry"](_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, props));
     if (type === "knob") return new _components_Knob__WEBPACK_IMPORTED_MODULE_7__["FaustUIKnob"](_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, props));
-    /*
-    if (type === "menu") return <LiveTab {...props} />;
-    if (type === "radio") return <LiveTab {...props} />;*/
-
+    if (type === "menu") return new _components_Menu__WEBPACK_IMPORTED_MODULE_14__["FaustUIMenu"](_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, props));
+    if (type === "radio") return new _components_Radio__WEBPACK_IMPORTED_MODULE_15__["FaustUIRadio"](_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, props));
     if (type === "hslider") return new _components_HSlider__WEBPACK_IMPORTED_MODULE_9__["FaustUIHSlider"](_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, props));
     if (type === "vslider") return new _components_VSlider__WEBPACK_IMPORTED_MODULE_8__["FaustUIVSlider"](_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, props));
     if (type === "hbargraph") return new _components_HBargraph__WEBPACK_IMPORTED_MODULE_11__["FaustUIHBargraph"](_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, props));
@@ -1722,6 +1786,14 @@ class FaustUIGroup extends _components_Component__WEBPACK_IMPORTED_MODULE_6__["C
           for (var _j = 0; _j < groups.length; _j++) {
             var _element = groups[_j];
             _element.style.visibility = i === _j ? "visible" : "hidden";
+          }
+
+          for (var _j2 = 0; _j2 < this.tabs.children.length; _j2++) {
+            var e = this.tabs.children[_j2];
+
+            if (i !== _j2) {
+              if (e.classList.contains("active")) e.classList.remove("active");
+            } else e.classList.add("active");
           }
         });
         this.tabs.appendChild(tab);
@@ -1933,7 +2005,7 @@ class Layout {
   static adjustLayout(uiInjected, directionIn) {
     var hasHSizingDesc = this.hasHSizingDesc(uiInjected);
     var hasVSizingDesc = this.hasVSizingDesc(uiInjected);
-    var sizing = directionIn === "stacked" ? "none" : hasHSizingDesc && hasVSizingDesc ? "both" : hasHSizingDesc ? "horizontal" : hasVSizingDesc ? "vertical" : "none";
+    var sizing = hasHSizingDesc && hasVSizingDesc ? "both" : hasHSizingDesc ? "horizontal" : hasVSizingDesc ? "vertical" : "none";
     var groupLayout = {
       width: this.padding * 2,
       height: this.padding * 2 + this.labelHeight,
@@ -1973,11 +2045,9 @@ class Layout {
     var hExpandItems = 0;
     var tabs = 0;
     uiInjected.forEach(item => {
-      if (item.type.endsWith("group")) {
-        if (directionIn === "stacked") tabs++;
-        if (directionIn === "vertical" && (item.layout.sizing === "both" || item.layout.sizing === "vertical")) vExpandItems++;
-        if (directionIn === "horizontal" && (item.layout.sizing === "both" || item.layout.sizing === "horizontal")) hExpandItems++;
-      }
+      if (directionIn === "stacked") tabs++;
+      if (directionIn === "vertical" && (item.layout.sizing === "both" || item.layout.sizing === "vertical")) vExpandItems++;
+      if (directionIn === "horizontal" && (item.layout.sizing === "both" || item.layout.sizing === "horizontal")) hExpandItems++;
     });
     uiInjected.forEach(item => {
       var dV$ = 0;
@@ -1994,16 +2064,15 @@ class Layout {
         if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") dH$ = layoutIn.width - 2 * this.padding - item.layout.width;
       }
 
-      if (item.layout.sizing === "both" || item.layout.sizing === "vertical") item.layout.height += dV$;
-      if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") item.layout.width += dH$;
+      if (directionIn !== "stacked") {
+        if (item.layout.sizing === "both" || item.layout.sizing === "vertical") item.layout.height += dV$;
+        if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") item.layout.width += dH$;
+      }
 
       if (item.type === "hgroup" || item.type === "vgroup" || item.type === "tgroup") {
         var hasVSizingDesc = item.layout.sizing === "vertical" || item.layout.sizing === "both";
         var hasHSizingDesc = item.layout.sizing === "horizontal" || item.layout.sizing === "both";
-
-        if (hasVSizingDesc || hasHSizingDesc) {
-          if (item.type === "hgroup") this.expandLayout(item.items, hasVSizingDesc ? dV$ : 0, hasHSizingDesc ? dH$ : 0, "horizontal", item.layout);else if (item.type === "vgroup") this.expandLayout(item.items, hasVSizingDesc ? dV$ : 0, hasHSizingDesc ? dH$ : 0, "vertical", item.layout);else if (item.type === "tgroup") this.expandLayout(item.items, hasVSizingDesc ? dV$ : 0, hasHSizingDesc ? dH$ : 0, "stacked", item.layout);
-        }
+        if (item.type === "hgroup") this.expandLayout(item.items, hasVSizingDesc ? dV$ : 0, hasHSizingDesc ? dH$ : 0, "horizontal", item.layout);else if (item.type === "vgroup") this.expandLayout(item.items, hasVSizingDesc ? dV$ : 0, hasHSizingDesc ? dH$ : 0, "vertical", item.layout);else if (item.type === "tgroup") this.expandLayout(item.items, hasVSizingDesc ? dV$ : 0, hasHSizingDesc ? dH$ : 0, "stacked", item.layout);
       }
     });
     return layoutIn;
@@ -2102,7 +2171,7 @@ _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(Lay
     sizing: "none"
   },
   menu: {
-    width: 3,
+    width: 2,
     height: 1,
     sizing: "horizontal"
   },
@@ -2616,10 +2685,8 @@ class FaustUIButton extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"] {
 
   componentDidMount() {
     super.componentDidMount();
-    this.btn.addEventListener("mousedown", this.handlePointerDown);
-    this.btn.addEventListener("mouseup", this.handlePointerUp);
-    this.btn.addEventListener("touchstart", this.handlePointerDown);
-    this.btn.addEventListener("touchend", this.handlePointerUp);
+    this.btn.addEventListener("mousedown", this.handleMouseDown);
+    this.btn.addEventListener("touchstart", this.handleTouchStart);
     this.on("style", () => this.setStyle());
     this.on("label", () => this.span.innerText = this.state.label);
     this.on("value", () => this.setStyle());
@@ -3481,6 +3548,150 @@ class FaustUILed extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"] {
 
 /***/ }),
 
+/***/ "./src/components/Menu.scss":
+/*!**********************************!*\
+  !*** ./src/components/Menu.scss ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/lib/loader.js!./Menu.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/components/Menu.scss");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./src/components/Menu.ts":
+/*!********************************!*\
+  !*** ./src/components/Menu.ts ***!
+  \********************************/
+/*! exports provided: FaustUIMenu */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FaustUIMenu", function() { return FaustUIMenu; });
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js");
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Base__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Base */ "./src/components/Base.ts");
+/* harmony import */ var _Menu_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Menu.scss */ "./src/components/Menu.scss");
+/* harmony import */ var _Menu_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_Menu_scss__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+class FaustUIMenu extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"] {
+  constructor() {
+    super(...arguments);
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "className", "menu");
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "label", void 0);
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "select", void 0);
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "handleChange", e => {
+      this.setValue(+e.currentTarget.value);
+    });
+  }
+
+  static get defaultProps() {
+    var inherited = super.defaultProps;
+    return _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, inherited, {
+      style: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, inherited.style, {
+        fontname: "Arial",
+        fontsize: undefined,
+        fontface: "regular",
+        bgcolor: "rgba(255, 255, 255, 0.25)",
+        bordercolor: "rgba(80, 80, 80, 0)",
+        labelcolor: "rgba(226, 222, 255, 0.5)",
+        textcolor: "rgba(18, 18, 18, 1)"
+      })
+    });
+  }
+
+  componentWillMount() {
+    super.componentWillMount();
+    this.label = document.createElement("div");
+    this.label.className = "faust-ui-component-label";
+    this.label.innerText = this.state.label;
+    this.select = document.createElement("select");
+    this.getOptions();
+    this.setStyle();
+  }
+
+  getOptions() {
+    var enums = this.state.enums;
+    this.select.innerHTML = "";
+
+    if (enums) {
+      var i = 0;
+
+      for (var key in enums) {
+        var option = document.createElement("option");
+        option.value = enums[key].toString();
+        option.text = key;
+        if (i === 0) option.selected = true;
+        this.select.appendChild(option);
+        i++;
+      }
+    }
+  }
+
+  setStyle() {
+    var style = _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, this.defaultProps.style, this.state.style);
+
+    this.select.style.backgroundColor = style.bgcolor;
+    this.select.style.borderColor = style.bordercolor;
+    this.select.style.color = style.textcolor;
+    this.select.style.fontSize = "".concat(style.fontsize || style.height / 4, "px");
+    this.label.style.fontSize = "".concat(style.height / 4, "px");
+    this.label.style.color = style.labelcolor;
+  }
+
+  componentDidMount() {
+    super.componentDidMount();
+    this.select.addEventListener("change", this.handleChange);
+    this.on("style", () => this.setStyle());
+    this.on("label", () => this.label.innerText = this.state.label);
+    this.on("enums", () => this.getOptions());
+    this.on("value", () => {
+      for (var i = this.select.children.length - 1; i >= 0; i--) {
+        var option = this.select.children[i];
+        if (+option.value === this.state.value) this.select.selectedIndex = i;
+      }
+    });
+  }
+
+  mount() {
+    this.container.appendChild(this.label);
+    this.container.appendChild(this.select);
+    return super.mount();
+  }
+
+}
+
+/***/ }),
+
 /***/ "./src/components/Nentry.scss":
 /*!************************************!*\
   !*** ./src/components/Nentry.scss ***!
@@ -3717,6 +3928,167 @@ class FaustUINumerical extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"]
   mount() {
     this.container.appendChild(this.label);
     this.container.appendChild(this.input);
+    return super.mount();
+  }
+
+}
+
+/***/ }),
+
+/***/ "./src/components/Radio.scss":
+/*!***********************************!*\
+  !*** ./src/components/Radio.scss ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/lib/loader.js!./Radio.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/components/Radio.scss");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./src/components/Radio.ts":
+/*!*********************************!*\
+  !*** ./src/components/Radio.ts ***!
+  \*********************************/
+/*! exports provided: FaustUIRadio */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FaustUIRadio", function() { return FaustUIRadio; });
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js");
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Base__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Base */ "./src/components/Base.ts");
+/* harmony import */ var _Radio_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Radio.scss */ "./src/components/Radio.scss");
+/* harmony import */ var _Radio_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_Radio_scss__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+class FaustUIRadio extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"] {
+  constructor() {
+    super(...arguments);
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "className", "radio");
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "label", void 0);
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "group", void 0);
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "handleChange", e => {
+      this.setValue(+e.currentTarget.value);
+    });
+  }
+
+  static get defaultProps() {
+    var inherited = super.defaultProps;
+    return _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, inherited, {
+      style: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, inherited.style, {
+        fontname: "Arial",
+        fontsize: undefined,
+        fontface: "regular",
+        bgcolor: "rgba(255, 255, 255, 0.25)",
+        bordercolor: "rgba(80, 80, 80, 0)",
+        labelcolor: "rgba(226, 222, 255, 0.5)",
+        textcolor: "rgba(18, 18, 18, 1)"
+      })
+    });
+  }
+
+  componentWillMount() {
+    super.componentWillMount();
+    this.label = document.createElement("div");
+    this.label.className = "faust-ui-component-label";
+    this.label.innerText = this.state.label;
+    this.group = document.createElement("div");
+    this.group.className = "faust-ui-component-radio-group";
+    this.getOptions();
+    this.setStyle();
+  }
+
+  getOptions() {
+    var _this = this;
+
+    var _this$state = this.state,
+        enums = _this$state.enums,
+        address = _this$state.address;
+    this.group.innerHTML = "";
+
+    if (enums) {
+      var i = 0;
+
+      var _loop = function _loop(key) {
+        var input = document.createElement("input");
+        var div = document.createElement("div");
+        input.value = enums[key].toString();
+        input.name = address;
+        input.type = "radio";
+        if (i === 0) input.checked = true;
+        input.addEventListener("change", () => _this.setValue(enums[key]));
+        div.appendChild(input);
+        div.append(key);
+
+        _this.group.appendChild(div);
+
+        i++;
+      };
+
+      for (var key in enums) {
+        _loop(key);
+      }
+    }
+  }
+
+  setStyle() {
+    var style = _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, this.defaultProps.style, this.state.style);
+
+    var fontSize = Math.min(style.height * 0.1, style.width * 0.1);
+    this.group.style.backgroundColor = style.bgcolor;
+    this.group.style.borderColor = style.bordercolor;
+    this.group.style.color = style.textcolor;
+    this.group.style.fontSize = "".concat(style.fontsize || fontSize, "px");
+    this.label.style.fontSize = "".concat(fontSize, "px");
+    this.label.style.color = style.labelcolor;
+  }
+
+  componentDidMount() {
+    super.componentDidMount();
+    this.group.addEventListener("change", this.handleChange);
+    this.on("style", () => this.setStyle());
+    this.on("label", () => this.label.innerText = this.state.label);
+    this.on("enums", () => this.getOptions());
+    this.on("value", () => {
+      for (var i = this.group.children.length - 1; i >= 0; i--) {
+        var input = this.group.children[i].querySelector("input");
+        if (+input.value === this.state.value) input.checked = true;
+      }
+    });
+  }
+
+  mount() {
+    this.container.appendChild(this.label);
+    this.container.appendChild(this.group);
     return super.mount();
   }
 

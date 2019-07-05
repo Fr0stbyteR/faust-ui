@@ -12,14 +12,31 @@ import { FaustUIVBargraph } from "./components/VBargraph";
 import { FaustUIHBargraph } from "./components/HBargraph";
 import { FaustUINumerical } from "./components/Numerical";
 import { FaustUILed } from "./components/Led";
+import { FaustUIMenu } from "./components/Menu";
+import { FaustUIRadio } from "./components/Radio";
 
 export class FaustUIGroup extends Component<{ emitter: FaustUI; ui: TFaustUIGroup; grid: number; outerLeft: number; outerTop: number }> {
+    static parseMeta(metaIn: TFaustUIMeta[]): { metaObject: TFaustUIMeta; enums?: { [key: string]: number } } {
+        const metaObject: TFaustUIMeta = {};
+        if (!metaIn) return { metaObject };
+        metaIn.forEach(m => Object.assign(metaObject, m));
+        if (metaObject.style) {
+            const enumsRegex = /\{(?:(?:'|_)(.+?)(?:'|_):([-+]?[0-9]*\.?[0-9]+?);)+(?:(?:'|_)(.+?)(?:'|_):([-+]?[0-9]*\.?[0-9]+?))\}/;
+            const matched = metaObject.style.match(enumsRegex);
+            if (matched) {
+                const enums: { [key: string]: number } = {};
+                for (let i = 1; i < matched.length; i += 2) {
+                    enums[matched[i]] = +matched[i + 1];
+                }
+                return { metaObject, enums };
+            }
+        }
+        return { metaObject };
+    }
     static getComponent(item: TFaustUIInputItem | TFaustUIOutputItem, emitter: FaustUI, grid: number, itemLeft: number, itemTop: number) {
         const type = Layout.predictType(item);
-        const tooltipMeta = item.meta ? item.meta.find(meta => meta.tooltip) : undefined;
-        const tooltip = tooltipMeta ? tooltipMeta.tooltip : undefined;
-        const unitMeta = item.meta ? item.meta.find(meta => meta.unit) : undefined;
-        const unit = unitMeta ? unitMeta.unit : undefined;
+        const { metaObject, enums } = this.parseMeta(item.meta);
+        const { tooltip, unit } = metaObject;
         const { label, min, max, address, layout } = item;
         const props: FaustUIItemProps<FaustUIItemStyle> = {
             label,
@@ -27,6 +44,7 @@ export class FaustUIGroup extends Component<{ emitter: FaustUI; ui: TFaustUIGrou
             tooltip,
             unit,
             emitter,
+            enums,
             style: {
                 width: layout.width * grid,
                 height: layout.height * grid,
@@ -42,9 +60,9 @@ export class FaustUIGroup extends Component<{ emitter: FaustUI; ui: TFaustUIGrou
         if (type === "button") return new FaustUIButton({ ...props });
         if (type === "checkbox") return new FaustUICheckbox({ ...props });
         if (type === "nentry") return new FaustUINentry({ ...props });
-        if (type === "knob") return new FaustUIKnob({ ...props }); /*
-        if (type === "menu") return <LiveTab {...props} />;
-        if (type === "radio") return <LiveTab {...props} />;*/
+        if (type === "knob") return new FaustUIKnob({ ...props });
+        if (type === "menu") return new FaustUIMenu({ ...props });
+        if (type === "radio") return new FaustUIRadio({ ...props });
         if (type === "hslider") return new FaustUIHSlider({ ...props });
         if (type === "vslider") return new FaustUIVSlider({ ...props });
         if (type === "hbargraph") return new FaustUIHBargraph({ ...props });
@@ -130,6 +148,12 @@ export class FaustUIGroup extends Component<{ emitter: FaustUI; ui: TFaustUIGrou
                     for (let j = 0; j < groups.length; j++) {
                         const element = groups[j] as HTMLDivElement;
                         element.style.visibility = i === j ? "visible" : "hidden";
+                    }
+                    for (let j = 0; j < this.tabs.children.length; j++) {
+                        const e = this.tabs.children[j];
+                        if (i !== j) {
+                            if (e.classList.contains("active")) e.classList.remove("active");
+                        } else e.classList.add("active");
                     }
                 });
                 this.tabs.appendChild(tab);

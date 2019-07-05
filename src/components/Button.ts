@@ -55,10 +55,8 @@ export class FaustUIButton extends FaustUIItem<FaustUIButtonStyle> {
     }
     componentDidMount() {
         super.componentDidMount();
-        this.btn.addEventListener("mousedown", this.handlePointerDown);
-        this.btn.addEventListener("mouseup", this.handlePointerUp);
-        this.btn.addEventListener("touchstart", this.handlePointerDown);
-        this.btn.addEventListener("touchend", this.handlePointerUp);
+        this.btn.addEventListener("mousedown", this.handleMouseDown);
+        this.btn.addEventListener("touchstart", this.handleTouchStart);
         this.on("style", () => this.setStyle());
         this.on("label", () => this.span.innerText = this.state.label);
         this.on("value", () => this.setStyle());

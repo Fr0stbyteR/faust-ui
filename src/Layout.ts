@@ -34,7 +34,7 @@ export class Layout {
             sizing: "none"
         },
         menu: {
-            width: 3,
+            width: 2,
             height: 1,
             sizing: "horizontal"
         },
@@ -98,7 +98,7 @@ export class Layout {
     static adjustLayout(uiInjected: TFaustUIItem[], directionIn?: "vertical" | "horizontal" | "stacked") {
         const hasHSizingDesc = this.hasHSizingDesc(uiInjected);
         const hasVSizingDesc = this.hasVSizingDesc(uiInjected);
-        const sizing = directionIn === "stacked" ? "none" : hasHSizingDesc && hasVSizingDesc ? "both" : hasHSizingDesc ? "horizontal" : hasVSizingDesc ? "vertical" : "none";
+        const sizing = hasHSizingDesc && hasVSizingDesc ? "both" : hasHSizingDesc ? "horizontal" : hasVSizingDesc ? "vertical" : "none";
         const groupLayout: TLayoutProp = { width: this.padding * 2, height: this.padding * 2 + this.labelHeight, sizing };
         const direction = directionIn || "vertical";
         let tabs = 0;
@@ -133,11 +133,9 @@ export class Layout {
         let hExpandItems = 0;
         let tabs = 0;
         uiInjected.forEach((item) => {
-            if (item.type.endsWith("group")) {
-                if (directionIn === "stacked") tabs++;
-                if (directionIn === "vertical" && (item.layout.sizing === "both" || item.layout.sizing === "vertical")) vExpandItems++;
-                if (directionIn === "horizontal" && (item.layout.sizing === "both" || item.layout.sizing === "horizontal")) hExpandItems++;
-            }
+            if (directionIn === "stacked") tabs++;
+            if (directionIn === "vertical" && (item.layout.sizing === "both" || item.layout.sizing === "vertical")) vExpandItems++;
+            if (directionIn === "horizontal" && (item.layout.sizing === "both" || item.layout.sizing === "horizontal")) hExpandItems++;
         });
         uiInjected.forEach((item) => {
             let dV$ = 0;
@@ -152,16 +150,16 @@ export class Layout {
                 if (item.layout.sizing === "both" || item.layout.sizing === "vertical") dV$ = layoutIn.height - 2 * this.padding - this.labelHeight - (tabs ? this.itemLayoutMap.tab.width : 0) - item.layout.height;
                 if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") dH$ = layoutIn.width - 2 * this.padding - item.layout.width;
             }
-            if (item.layout.sizing === "both" || item.layout.sizing === "vertical") item.layout.height += dV$;
-            if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") item.layout.width += dH$;
+            if (directionIn !== "stacked") {
+                if (item.layout.sizing === "both" || item.layout.sizing === "vertical") item.layout.height += dV$;
+                if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") item.layout.width += dH$;
+            }
             if (item.type === "hgroup" || item.type === "vgroup" || item.type === "tgroup") {
                 const hasVSizingDesc = item.layout.sizing === "vertical" || item.layout.sizing === "both";
                 const hasHSizingDesc = item.layout.sizing === "horizontal" || item.layout.sizing === "both";
-                if (hasVSizingDesc || hasHSizingDesc) {
-                    if (item.type === "hgroup") this.expandLayout(item.items, hasVSizingDesc ? dV$ : 0, hasHSizingDesc ? dH$ : 0, "horizontal", item.layout);
-                    else if (item.type === "vgroup") this.expandLayout(item.items, hasVSizingDesc ? dV$ : 0, hasHSizingDesc ? dH$ : 0, "vertical", item.layout);
-                    else if (item.type === "tgroup") this.expandLayout(item.items, hasVSizingDesc ? dV$ : 0, hasHSizingDesc ? dH$ : 0, "stacked", item.layout);
-                }
+                if (item.type === "hgroup") this.expandLayout(item.items, hasVSizingDesc ? dV$ : 0, hasHSizingDesc ? dH$ : 0, "horizontal", item.layout);
+                else if (item.type === "vgroup") this.expandLayout(item.items, hasVSizingDesc ? dV$ : 0, hasHSizingDesc ? dH$ : 0, "vertical", item.layout);
+                else if (item.type === "tgroup") this.expandLayout(item.items, hasVSizingDesc ? dV$ : 0, hasHSizingDesc ? dH$ : 0, "stacked", item.layout);
             }
         });
         return layoutIn;
