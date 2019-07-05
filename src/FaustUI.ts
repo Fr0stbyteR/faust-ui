@@ -32,7 +32,7 @@ export class FaustUI extends EventEmitter {
         this.setMaxListeners(128);
         const { root, ui: uiIn } = options;
         this.root = root;
-        if (uiIn) this.ui = uiIn;
+        this.ui = uiIn || [];
         this.render();
         window.addEventListener("resize", () => {
             this.faustUIRoot.setState(this.calc());
@@ -59,6 +59,7 @@ export class FaustUI extends EventEmitter {
         const state = this.calc();
         if (this.faustUIRoot) this.faustUIRoot.setState({ ...state, ui: this.ui });
         this.emit("uiChange", this._ui);
+        this.emit("uiConnected", this.ui);
     }
     changeParamByUI(path: string, value: number) {
         this.emit("paramChangeByUI", { path, value });

@@ -17,7 +17,7 @@ export class FaustUIRoot extends Component<{ emitter: FaustUI; ui: TFaustUI; lay
         this.on("layout", () => this.updateLayout());
         this.on("width", () => this.updateLayout());
         this.on("height", () => this.updateLayout());
-        this.on("ui", () => this.updateChildren());
+        this.on("ui", () => this.mount());
     }
     updateLayout() {
         this.xGrids = this.state.layout.width;

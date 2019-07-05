@@ -345,7 +345,7 @@ exports.push([module.i, ".faust-ui-component.faust-ui-component-vslider {\n  ali
 
 exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".faust-ui-root {\n  position: relative;\n  display: block; }\n  .faust-ui-root .faust-ui-group {\n    position: absolute;\n    display: block;\n    background-color: rgba(80, 80, 80, 0.75);\n    border-radius: 4px;\n    border: 1px rgba(255, 255, 255, 0.25) solid; }\n    .faust-ui-root .faust-ui-group .faust-ui-group-label {\n      position: relative;\n      font-weight: bold;\n      margin: 4px;\n      font-size: 12px;\n      text-overflow: ellipsis;\n      white-space: nowrap;\n      max-width: 100%;\n      overflow: hidden;\n      user-select: none;\n      color: white; }\n    .faust-ui-root .faust-ui-group .faust-ui-tgroup-tabs {\n      position: absolute;\n      display: inline-block; }\n      .faust-ui-root .faust-ui-group .faust-ui-tgroup-tabs .faust-ui-tgroup-tab {\n        position: relative;\n        display: inline-block;\n        border-radius: 5px;\n        cursor: pointer;\n        text-overflow: ellipsis;\n        white-space: nowrap;\n        user-select: none;\n        margin: 10px;\n        text-align: center;\n        background-color: rgba(255, 255, 255, 0.5); }\n        .faust-ui-root .faust-ui-group .faust-ui-tgroup-tabs .faust-ui-tgroup-tab:hover {\n          background-color: white; }\n        .faust-ui-root .faust-ui-group .faust-ui-tgroup-tabs .faust-ui-tgroup-tab.active {\n          background-color: #282828;\n          color: white; }\n  .faust-ui-root .faust-ui-item {\n    position: absolute;\n    display: block; }\n", ""]);
+exports.push([module.i, ".faust-ui-root {\n  position: relative;\n  display: block; }\n  .faust-ui-root .faust-ui-group {\n    position: absolute;\n    display: block;\n    background-color: rgba(80, 80, 80, 0.75);\n    border-radius: 4px;\n    border: 1px rgba(255, 255, 255, 0.25) solid; }\n    .faust-ui-root .faust-ui-group .faust-ui-group-label {\n      position: relative;\n      font-weight: bold;\n      margin: 4px;\n      font-size: 12px;\n      text-overflow: ellipsis;\n      white-space: nowrap;\n      max-width: 100%;\n      overflow: hidden;\n      user-select: none;\n      color: rgba(255, 255, 255, 0.7); }\n    .faust-ui-root .faust-ui-group .faust-ui-tgroup-tabs {\n      position: absolute;\n      display: inline-block; }\n      .faust-ui-root .faust-ui-group .faust-ui-tgroup-tabs .faust-ui-tgroup-tab {\n        position: relative;\n        display: inline-block;\n        border-radius: 5px;\n        cursor: pointer;\n        text-overflow: ellipsis;\n        white-space: nowrap;\n        user-select: none;\n        margin: 10px;\n        text-align: center;\n        background-color: rgba(255, 255, 255, 0.5); }\n        .faust-ui-root .faust-ui-group .faust-ui-tgroup-tabs .faust-ui-tgroup-tab:hover {\n          background-color: white; }\n        .faust-ui-root .faust-ui-group .faust-ui-tgroup-tabs .faust-ui-tgroup-tab.active {\n          background-color: #282828;\n          color: white; }\n  .faust-ui-root .faust-ui-item {\n    position: absolute;\n    display: block; }\n", ""]);
 
 
 /***/ }),
@@ -1480,7 +1480,7 @@ class FaustUI extends events__WEBPACK_IMPORTED_MODULE_2__["EventEmitter"] {
     var root = options.root,
         uiIn = options.ui;
     this.root = root;
-    if (uiIn) this.ui = uiIn;
+    this.ui = uiIn || [];
     this.render();
     window.addEventListener("resize", () => {
       this.faustUIRoot.setState(this.calc());
@@ -1532,6 +1532,7 @@ class FaustUI extends events__WEBPACK_IMPORTED_MODULE_2__["EventEmitter"] {
       ui: this.ui
     }));
     this.emit("uiChange", this._ui);
+    this.emit("uiConnected", this.ui);
   }
 
   changeParamByUI(path, value) {
@@ -1923,7 +1924,7 @@ class FaustUIRoot extends _components_Component__WEBPACK_IMPORTED_MODULE_3__["Co
     this.on("layout", () => this.updateLayout());
     this.on("width", () => this.updateLayout());
     this.on("height", () => this.updateLayout());
-    this.on("ui", () => this.updateChildren());
+    this.on("ui", () => this.mount());
   }
 
   updateLayout() {
@@ -4675,15 +4676,57 @@ if(false) {}
 /*!**********************!*\
   !*** ./src/index.ts ***!
   \**********************/
-/*! exports provided: FaustUI */
+/*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _FaustUI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FaustUI */ "./src/FaustUI.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "FaustUI", function() { return _FaustUI__WEBPACK_IMPORTED_MODULE_0__["FaustUI"]; });
 
+var faustUI = new _FaustUI__WEBPACK_IMPORTED_MODULE_0__["FaustUI"]({
+  root: document.getElementById("root")
+});
+var host;
+window.addEventListener("message", e => {
+  var data = e.data,
+      source = e.source;
+  host = source;
+  var type = data.type;
+  if (!type) return;
+  if (type === "ui") faustUI.ui = data.ui;
 
+  if (type === "param") {
+    var path = data.path,
+        value = data.value;
+    faustUI.emit("paramChangeByDSP", {
+      path,
+      value
+    });
+  }
+});
+faustUI.on("paramChangeByUI", e => {
+  if (!host) return;
+  var path = e.path,
+      value = e.value;
+  host.postMessage({
+    path,
+    value,
+    type: "param"
+  }, "*");
+});
+window.addEventListener("keydown", e => {
+  if (host) host.postMessage({
+    type: "keydown",
+    key: e.key
+  }, "*");
+});
+window.addEventListener("keyup", e => {
+  if (host) host.postMessage({
+    type: "keyup",
+    key: e.key
+  }, "*");
+});
+window.faustUI = faustUI;
 
 /***/ })
 
