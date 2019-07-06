@@ -178,6 +178,8 @@ export class FaustUIGroup extends Component<{ emitter: FaustUI; ui: TFaustUIGrou
         this.container.style.top = `${top}px`;
         this.container.style.width = `${width}px`;
         this.container.style.height = `${height}px`;
+        this.tabs.style.height = `${grid}px`;
+        this.tabs.style.top = `${0.25 * grid}px`;
         for (let i = 0; i < this.tabs.children.length; i++) {
             const tab = this.tabs.children[i] as HTMLSpanElement;
             tab.style.fontSize = `${0.25 * grid}px`;
