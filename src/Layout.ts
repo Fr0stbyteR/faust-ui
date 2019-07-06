@@ -30,7 +30,7 @@ export class Layout {
         },
         knob: {
             width: 1,
-            height: 1.5,
+            height: 2,
             sizing: "none"
         },
         menu: {

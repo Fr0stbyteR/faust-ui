@@ -1,6 +1,9 @@
 .faust-ui-root {
-    position: relative;
+    position: absolute;
     display: block;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
     & .faust-ui-group {
         position: absolute;
         display: block;

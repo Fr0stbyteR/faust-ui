@@ -22,11 +22,13 @@ export class FaustUIRoot extends Component<{ emitter: FaustUI; ui: TFaustUI; lay
     updateLayout() {
         this.xGrids = this.state.layout.width;
         this.yGrids = this.state.layout.height;
-        this.grid = Math.min(this.state.width / this.xGrids, this.state.height / this.yGrids);
-        this.left = (this.state.width - this.xGrids * this.grid) / 2;
-        this.top = (this.state.height - this.yGrids * this.grid) / 2;
+        this.grid = Math.max(40, Math.min(this.state.width / this.xGrids, this.state.height / this.yGrids));
+        this.left = Math.max(0, (this.state.width - this.xGrids * this.grid) / 2);
+        this.top = Math.max(0, (this.state.height - this.yGrids * this.grid) / 2);
         this.container.style.top = `${this.top}px`;
         this.container.style.left = `${this.left}px`;
+        this.container.style.width = `${this.xGrids * this.grid}px`;
+        this.container.style.height = `${this.yGrids * this.grid}px`;
         const childrenStateUpdate = { grid: this.grid };
         this.children.forEach(e => e.setState(childrenStateUpdate));
     }
