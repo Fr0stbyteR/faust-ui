@@ -220,7 +220,7 @@ export class FaustUIGroup extends Component<{ emitter: FaustUI; ui: TFaustUIGrou
     }
     mount() {
         this.container.appendChild(this.label);
-        this.container.appendChild(this.tabs);
+        if (this.tabs.children.length) this.container.appendChild(this.tabs);
         return super.mount();
     }
 }

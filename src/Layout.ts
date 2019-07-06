@@ -110,18 +110,18 @@ export class Layout {
                 else if (item.type === "tgroup") item.layout = this.adjustLayout(item.items, "stacked");
             }
             if (direction === "horizontal") {
-                groupLayout.width += item.layout.width + this.spaceBetween;
+                groupLayout.width += item.layout.width;
                 groupLayout.height = Math.max(groupLayout.height, item.layout.height + 2 * this.padding + this.labelHeight);
             } else if (direction === "vertical") {
                 groupLayout.width = Math.max(groupLayout.width, item.layout.width + 2 * this.padding);
-                groupLayout.height += item.layout.height + this.spaceBetween;
+                groupLayout.height += item.layout.height;
             } else {
                 groupLayout.width = Math.max(groupLayout.width, item.layout.width + 2 * this.padding);
                 groupLayout.height = Math.max(groupLayout.height, item.layout.height + 2 * this.padding + this.labelHeight);
             }
         });
-        if (direction === "horizontal") groupLayout.width -= this.spaceBetween;
-        else if (direction === "vertical") groupLayout.height -= this.spaceBetween;
+        if (direction === "horizontal") groupLayout.width += this.spaceBetween * (uiInjected.length - 1);
+        else if (direction === "vertical") groupLayout.height += this.spaceBetween * (uiInjected.length - 1);
         if (tabs) {
             groupLayout.height += this.itemLayoutMap.tab.height;
             groupLayout.width = Math.max(groupLayout.width, tabs * this.itemLayoutMap.tab.width + 2 * this.padding);
@@ -144,10 +144,10 @@ export class Layout {
                 if (item.layout.sizing === "both" || item.layout.sizing === "vertical") dV$ = vExpandItems ? dV / vExpandItems : 0;
                 if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") dH$ = layoutIn.width - 2 * this.padding - item.layout.width;
             } else if (directionIn === "horizontal") {
-                if (item.layout.sizing === "both" || item.layout.sizing === "vertical") dV$ = layoutIn.height - 2 * this.padding - this.labelHeight - (tabs ? this.itemLayoutMap.tab.width : 0) - item.layout.height;
+                if (item.layout.sizing === "both" || item.layout.sizing === "vertical") dV$ = layoutIn.height - 2 * this.padding - this.labelHeight - (tabs ? this.itemLayoutMap.tab.height : 0) - item.layout.height;
                 if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") dH$ = hExpandItems ? dH / hExpandItems : 0;
             } else {
-                if (item.layout.sizing === "both" || item.layout.sizing === "vertical") dV$ = layoutIn.height - 2 * this.padding - this.labelHeight - (tabs ? this.itemLayoutMap.tab.width : 0) - item.layout.height;
+                if (item.layout.sizing === "both" || item.layout.sizing === "vertical") dV$ = layoutIn.height - 2 * this.padding - this.labelHeight - (tabs ? this.itemLayoutMap.tab.height : 0) - item.layout.height;
                 if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") dH$ = layoutIn.width - 2 * this.padding - item.layout.width;
             }
             if (directionIn !== "stacked") {
