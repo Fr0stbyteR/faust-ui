@@ -1528,10 +1528,11 @@ class FaustUI extends events__WEBPACK_IMPORTED_MODULE_2__["EventEmitter"] {
   set ui(uiIn) {
     this._ui = uiIn;
     var state = this.calc();
+    this.emit("uiWillChange", this._ui);
     if (this.faustUIRoot) this.faustUIRoot.setState(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, state, {
       ui: this.ui
     }));
-    this.emit("uiChange", this._ui);
+    this.emit("uiChanged", this._ui);
     this.emit("uiConnected", this.ui);
   }
 
@@ -1798,7 +1799,18 @@ class FaustUIGroup extends _components_Component__WEBPACK_IMPORTED_MODULE_6__["C
           }
         });
         this.tabs.appendChild(tab);
-        if (i === 0) this.state.emitter.on("uiConnected", () => tab.click());
+
+        if (i === 0) {
+          var handleUIConnected = () => tab.click();
+
+          var handleUIWillChange = () => {
+            this.state.emitter.off("uiConnected", handleUIConnected);
+            this.state.emitter.off("uiWillChange", handleUIWillChange);
+          };
+
+          this.state.emitter.on("uiConnected", handleUIConnected);
+          this.state.emitter.on("uiWillChange", handleUIWillChange);
+        }
       });
     }
   }
@@ -2488,27 +2500,46 @@ class FaustUIItem extends _Component__WEBPACK_IMPORTED_MODULE_4__["Component"] {
 
   componentDidMount() {
     this.paint();
-    this.state.emitter.on("paramChangeByDSP", e => {
+
+    var handleParamChangeByDSP = e => {
       if (e.path === this.state.address) {
         this.setState({
           value: e.value
         });
         this.paint();
       }
-    });
-    this.state.emitter.on("layoutChange", () => {
+    };
+
+    var handleLayoutChange = () => {
       var style = this.state.style;
       this.setState({
         style
       });
       this.paint();
-    });
-    this.state.emitter.on("uiChange", () => {
-      this.setState(this.state);
-      this.paint();
-    });
+    };
+
+    var handleUIWillChange = () => {
+      this.state.emitter.off("paramChangeByDSP", handleParamChangeByDSP);
+      this.state.emitter.off("layoutChange", handleLayoutChange);
+      this.state.emitter.off("uiWillChange", handleUIWillChange);
+      this.componentDidUnmount();
+    };
+
+    var handleUIChanged = () => {
+      this.state.emitter.off("uiChanged", handleUIChanged);
+      this.componentDidUnmount();
+    };
+
+    this.state.emitter.on("paramChangeByDSP", handleParamChangeByDSP);
+    this.state.emitter.on("layoutChange", handleLayoutChange);
+    this.state.emitter.on("uiWillChange", handleUIWillChange);
+    this.state.emitter.on("uiChanged", handleUIChanged);
     this.on("style", () => this.resize());
   }
+
+  componentWillUnmount() {}
+
+  componentDidUnmount() {}
 
   paint() {}
 
@@ -3261,7 +3292,16 @@ class FaustUIKnob extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"] {
 
   componentDidMount() {
     super.componentDidMount();
-    this.state.emitter.on("uiConnected", () => this.paint());
+
+    var handleUIConnected = () => this.paint();
+
+    var handleUIWillChange = () => {
+      this.state.emitter.off("uiConnected", handleUIConnected);
+      this.state.emitter.off("uiWillChange", handleUIWillChange);
+    };
+
+    this.state.emitter.on("uiConnected", handleUIConnected);
+    this.state.emitter.on("uiWillChange", handleUIWillChange);
     this.input.addEventListener("change", this.handleChange);
     this.canvas.addEventListener("mousedown", this.handleMouseDown);
     this.canvas.addEventListener("touchstart", this.handleTouchStart, {
@@ -3483,7 +3523,16 @@ class FaustUILed extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"] {
 
   componentDidMount() {
     super.componentDidMount();
-    this.state.emitter.on("uiConnected", () => this.paint());
+
+    var handleUIConnected = () => this.paint();
+
+    var handleUIWillChange = () => {
+      this.state.emitter.off("uiConnected", handleUIConnected);
+      this.state.emitter.off("uiWillChange", handleUIWillChange);
+    };
+
+    this.state.emitter.on("uiConnected", handleUIConnected);
+    this.state.emitter.on("uiWillChange", handleUIWillChange);
     this.canvas.addEventListener("mousedown", this.handleMouseDown);
     this.canvas.addEventListener("touchstart", this.handleTouchStart, {
       passive: false
@@ -4224,7 +4273,16 @@ class FaustUIVBargraph extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"]
 
   componentDidMount() {
     super.componentDidMount();
-    this.state.emitter.on("uiConnected", () => this.paint());
+
+    var handleUIConnected = () => this.paint();
+
+    var handleUIWillChange = () => {
+      this.state.emitter.off("uiConnected", handleUIConnected);
+      this.state.emitter.off("uiWillChange", handleUIWillChange);
+    };
+
+    this.state.emitter.on("uiConnected", handleUIConnected);
+    this.state.emitter.on("uiWillChange", handleUIWillChange);
     this.canvas.addEventListener("mousedown", this.handleMouseDown);
     this.canvas.addEventListener("touchstart", this.handleTouchStart, {
       passive: false
@@ -4479,7 +4537,16 @@ class FaustUIVSlider extends _Base__WEBPACK_IMPORTED_MODULE_2__["FaustUIItem"] {
 
   componentDidMount() {
     super.componentDidMount();
-    this.state.emitter.on("uiConnected", () => this.paint());
+
+    var handleUIConnected = () => this.paint();
+
+    var handleUIWillChange = () => {
+      this.state.emitter.off("uiConnected", handleUIConnected);
+      this.state.emitter.off("uiWillChange", handleUIWillChange);
+    };
+
+    this.state.emitter.on("uiConnected", handleUIConnected);
+    this.state.emitter.on("uiWillChange", handleUIWillChange);
     this.input.addEventListener("change", this.handleChange);
     this.canvas.addEventListener("mousedown", this.handleMouseDown);
     this.canvas.addEventListener("touchstart", this.handleTouchStart, {
@@ -4734,4 +4801,4 @@ window.faustUI = faustUI;
 
 /******/ });
 });
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=faust_ui.js.map

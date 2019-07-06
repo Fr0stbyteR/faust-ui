@@ -57,8 +57,9 @@ export class FaustUI extends EventEmitter {
     set ui(uiIn) {
         this._ui = uiIn;
         const state = this.calc();
+        this.emit("uiWillChange", this._ui);
         if (this.faustUIRoot) this.faustUIRoot.setState({ ...state, ui: this.ui });
-        this.emit("uiChange", this._ui);
+        this.emit("uiChanged", this._ui);
         this.emit("uiConnected", this.ui);
     }
     changeParamByUI(path: string, value: number) {

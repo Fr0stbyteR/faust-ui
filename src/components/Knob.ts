@@ -68,7 +68,13 @@ export class FaustUIKnob extends FaustUIItem<FaustUIKnobStyle> {
     }
     componentDidMount() {
         super.componentDidMount();
-        this.state.emitter.on("uiConnected", () => this.paint());
+        const handleUIConnected = () => this.paint();
+        const handleUIWillChange = () => {
+            this.state.emitter.off("uiConnected", handleUIConnected);
+            this.state.emitter.off("uiWillChange", handleUIWillChange);
+        };
+        this.state.emitter.on("uiConnected", handleUIConnected);
+        this.state.emitter.on("uiWillChange", handleUIWillChange);
         this.input.addEventListener("change", this.handleChange);
         this.canvas.addEventListener("mousedown", this.handleMouseDown);
         this.canvas.addEventListener("touchstart", this.handleTouchStart, { passive: false });

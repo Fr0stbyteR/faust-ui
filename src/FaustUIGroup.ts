@@ -157,7 +157,15 @@ export class FaustUIGroup extends Component<{ emitter: FaustUI; ui: TFaustUIGrou
                     }
                 });
                 this.tabs.appendChild(tab);
-                if (i === 0) this.state.emitter.on("uiConnected", () => tab.click());
+                if (i === 0) {
+                    const handleUIConnected = () => tab.click();
+                    const handleUIWillChange = () => {
+                        this.state.emitter.off("uiConnected", handleUIConnected);
+                        this.state.emitter.off("uiWillChange", handleUIWillChange);
+                    };
+                    this.state.emitter.on("uiConnected", handleUIConnected);
+                    this.state.emitter.on("uiWillChange", handleUIWillChange);
+                }
             });
         }
     }

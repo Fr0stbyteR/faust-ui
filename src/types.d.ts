@@ -44,7 +44,8 @@ type TFaustUIType = TFaustUIGroupType | TFaustUIOutputType | TFaustUIInputType;
 interface FaustUIEventMap {
     "paramChangeByUI": { path: string; value: number };
     "paramChangeByDSP": { path: string; value: number };
-    "uiChange": TFaustUI;
+    "uiWillChange": TFaustUI;
+    "uiChanged": TFaustUI;
     "uiConnected": TFaustUI;
     "layoutChange": undefined;
 }

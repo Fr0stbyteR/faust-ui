@@ -155,23 +155,35 @@ export class FaustUIItem<T extends FaustUIItemStyle> extends Component<FaustUIIt
     }
     componentDidMount() {
         this.paint();
-        this.state.emitter.on("paramChangeByDSP", (e) => {
+        const handleParamChangeByDSP: (e: { path: string; value: number }) => void = (e) => {
             if (e.path === this.state.address) {
                 this.setState({ value: e.value });
                 this.paint();
             }
-        });
-        this.state.emitter.on("layoutChange", () => {
+        };
+        const handleLayoutChange = () => {
             const style = this.state.style;
             this.setState({ style });
             this.paint();
-        });
-        this.state.emitter.on("uiChange", () => {
-            this.setState(this.state);
-            this.paint();
-        });
+        };
+        const handleUIWillChange = () => {
+            this.state.emitter.off("paramChangeByDSP", handleParamChangeByDSP);
+            this.state.emitter.off("layoutChange", handleLayoutChange);
+            this.state.emitter.off("uiWillChange", handleUIWillChange);
+            this.componentDidUnmount();
+        };
+        const handleUIChanged = () => {
+            this.state.emitter.off("uiChanged", handleUIChanged);
+            this.componentDidUnmount();
+        };
+        this.state.emitter.on("paramChangeByDSP", handleParamChangeByDSP);
+        this.state.emitter.on("layoutChange", handleLayoutChange);
+        this.state.emitter.on("uiWillChange", handleUIWillChange);
+        this.state.emitter.on("uiChanged", handleUIChanged);
         this.on("style", () => this.resize());
     }
+    componentWillUnmount() {}
+    componentDidUnmount() {}
     paint() {}
     mount() {
         this.resize();
