@@ -3,7 +3,7 @@ const path = require('path');
 const config = {
   entry: './src/index.ts',
   resolve: {
-    extensions: ['.tsx', '.ts', '.js']
+    extensions: ['.ts', '.js']
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -48,11 +48,11 @@ const config = {
 module.exports = (env, argv) => {
   if (argv.mode === 'development') {
     config.devtool = 'source-map';
-    config.output.filename = 'faust_ui.js';
+    config.output.filename = 'index.js';
   }
   if (argv.mode === 'production') {
     config.devtool = 'source-map';
-    config.output.filename = 'faust_ui.min.js';
+    config.output.filename = 'index.min.js';
   }
   return config;
 };
