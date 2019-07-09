@@ -85,7 +85,7 @@ export class FaustUILed extends FaustUIItem<FaustUILedStyle> {
         this.container.appendChild(this.canvas);
         return super.mount();
     }
-    paint() {
+    raf = () => {
         const { shape, ledbgcolor, coldcolor, warmcolor, hotcolor, overloadcolor } = { ...this.defaultProps.style, ...this.state.style };
         const { min, max } = this.state;
         const { canvas, ctx, tempCanvas, tempCtx, distance } = this;

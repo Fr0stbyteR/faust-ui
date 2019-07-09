@@ -23,6 +23,8 @@ export class FaustUIItem<T extends FaustUIItemStyle> extends Component<FaustUIIt
     }
     container: HTMLDivElement;
     className: string;
+    $raf: number;
+    raf = () => {};
     handleKeyDown = (e: KeyboardEvent) => {};
     handleKeyUp = (e: KeyboardEvent) => {};
     handleTouchStart = (e: TouchEvent) => {
@@ -184,7 +186,10 @@ export class FaustUIItem<T extends FaustUIItemStyle> extends Component<FaustUIIt
     }
     componentWillUnmount() {}
     componentDidUnmount() {}
-    paint() {}
+    paint() {
+        window.cancelAnimationFrame(this.$raf);
+        this.$raf = window.requestAnimationFrame(this.raf);
+    }
     mount() {
         this.resize();
         return super.mount();

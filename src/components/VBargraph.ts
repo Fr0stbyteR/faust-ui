@@ -97,7 +97,7 @@ export class FaustUIVBargraph extends FaustUIItem<FaustUIBargraphStyle> {
     paintValue: number = 0;
     maxValue: number = -Infinity;
     maxTimer: number;
-    paint() {
+    raf = () => {
         const { barwidth, barbgcolor, coldcolor, warmcolor, hotcolor, overloadcolor } = { ...this.defaultProps.style, ...this.state.style };
         const { min, max, value } = this.state;
         const ctx = this.ctx;

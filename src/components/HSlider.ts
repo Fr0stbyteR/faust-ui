@@ -15,7 +15,7 @@ export class FaustUIHSlider extends FaustUIVSlider {
         this.container.style.borderColor = style.bordercolor;
         this.paint();
     }
-    paint() {
+    raf = () => {
         const { sliderwidth, sliderbgcolor, sliderbgoncolor, slidercolor } = { ...this.defaultProps.style, ...this.state.style };
         const ctx = this.ctx;
         const canvas = this.canvas;

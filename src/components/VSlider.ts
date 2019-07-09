@@ -109,7 +109,7 @@ export class FaustUIVSlider extends FaustUIItem<FaustUISliderStyle> {
         this.container.appendChild(this.flexDiv);
         return super.mount();
     }
-    paint() {
+    raf = () => {
         const { sliderwidth, sliderbgcolor, sliderbgoncolor, slidercolor } = { ...this.defaultProps.style, ...this.state.style };
         const ctx = this.ctx;
         const canvas = this.canvas;

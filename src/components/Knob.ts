@@ -103,7 +103,7 @@ export class FaustUIKnob extends FaustUIItem<FaustUIKnobStyle> {
         this.container.appendChild(this.input);
         return super.mount();
     }
-    paint() {
+    raf = () => {
         const { knobwidth, knobcolor, knoboncolor, needlecolor } = { ...this.defaultProps.style, ...this.state.style };
         const ctx = this.ctx;
         const canvas = this.canvas;
