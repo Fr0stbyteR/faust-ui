@@ -126,6 +126,7 @@ export class Layout {
             groupLayout.height += this.itemLayoutMap.tab.height;
             groupLayout.width = Math.max(groupLayout.width, tabs * this.itemLayoutMap.tab.width + 2 * this.padding);
         }
+        if (groupLayout.width < 1) groupLayout.width += 1;
         return groupLayout;
     }
     static expandLayout(uiInjected: TFaustUIItem[], dV: number, dH: number, directionIn: "vertical" | "horizontal" | "stacked", layoutIn: TLayoutProp) {
