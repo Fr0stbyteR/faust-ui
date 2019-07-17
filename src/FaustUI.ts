@@ -1,5 +1,5 @@
 import { EventEmitter } from "events";
-import { Layout } from "./Layout";
+import { Layout } from "./layout/Layout";
 import { FaustUIRoot } from "./FaustUIRoot";
 import "./index.scss";
 
@@ -41,7 +41,8 @@ export class FaustUI extends EventEmitter {
     }
     calc() {
         const { width, height } = this.root.getBoundingClientRect();
-        const { layout } = Layout.calcLayout(this.ui);
+        const { items, layout } = Layout.calc(this.ui);
+        this._ui = items;
         return { width, height, layout };
     }
     render() {

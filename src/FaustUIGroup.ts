@@ -1,5 +1,5 @@
 import { FaustUI } from "./FaustUI";
-import { Layout } from "./Layout";
+import { Layout } from "./layout/Layout";
 import { FaustUIButton } from "./components/Button";
 import { FaustUICheckbox } from "./components/Checkbox";
 import { FaustUIItemProps, FaustUIItemStyle } from "./components/types";

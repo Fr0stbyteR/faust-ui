@@ -1,14 +1,14 @@
-type TFaustUI = TFaustUIGroup[];
+type TFaustUI = TFaustUIItem[];
 type TFaustUIItem = TFaustUIInputItem | TFaustUIOutputItem | TFaustUIGroup;
 type TFaustUIInputItem = {
     type: TFaustUIInputType;
     label: string;
     address: string;
-    index: string;
-    init?: string;
-    min?: string;
-    max?: string;
-    step?: string;
+    index: number;
+    init?: number;
+    min?: number;
+    max?: number;
+    step?: number;
     meta?: TFaustUIMeta[];
     layout?: TLayoutProp;
 };
@@ -16,9 +16,9 @@ type TFaustUIOutputItem = {
     type: TFaustUIOutputType;
     label: string;
     address: string;
-    index: string;
-    min?: string;
-    max?: string;
+    index: number;
+    min?: number;
+    max?: number;
     meta?: TFaustUIMeta[];
     layout?: TLayoutProp;
 };
@@ -50,11 +50,29 @@ interface FaustUIEventMap {
     "layoutChange": undefined;
 }
 type TLayoutProp = {
+    type: TLayoutType;
     left?: number;
     top?: number;
     width: number;
     height: number;
     sizing: "horizontal" | "vertical" | "both" | "none";
 }
-type TLayoutType = "vgroup" | "hgroup" | "tgroup" | "hbargraph" | "vbargraph" | "vslider" | "hslider" | "button" | "checkbox" | "nentry" | "label" | "knob" | "menu" | "radio" | "led" | "numerical";
+type TLayoutType = "vgroup" | "hgroup" | "tgroup" | "hbargraph" | "vbargraph" | "vslider" | "hslider" | "button" | "checkbox" | "nentry" | "knob" | "menu" | "radio" | "led" | "numerical";
 type TLayout = { [path: string]: TLayoutProp };
+interface LayoutTypeMap {
+    "vgroup": TFaustUIGroup;
+    "hgroup": TFaustUIGroup;
+    "tgroup": TFaustUIGroup;
+    "hbargraph": TFaustUIInputItem;
+    "vbargraph": TFaustUIInputItem;
+    "led": TFaustUIInputItem;
+    "numerical": TFaustUIInputItem;
+    "vslider": TFaustUIOutputItem;
+    "hslider": TFaustUIOutputItem;
+    "button": TFaustUIOutputItem;
+    "checkbox": TFaustUIOutputItem;
+    "nentry": TFaustUIOutputItem;
+    "knob": TFaustUIOutputItem;
+    "menu": TFaustUIOutputItem;
+    "radio": TFaustUIOutputItem;
+}

@@ -1,0 +1,6 @@
+# FaustUI [![Badge](https://img.shields.io/badge/link-996.icu-%23FF4D5B.svg?style=flat-square)](https://996.icu/#/en_US)
+
+This repository is an user interface parser, compositor and components renderer for Faust. [Faust user interface widgets/primitives](https://faust.grame.fr/doc/manual/index.html#user-interface-primitives-and-configuration) allow for an abstract description of a user interface from within the Faust code. This description is independent from any GUI toolkits/frameworks and is purely abstract. Widgets can be discrete (e.g., button, checkbox, etc.), continuous (e.g., hslider, vslider, nentry), and organizational (e.g., vgroup, hgroup). When a Faust DSP code was compiled, a corresponding JSON file is generated with data related to the DSP including its UI structure information. FaustUI takes these information as input in order to generate an user interface in an HTML environment with hooks to communicate with the actual DSP.
+
+## Parser
+A structure definition of the UI information provided by Faust compiler can be found in `./src/types.d.ts`.

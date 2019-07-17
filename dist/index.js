@@ -1374,7 +1374,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FaustUI", function() { return FaustUI; });
 /* harmony import */ var events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! events */ "./node_modules/events/events.js");
 /* harmony import */ var events__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(events__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Layout */ "./src/Layout.ts");
+/* harmony import */ var _layout_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./layout/Layout */ "./src/layout/Layout.ts");
 /* harmony import */ var _FaustUIRoot__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FaustUIRoot */ "./src/FaustUIRoot.ts");
 /* harmony import */ var _index_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./index.scss */ "./src/index.scss");
 /* harmony import */ var _index_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_index_scss__WEBPACK_IMPORTED_MODULE_3__);
@@ -1433,9 +1433,11 @@ class FaustUI extends events__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"] {
         width = _this$root$getBoundin.width,
         height = _this$root$getBoundin.height;
 
-    var _Layout$calcLayout = _Layout__WEBPACK_IMPORTED_MODULE_1__["Layout"].calcLayout(this.ui),
-        layout = _Layout$calcLayout.layout;
+    var _Layout$calc = _layout_Layout__WEBPACK_IMPORTED_MODULE_1__["Layout"].calc(this.ui),
+        items = _Layout$calc.items,
+        layout = _Layout$calc.layout;
 
+    this._ui = items;
     return {
       width,
       height,
@@ -1504,7 +1506,7 @@ class FaustUI extends events__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"] {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FaustUIGroup", function() { return FaustUIGroup; });
-/* harmony import */ var _Layout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Layout */ "./src/Layout.ts");
+/* harmony import */ var _layout_Layout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./layout/Layout */ "./src/layout/Layout.ts");
 /* harmony import */ var _components_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Button */ "./src/components/Button.ts");
 /* harmony import */ var _components_Checkbox__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Checkbox */ "./src/components/Checkbox.ts");
 /* harmony import */ var _components_Nentry__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Nentry */ "./src/components/Nentry.ts");
@@ -1578,7 +1580,7 @@ class FaustUIGroup extends _components_Component__WEBPACK_IMPORTED_MODULE_4__["C
   }
 
   static getComponent(item, emitter, grid, itemLeft, itemTop) {
-    var type = _Layout__WEBPACK_IMPORTED_MODULE_0__["Layout"].predictType(item);
+    var type = _layout_Layout__WEBPACK_IMPORTED_MODULE_0__["Layout"].predictType(item);
 
     var _this$parseMeta = this.parseMeta(item.meta),
         metaObject = _this$parseMeta.metaObject,
@@ -1910,254 +1912,6 @@ class FaustUIRoot extends _components_Component__WEBPACK_IMPORTED_MODULE_1__["Co
   }
 
 }
-
-/***/ }),
-
-/***/ "./src/Layout.ts":
-/*!***********************!*\
-  !*** ./src/Layout.ts ***!
-  \***********************/
-/*! exports provided: Layout */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Layout", function() { return Layout; });
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-class Layout {
-  static predictType(item) {
-    if (item.type === "vgroup" || item.type === "hgroup" || item.type === "tgroup" || item.type === "button" || item.type === "checkbox") return item.type;
-
-    if (item.type === "hbargraph" || item.type === "vbargraph") {
-      if (item.meta && item.meta.find(meta => meta.style && meta.style.startsWith("led"))) return "led";
-      if (item.meta && item.meta.find(meta => meta.style && meta.style.startsWith("numerical"))) return "numerical";
-      return item.type;
-    }
-
-    if (item.type === "hslider" || item.type === "nentry" || item.type === "vslider") {
-      if (item.meta && item.meta.find(meta => meta.style && meta.style.startsWith("knob"))) return "knob";
-      if (item.meta && item.meta.find(meta => meta.style && meta.style.startsWith("menu"))) return "menu";
-      if (item.meta && item.meta.find(meta => meta.style && meta.style.startsWith("radio"))) return "radio";
-    }
-
-    return item.type;
-  }
-
-  static injectLayout(ui) {
-    ui.forEach(item => {
-      if ("items" in item) this.injectLayout(item.items);else item.layout = _objectSpread({}, this.itemLayoutMap[this.predictType(item)]);
-    });
-    return ui;
-  }
-
-  static adjustLayout(uiInjected, directionIn) {
-    var hasHSizingDesc = this.hasHSizingDesc(uiInjected);
-    var hasVSizingDesc = this.hasVSizingDesc(uiInjected);
-    var sizing = hasHSizingDesc && hasVSizingDesc ? "both" : hasHSizingDesc ? "horizontal" : hasVSizingDesc ? "vertical" : "none";
-    var groupLayout = {
-      width: this.padding * 2,
-      height: this.padding * 2 + this.labelHeight,
-      sizing
-    };
-    var direction = directionIn || "vertical";
-    var tabs = 0;
-    uiInjected.forEach(item => {
-      if (item.type.endsWith("group")) {
-        if (direction === "stacked") tabs++;
-        if (item.type === "hgroup") item.layout = this.adjustLayout(item.items, "horizontal");else if (item.type === "vgroup") item.layout = this.adjustLayout(item.items, "vertical");else if (item.type === "tgroup") item.layout = this.adjustLayout(item.items, "stacked");
-      }
-
-      if (direction === "horizontal") {
-        groupLayout.width += item.layout.width;
-        groupLayout.height = Math.max(groupLayout.height, item.layout.height + 2 * this.padding + this.labelHeight);
-      } else if (direction === "vertical") {
-        groupLayout.width = Math.max(groupLayout.width, item.layout.width + 2 * this.padding);
-        groupLayout.height += item.layout.height;
-      } else {
-        groupLayout.width = Math.max(groupLayout.width, item.layout.width + 2 * this.padding);
-        groupLayout.height = Math.max(groupLayout.height, item.layout.height + 2 * this.padding + this.labelHeight);
-      }
-    });
-    if (direction === "horizontal") groupLayout.width += this.spaceBetween * (uiInjected.length - 1);else if (direction === "vertical") groupLayout.height += this.spaceBetween * (uiInjected.length - 1);
-
-    if (tabs) {
-      groupLayout.height += this.itemLayoutMap.tab.height;
-      groupLayout.width = Math.max(groupLayout.width, tabs * this.itemLayoutMap.tab.width + 2 * this.padding);
-    }
-
-    if (groupLayout.width < 1) groupLayout.width += 1;
-    return groupLayout;
-  }
-
-  static expandLayout(uiInjected, dV, dH, directionIn, layoutIn) {
-    var vExpandItems = 0;
-    var hExpandItems = 0;
-    var tabs = 0;
-    uiInjected.forEach(item => {
-      if (directionIn === "stacked") tabs++;
-      if (directionIn === "vertical" && (item.layout.sizing === "both" || item.layout.sizing === "vertical")) vExpandItems++;
-      if (directionIn === "horizontal" && (item.layout.sizing === "both" || item.layout.sizing === "horizontal")) hExpandItems++;
-    });
-    uiInjected.forEach(item => {
-      var dV$ = 0;
-      var dH$ = 0;
-
-      if (directionIn === "vertical") {
-        if (item.layout.sizing === "both" || item.layout.sizing === "vertical") dV$ = vExpandItems ? dV / vExpandItems : 0;
-        if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") dH$ = layoutIn.width - 2 * this.padding - item.layout.width;
-      } else if (directionIn === "horizontal") {
-        if (item.layout.sizing === "both" || item.layout.sizing === "vertical") dV$ = layoutIn.height - 2 * this.padding - this.labelHeight - (tabs ? this.itemLayoutMap.tab.height : 0) - item.layout.height;
-        if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") dH$ = hExpandItems ? dH / hExpandItems : 0;
-      } else {
-        if (item.layout.sizing === "both" || item.layout.sizing === "vertical") dV$ = layoutIn.height - 2 * this.padding - this.labelHeight - (tabs ? this.itemLayoutMap.tab.height : 0) - item.layout.height;
-        if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") dH$ = layoutIn.width - 2 * this.padding - item.layout.width;
-      }
-
-      if (directionIn !== "stacked") {
-        if (item.layout.sizing === "both" || item.layout.sizing === "vertical") item.layout.height += dV$;
-        if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") item.layout.width += dH$;
-      }
-
-      if (item.type === "hgroup" || item.type === "vgroup" || item.type === "tgroup") {
-        var hasVSizingDesc = item.layout.sizing === "vertical" || item.layout.sizing === "both";
-        var hasHSizingDesc = item.layout.sizing === "horizontal" || item.layout.sizing === "both";
-        if (item.type === "hgroup") this.expandLayout(item.items, hasVSizingDesc ? dV$ : 0, hasHSizingDesc ? dH$ : 0, "horizontal", item.layout);else if (item.type === "vgroup") this.expandLayout(item.items, hasVSizingDesc ? dV$ : 0, hasHSizingDesc ? dH$ : 0, "vertical", item.layout);else if (item.type === "tgroup") this.expandLayout(item.items, hasVSizingDesc ? dV$ : 0, hasHSizingDesc ? dH$ : 0, "stacked", item.layout);
-      }
-    });
-    return layoutIn;
-  }
-
-  static offsetLayout(uiAdjusted, directionIn, layoutIn) {
-    var direction = directionIn || "vertical";
-    var tabs = 0;
-
-    if (directionIn === "stacked") {
-      uiAdjusted.forEach(item => {
-        if (item.type.endsWith("group")) tabs++;
-      });
-    }
-
-    var $left = (layoutIn.left || 0) + this.padding;
-    var $top = (layoutIn.top || 0) + this.padding + this.labelHeight + (tabs ? this.itemLayoutMap.tab.height : 0);
-    var width = layoutIn.width,
-        height = layoutIn.height;
-    uiAdjusted.forEach(item => {
-      item.layout.left = $left;
-      item.layout.top = $top; // center the item
-
-      if (direction === "horizontal") item.layout.top += (height - this.labelHeight - item.layout.height) / 2 - this.padding;
-      if (direction === "vertical") item.layout.left += (width - item.layout.width) / 2 - this.padding;
-      if (item.type === "hgroup") this.offsetLayout(item.items, "horizontal", item.layout);else if (item.type === "vgroup") this.offsetLayout(item.items, "vertical", item.layout);else if (item.type === "tgroup") this.offsetLayout(item.items, "stacked", item.layout);
-      if (direction === "horizontal") $left += item.layout.width + this.spaceBetween;else if (direction === "vertical") $top += item.layout.height + this.spaceBetween;
-    });
-    return uiAdjusted;
-  }
-
-  static hasVSizingDesc(ui) {
-    return !!ui.find(item => {
-      if (item.type === "hgroup" || item.type === "vgroup" || item.type === "tgroup") return this.hasVSizingDesc(item.items);
-      return item.layout.sizing === "vertical" || item.layout.sizing === "both";
-    });
-  }
-
-  static hasHSizingDesc(ui) {
-    return !!ui.find(item => {
-      if (item.type === "hgroup" || item.type === "vgroup" || item.type === "tgroup") return this.hasHSizingDesc(item.items);
-      return item.layout.sizing === "horizontal" || item.layout.sizing === "both";
-    });
-  }
-
-  static calcLayout(ui) {
-    this.injectLayout(ui);
-    var layout = this.adjustLayout(ui);
-    this.expandLayout(ui, 0, 0, "vertical", layout);
-    this.offsetLayout(ui, "vertical", layout);
-    layout.left = 0;
-    layout.top = 0;
-    return {
-      ui,
-      layout
-    };
-  }
-
-}
-
-_defineProperty(Layout, "padding", 0.2);
-
-_defineProperty(Layout, "labelHeight", 0.25);
-
-_defineProperty(Layout, "spaceBetween", 0.1);
-
-_defineProperty(Layout, "itemLayoutMap", {
-  hslider: {
-    width: 5,
-    height: 1,
-    sizing: "horizontal"
-  },
-  vslider: {
-    width: 1,
-    height: 5,
-    sizing: "vertical"
-  },
-  nentry: {
-    width: 1,
-    height: 1,
-    sizing: "none"
-  },
-  button: {
-    width: 2,
-    height: 1,
-    sizing: "horizontal"
-  },
-  checkbox: {
-    width: 2,
-    height: 1,
-    sizing: "horizontal"
-  },
-  knob: {
-    width: 1,
-    height: 2,
-    sizing: "none"
-  },
-  menu: {
-    width: 2,
-    height: 1,
-    sizing: "horizontal"
-  },
-  radio: {
-    width: 2,
-    height: 2,
-    sizing: "both"
-  },
-  led: {
-    width: 1,
-    height: 1,
-    sizing: "none"
-  },
-  numerical: {
-    width: 1,
-    height: 1,
-    sizing: "none"
-  },
-  hbargraph: {
-    width: 5,
-    height: 1,
-    sizing: "horizontal"
-  },
-  vbargraph: {
-    width: 1,
-    height: 5,
-    sizing: "vertical"
-  },
-  tab: {
-    width: 2,
-    height: 1,
-    sizing: "none"
-  }
-});
 
 /***/ }),
 
@@ -4712,6 +4466,896 @@ window.addEventListener("keyup", e => {
   }, "*");
 });
 window.faustUI = faustUI;
+
+/***/ }),
+
+/***/ "./src/layout/AbstractGroup.ts":
+/*!*************************************!*\
+  !*** ./src/layout/AbstractGroup.ts ***!
+  \*************************************/
+/*! exports provided: AbstractGroup */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AbstractGroup", function() { return AbstractGroup; });
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
+class AbstractGroup {
+  constructor(group, isRoot) {
+    _defineProperty(this, "isRoot", void 0);
+
+    _defineProperty(this, "type", void 0);
+
+    _defineProperty(this, "label", void 0);
+
+    _defineProperty(this, "items", void 0);
+
+    _defineProperty(this, "layout", void 0);
+
+    this.isRoot = !!isRoot;
+    Object.assign(this, group);
+    var hasHSizingDesc = this.hasHSizingDesc,
+        hasVSizingDesc = this.hasVSizingDesc;
+    var sizing = hasHSizingDesc && hasVSizingDesc ? "both" : hasHSizingDesc ? "horizontal" : hasVSizingDesc ? "vertical" : "none";
+    this.layout = {
+      type: group.type,
+      width: AbstractGroup.padding * 2,
+      height: AbstractGroup.padding * 2 + AbstractGroup.labelHeight,
+      sizing
+    };
+  }
+  /**
+   * Adjust group width and height by its items' dimensions
+   *
+   * @returns {this}
+   * @memberof AbstractGroup
+   */
+
+
+  adjust() {
+    return this;
+  }
+  /**
+   * Expand flexible items within a group
+   *
+   * @param {number} dX - Extra horizontal spaces that this group could take
+   * @param {number} dY - Extra vertical spaces that this group could take
+   * @returns {this}
+   * @memberof AbstractGroup
+   */
+
+
+  expand(dX, dY) {
+    return this;
+  }
+  /**
+   * calculate all the items' absolute coordination (in grids)
+   *
+   * @returns {this}
+   * @memberof AbstractGroup
+   */
+
+
+  offset() {
+    return this;
+  }
+  /**
+   * find recursively if the group has horizontal-sizable item
+   *
+   * @readonly
+   * @type {boolean}
+   * @memberof AbstractGroup
+   */
+
+
+  get hasHSizingDesc() {
+    return !!this.items.find(item => {
+      if (item instanceof AbstractGroup) return item.hasHSizingDesc;
+      return item.layout.sizing === "horizontal" || item.layout.sizing === "both";
+    });
+  }
+  /**
+   * find recursively if the group has vertical-sizable item
+   *
+   * @readonly
+   * @type {boolean}
+   * @memberof AbstractGroup
+   */
+
+
+  get hasVSizingDesc() {
+    return !!this.items.find(item => {
+      if (item instanceof AbstractGroup) return item.hasVSizingDesc;
+      return item.layout.sizing === "vertical" || item.layout.sizing === "both";
+    });
+  }
+
+}
+
+_defineProperty(AbstractGroup, "padding", 0.2);
+
+_defineProperty(AbstractGroup, "labelHeight", 0.25);
+
+_defineProperty(AbstractGroup, "spaceBetween", 0.1);
+
+/***/ }),
+
+/***/ "./src/layout/AbstractInputItem.ts":
+/*!*****************************************!*\
+  !*** ./src/layout/AbstractInputItem.ts ***!
+  \*****************************************/
+/*! exports provided: AbstractInputItem */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AbstractInputItem", function() { return AbstractInputItem; });
+/* harmony import */ var _AbstractItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AbstractItem */ "./src/layout/AbstractItem.ts");
+
+class AbstractInputItem extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] {
+  constructor(item) {
+    super(item);
+  }
+
+}
+
+/***/ }),
+
+/***/ "./src/layout/AbstractItem.ts":
+/*!************************************!*\
+  !*** ./src/layout/AbstractItem.ts ***!
+  \************************************/
+/*! exports provided: AbstractItem */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AbstractItem", function() { return AbstractItem; });
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+class AbstractItem {
+  constructor(item) {
+    _defineProperty(this, "type", void 0);
+
+    _defineProperty(this, "label", void 0);
+
+    _defineProperty(this, "address", void 0);
+
+    _defineProperty(this, "index", void 0);
+
+    _defineProperty(this, "init", void 0);
+
+    _defineProperty(this, "min", void 0);
+
+    _defineProperty(this, "max", void 0);
+
+    _defineProperty(this, "meta", void 0);
+
+    _defineProperty(this, "layout", void 0);
+
+    Object.assign(this, item);
+    this.min = isFinite(+this.min) ? +this.min : Number.MIN_VALUE;
+    this.max = isFinite(+this.max) ? +this.max : Number.MIN_VALUE;
+  }
+
+}
+
+/***/ }),
+
+/***/ "./src/layout/AbstractOutputItem.ts":
+/*!******************************************!*\
+  !*** ./src/layout/AbstractOutputItem.ts ***!
+  \******************************************/
+/*! exports provided: AbstractOutputItem */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AbstractOutputItem", function() { return AbstractOutputItem; });
+/* harmony import */ var _AbstractItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AbstractItem */ "./src/layout/AbstractItem.ts");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+class AbstractOutputItem extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] {
+  constructor(item) {
+    super(item);
+
+    _defineProperty(this, "init", void 0);
+
+    _defineProperty(this, "step", void 0);
+
+    this.init = +this.init || 0;
+    this.step = +this.step || 1;
+  }
+
+}
+
+/***/ }),
+
+/***/ "./src/layout/Button.ts":
+/*!******************************!*\
+  !*** ./src/layout/Button.ts ***!
+  \******************************/
+/*! exports provided: Button */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Button", function() { return Button; });
+/* harmony import */ var _AbstractOutputItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AbstractOutputItem */ "./src/layout/AbstractOutputItem.ts");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+class Button extends _AbstractOutputItem__WEBPACK_IMPORTED_MODULE_0__["AbstractOutputItem"] {
+  constructor() {
+    super(...arguments);
+
+    _defineProperty(this, "layout", {
+      type: "button",
+      width: 2,
+      height: 1,
+      sizing: "horizontal"
+    });
+  }
+
+}
+
+/***/ }),
+
+/***/ "./src/layout/Checkbox.ts":
+/*!********************************!*\
+  !*** ./src/layout/Checkbox.ts ***!
+  \********************************/
+/*! exports provided: Checkbox */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Checkbox", function() { return Checkbox; });
+/* harmony import */ var _AbstractOutputItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AbstractOutputItem */ "./src/layout/AbstractOutputItem.ts");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+class Checkbox extends _AbstractOutputItem__WEBPACK_IMPORTED_MODULE_0__["AbstractOutputItem"] {
+  constructor() {
+    super(...arguments);
+
+    _defineProperty(this, "layout", {
+      type: "checkbox",
+      width: 2,
+      height: 1,
+      sizing: "horizontal"
+    });
+  }
+
+}
+
+/***/ }),
+
+/***/ "./src/layout/HBargraph.ts":
+/*!*********************************!*\
+  !*** ./src/layout/HBargraph.ts ***!
+  \*********************************/
+/*! exports provided: HBargraph */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HBargraph", function() { return HBargraph; });
+/* harmony import */ var _AbstractInputItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AbstractInputItem */ "./src/layout/AbstractInputItem.ts");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+class HBargraph extends _AbstractInputItem__WEBPACK_IMPORTED_MODULE_0__["AbstractInputItem"] {
+  constructor() {
+    super(...arguments);
+
+    _defineProperty(this, "layout", {
+      type: "hbargraph",
+      width: 5,
+      height: 1,
+      sizing: "horizontal"
+    });
+  }
+
+}
+
+/***/ }),
+
+/***/ "./src/layout/HGroup.ts":
+/*!******************************!*\
+  !*** ./src/layout/HGroup.ts ***!
+  \******************************/
+/*! exports provided: HGroup */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HGroup", function() { return HGroup; });
+/* harmony import */ var _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AbstractGroup */ "./src/layout/AbstractGroup.ts");
+
+class HGroup extends _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"] {
+  adjust() {
+    this.items.forEach(item => {
+      if (item instanceof _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"]) item.adjust();
+      this.layout.width += item.layout.width;
+      this.layout.height = Math.max(this.layout.height, item.layout.height + 2 * _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].padding + _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].labelHeight);
+    });
+    this.layout.width += _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].spaceBetween * (this.items.length - 1);
+    if (this.layout.width < 1) this.layout.width += 1;
+    return this;
+  }
+
+  expand(dX) {
+    var hExpandItems = 0;
+    this.items.forEach(item => {
+      // Count items that need to expand horizontally
+      if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") hExpandItems++;
+    });
+    this.items.forEach(item => {
+      var dX$ = 0;
+      var dY$ = 0; // Space available to expand for current item
+
+      if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") {
+        dX$ = hExpandItems ? dX / hExpandItems : 0;
+        item.layout.width += dX$;
+      }
+
+      if (item.layout.sizing === "both" || item.layout.sizing === "vertical") {
+        dY$ = this.layout.height - 2 * _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].padding - _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].labelHeight - item.layout.height;
+        item.layout.height += dY$;
+      }
+
+      if (item instanceof _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"]) item.expand(dX$, dY$);
+    });
+    return this;
+  }
+
+  offset() {
+    var labelHeight = _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].labelHeight,
+        padding = _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].padding,
+        spaceBetween = _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].spaceBetween;
+    var $left = (this.layout.left || 0) + padding;
+    var $top = (this.layout.top || 0) + padding + labelHeight;
+    var height = this.layout.height;
+    this.items.forEach(item => {
+      item.layout.left = $left;
+      item.layout.top = $top; // center the item
+
+      item.layout.top += (height - labelHeight - item.layout.height) / 2 - padding;
+      if (item instanceof _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"]) item.offset();
+      $left += item.layout.width + spaceBetween;
+    });
+    return this;
+  }
+
+}
+
+/***/ }),
+
+/***/ "./src/layout/HSlider.ts":
+/*!*******************************!*\
+  !*** ./src/layout/HSlider.ts ***!
+  \*******************************/
+/*! exports provided: HSlider */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HSlider", function() { return HSlider; });
+/* harmony import */ var _AbstractOutputItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AbstractOutputItem */ "./src/layout/AbstractOutputItem.ts");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+class HSlider extends _AbstractOutputItem__WEBPACK_IMPORTED_MODULE_0__["AbstractOutputItem"] {
+  constructor() {
+    super(...arguments);
+
+    _defineProperty(this, "layout", {
+      type: "hslider",
+      width: 5,
+      height: 1,
+      sizing: "horizontal"
+    });
+  }
+
+}
+
+/***/ }),
+
+/***/ "./src/layout/Knob.ts":
+/*!****************************!*\
+  !*** ./src/layout/Knob.ts ***!
+  \****************************/
+/*! exports provided: Knob */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Knob", function() { return Knob; });
+/* harmony import */ var _AbstractOutputItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AbstractOutputItem */ "./src/layout/AbstractOutputItem.ts");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+class Knob extends _AbstractOutputItem__WEBPACK_IMPORTED_MODULE_0__["AbstractOutputItem"] {
+  constructor() {
+    super(...arguments);
+
+    _defineProperty(this, "layout", {
+      type: "knob",
+      width: 1,
+      height: 2,
+      sizing: "none"
+    });
+  }
+
+}
+
+/***/ }),
+
+/***/ "./src/layout/Layout.ts":
+/*!******************************!*\
+  !*** ./src/layout/Layout.ts ***!
+  \******************************/
+/*! exports provided: Layout */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Layout", function() { return Layout; });
+/* harmony import */ var _HSlider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HSlider */ "./src/layout/HSlider.ts");
+/* harmony import */ var _VSlider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VSlider */ "./src/layout/VSlider.ts");
+/* harmony import */ var _Nentry__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Nentry */ "./src/layout/Nentry.ts");
+/* harmony import */ var _Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Button */ "./src/layout/Button.ts");
+/* harmony import */ var _Checkbox__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Checkbox */ "./src/layout/Checkbox.ts");
+/* harmony import */ var _Knob__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Knob */ "./src/layout/Knob.ts");
+/* harmony import */ var _Menu__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Menu */ "./src/layout/Menu.ts");
+/* harmony import */ var _Radio__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Radio */ "./src/layout/Radio.ts");
+/* harmony import */ var _Led__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Led */ "./src/layout/Led.ts");
+/* harmony import */ var _Numerical__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Numerical */ "./src/layout/Numerical.ts");
+/* harmony import */ var _HBargraph__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./HBargraph */ "./src/layout/HBargraph.ts");
+/* harmony import */ var _VBargraph__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./VBargraph */ "./src/layout/VBargraph.ts");
+/* harmony import */ var _HGroup__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./HGroup */ "./src/layout/HGroup.ts");
+/* harmony import */ var _VGroup__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./VGroup */ "./src/layout/VGroup.ts");
+/* harmony import */ var _TGroup__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./TGroup */ "./src/layout/TGroup.ts");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Layout {
+  /**
+   * Get the rendering type of an item by parsing its metadata
+   *
+   * @static
+   * @param {TFaustUIItem} item
+   * @returns {TLayoutType}
+   * @memberof Layout
+   */
+  static predictType(item) {
+    if (item.type === "vgroup" || item.type === "hgroup" || item.type === "tgroup" || item.type === "button" || item.type === "checkbox") return item.type;
+
+    if (item.type === "hbargraph" || item.type === "vbargraph") {
+      if (item.meta && item.meta.find(meta => meta.style && meta.style.startsWith("led"))) return "led";
+      if (item.meta && item.meta.find(meta => meta.style && meta.style.startsWith("numerical"))) return "numerical";
+      return item.type;
+    }
+
+    if (item.type === "hslider" || item.type === "nentry" || item.type === "vslider") {
+      if (item.meta && item.meta.find(meta => meta.style && meta.style.startsWith("knob"))) return "knob";
+      if (item.meta && item.meta.find(meta => meta.style && meta.style.startsWith("menu"))) return "menu";
+      if (item.meta && item.meta.find(meta => meta.style && meta.style.startsWith("radio"))) return "radio";
+    }
+
+    return item.type;
+  }
+  /**
+   * Get the Layout class constructor of an item
+   *
+   * @static
+   * @param {TFaustUIItem} item
+   * @returns {AbstractItem | AbstractGroup}
+   * @memberof Layout
+   */
+
+
+  static getItem(item) {
+    var ctor = {
+      hslider: _HSlider__WEBPACK_IMPORTED_MODULE_0__["HSlider"],
+      vslider: _VSlider__WEBPACK_IMPORTED_MODULE_1__["VSlider"],
+      nentry: _Nentry__WEBPACK_IMPORTED_MODULE_2__["Nentry"],
+      button: _Button__WEBPACK_IMPORTED_MODULE_3__["Button"],
+      checkbox: _Checkbox__WEBPACK_IMPORTED_MODULE_4__["Checkbox"],
+      knob: _Knob__WEBPACK_IMPORTED_MODULE_5__["Knob"],
+      menu: _Menu__WEBPACK_IMPORTED_MODULE_6__["Menu"],
+      radio: _Radio__WEBPACK_IMPORTED_MODULE_7__["Radio"],
+      led: _Led__WEBPACK_IMPORTED_MODULE_8__["Led"],
+      numerical: _Numerical__WEBPACK_IMPORTED_MODULE_9__["Numerical"],
+      hbargraph: _HBargraph__WEBPACK_IMPORTED_MODULE_10__["HBargraph"],
+      vbargraph: _VBargraph__WEBPACK_IMPORTED_MODULE_11__["VBargraph"],
+      hgroup: _HGroup__WEBPACK_IMPORTED_MODULE_12__["HGroup"],
+      vgroup: _VGroup__WEBPACK_IMPORTED_MODULE_13__["VGroup"],
+      tgroup: _TGroup__WEBPACK_IMPORTED_MODULE_14__["TGroup"]
+    };
+    var layoutType = this.predictType(item);
+    return new ctor[layoutType](item);
+  }
+
+  static getItems(items) {
+    return items.map(item => {
+      if ("items" in item) item.items = this.getItems(item.items);
+      return this.getItem(item);
+    });
+  }
+
+  static calc(ui) {
+    var rootGroup = new _VGroup__WEBPACK_IMPORTED_MODULE_13__["VGroup"]({
+      items: this.getItems(ui),
+      type: "vgroup",
+      label: ""
+    }, true);
+    rootGroup.adjust();
+    rootGroup.expand(0, 0);
+    rootGroup.offset();
+    return rootGroup;
+  }
+
+}
+
+/***/ }),
+
+/***/ "./src/layout/Led.ts":
+/*!***************************!*\
+  !*** ./src/layout/Led.ts ***!
+  \***************************/
+/*! exports provided: Led */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Led", function() { return Led; });
+/* harmony import */ var _AbstractInputItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AbstractInputItem */ "./src/layout/AbstractInputItem.ts");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+class Led extends _AbstractInputItem__WEBPACK_IMPORTED_MODULE_0__["AbstractInputItem"] {
+  constructor() {
+    super(...arguments);
+
+    _defineProperty(this, "layout", {
+      type: "led",
+      width: 1,
+      height: 1,
+      sizing: "none"
+    });
+  }
+
+}
+
+/***/ }),
+
+/***/ "./src/layout/Menu.ts":
+/*!****************************!*\
+  !*** ./src/layout/Menu.ts ***!
+  \****************************/
+/*! exports provided: Menu */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Menu", function() { return Menu; });
+/* harmony import */ var _AbstractOutputItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AbstractOutputItem */ "./src/layout/AbstractOutputItem.ts");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+class Menu extends _AbstractOutputItem__WEBPACK_IMPORTED_MODULE_0__["AbstractOutputItem"] {
+  constructor() {
+    super(...arguments);
+
+    _defineProperty(this, "layout", {
+      type: "menu",
+      width: 2,
+      height: 1,
+      sizing: "horizontal"
+    });
+  }
+
+}
+
+/***/ }),
+
+/***/ "./src/layout/Nentry.ts":
+/*!******************************!*\
+  !*** ./src/layout/Nentry.ts ***!
+  \******************************/
+/*! exports provided: Nentry */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Nentry", function() { return Nentry; });
+/* harmony import */ var _AbstractOutputItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AbstractOutputItem */ "./src/layout/AbstractOutputItem.ts");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+class Nentry extends _AbstractOutputItem__WEBPACK_IMPORTED_MODULE_0__["AbstractOutputItem"] {
+  constructor() {
+    super(...arguments);
+
+    _defineProperty(this, "layout", {
+      type: "nentry",
+      width: 1,
+      height: 1,
+      sizing: "none"
+    });
+  }
+
+}
+
+/***/ }),
+
+/***/ "./src/layout/Numerical.ts":
+/*!*********************************!*\
+  !*** ./src/layout/Numerical.ts ***!
+  \*********************************/
+/*! exports provided: Numerical */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Numerical", function() { return Numerical; });
+/* harmony import */ var _AbstractInputItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AbstractInputItem */ "./src/layout/AbstractInputItem.ts");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+class Numerical extends _AbstractInputItem__WEBPACK_IMPORTED_MODULE_0__["AbstractInputItem"] {
+  constructor() {
+    super(...arguments);
+
+    _defineProperty(this, "layout", {
+      type: "numerical",
+      width: 1,
+      height: 1,
+      sizing: "none"
+    });
+  }
+
+}
+
+/***/ }),
+
+/***/ "./src/layout/Radio.ts":
+/*!*****************************!*\
+  !*** ./src/layout/Radio.ts ***!
+  \*****************************/
+/*! exports provided: Radio */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Radio", function() { return Radio; });
+/* harmony import */ var _AbstractOutputItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AbstractOutputItem */ "./src/layout/AbstractOutputItem.ts");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+class Radio extends _AbstractOutputItem__WEBPACK_IMPORTED_MODULE_0__["AbstractOutputItem"] {
+  constructor() {
+    super(...arguments);
+
+    _defineProperty(this, "layout", {
+      type: "radio",
+      width: 2,
+      height: 2,
+      sizing: "both"
+    });
+  }
+
+}
+
+/***/ }),
+
+/***/ "./src/layout/TGroup.ts":
+/*!******************************!*\
+  !*** ./src/layout/TGroup.ts ***!
+  \******************************/
+/*! exports provided: TGroup */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TGroup", function() { return TGroup; });
+/* harmony import */ var _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AbstractGroup */ "./src/layout/AbstractGroup.ts");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+class TGroup extends _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"] {
+  adjust() {
+    this.items.forEach(item => {
+      if (item instanceof _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"]) item.adjust();
+      this.layout.width = Math.max(this.layout.width, item.layout.width + 2 * _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].padding);
+      this.layout.height = Math.max(this.layout.height, item.layout.height + 2 * _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].padding + TGroup.labelHeight);
+    });
+    var tabsCount = this.items.length;
+    this.layout.width = Math.max(this.layout.width, tabsCount * TGroup.tabLayout.width + 2 * TGroup.padding);
+    this.layout.height += TGroup.tabLayout.height;
+    if (this.layout.width < 1) this.layout.width += 1;
+    return this;
+  }
+
+  expand() {
+    var tabsCount = this.items.length;
+    this.items.forEach(item => {
+      if (item instanceof _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"]) {
+        var dY$ = 0; // Space available to expand for current item
+
+        var dX$ = 0;
+        if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") dX$ = this.layout.width - 2 * _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].padding - item.layout.width;
+        if (item.layout.sizing === "both" || item.layout.sizing === "vertical") dY$ = this.layout.height - 2 * _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].padding - _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].labelHeight - (tabsCount ? TGroup.tabLayout.height : 0) - item.layout.height;
+        item.expand(dX$, dY$);
+      }
+    });
+    return this;
+  }
+
+  offset() {
+    var $left = (this.layout.left || 0) + _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].padding;
+    var $top = (this.layout.top || 0) + _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].padding + _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].labelHeight + TGroup.tabLayout.height;
+    this.items.forEach(item => {
+      item.layout.left = $left;
+      item.layout.top = $top;
+      if (item instanceof _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"]) item.offset();
+    });
+    return this;
+  }
+
+}
+
+_defineProperty(TGroup, "tabLayout", {
+  width: 2,
+  height: 1
+});
+
+/***/ }),
+
+/***/ "./src/layout/VBargraph.ts":
+/*!*********************************!*\
+  !*** ./src/layout/VBargraph.ts ***!
+  \*********************************/
+/*! exports provided: VBargraph */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VBargraph", function() { return VBargraph; });
+/* harmony import */ var _AbstractInputItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AbstractInputItem */ "./src/layout/AbstractInputItem.ts");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+class VBargraph extends _AbstractInputItem__WEBPACK_IMPORTED_MODULE_0__["AbstractInputItem"] {
+  constructor() {
+    super(...arguments);
+
+    _defineProperty(this, "layout", {
+      type: "vbargraph",
+      width: 1,
+      height: 5,
+      sizing: "vertical"
+    });
+  }
+
+}
+
+/***/ }),
+
+/***/ "./src/layout/VGroup.ts":
+/*!******************************!*\
+  !*** ./src/layout/VGroup.ts ***!
+  \******************************/
+/*! exports provided: VGroup */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VGroup", function() { return VGroup; });
+/* harmony import */ var _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AbstractGroup */ "./src/layout/AbstractGroup.ts");
+
+class VGroup extends _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"] {
+  adjust() {
+    this.items.forEach(item => {
+      if (item instanceof _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"]) item.adjust();
+      this.layout.width = Math.max(this.layout.width, item.layout.width + 2 * _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].padding);
+      this.layout.height += item.layout.height;
+    });
+    this.layout.height += _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].spaceBetween * (this.items.length - 1);
+    if (this.layout.width < 1) this.layout.width += 1;
+    return this;
+  }
+
+  expand(dX, dY) {
+    var vExpandItems = 0;
+    this.items.forEach(item => {
+      if (item.layout.sizing === "both" || item.layout.sizing === "vertical") vExpandItems++;
+    });
+    this.items.forEach(item => {
+      var dX$ = 0;
+      var dY$ = 0; // Space available to expand for current item
+
+      if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") {
+        dX$ = this.layout.width - 2 * _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].padding - item.layout.width;
+        item.layout.width += dX$;
+      }
+
+      if (item.layout.sizing === "both" || item.layout.sizing === "vertical") {
+        dY$ = vExpandItems ? dY / vExpandItems : 0;
+        item.layout.height += dY$;
+      }
+
+      if (item instanceof _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"]) item.expand(dX$, dY$);
+    });
+    return this;
+  }
+
+  offset() {
+    var labelHeight = _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].labelHeight,
+        padding = _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].padding,
+        spaceBetween = _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].spaceBetween;
+    var $left = (this.layout.left || 0) + padding;
+    var $top = (this.layout.top || 0) + padding + labelHeight;
+    var width = this.layout.width;
+    this.items.forEach(item => {
+      item.layout.left = $left;
+      item.layout.top = $top; // center the item
+
+      item.layout.left += (width - item.layout.width) / 2 - padding;
+      if (item instanceof _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"]) item.offset();
+      $top += item.layout.height + spaceBetween;
+    });
+    return this;
+  }
+
+}
+
+/***/ }),
+
+/***/ "./src/layout/VSlider.ts":
+/*!*******************************!*\
+  !*** ./src/layout/VSlider.ts ***!
+  \*******************************/
+/*! exports provided: VSlider */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VSlider", function() { return VSlider; });
+/* harmony import */ var _AbstractOutputItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AbstractOutputItem */ "./src/layout/AbstractOutputItem.ts");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+class VSlider extends _AbstractOutputItem__WEBPACK_IMPORTED_MODULE_0__["AbstractOutputItem"] {
+  constructor() {
+    super(...arguments);
+
+    _defineProperty(this, "layout", {
+      type: "vslider",
+      width: 1,
+      height: 5,
+      sizing: "vertical"
+    });
+  }
+
+}
 
 /***/ })
 
