@@ -1,4 +1,4 @@
-import { FaustUIItem } from "./Base";
+import { AbstractItem } from "./AbstractItem";
 import { FaustUIItemStyle, FaustUIItemProps } from "./types";
 import "./Button.scss";
 
@@ -13,7 +13,7 @@ export interface FaustUIButtonStyle extends FaustUIItemStyle {
     textcolor?: string;
     textoncolor?: string;
 }
-export class FaustUIButton extends FaustUIItem<FaustUIButtonStyle> {
+export class Button extends AbstractItem<FaustUIButtonStyle> {
     static get defaultProps(): FaustUIItemProps<FaustUIButtonStyle> {
         const inherited = super.defaultProps;
         return {
@@ -42,29 +42,32 @@ export class FaustUIButton extends FaustUIItem<FaustUIButtonStyle> {
         this.span = document.createElement("span");
         this.span.innerText = this.state.label;
         this.setStyle();
+        return this;
     }
-    setStyle() {
-        const { value } = this.state;
-        const style = { ...this.defaultProps.style, ...this.state.style };
-        this.btn.style.backgroundColor = value ? style.bgoncolor : style.bgcolor;
-        this.btn.style.borderColor = value ? style.borderoncolor : style.bordercolor;
-        this.btn.style.color = value ? style.textoncolor : style.textcolor;
-        this.btn.style.fontSize = `${style.fontsize || style.height / 4}px`;
-        this.btn.style.fontFamily = `${style.fontname}, sans-serif`;
-        this.btn.style.fontStyle = style.fontface;
-    }
-    componentDidMount() {
-        super.componentDidMount();
-        this.btn.addEventListener("mousedown", this.handleMouseDown);
-        this.btn.addEventListener("touchstart", this.handleTouchStart);
-        this.on("style", () => this.setStyle());
-        this.on("label", () => this.span.innerText = this.state.label);
-        this.on("value", () => this.setStyle());
+    setStyle = () => {
+        const { value, style } = this.state;
+        const { height, grid, fontsize, fontname, fontface, textcolor, textoncolor, bgoncolor, bgcolor, bordercolor, borderoncolor } = style;
+        this.btn.style.backgroundColor = value ? bgoncolor : bgcolor;
+        this.btn.style.borderColor = value ? borderoncolor : bordercolor;
+        this.btn.style.color = value ? textoncolor : textcolor;
+        this.btn.style.fontSize = `${fontsize || height * grid / 4}px`;
+        this.btn.style.fontFamily = `${fontname}, sans-serif`;
+        this.btn.style.fontStyle = fontface;
     }
     mount() {
         this.btn.appendChild(this.span);
         this.container.appendChild(this.btn);
         return super.mount();
+    }
+    componentDidMount() {
+        super.componentDidMount();
+        this.btn.addEventListener("mousedown", this.handleMouseDown);
+        this.btn.addEventListener("touchstart", this.handleTouchStart);
+        this.on("style", () => this.schedule(this.setStyle));
+        const labelChange = () => this.span.innerText = this.state.label;
+        this.on("label", () => this.schedule(labelChange));
+        this.on("value", () => this.schedule(this.setStyle));
+        return this;
     }
     handlePointerDown = () => {
         this.setValue(1);

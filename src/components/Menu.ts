@@ -1,4 +1,4 @@
-import { FaustUIItem } from "./Base";
+import { AbstractItem } from "./AbstractItem";
 import { FaustUIItemStyle, FaustUIItemProps } from "./types";
 import "./Menu.scss";
 
@@ -11,7 +11,7 @@ export interface FaustUIMenuStyle extends FaustUIItemStyle {
     labelcolor?: string;
     textcolor?: string;
 }
-export class FaustUIMenu extends FaustUIItem<FaustUIMenuStyle> {
+export class Menu extends AbstractItem<FaustUIMenuStyle> {
     static get defaultProps(): FaustUIItemProps<FaustUIMenuStyle> {
         const inherited = super.defaultProps;
         return {
@@ -40,6 +40,7 @@ export class FaustUIMenu extends FaustUIItem<FaustUIMenuStyle> {
         this.select = document.createElement("select");
         this.getOptions();
         this.setStyle();
+        return this;
     }
     getOptions() {
         const { enums } = this.state;
@@ -59,27 +60,30 @@ export class FaustUIMenu extends FaustUIItem<FaustUIMenuStyle> {
     handleChange = (e: Event) => {
         this.setValue(+(e.currentTarget as HTMLInputElement).value);
     }
-    setStyle() {
-        const style = { ...this.defaultProps.style, ...this.state.style };
-        this.select.style.backgroundColor = style.bgcolor;
-        this.select.style.borderColor = style.bordercolor;
-        this.select.style.color = style.textcolor;
-        this.select.style.fontSize = `${style.fontsize || style.height / 4}px`;
-        this.label.style.fontSize = `${style.height / 4}px`;
-        this.label.style.color = style.labelcolor;
+    setStyle = () => {
+        const { height, grid, fontsize, textcolor, labelcolor, bgcolor, bordercolor } = this.state.style;
+        this.select.style.backgroundColor = bgcolor;
+        this.select.style.borderColor = bordercolor;
+        this.select.style.color = textcolor;
+        this.select.style.fontSize = `${fontsize || height * grid / 4}px`;
+        this.label.style.fontSize = `${height * grid / 4}px`;
+        this.label.style.color = labelcolor;
     }
     componentDidMount() {
         super.componentDidMount();
         this.select.addEventListener("change", this.handleChange);
-        this.on("style", () => this.setStyle());
-        this.on("label", () => this.label.innerText = this.state.label);
-        this.on("enums", () => this.getOptions());
-        this.on("value", () => {
+        this.on("style", () => this.schedule(this.setStyle));
+        const labelChange = () => this.label.innerText = this.state.label;
+        this.on("label", () => this.schedule(labelChange));
+        this.on("enums", () => this.schedule(this.getOptions));
+        const valueChange = () => {
             for (let i = this.select.children.length - 1; i >= 0; i--) {
                 const option = this.select.children[i] as HTMLOptionElement;
                 if (+option.value === this.state.value) this.select.selectedIndex = i;
             }
-        });
+        };
+        this.on("value", () => this.schedule(valueChange));
+        return this;
     }
     mount() {
         this.container.appendChild(this.label);

@@ -1,10 +1,34 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { toMIDI } from "./utils";
 import { FaustUIItemStyle, FaustUIItemProps, PointerDownEvent, PointerDragEvent, PointerUpEvent } from "./types";
 import "./Base.scss";
 import { Component } from "./Component";
 
-export class FaustUIItem<T extends FaustUIItemStyle> extends Component<FaustUIItemProps<T>> {
+/**
+ * Abstract class that describes a FaustUI Component
+ * this is an event emitter that emits every state change to inform UI renderer parts
+ * Each UI parts could subscribe to a specific state such as `value`, `min`, `max` or `style`
+ * when the event subscribed is fired, this part of ui updated using its own handler without updating the rest of UI parts
+ * the types of events is restricted to the same as keys of `state` object:
+ * `state` object is a `FaustUIItemProps` with a `style` object that contains `T` defined by child class.
+ * Child class can override life cycle methods
+ * `componentWillMount` prepare data before DOM get loads to page
+ * `mount` get DOMs append to page
+ * `componentDidMount` Now draw canvas etc.
+ *
+ * @export
+ * @abstract
+ * @class AbstractItem
+ * @extends {EventEmitter}
+ * @template T
+ */
+export abstract class AbstractItem<T extends FaustUIItemStyle> extends Component<FaustUIItemProps<T>> {
+    /**
+     * The default state of the component.
+     *
+     * @static
+     * @type {FaustUIItemProps<FaustUIItemStyle>}
+     * @memberof AbstractItem
+     */
     static defaultProps: FaustUIItemProps<FaustUIItemStyle> = {
         value: 0,
         active: true,
@@ -15,16 +39,30 @@ export class FaustUIItem<T extends FaustUIItemStyle> extends Component<FaustUIIt
         max: 1,
         enums: {},
         type: "float",
-        unitstyle: "native",
         unit: "",
         exponent: 1,
         step: 0.01,
         style: { width: 45, height: 15, left: 0, top: 0 }
     }
+    /**
+     * DOM Div container of the componnt
+     *
+     * @type {HTMLDivElement}
+     * @memberof AbstractItem
+     */
     container: HTMLDivElement;
+    /**
+     * Override this to get css work
+     *
+     * @type {string}
+     * @memberof AbstractItem
+     */
     className: string;
-    $raf: number;
-    raf = () => {};
+    frameReduce = 1;
+    /**
+     * Default DOM event listeners, unify mousedown and touchstart events
+     * For mouse or touch events, please use `handlePointerDown` `handlePointerUp` `handlePointerDrag` callbacks
+     */
     handleKeyDown = (e: KeyboardEvent) => {};
     handleKeyUp = (e: KeyboardEvent) => {};
     handleTouchStart = (e: TouchEvent) => {
@@ -94,45 +132,56 @@ export class FaustUIItem<T extends FaustUIItemStyle> extends Component<FaustUIIt
     handlePointerUp = (e: PointerUpEvent) => {};
     handleFocusIn = (e: FocusEvent) => this.setState({ focus: true });
     handleFocusOut = (e: FocusEvent) => this.setState({ focus: false });
-    get displayValue() {
-        const { value, type, unitstyle, unit } = this.state;
-        if (type === "enum") return Object.keys(this.state.enums).find(key => this.state.enums[key] === value) || "";
-        if (type === "int") return value.toFixed(0);
-        if (type === "float") return value.toFixed(2);
-        if (unitstyle === "time") return value.toFixed(type === "int" ? 0 : 2) + " ms";
-        if (unitstyle === "hertz") return value.toFixed(type === "int" ? 0 : 2) + " Hz";
-        if (unitstyle === "decibel") return value.toFixed(type === "int" ? 0 : 2) + " dB";
-        if (unitstyle === "%") return value.toFixed(type === "int" ? 0 : 2) + " %";
-        if (unitstyle === "pan") return value === 0 ? "C" : (type === "int" ? Math.abs(value) : Math.abs(value).toFixed(2)) + (value < 0 ? " L" : " R");
-        if (unitstyle === "semitones") return value.toFixed(type === "int" ? 0 : 2) + " st";
-        if (unitstyle === "midi") return toMIDI(value);
-        if (unitstyle === "custom") return value.toFixed(type === "int" ? 0 : 2) + " " + unit;
-        if (unitstyle === "native") return value.toFixed(type === "int" ? 0 : 2);
-        return "N/A";
+
+    /**
+     * Initiate default state with incoming state.
+     * @param {FaustUIItemProps<T>} [props]
+     * @memberof AbstractItem
+     */
+    constructor(props?: FaustUIItemProps<T>) {
+        super(props);
+        this.state.style = { ...this.defaultProps.style, ...props.style };
+        if (this.state.emitter) this.state.emitter.register(this.state.address, this);
+        return this;
     }
+    /**
+     * Use this method if you want the emitter to send value to DSP
+     *
+     * @param {number} value
+     * @memberof AbstractItem
+     */
     setValue(value: number) {
         this.setState({ value });
         this.change(value);
     }
+    /**
+     * Send value to DSP
+     *
+     * @param {number} [valueIn]
+     * @memberof AbstractItem
+     */
     change(valueIn?: number) {
-        if (this.state.emitter) this.state.emitter.emit("paramChangeByUI", { value: typeof valueIn === "number" ? valueIn : this.state.value, path: this.state.address });
+        if (this.state.emitter) this.state.emitter.paramChangeByUI(this.state.address, typeof valueIn === "number" ? valueIn : this.state.value);
     }
+    /**
+     * set internal state and fire events for UI parts subscribed
+     * This will not send anything to DSP
+     *
+     * @param {{ [key in keyof FaustUIItemProps<T>]?: FaustUIItemProps<T>[key] }} newState
+     * @returns
+     * @memberof AbstractItem
+     */
     setState(newState: { [key in keyof FaustUIItemProps<T>]?: FaustUIItemProps<T>[key] }) {
         let shouldUpdate = false;
         for (const key in newState) {
             const stateKey = key as keyof FaustUIItemProps<T>;
             const stateValue = newState[stateKey];
             if (stateKey === "style") {
-                if (this.state.style) {
-                    for (const styleKey in newState.style) {
-                        if (styleKey in this.state.style && this.state.style[styleKey] !== newState.style[styleKey]) {
-                            this.state.style[styleKey] = newState.style[styleKey];
-                            shouldUpdate = true;
-                        }
+                for (const styleKey in newState.style) {
+                    if (styleKey in this.state.style && this.state.style[styleKey] !== newState.style[styleKey]) {
+                        this.state.style[styleKey] = newState.style[styleKey];
+                        shouldUpdate = true;
                     }
-                } else {
-                    this.state.style = newState.style;
-                    shouldUpdate = true;
                 }
             } else if (stateKey in this.state && this.state[stateKey] !== stateValue) {
                 (this.state as any)[stateKey] = stateValue;
@@ -141,60 +190,49 @@ export class FaustUIItem<T extends FaustUIItemStyle> extends Component<FaustUIIt
             if (shouldUpdate) this.emit(stateKey, this.state[stateKey]);
         }
     }
-    componentWillMount() {
+    /**
+     * Create container with class name
+     * override it with `super.componentWillMount();`
+     *
+     * @returns {this}
+     * @memberof AbstractItem
+     */
+    componentWillMount(): this {
         this.container = document.createElement("div");
         this.container.className = ["faust-ui-component", "faust-ui-component-" + this.className].join(" ");
         this.container.tabIndex = 1;
         this.container.id = this.state.address;
         if (this.state.tooltip) this.container.title = this.state.tooltip;
+        return this;
     }
-    resize() {
-        const style = this.state ? { ...this.defaultProps.style, ...this.state.style } : this.defaultProps.style;
-        this.container.style.width = `${style.width}px`;
-        this.container.style.height = `${style.height}px`;
-        this.container.style.left = `${style.left}px`;
-        this.container.style.top = `${style.top}px`;
+    /**
+     * Here append all child DOM to container
+     *
+     * @returns {this}
+     * @memberof AbstractItem
+     */
+    mount(): this {
+        return this;
     }
-    componentDidMount() {
-        this.paint();
-        const handleParamChangeByDSP: (e: { path: string; value: number }) => void = (e) => {
-            if (e.path === this.state.address) {
-                this.setState({ value: e.value });
-                this.paint();
-            }
+    /**
+     * will call this method when mounted
+     *
+     * @returns {this}
+     * @memberof AbstractItem
+     */
+    componentDidMount(): this {
+        const handleResize = () => {
+            const { grid, left, top, width, height } = this.state.style;
+            this.container.style.width = `${width * grid}px`;
+            this.container.style.height = `${height * grid}px`;
+            this.container.style.left = `${left * grid}px`;
+            this.container.style.top = `${top * grid}px`;
         };
-        const handleLayoutChange = () => {
-            const style = this.state.style;
-            this.setState({ style });
-            this.paint();
-        };
-        const handleUIWillChange = () => {
-            this.state.emitter.off("paramChangeByDSP", handleParamChangeByDSP);
-            this.state.emitter.off("layoutChange", handleLayoutChange);
-            this.state.emitter.off("uiWillChange", handleUIWillChange);
-            this.componentDidUnmount();
-        };
-        const handleUIChanged = () => {
-            this.state.emitter.off("uiChanged", handleUIChanged);
-            this.componentDidUnmount();
-        };
-        this.state.emitter.on("paramChangeByDSP", handleParamChangeByDSP);
-        this.state.emitter.on("layoutChange", handleLayoutChange);
-        this.state.emitter.on("uiWillChange", handleUIWillChange);
-        this.state.emitter.on("uiChanged", handleUIChanged);
-        this.on("style", () => this.resize());
+        this.on("style", () => this.schedule(handleResize));
+        handleResize();
+        return this;
     }
-    componentWillUnmount() {}
-    componentDidUnmount() {}
-    paint() {
-        window.cancelAnimationFrame(this.$raf);
-        this.$raf = window.requestAnimationFrame(this.raf);
-    }
-    mount() {
-        this.resize();
-        return super.mount();
-    }
-    get trueSteps() {
+    get steps() {
         const { type, max, min, step, enums } = this.state;
         const full = 100;
         const maxSteps = type === "enum" ? enums.length : type === "int" ? max - min : full;
@@ -205,13 +243,25 @@ export class FaustUIItem<T extends FaustUIItemStyle> extends Component<FaustUIIt
         }
         return maxSteps;
     }
+    /**
+     * Normalized value between 0 - 1.
+     *
+     * @readonly
+     * @memberof AbstractItem
+     */
     get distance() {
         const { type, max, min, value, enums } = this.state;
         return type === "enum" ? value / enums.length : (value - min) / (max - min);
     }
+    /**
+     * Mousemove pixels for each step
+     *
+     * @readonly
+     * @memberof AbstractItem
+     */
     get stepRange() {
         const full = 100;
-        const trueSteps = this.trueSteps;
+        const trueSteps = this.steps;
         return full / trueSteps;
     }
 }

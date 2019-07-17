@@ -1,6 +1,6 @@
-import { AbstractOutputItem } from "./AbstractOutputItem";
+import { AbstractInputItem } from "./AbstractOutputItem";
 
-export class HSlider extends AbstractOutputItem {
+export class HSlider extends AbstractInputItem {
     layout: TLayoutProp = {
         type: "hslider",
         width: 5,

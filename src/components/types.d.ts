@@ -12,24 +12,31 @@ declare interface FaustUIItemProps<T extends FaustUIItemStyle> {
     tooltip?: string;
     enums?: { [key: string]: number };
     type?: "enum" | "int" | "float";
-    unitstyle?: "time" | "hertz" | "decibel" | "%" | "pan" | "semitones" | "midi" | "custom" | "native";
     unit?: string;
     exponent?: number;
     style?: T;
     emitter?: FaustUI;
 }
+declare interface FaustUIGroupProps {
+    label?: string;
+    type?: "tgroup" | "vgroup" | "hgroup";
+    style?: FaustUIItemStyle;
+    items?: TFaustUIItem[];
+    isRoot?: boolean;
+    emitter?: FaustUI;
+}
 declare interface FaustUIItemStyle {
-    width: number;
-    height: number;
-    left: number;
-    top: number;
+    width?: number;
+    height?: number;
+    left?: number;
+    top?: number;
+    grid?: number;
 }
 declare interface PointerDownEvent {
     x: number;
     y: number;
     originalEvent: MouseEvent | TouchEvent;
 }
-
 declare interface PointerDragEvent {
     prevValue: number;
     x: number;
@@ -40,7 +47,6 @@ declare interface PointerDragEvent {
     movementY: number;
     originalEvent: MouseEvent | TouchEvent;
 }
-
 declare interface PointerUpEvent {
     x: number;
     y: number;

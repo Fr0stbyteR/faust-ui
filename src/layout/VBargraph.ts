@@ -1,6 +1,6 @@
-import { AbstractInputItem } from "./AbstractInputItem";
+import { AbstractOutputItem } from "./AbstractInputItem";
 
-export class VBargraph extends AbstractInputItem {
+export class VBargraph extends AbstractOutputItem {
     layout: TLayoutProp = {
         type: "vbargraph",
         width: 1,

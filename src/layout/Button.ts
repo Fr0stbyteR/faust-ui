@@ -1,6 +1,6 @@
-import { AbstractOutputItem } from "./AbstractOutputItem";
+import { AbstractInputItem } from "./AbstractOutputItem";
 
-export class Button extends AbstractOutputItem {
+export class Button extends AbstractInputItem {
     layout: TLayoutProp = {
         type: "button",
         width: 2,

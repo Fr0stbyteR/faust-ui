@@ -1,6 +1,6 @@
-import { AbstractOutputItem } from "./AbstractOutputItem";
+import { AbstractInputItem } from "./AbstractOutputItem";
 
-export class Nentry extends AbstractOutputItem {
+export class Nentry extends AbstractInputItem {
     layout: TLayoutProp = {
         type: "nentry",
         width: 1,

@@ -33,14 +33,16 @@ export class VGroup extends AbstractGroup {
     }
     offset() {
         const { labelHeight, padding, spaceBetween } = AbstractGroup;
-        const $left = (this.layout.left || 0) + padding;
-        let $top = (this.layout.top || 0) + padding + labelHeight;
+        const $left = padding;
+        let $top = padding + labelHeight;
         const { width } = this.layout;
         this.items.forEach((item) => {
-            item.layout.left = $left;
-            item.layout.top = $top;
+            item.layout.offsetLeft = $left;
+            item.layout.offsetTop = $top;
             // center the item
-            item.layout.left += (width - item.layout.width) / 2 - padding;
+            item.layout.offsetLeft += (width - item.layout.width) / 2 - padding;
+            item.layout.left = (this.layout.left || 0) + item.layout.offsetLeft;
+            item.layout.top = (this.layout.top || 0) + item.layout.offsetTop;
             if (item instanceof AbstractGroup) item.offset();
             $top += item.layout.height + spaceBetween;
         });

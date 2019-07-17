@@ -1,6 +1,6 @@
-import { AbstractOutputItem } from "./AbstractOutputItem";
+import { AbstractInputItem } from "./AbstractOutputItem";
 
-export class Checkbox extends AbstractOutputItem {
+export class Checkbox extends AbstractInputItem {
     layout: TLayoutProp = {
         type: "checkbox",
         width: 2,

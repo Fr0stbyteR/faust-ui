@@ -1,7 +1,7 @@
 import { AbstractItem } from "./AbstractItem";
 
-export abstract class AbstractInputItem extends AbstractItem {
-    constructor(item: TFaustUIInputItem) {
+export abstract class AbstractOutputItem extends AbstractItem {
+    constructor(item: TFaustUIOutputItem) {
         super(item);
     }
 }

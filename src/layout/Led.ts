@@ -1,6 +1,6 @@
-import { AbstractInputItem } from "./AbstractInputItem";
+import { AbstractOutputItem } from "./AbstractInputItem";
 
-export class Led extends AbstractInputItem {
+export class Led extends AbstractOutputItem {
     layout: TLayoutProp = {
         type: "led",
         width: 1,

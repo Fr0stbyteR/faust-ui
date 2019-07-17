@@ -1,22 +1,21 @@
 import "./HSlider.scss";
 import { fillRoundedRect } from "./utils";
-import { FaustUIVSlider } from "./VSlider";
+import { VSlider } from "./VSlider";
 
-export class FaustUIHSlider extends FaustUIVSlider {
+export class HSlider extends VSlider {
     className = "hslider";
 
-    setStyle() {
-        const style = { ...this.defaultProps.style, ...this.state.style };
-        this.input.style.fontSize = `${style.fontsize || style.height * 0.2}px`;
-        this.input.style.color = style.textcolor;
-        this.label.style.fontSize = `${style.height * 0.2}px`;
-        this.label.style.color = style.labelcolor;
-        this.container.style.backgroundColor = style.bgcolor;
-        this.container.style.borderColor = style.bordercolor;
-        this.paint();
+    setStyle = () => {
+        const { height, grid, fontsize, textcolor, labelcolor, bgcolor, bordercolor } = this.state.style;
+        this.input.style.fontSize = `${fontsize || height * grid * 0.2}px`;
+        this.input.style.color = textcolor;
+        this.label.style.fontSize = `${height * grid * 0.2}px`;
+        this.label.style.color = labelcolor;
+        this.container.style.backgroundColor = bgcolor;
+        this.container.style.borderColor = bordercolor;
     }
-    raf = () => {
-        const { sliderwidth, sliderbgcolor, sliderbgoncolor, slidercolor } = { ...this.defaultProps.style, ...this.state.style };
+    paint = () => {
+        const { sliderwidth, sliderbgcolor, sliderbgoncolor, slidercolor } = this.state.style;
         const ctx = this.ctx;
         const canvas = this.canvas;
         const distance = this.distance;

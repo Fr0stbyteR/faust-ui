@@ -1,21 +1,20 @@
 import "./HBargraph.scss";
-import { FaustUIVBargraph } from "./VBargraph";
+import { VBargraph } from "./VBargraph";
 
-export class FaustUIHBargraph extends FaustUIVBargraph {
+export class HBargraph extends VBargraph {
     className = "hbargraph";
 
-    setStyle() {
-        const style = { ...this.defaultProps.style, ...this.state.style };
-        this.input.style.fontSize = `${style.fontsize || style.height * 0.2}px`;
-        this.input.style.color = style.textcolor;
-        this.label.style.fontSize = `${style.height * 0.2}px`;
-        this.label.style.color = style.labelcolor;
-        this.container.style.backgroundColor = style.bgcolor;
-        this.container.style.borderColor = style.bordercolor;
-        this.paint();
+    setStyle = () => {
+        const { height, grid, fontsize, textcolor, labelcolor, bgcolor, bordercolor } = this.state.style;
+        this.input.style.fontSize = `${fontsize || height * grid * 0.2}px`;
+        this.input.style.color = textcolor;
+        this.label.style.fontSize = `${height * grid * 0.2}px`;
+        this.label.style.color = labelcolor;
+        this.container.style.backgroundColor = bgcolor;
+        this.container.style.borderColor = bordercolor;
     }
-    raf = () => {
-        const { barwidth, barbgcolor, coldcolor, warmcolor, hotcolor, overloadcolor } = { ...this.defaultProps.style, ...this.state.style };
+    paint = () => {
+        const { barwidth, barbgcolor, coldcolor, warmcolor, hotcolor, overloadcolor } = this.state.style;
         const { min, max, value } = this.state;
         const ctx = this.ctx;
         const canvas = this.canvas;

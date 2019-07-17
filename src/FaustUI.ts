@@ -1,72 +1,102 @@
-import { EventEmitter } from "events";
 import { Layout } from "./layout/Layout";
-import { FaustUIRoot } from "./FaustUIRoot";
 import "./index.scss";
+import { AbstractItem } from "./components/AbstractItem";
+import { Group } from "./components/Group";
+import { FaustUIGroupProps } from "./components/types";
 
 type TOptions = {
     root: HTMLDivElement;
     ui?: TFaustUI;
 }
 
-export class FaustUI extends EventEmitter {
-    on<K extends keyof FaustUIEventMap>(type: K, listener: (e: FaustUIEventMap[K]) => void) {
-        return super.on(type, listener);
-    }
-    once<K extends keyof FaustUIEventMap>(type: K, listener: (e: FaustUIEventMap[K]) => void) {
-        return super.once(type, listener);
-    }
-    off<K extends keyof FaustUIEventMap>(type: K, listener: (e: FaustUIEventMap[K]) => void) {
-        return super.off(type, listener);
-    }
-    removeAllListeners<K extends keyof FaustUIEventMap>(type: K) {
-        return super.removeAllListeners(type);
-    }
-    emit<K extends keyof FaustUIEventMap>(type: K, e?: FaustUIEventMap[K]) {
-        return super.emit(type, e);
-    }
-    root: HTMLDivElement;
-    faustUIRoot: FaustUIRoot;
+export class FaustUI {
+    componentMap: { [path: string]: AbstractItem<any>[] } = {};
+    DOMroot: HTMLDivElement;
+    faustUIRoot: Group;
+    hostWindow: Window;
+    grid: number;
     private _ui: TFaustUI;
+    private _layout: TLayoutProp;
     constructor(options: TOptions) {
-        super();
-        this.setMaxListeners(128);
         const { root, ui: uiIn } = options;
-        this.root = root;
+        this.DOMroot = root;
         this.ui = uiIn || [];
-        this.render();
         window.addEventListener("resize", () => {
-            this.faustUIRoot.setState(this.calc());
-            this.emit("layoutChange");
+            this.resize();
+        });
+        window.addEventListener("message", (e) => {
+            const { data, source } = e;
+            this.hostWindow = source as Window;
+            const { type } = data;
+            if (!type) return;
+            if (type === "ui") {
+                this.ui = data.ui;
+            } else if (type === "param") {
+                const { path, value } = data;
+                this.paramChangeByDSP(path, value);
+            }
         });
     }
+    mount() {
+        this.componentMap = {};
+        this.DOMroot.innerHTML = "";
+        const props: FaustUIGroupProps = {
+            label: "",
+            type: "vgroup",
+            items: this.ui,
+            style: {
+                grid: this.grid,
+                width: this.layout.width,
+                height: this.layout.height,
+                left: this.layout.offsetLeft,
+                top: this.layout.offsetTop
+            },
+            isRoot: true,
+            emitter: this
+        };
+        this.faustUIRoot = new Group(props);
+        this.faustUIRoot.componentWillMount();
+        this.faustUIRoot.mount();
+        this.DOMroot.appendChild(this.faustUIRoot.container);
+        this.faustUIRoot.componentDidMount();
+    }
+    register(path: string, item: AbstractItem<any>) {
+        if (this.componentMap[path]) this.componentMap[path].push(item);
+        else this.componentMap[path] = [item];
+    }
+    paramChangeByDSP(path: string, value: number) {
+        if (this.componentMap[path]) this.componentMap[path].forEach(item => item.setState({ value }));
+    }
+    paramChangeByUI(path: string, value: number) {
+        if (!this.hostWindow) return;
+        this.hostWindow.postMessage({ path, value, type: "param" }, "*");
+    }
     calc() {
-        const { width, height } = this.root.getBoundingClientRect();
         const { items, layout } = Layout.calc(this.ui);
         this._ui = items;
-        return { width, height, layout };
+        this._layout = layout;
+        this.calcGrid();
     }
-    render() {
-        const { width, height, layout } = this.calc();
-        this.faustUIRoot = new FaustUIRoot({ width, height, layout, ui: this.ui, emitter: this });
-        const children = this.faustUIRoot.render();
-        children.forEach(e => this.root.appendChild(e));
-        this.emit("uiConnected", this.ui);
+    calcGrid() {
+        const { width, height } = this.DOMroot.getBoundingClientRect();
+        const grid = Math.max(40, Math.min(width / this._layout.width, height / this._layout.height));
+        this.grid = grid;
+        return grid;
+    }
+    resize() {
+        if (!this.faustUIRoot) return;
+        this.calcGrid();
+        this.faustUIRoot.setState({ style: { grid: this.grid } });
     }
     get ui() {
         return this._ui;
     }
     set ui(uiIn) {
         this._ui = uiIn;
-        const state = this.calc();
-        this.emit("uiWillChange", this._ui);
-        if (this.faustUIRoot) this.faustUIRoot.setState({ ...state, ui: this.ui });
-        this.emit("uiChanged", this._ui);
-        this.emit("uiConnected", this.ui);
+        this.calc();
+        this.mount();
     }
-    changeParamByUI(path: string, value: number) {
-        this.emit("paramChangeByUI", { path, value });
-    }
-    changeParamByDSP(path: string, value: number) {
-        this.emit("paramChangeByDSP", { path, value });
+    get layout() {
+        return this._layout;
     }
 }

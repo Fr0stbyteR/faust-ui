@@ -1,9 +1,9 @@
-import { FaustUIItem } from "./Base";
+import { AbstractItem } from "./AbstractItem";
 import { FaustUIItemProps } from "./types";
 import "./Numerical.scss";
 import { FaustUINentryStyle } from "./Nentry";
 
-export class FaustUINumerical extends FaustUIItem<FaustUINentryStyle> {
+export class Numerical extends AbstractItem<FaustUINentryStyle> {
     static get defaultProps(): FaustUIItemProps<FaustUINentryStyle> {
         const inherited = super.defaultProps;
         return {
@@ -33,21 +33,25 @@ export class FaustUINumerical extends FaustUIItem<FaustUINentryStyle> {
         this.input.disabled = true;
         this.input.value = (+this.state.value.toFixed(3)).toString() + (this.state.unit || "");
         this.setStyle();
+        return this;
     }
-    setStyle() {
-        const style = { ...this.defaultProps.style, ...this.state.style };
-        this.input.style.backgroundColor = style.bgcolor;
-        this.input.style.borderColor = style.bordercolor;
-        this.input.style.color = style.textcolor;
-        this.input.style.fontSize = `${style.fontsize || style.height / 4}px`;
-        this.label.style.fontSize = `${style.height / 4}px`;
-        this.label.style.color = style.labelcolor;
+    setStyle = () => {
+        const { height, grid, fontsize, textcolor, labelcolor, bgcolor, bordercolor } = this.state.style;
+        this.input.style.backgroundColor = bgcolor;
+        this.input.style.borderColor = bordercolor;
+        this.input.style.color = textcolor;
+        this.input.style.fontSize = `${fontsize || height * grid / 4}px`;
+        this.label.style.fontSize = `${height * grid / 4}px`;
+        this.label.style.color = labelcolor;
     }
     componentDidMount() {
         super.componentDidMount();
-        this.on("style", () => this.setStyle());
-        this.on("label", () => this.label.innerText = this.state.label);
-        this.on("value", () => this.input.value = (+this.state.value.toFixed(3)).toString() + (this.state.unit || ""));
+        this.on("style", () => this.schedule(this.setStyle));
+        const labelChange = () => this.label.innerText = this.state.label;
+        this.on("label", () => this.schedule(labelChange));
+        const valueChange = () => this.input.value = (+this.state.value.toFixed(3)).toString() + (this.state.unit || "");
+        this.on("value", () => this.schedule(valueChange));
+        return this;
     }
     mount() {
         this.container.appendChild(this.label);

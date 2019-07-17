@@ -1,6 +1,6 @@
-import { AbstractInputItem } from "./AbstractInputItem";
+import { AbstractOutputItem } from "./AbstractInputItem";
 
-export class HBargraph extends AbstractInputItem {
+export class HBargraph extends AbstractOutputItem {
     layout: TLayoutProp = {
         type: "hbargraph",
         width: 5,

@@ -1,4 +1,4 @@
-import { FaustUIItem } from "./Base";
+import { AbstractItem } from "./AbstractItem";
 import { FaustUIItemProps } from "./types";
 import "./Led.scss";
 import { FaustUINentryStyle } from "./Nentry";
@@ -11,7 +11,7 @@ interface FaustUILedStyle extends FaustUINentryStyle {
     hotcolor?: string;
     overloadcolor?: string;
 }
-export class FaustUILed extends FaustUIItem<FaustUILedStyle> {
+export class Led extends AbstractItem<FaustUILedStyle> {
     static get defaultProps(): FaustUIItemProps<FaustUILedStyle> {
         const inherited = super.defaultProps;
         return {
@@ -53,40 +53,36 @@ export class FaustUILed extends FaustUIItem<FaustUILedStyle> {
         this.label.className = "faust-ui-component-label";
         this.label.innerText = this.state.label;
         this.setStyle();
+        return this;
     }
-    setStyle() {
-        const style = { ...this.defaultProps.style, ...this.state.style };
-        this.label.style.fontSize = `${style.height * 0.25}px`;
-        this.label.style.color = style.labelcolor;
-        this.container.style.backgroundColor = style.bgcolor;
-        this.container.style.borderColor = style.bordercolor;
-        this.paint();
+    setStyle = () => {
+        const { height, grid, labelcolor, bgcolor, bordercolor } = this.state.style;
+        this.label.style.fontSize = `${height * grid * 0.25}px`;
+        this.label.style.color = labelcolor;
+        this.container.style.backgroundColor = bgcolor;
+        this.container.style.borderColor = bordercolor;
     }
     componentDidMount() {
         super.componentDidMount();
-        const handleUIConnected = () => this.paint();
-        const handleUIWillChange = () => {
-            this.state.emitter.off("uiConnected", handleUIConnected);
-            this.state.emitter.off("uiWillChange", handleUIWillChange);
-        };
-        this.state.emitter.on("uiConnected", handleUIConnected);
-        this.state.emitter.on("uiWillChange", handleUIWillChange);
         this.canvas.addEventListener("mousedown", this.handleMouseDown);
         this.canvas.addEventListener("touchstart", this.handleTouchStart, { passive: false });
-        this.on("style", () => this.setStyle());
-        this.on("label", () => this.label.innerText = this.state.label);
-        this.on("value", () => this.paint());
-        this.on("max", () => this.paint());
-        this.on("min", () => this.paint());
-        this.on("step", () => this.paint());
+        this.on("style", () => this.schedule(this.setStyle));
+        const labelChange = () => this.label.innerText = this.state.label;
+        this.on("label", () => this.schedule(labelChange));
+        this.on("value", () => this.schedule(this.paint));
+        this.on("max", () => this.schedule(this.paint));
+        this.on("min", () => this.schedule(this.paint));
+        this.on("step", () => this.schedule(this.paint));
+        this.schedule(this.paint);
+        return this;
     }
     mount() {
         this.container.appendChild(this.label);
         this.container.appendChild(this.canvas);
         return super.mount();
     }
-    raf = () => {
-        const { shape, ledbgcolor, coldcolor, warmcolor, hotcolor, overloadcolor } = { ...this.defaultProps.style, ...this.state.style };
+    paint = () => {
+        const { shape, ledbgcolor, coldcolor, warmcolor, hotcolor, overloadcolor } = this.state.style;
         const { min, max } = this.state;
         const { canvas, ctx, tempCanvas, tempCtx, distance } = this;
         const { width, height } = canvas.getBoundingClientRect();

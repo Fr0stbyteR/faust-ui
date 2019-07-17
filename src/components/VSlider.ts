@@ -1,4 +1,4 @@
-import { FaustUIItem } from "./Base";
+import { AbstractItem } from "./AbstractItem";
 import { FaustUIItemProps, PointerDownEvent, PointerDragEvent } from "./types";
 import "./VSlider.scss";
 import { FaustUINentryStyle } from "./Nentry";
@@ -10,7 +10,7 @@ interface FaustUISliderStyle extends FaustUINentryStyle {
     sliderbgoncolor?: string;
     slidercolor?: string;
 }
-export class FaustUIVSlider extends FaustUIItem<FaustUISliderStyle> {
+export class VSlider extends AbstractItem<FaustUISliderStyle> {
     static get defaultProps(): FaustUIItemProps<FaustUISliderStyle> {
         const inherited = super.defaultProps;
         return {
@@ -55,52 +55,55 @@ export class FaustUIVSlider extends FaustUIItem<FaustUISliderStyle> {
         this.input.min = this.state.min.toString();
         this.input.step = this.state.step.toString();
         this.setStyle();
+        return this;
     }
     handleChange = (e: Event) => {
         this.setValue(+(e.currentTarget as HTMLInputElement).value);
-        this.paint();
+        // this.schedule(this.paint);
     }
-    setStyle() {
-        const style = { ...this.defaultProps.style, ...this.state.style };
-        const fontSize = Math.min(style.height * 0.05, style.width * 0.2);
-        this.input.style.fontSize = `${style.fontsize || fontSize}px`;
-        this.input.style.color = style.textcolor;
+    setStyle = () => {
+        const { height, width, grid, fontsize, textcolor, labelcolor, bgcolor, bordercolor } = this.state.style;
+        const fontSize = Math.min(height * grid * 0.05, width * grid * 0.2);
+        this.input.style.fontSize = `${fontsize || fontSize}px`;
+        this.input.style.color = textcolor;
         this.label.style.fontSize = `${fontSize}px`;
-        this.label.style.color = style.labelcolor;
-        this.container.style.backgroundColor = style.bgcolor;
-        this.container.style.borderColor = style.bordercolor;
-        this.paint();
+        this.label.style.color = labelcolor;
+        this.container.style.backgroundColor = bgcolor;
+        this.container.style.borderColor = bordercolor;
     }
     componentDidMount() {
         super.componentDidMount();
-        const handleUIConnected = () => this.paint();
-        const handleUIWillChange = () => {
-            this.state.emitter.off("uiConnected", handleUIConnected);
-            this.state.emitter.off("uiWillChange", handleUIWillChange);
-        };
-        this.state.emitter.on("uiConnected", handleUIConnected);
-        this.state.emitter.on("uiWillChange", handleUIWillChange);
         this.input.addEventListener("change", this.handleChange);
         this.canvas.addEventListener("mousedown", this.handleMouseDown);
         this.canvas.addEventListener("touchstart", this.handleTouchStart, { passive: false });
-        this.on("style", () => this.setStyle());
-        this.on("label", () => this.label.innerText = this.state.label);
+        this.on("style", () => {
+            this.schedule(this.setStyle);
+            this.schedule(this.paint);
+        });
+        const labelChange = () => this.label.innerText = this.state.label;
+        this.on("label", () => this.schedule(labelChange));
+        const valueChange = () => this.input.value = (+this.state.value.toFixed(3)).toString();
         this.on("value", () => {
-            this.input.value = (+this.state.value.toFixed(3)).toString();
-            this.paint();
+            this.schedule(valueChange);
+            this.schedule(this.paint);
         });
+        const maxChange = () => this.input.max = this.state.max.toString();
         this.on("max", () => {
-            this.input.max = this.state.max.toString();
-            this.paint();
+            this.schedule(maxChange);
+            this.schedule(this.paint);
         });
+        const minChange = () => this.input.min = this.state.min.toString();
         this.on("min", () => {
-            this.input.min = this.state.min.toString();
-            this.paint();
+            this.schedule(minChange);
+            this.schedule(this.paint);
         });
+        const stepChange = () => this.input.step = this.state.step.toString();
         this.on("step", () => {
-            this.input.step = this.state.step.toString();
-            this.paint();
+            this.schedule(stepChange);
+            this.schedule(this.paint);
         });
+        this.schedule(this.paint);
+        return this;
     }
     mount() {
         this.flexDiv.appendChild(this.canvas);
@@ -109,8 +112,8 @@ export class FaustUIVSlider extends FaustUIItem<FaustUISliderStyle> {
         this.container.appendChild(this.flexDiv);
         return super.mount();
     }
-    raf = () => {
-        const { sliderwidth, sliderbgcolor, sliderbgoncolor, slidercolor } = { ...this.defaultProps.style, ...this.state.style };
+    paint = () => {
+        const { sliderwidth, sliderbgcolor, sliderbgoncolor, slidercolor } = this.state.style;
         const ctx = this.ctx;
         const canvas = this.canvas;
         const distance = this.distance;

@@ -1,4 +1,4 @@
-import { FaustUIItem } from "./Base";
+import { AbstractItem } from "./AbstractItem";
 import { FaustUIItemStyle, FaustUIItemProps } from "./types";
 import "./Nentry.scss";
 
@@ -11,7 +11,7 @@ export interface FaustUINentryStyle extends FaustUIItemStyle {
     labelcolor?: string;
     textcolor?: string;
 }
-export class FaustUINentry extends FaustUIItem<FaustUINentryStyle> {
+export class Nentry extends AbstractItem<FaustUINentryStyle> {
     static get defaultProps(): FaustUIItemProps<FaustUINentryStyle> {
         const inherited = super.defaultProps;
         return {
@@ -44,28 +44,35 @@ export class FaustUINentry extends FaustUIItem<FaustUINentryStyle> {
         this.input.min = this.state.min.toString();
         this.input.step = this.state.step.toString();
         this.setStyle();
+        return this;
     }
     handleChange = (e: Event) => {
         this.setValue(+(e.currentTarget as HTMLInputElement).value);
     }
-    setStyle() {
-        const style = { ...this.defaultProps.style, ...this.state.style };
-        this.input.style.backgroundColor = style.bgcolor;
-        this.input.style.borderColor = style.bordercolor;
-        this.input.style.color = style.textcolor;
-        this.input.style.fontSize = `${style.fontsize || style.height / 4}px`;
-        this.label.style.fontSize = `${style.height / 4}px`;
-        this.label.style.color = style.labelcolor;
+    setStyle = () => {
+        const { height, grid, fontsize, textcolor, labelcolor, bgcolor, bordercolor } = this.state.style;
+        this.input.style.backgroundColor = bgcolor;
+        this.input.style.borderColor = bordercolor;
+        this.input.style.color = textcolor;
+        this.input.style.fontSize = `${fontsize || height * grid / 4}px`;
+        this.label.style.fontSize = `${height * grid / 4}px`;
+        this.label.style.color = labelcolor;
     }
     componentDidMount() {
         super.componentDidMount();
         this.input.addEventListener("change", this.handleChange);
-        this.on("style", () => this.setStyle());
-        this.on("label", () => this.label.innerText = this.state.label);
-        this.on("value", () => this.input.value = (+this.state.value.toFixed(3)).toString());
-        this.on("max", () => this.input.max = this.state.max.toString());
-        this.on("min", () => this.input.min = this.state.min.toString());
-        this.on("step", () => this.input.step = this.state.step.toString());
+        this.on("style", () => this.schedule(this.setStyle));
+        const labelChange = () => this.label.innerText = this.state.label;
+        this.on("label", () => this.schedule(labelChange));
+        const valueChange = () => this.input.value = (+this.state.value.toFixed(3)).toString();
+        this.on("value", () => this.schedule(valueChange));
+        const maxChange = () => this.input.max = this.state.max.toString();
+        this.on("max", () => this.schedule(maxChange));
+        const minChange = () => this.input.min = this.state.min.toString();
+        this.on("min", () => this.schedule(minChange));
+        const stepChange = () => this.input.step = this.state.step.toString();
+        this.on("step", () => this.schedule(stepChange));
+        return this;
     }
     mount() {
         this.container.appendChild(this.label);

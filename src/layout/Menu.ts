@@ -1,6 +1,6 @@
-import { AbstractOutputItem } from "./AbstractOutputItem";
+import { AbstractInputItem } from "./AbstractOutputItem";
 
-export class Menu extends AbstractOutputItem {
+export class Menu extends AbstractInputItem {
     layout: TLayoutProp = {
         type: "menu",
         width: 2,

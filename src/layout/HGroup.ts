@@ -33,14 +33,16 @@ export class HGroup extends AbstractGroup {
     }
     offset() {
         const { labelHeight, padding, spaceBetween } = AbstractGroup;
-        let $left = (this.layout.left || 0) + padding;
-        const $top = (this.layout.top || 0) + padding + labelHeight;
+        let $left = padding;
+        const $top = padding + labelHeight;
         const { height } = this.layout;
         this.items.forEach((item) => {
-            item.layout.left = $left;
-            item.layout.top = $top;
+            item.layout.offsetLeft = $left;
+            item.layout.offsetTop = $top;
             // center the item
-            item.layout.top += (height - labelHeight - item.layout.height) / 2 - padding;
+            item.layout.offsetTop += (height - labelHeight - item.layout.height) / 2 - padding;
+            item.layout.left = (this.layout.left || 0) + item.layout.offsetLeft;
+            item.layout.top = (this.layout.top || 0) + item.layout.offsetTop;
             if (item instanceof AbstractGroup) item.offset();
             $left += item.layout.width + spaceBetween;
         });

@@ -1,6 +1,6 @@
-import { AbstractOutputItem } from "./AbstractOutputItem";
+import { AbstractInputItem } from "./AbstractOutputItem";
 
-export class VSlider extends AbstractOutputItem {
+export class VSlider extends AbstractInputItem {
     layout: TLayoutProp = {
         type: "vslider",
         width: 1,

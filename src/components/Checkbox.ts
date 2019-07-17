@@ -1,7 +1,7 @@
-import { FaustUIButton } from "./Button";
+import { Button } from "./Button";
 import "./Checkbox.scss";
 
-export class FaustUICheckbox extends FaustUIButton {
+export class Checkbox extends Button {
     className = "checkbox";
 
     handlePointerDown = () => {

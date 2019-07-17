@@ -31,11 +31,14 @@ export class TGroup extends AbstractGroup {
         return this;
     }
     offset() {
-        const $left = (this.layout.left || 0) + AbstractGroup.padding;
-        const $top = (this.layout.top || 0) + AbstractGroup.padding + AbstractGroup.labelHeight + TGroup.tabLayout.height;
+        const { labelHeight, padding } = AbstractGroup;
+        const $left = padding;
+        const $top = padding + labelHeight + TGroup.tabLayout.height;
         this.items.forEach((item) => {
-            item.layout.left = $left;
-            item.layout.top = $top;
+            item.layout.offsetLeft = $left;
+            item.layout.offsetTop = $top;
+            item.layout.left = (this.layout.left || 0) + item.layout.offsetLeft;
+            item.layout.top = (this.layout.top || 0) + item.layout.offsetTop;
             if (item instanceof AbstractGroup) item.offset();
         });
         return this;

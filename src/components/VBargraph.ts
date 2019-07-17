@@ -1,4 +1,4 @@
-import { FaustUIItem } from "./Base";
+import { AbstractItem } from "./AbstractItem";
 import { FaustUIItemProps } from "./types";
 import "./VBargraph.scss";
 import { FaustUINentryStyle } from "./Nentry";
@@ -11,7 +11,7 @@ interface FaustUIBargraphStyle extends FaustUINentryStyle {
     hotcolor?: string;
     overloadcolor?: string;
 }
-export class FaustUIVBargraph extends FaustUIItem<FaustUIBargraphStyle> {
+export class VBargraph extends AbstractItem<FaustUIBargraphStyle> {
     static get defaultProps(): FaustUIItemProps<FaustUIBargraphStyle> {
         const inherited = super.defaultProps;
         return {
@@ -54,38 +54,38 @@ export class FaustUIVBargraph extends FaustUIItem<FaustUIBargraphStyle> {
         this.input.disabled = true;
         this.input.value = (+this.state.value.toFixed(3)).toString() + (this.state.unit || "");
         this.setStyle();
+        return this;
     }
-    setStyle() {
-        const style = { ...this.defaultProps.style, ...this.state.style };
-        const fontSize = Math.min(style.height * 0.05, style.width * 0.2);
-        this.input.style.fontSize = `${style.fontsize || fontSize}px`;
-        this.input.style.color = style.textcolor;
+    setStyle = () => {
+        const { height, width, grid, fontsize, textcolor, labelcolor, bgcolor, bordercolor } = this.state.style;
+        const fontSize = Math.min(height * grid * 0.05, width * grid * 0.2);
+        this.input.style.fontSize = `${fontsize || fontSize}px`;
+        this.input.style.color = textcolor;
         this.label.style.fontSize = `${fontSize}px`;
-        this.label.style.color = style.labelcolor;
-        this.container.style.backgroundColor = style.bgcolor;
-        this.container.style.borderColor = style.bordercolor;
-        this.paint();
+        this.label.style.color = labelcolor;
+        this.container.style.backgroundColor = bgcolor;
+        this.container.style.borderColor = bordercolor;
     }
     componentDidMount() {
         super.componentDidMount();
-        const handleUIConnected = () => this.paint();
-        const handleUIWillChange = () => {
-            this.state.emitter.off("uiConnected", handleUIConnected);
-            this.state.emitter.off("uiWillChange", handleUIWillChange);
-        };
-        this.state.emitter.on("uiConnected", handleUIConnected);
-        this.state.emitter.on("uiWillChange", handleUIWillChange);
         this.canvas.addEventListener("mousedown", this.handleMouseDown);
         this.canvas.addEventListener("touchstart", this.handleTouchStart, { passive: false });
-        this.on("style", () => this.setStyle());
-        this.on("label", () => this.label.innerText = this.state.label);
-        this.on("value", () => {
-            this.input.value = (+this.state.value.toFixed(3)).toString() + (this.state.unit || "");
-            this.paint();
+        this.on("style", () => {
+            this.schedule(this.setStyle);
+            this.schedule(this.paint);
         });
-        this.on("max", () => this.paint());
-        this.on("min", () => this.paint());
-        this.on("step", () => this.paint());
+        const labelChange = () => this.label.innerText = this.state.label;
+        this.on("label", () => this.schedule(labelChange));
+        const valueChange = () => this.input.value = (+this.state.value.toFixed(3)).toString();
+        this.on("value", () => {
+            this.schedule(valueChange);
+            this.schedule(this.paint);
+        });
+        this.on("max", () => this.schedule(this.paint));
+        this.on("min", () => this.schedule(this.paint));
+        this.on("step", () => this.schedule(this.paint));
+        this.schedule(this.paint);
+        return this;
     }
     mount() {
         this.flexDiv.appendChild(this.canvas);
@@ -97,8 +97,8 @@ export class FaustUIVBargraph extends FaustUIItem<FaustUIBargraphStyle> {
     paintValue: number = 0;
     maxValue: number = -Infinity;
     maxTimer: number;
-    raf = () => {
-        const { barwidth, barbgcolor, coldcolor, warmcolor, hotcolor, overloadcolor } = { ...this.defaultProps.style, ...this.state.style };
+    paint = () => {
+        const { barwidth, barbgcolor, coldcolor, warmcolor, hotcolor, overloadcolor } = this.state.style;
         const { min, max, value } = this.state;
         const ctx = this.ctx;
         const canvas = this.canvas;

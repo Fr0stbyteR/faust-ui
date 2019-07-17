@@ -1,4 +1,4 @@
-import { FaustUIItem } from "./Base";
+import { AbstractItem } from "./AbstractItem";
 import { FaustUIItemProps, PointerDragEvent } from "./types";
 import "./Knob.scss";
 import { FaustUINentryStyle } from "./Nentry";
@@ -10,7 +10,7 @@ interface FaustUIKnobStyle extends FaustUINentryStyle {
     knoboncolor?: string;
     needlecolor?: string;
 }
-export class FaustUIKnob extends FaustUIItem<FaustUIKnobStyle> {
+export class Knob extends AbstractItem<FaustUIKnobStyle> {
     static get defaultProps(): FaustUIItemProps<FaustUIKnobStyle> {
         const inherited = super.defaultProps;
         return {
@@ -51,51 +51,53 @@ export class FaustUIKnob extends FaustUIItem<FaustUIKnobStyle> {
         this.input.min = this.state.min.toString();
         this.input.step = this.state.step.toString();
         this.setStyle();
+        return this;
     }
     handleChange = (e: Event) => {
         this.setValue(+(e.currentTarget as HTMLInputElement).value);
-        this.paint();
     }
-    setStyle() {
-        const style = { ...this.defaultProps.style, ...this.state.style };
-        this.input.style.fontSize = `${style.fontsize || style.height * 0.1}px`;
-        this.input.style.color = style.textcolor;
-        this.label.style.fontSize = `${style.height * 0.1}px`;
-        this.label.style.color = style.labelcolor;
-        this.container.style.backgroundColor = style.bgcolor;
-        this.container.style.borderColor = style.bordercolor;
-        this.paint();
+    setStyle = () => {
+        const { fontsize, height, grid, textcolor, labelcolor, bgcolor, bordercolor } = this.state.style;
+        this.input.style.fontSize = `${fontsize || height * grid * 0.1}px`;
+        this.input.style.color = textcolor;
+        this.label.style.fontSize = `${height * grid * 0.1}px`;
+        this.label.style.color = labelcolor;
+        this.container.style.backgroundColor = bgcolor;
+        this.container.style.borderColor = bordercolor;
     }
     componentDidMount() {
         super.componentDidMount();
-        const handleUIConnected = () => this.paint();
-        const handleUIWillChange = () => {
-            this.state.emitter.off("uiConnected", handleUIConnected);
-            this.state.emitter.off("uiWillChange", handleUIWillChange);
-        };
-        this.state.emitter.on("uiConnected", handleUIConnected);
-        this.state.emitter.on("uiWillChange", handleUIWillChange);
         this.input.addEventListener("change", this.handleChange);
         this.canvas.addEventListener("mousedown", this.handleMouseDown);
         this.canvas.addEventListener("touchstart", this.handleTouchStart, { passive: false });
-        this.on("style", () => this.setStyle());
-        this.on("label", () => this.label.innerText = this.state.label);
+        this.on("style", () => {
+            this.schedule(this.setStyle);
+            this.schedule(this.paint);
+        });
+        const labelChange = () => this.label.innerText = this.state.label;
+        this.on("label", () => this.schedule(labelChange));
+        const valueChange = () => this.input.value = (+this.state.value.toFixed(3)).toString();
         this.on("value", () => {
-            this.input.value = (+this.state.value.toFixed(3)).toString();
-            this.paint();
+            this.schedule(valueChange);
+            this.schedule(this.paint);
         });
+        const maxChange = () => this.input.max = this.state.max.toString();
         this.on("max", () => {
-            this.input.max = this.state.max.toString();
-            this.paint();
+            this.schedule(maxChange);
+            this.schedule(this.paint);
         });
+        const minChange = () => this.input.min = this.state.min.toString();
         this.on("min", () => {
-            this.input.min = this.state.min.toString();
-            this.paint();
+            this.schedule(minChange);
+            this.schedule(this.paint);
         });
+        const stepChange = () => this.input.step = this.state.step.toString();
         this.on("step", () => {
-            this.input.step = this.state.step.toString();
-            this.paint();
+            this.schedule(stepChange);
+            this.schedule(this.paint);
         });
+        this.schedule(this.paint);
+        return this;
     }
     mount() {
         this.container.appendChild(this.label);
@@ -103,8 +105,8 @@ export class FaustUIKnob extends FaustUIItem<FaustUIKnobStyle> {
         this.container.appendChild(this.input);
         return super.mount();
     }
-    raf = () => {
-        const { knobwidth, knobcolor, knoboncolor, needlecolor } = { ...this.defaultProps.style, ...this.state.style };
+    paint = () => {
+        const { knobwidth, knobcolor, knoboncolor, needlecolor } = this.state.style;
         const ctx = this.ctx;
         const canvas = this.canvas;
         const distance = this.distance;
@@ -151,7 +153,7 @@ export class FaustUIKnob extends FaustUIItem<FaustUIKnobStyle> {
     getValueFromDelta(e: PointerDragEvent) {
         const { type, min, max } = this.state;
         const stepRange = this.stepRange;
-        const trueSteps = this.trueSteps;
+        const trueSteps = this.steps;
         const step = type === "enum" ? 1 : (max - min) / trueSteps;
         const prevSteps = type === "enum" ? e.prevValue : (e.prevValue - min) / step;
         const dSteps = Math.round((e.fromY - e.y) / stepRange);

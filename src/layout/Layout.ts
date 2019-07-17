@@ -53,7 +53,7 @@ export class Layout {
      * @memberof Layout
      */
     static getItem(item: TFaustUIItem): AbstractItem | AbstractGroup {
-        const ctor: { [key in keyof LayoutTypeMap]: (new (item: LayoutTypeMap[key]) => AbstractItem | AbstractGroup) } = {
+        const ctor: { [key in keyof LayoutTypeMap]: typeof AbstractItem | typeof AbstractGroup } = {
             hslider: HSlider,
             vslider: VSlider,
             nentry: Nentry,

@@ -53,6 +53,8 @@ type TLayoutProp = {
     type: TLayoutType;
     left?: number;
     top?: number;
+    offsetLeft?: number; // relative to parent group
+    offsetTop?: number;
     width: number;
     height: number;
     sizing: "horizontal" | "vertical" | "both" | "none";
@@ -63,16 +65,16 @@ interface LayoutTypeMap {
     "vgroup": TFaustUIGroup;
     "hgroup": TFaustUIGroup;
     "tgroup": TFaustUIGroup;
-    "hbargraph": TFaustUIInputItem;
-    "vbargraph": TFaustUIInputItem;
-    "led": TFaustUIInputItem;
-    "numerical": TFaustUIInputItem;
-    "vslider": TFaustUIOutputItem;
-    "hslider": TFaustUIOutputItem;
-    "button": TFaustUIOutputItem;
-    "checkbox": TFaustUIOutputItem;
-    "nentry": TFaustUIOutputItem;
-    "knob": TFaustUIOutputItem;
-    "menu": TFaustUIOutputItem;
-    "radio": TFaustUIOutputItem;
+    "hbargraph": TFaustUIOutputItem;
+    "vbargraph": TFaustUIOutputItem;
+    "led": TFaustUIOutputItem;
+    "numerical": TFaustUIOutputItem;
+    "vslider": TFaustUIInputItem;
+    "hslider": TFaustUIInputItem;
+    "button": TFaustUIInputItem;
+    "checkbox": TFaustUIInputItem;
+    "nentry": TFaustUIInputItem;
+    "knob": TFaustUIInputItem;
+    "menu": TFaustUIInputItem;
+    "radio": TFaustUIInputItem;
 }
