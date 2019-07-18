@@ -16,4 +16,7 @@
         overflow: hidden;
         user-select: none;
     }
+    & input {
+        box-shadow: none;
+    }
 }
