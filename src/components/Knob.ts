@@ -40,6 +40,8 @@ export class Knob extends AbstractItem<FaustUIKnobStyle> {
     componentWillMount() {
         super.componentWillMount();
         this.canvas = document.createElement("canvas");
+        this.canvas.width = 10;
+        this.canvas.height = 10;
         this.ctx = this.canvas.getContext("2d");
         this.label = document.createElement("div");
         this.label.className = "faust-ui-component-label";

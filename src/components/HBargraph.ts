@@ -18,7 +18,9 @@ export class HBargraph extends VBargraph {
         const { min, max, value } = this.state;
         const ctx = this.ctx;
         const canvas = this.canvas;
-        const { width, height } = canvas.getBoundingClientRect();
+        let { width, height } = this.canvasDiv.getBoundingClientRect();
+        width = Math.floor(width);
+        height = Math.floor(height);
         canvas.width = width;
         canvas.height = height;
 

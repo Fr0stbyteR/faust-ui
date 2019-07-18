@@ -40,12 +40,17 @@ export class VBargraph extends AbstractItem<FaustUIBargraphStyle> {
     canvas: HTMLCanvasElement;
     input: HTMLInputElement;
     flexDiv: HTMLDivElement;
+    canvasDiv: HTMLDivElement;
     ctx: CanvasRenderingContext2D;
     componentWillMount() {
         super.componentWillMount();
         this.flexDiv = document.createElement("div");
         this.flexDiv.className = `faust-ui-component-${this.className}-flexdiv`;
+        this.canvasDiv = document.createElement("div");
+        this.canvasDiv.className = `faust-ui-component-${this.className}-canvasdiv`;
         this.canvas = document.createElement("canvas");
+        this.canvas.width = 10;
+        this.canvas.height = 10;
         this.ctx = this.canvas.getContext("2d");
         this.label = document.createElement("div");
         this.label.className = "faust-ui-component-label";
@@ -76,7 +81,7 @@ export class VBargraph extends AbstractItem<FaustUIBargraphStyle> {
         });
         const labelChange = () => this.label.innerText = this.state.label;
         this.on("label", () => this.schedule(labelChange));
-        const valueChange = () => this.input.value = (+this.state.value.toFixed(3)).toString();
+        const valueChange = () => this.input.value = (+this.state.value.toFixed(3)).toString() + (this.state.unit || "");
         this.on("value", () => {
             this.schedule(valueChange);
             this.schedule(this.paint);
@@ -88,7 +93,8 @@ export class VBargraph extends AbstractItem<FaustUIBargraphStyle> {
         return this;
     }
     mount() {
-        this.flexDiv.appendChild(this.canvas);
+        this.canvasDiv.appendChild(this.canvas);
+        this.flexDiv.appendChild(this.canvasDiv);
         this.flexDiv.appendChild(this.input);
         this.container.appendChild(this.label);
         this.container.appendChild(this.flexDiv);
@@ -102,7 +108,9 @@ export class VBargraph extends AbstractItem<FaustUIBargraphStyle> {
         const { min, max, value } = this.state;
         const ctx = this.ctx;
         const canvas = this.canvas;
-        const { width, height } = canvas.getBoundingClientRect();
+        let { width, height } = this.canvasDiv.getBoundingClientRect();
+        width = Math.floor(width);
+        height = Math.floor(height);
         canvas.width = width;
         canvas.height = height;
 

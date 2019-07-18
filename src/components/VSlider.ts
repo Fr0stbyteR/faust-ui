@@ -37,13 +37,18 @@ export class VSlider extends AbstractItem<FaustUISliderStyle> {
     canvas: HTMLCanvasElement;
     input: HTMLInputElement;
     flexDiv: HTMLDivElement;
+    canvasDiv: HTMLDivElement;
     ctx: CanvasRenderingContext2D;
     interactionRect: number[] = [0, 0, 0, 0];
     componentWillMount() {
         super.componentWillMount();
         this.flexDiv = document.createElement("div");
         this.flexDiv.className = `faust-ui-component-${this.className}-flexdiv`;
+        this.canvasDiv = document.createElement("div");
+        this.canvasDiv.className = `faust-ui-component-${this.className}-canvasdiv`;
         this.canvas = document.createElement("canvas");
+        this.canvas.width = 10;
+        this.canvas.height = 10;
         this.ctx = this.canvas.getContext("2d");
         this.label = document.createElement("div");
         this.label.className = "faust-ui-component-label";
@@ -106,7 +111,8 @@ export class VSlider extends AbstractItem<FaustUISliderStyle> {
         return this;
     }
     mount() {
-        this.flexDiv.appendChild(this.canvas);
+        this.canvasDiv.appendChild(this.canvas);
+        this.flexDiv.appendChild(this.canvasDiv);
         this.flexDiv.appendChild(this.input);
         this.container.appendChild(this.label);
         this.container.appendChild(this.flexDiv);
@@ -117,7 +123,9 @@ export class VSlider extends AbstractItem<FaustUISliderStyle> {
         const ctx = this.ctx;
         const canvas = this.canvas;
         const distance = this.distance;
-        const { width, height } = canvas.getBoundingClientRect();
+        let { width, height } = this.canvasDiv.getBoundingClientRect();
+        width = Math.floor(width);
+        height = Math.floor(height);
         canvas.width = width;
         canvas.height = height;
 

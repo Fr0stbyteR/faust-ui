@@ -3,10 +3,16 @@
     & > .faust-ui-component-label {
         flex: 0 0 auto;
     }
-    & > canvas {
+    & > .faust-ui-component-led-canvasdiv {
         position: relative;
         display: block;
         flex: 1 1 auto;
         width: 100%;
+        & > canvas {
+            position: absolute;
+            display: block;
+            height: 100%;
+            width: 100%;
+        }
     }
 }

@@ -37,13 +37,18 @@ export class Led extends AbstractItem<FaustUILedStyle> {
     className = "led";
 
     label: HTMLDivElement;
+    canvasDiv: HTMLDivElement;
     canvas: HTMLCanvasElement;
     tempCanvas: HTMLCanvasElement;
     ctx: CanvasRenderingContext2D;
     tempCtx: CanvasRenderingContext2D;
     componentWillMount() {
         super.componentWillMount();
+        this.canvasDiv = document.createElement("div");
+        this.canvasDiv.className = `faust-ui-component-${this.className}-canvasdiv`;
         this.canvas = document.createElement("canvas");
+        this.canvas.width = 10;
+        this.canvas.height = 10;
         this.ctx = this.canvas.getContext("2d");
         this.tempCanvas = document.createElement("canvas");
         this.tempCtx = this.tempCanvas.getContext("2d");
@@ -77,8 +82,9 @@ export class Led extends AbstractItem<FaustUILedStyle> {
         return this;
     }
     mount() {
+        this.canvasDiv.appendChild(this.canvas);
         this.container.appendChild(this.label);
-        this.container.appendChild(this.canvas);
+        this.container.appendChild(this.canvasDiv);
         return super.mount();
     }
     paint = () => {
