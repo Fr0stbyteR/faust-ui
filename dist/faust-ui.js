@@ -2859,8 +2859,8 @@ class HSlider extends _VSlider__WEBPACK_IMPORTED_MODULE_2__["VSlider"] {
           labelcolor = _this$state$style.labelcolor,
           bgcolor = _this$state$style.bgcolor,
           bordercolor = _this$state$style.bordercolor;
-      this.input.style.fontSize = "".concat(fontsize || height * grid * 0.2, "px");
-      this.input.style.color = textcolor;
+      this.inputNumber.style.fontSize = "".concat(fontsize || height * grid * 0.2, "px");
+      this.inputNumber.style.color = textcolor;
       this.label.style.fontSize = "".concat(height * grid * 0.2, "px");
       this.label.style.color = labelcolor;
       this.container.style.backgroundColor = bgcolor;
@@ -4303,6 +4303,8 @@ class VSlider extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"]
 
     _defineProperty(this, "canvas", void 0);
 
+    _defineProperty(this, "inputNumber", void 0);
+
     _defineProperty(this, "input", void 0);
 
     _defineProperty(this, "flexDiv", void 0);
@@ -4314,7 +4316,8 @@ class VSlider extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"]
     _defineProperty(this, "interactionRect", [0, 0, 0, 0]);
 
     _defineProperty(this, "handleChange", e => {
-      this.setValue(+e.currentTarget.value); // this.schedule(this.paint);
+      this.inputNumber.value = parseFloat(e.currentTarget.value).toFixed(3).toString();
+      this.setValue(+this.inputNumber.value); // this.schedule(this.paint);
     });
 
     _defineProperty(this, "setStyle", () => {
@@ -4328,8 +4331,8 @@ class VSlider extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"]
           bgcolor = _this$state$style.bgcolor,
           bordercolor = _this$state$style.bordercolor;
       var fontSize = Math.min(height * grid * 0.05, width * grid * 0.2);
-      this.input.style.fontSize = "".concat(fontsize || fontSize, "px");
-      this.input.style.color = textcolor;
+      this.inputNumber.style.fontSize = "".concat(fontsize || fontSize, "px");
+      this.inputNumber.style.color = textcolor;
       this.label.style.fontSize = "".concat(fontSize, "px");
       this.label.style.color = labelcolor;
       this.container.style.backgroundColor = bgcolor;
@@ -4415,12 +4418,15 @@ class VSlider extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"]
     this.label = document.createElement("div");
     this.label.className = "faust-ui-component-label";
     this.label.innerText = this.state.label;
+    this.inputNumber = document.createElement("input");
+    this.inputNumber.type = "number";
+    this.inputNumber.value = (+this.state.value.toFixed(3)).toString();
+    this.inputNumber.max = this.state.max.toString();
+    this.inputNumber.min = this.state.min.toString();
+    this.inputNumber.step = this.state.step.toString();
     this.input = document.createElement("input");
-    this.input.type = "number";
-    this.input.value = (+this.state.value.toFixed(3)).toString();
-    this.input.max = this.state.max.toString();
-    this.input.min = this.state.min.toString();
-    this.input.step = this.state.step.toString();
+    this.input.value = this.inputNumber.value + (this.state.unit || "");
+    this.input.spellcheck = false;
     this.setStyle();
     return this;
   }
@@ -4441,28 +4447,31 @@ class VSlider extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"]
 
     this.on("label", () => this.schedule(labelChange));
 
-    var valueChange = () => this.input.value = (+this.state.value.toFixed(3)).toString();
+    var valueChange = () => {
+      this.inputNumber.value = (+this.state.value.toFixed(3)).toString();
+      this.input.value = this.inputNumber.value + (this.state.unit || "");
+    };
 
     this.on("value", () => {
       this.schedule(valueChange);
       this.schedule(this.paint);
     });
 
-    var maxChange = () => this.input.max = this.state.max.toString();
+    var maxChange = () => this.inputNumber.max = this.state.max.toString();
 
     this.on("max", () => {
       this.schedule(maxChange);
       this.schedule(this.paint);
     });
 
-    var minChange = () => this.input.min = this.state.min.toString();
+    var minChange = () => this.inputNumber.min = this.state.min.toString();
 
     this.on("min", () => {
       this.schedule(minChange);
       this.schedule(this.paint);
     });
 
-    var stepChange = () => this.input.step = this.state.step.toString();
+    var stepChange = () => this.inputNumber.step = this.state.step.toString();
 
     this.on("step", () => {
       this.schedule(stepChange);

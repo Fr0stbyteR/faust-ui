@@ -35,6 +35,7 @@ export class VSlider extends AbstractItem<FaustUISliderStyle> {
 
     label: HTMLDivElement;
     canvas: HTMLCanvasElement;
+    inputNumber: HTMLInputElement;
     input: HTMLInputElement;
     flexDiv: HTMLDivElement;
     canvasDiv: HTMLDivElement;
@@ -53,24 +54,28 @@ export class VSlider extends AbstractItem<FaustUISliderStyle> {
         this.label = document.createElement("div");
         this.label.className = "faust-ui-component-label";
         this.label.innerText = this.state.label;
+        this.inputNumber = document.createElement("input");
+        this.inputNumber.type = "number";
+        this.inputNumber.value = (+this.state.value.toFixed(3)).toString();
+        this.inputNumber.max = this.state.max.toString();
+        this.inputNumber.min = this.state.min.toString();
+        this.inputNumber.step = this.state.step.toString();
         this.input = document.createElement("input");
-        this.input.type = "number";
-        this.input.value = (+this.state.value.toFixed(3)).toString();
-        this.input.max = this.state.max.toString();
-        this.input.min = this.state.min.toString();
-        this.input.step = this.state.step.toString();
+        this.input.value = this.inputNumber.value + (this.state.unit || "");
+        this.input.spellcheck = false;
         this.setStyle();
         return this;
     }
     handleChange = (e: Event) => {
-        this.setValue(+(e.currentTarget as HTMLInputElement).value);
+        this.inputNumber.value = parseFloat((e.currentTarget as HTMLInputElement).value).toFixed(3).toString();
+        this.setValue(+this.inputNumber.value);
         // this.schedule(this.paint);
     }
     setStyle = () => {
         const { height, width, grid, fontsize, textcolor, labelcolor, bgcolor, bordercolor } = this.state.style;
         const fontSize = Math.min(height * grid * 0.05, width * grid * 0.2);
-        this.input.style.fontSize = `${fontsize || fontSize}px`;
-        this.input.style.color = textcolor;
+        this.inputNumber.style.fontSize = `${fontsize || fontSize}px`;
+        this.inputNumber.style.color = textcolor;
         this.label.style.fontSize = `${fontSize}px`;
         this.label.style.color = labelcolor;
         this.container.style.backgroundColor = bgcolor;
@@ -87,22 +92,25 @@ export class VSlider extends AbstractItem<FaustUISliderStyle> {
         });
         const labelChange = () => this.label.innerText = this.state.label;
         this.on("label", () => this.schedule(labelChange));
-        const valueChange = () => this.input.value = (+this.state.value.toFixed(3)).toString();
+        const valueChange = () => {
+            this.inputNumber.value = (+this.state.value.toFixed(3)).toString();
+            this.input.value = this.inputNumber.value + (this.state.unit || "");
+        };
         this.on("value", () => {
             this.schedule(valueChange);
             this.schedule(this.paint);
         });
-        const maxChange = () => this.input.max = this.state.max.toString();
+        const maxChange = () => this.inputNumber.max = this.state.max.toString();
         this.on("max", () => {
             this.schedule(maxChange);
             this.schedule(this.paint);
         });
-        const minChange = () => this.input.min = this.state.min.toString();
+        const minChange = () => this.inputNumber.min = this.state.min.toString();
         this.on("min", () => {
             this.schedule(minChange);
             this.schedule(this.paint);
         });
-        const stepChange = () => this.input.step = this.state.step.toString();
+        const stepChange = () => this.inputNumber.step = this.state.step.toString();
         this.on("step", () => {
             this.schedule(stepChange);
             this.schedule(this.paint);
