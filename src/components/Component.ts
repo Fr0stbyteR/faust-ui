@@ -68,7 +68,11 @@ export abstract class Component<T extends { [key: string]: any }> extends EventE
      */
     private raf = () => {
         this.$frame++;
-        if (this.$frame % this.frameReduce !== 0) return;
+        if (this.$frame % this.frameReduce !== 0) {
+            window.cancelAnimationFrame(this.$raf);
+            this.$raf = window.requestAnimationFrame(this.raf);
+            return;
+        }
         this.tasks.forEach(f => f());
         this.tasks = [];
     };

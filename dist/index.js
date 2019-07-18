@@ -1584,7 +1584,7 @@ class AbstractItem extends _Component__WEBPACK_IMPORTED_MODULE_1__["Component"] 
 
     _defineProperty(this, "className", void 0);
 
-    _defineProperty(this, "frameReduce", 1);
+    _defineProperty(this, "frameReduce", 3);
 
     _defineProperty(this, "handleKeyDown", e => {});
 
@@ -2225,7 +2225,13 @@ class Component extends events__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"] {
 
     _defineProperty(this, "raf", () => {
       this.$frame++;
-      if (this.$frame % this.frameReduce !== 0) return;
+
+      if (this.$frame % this.frameReduce !== 0) {
+        window.cancelAnimationFrame(this.$raf);
+        this.$raf = window.requestAnimationFrame(this.raf);
+        return;
+      }
+
       this.tasks.forEach(f => f());
       this.tasks = [];
     });

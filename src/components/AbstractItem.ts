@@ -58,7 +58,7 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends Component
      * @memberof AbstractItem
      */
     className: string;
-    frameReduce = 1;
+    frameReduce = 3;
     /**
      * Default DOM event listeners, unify mousedown and touchstart events
      * For mouse or touch events, please use `handlePointerDown` `handlePointerUp` `handlePointerDrag` callbacks
