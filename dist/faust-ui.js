@@ -5493,4 +5493,4 @@ class VSlider extends _AbstractOutputItem__WEBPACK_IMPORTED_MODULE_0__["Abstract
 
 /******/ });
 });
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=faust-ui.js.map

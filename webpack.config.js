@@ -48,11 +48,11 @@ const config = {
 module.exports = (env, argv) => {
   if (argv.mode === 'development') {
     config.devtool = 'source-map';
-    config.output.filename = 'index.js';
+    config.output.filename = 'faust-ui.js';
   }
   if (argv.mode === 'production') {
     config.devtool = 'source-map';
-    config.output.filename = 'index.min.js';
+    config.output.filename = 'faust-ui.min.js';
   }
   return config;
 };
