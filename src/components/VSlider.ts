@@ -67,15 +67,18 @@ export class VSlider extends AbstractItem<FaustUISliderStyle> {
         return this;
     }
     handleChange = (e: Event) => {
-        this.inputNumber.value = parseFloat((e.currentTarget as HTMLInputElement).value).toFixed(3).toString();
-        this.setValue(+this.inputNumber.value);
-        // this.schedule(this.paint);
+        const value = parseFloat((e.currentTarget as HTMLInputElement).value);
+        if (isFinite(value)) {
+            const changed = this.setValue(+value);
+            if (changed) return;
+        }
+        this.input.value = this.inputNumber.value + (this.state.unit || "");
     }
     setStyle = () => {
         const { height, width, grid, fontsize, textcolor, labelcolor, bgcolor, bordercolor } = this.state.style;
         const fontSize = Math.min(height * grid * 0.05, width * grid * 0.2);
-        this.inputNumber.style.fontSize = `${fontsize || fontSize}px`;
-        this.inputNumber.style.color = textcolor;
+        this.input.style.fontSize = `${fontsize || fontSize}px`;
+        this.input.style.color = textcolor;
         this.label.style.fontSize = `${fontSize}px`;
         this.label.style.color = labelcolor;
         this.container.style.backgroundColor = bgcolor;

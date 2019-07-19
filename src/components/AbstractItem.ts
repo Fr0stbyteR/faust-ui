@@ -146,14 +146,31 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends Component
         return this;
     }
     /**
-     * Use this method if you want the emitter to send value to DSP
+     * Get a nearest valid number
      *
      * @param {number} value
+     * @returns {number}
      * @memberof AbstractItem
      */
-    setValue(value: number) {
-        this.setState({ value });
-        this.change(value);
+    toValidNumber(value: number): number {
+        const { min, max, step } = this.state;
+        if (typeof min !== "number" || typeof max !== "number") return value;
+        const v = Math.min(max, Math.max(min, value));
+        if (!step) return v;
+        return min + Math.round((v - min) / step) * step;
+    }
+    /**
+     * Use this method if you want the emitter to send value to DSP
+     *
+     * @param {number} valueIn
+     * @returns {boolean}
+     * @memberof AbstractItem
+     */
+    setValue(valueIn: number): boolean {
+        const value = this.toValidNumber(valueIn);
+        const changed = this.setState({ value });
+        if (changed) this.change(value);
+        return changed;
     }
     /**
      * Send value to DSP
@@ -169,10 +186,10 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends Component
      * This will not send anything to DSP
      *
      * @param {{ [key in keyof FaustUIItemProps<T>]?: FaustUIItemProps<T>[key] }} newState
-     * @returns
+     * @returns {boolean} - is state updated
      * @memberof AbstractItem
      */
-    setState(newState: { [key in keyof FaustUIItemProps<T>]?: FaustUIItemProps<T>[key] }) {
+    setState(newState: { [key in keyof FaustUIItemProps<T>]?: FaustUIItemProps<T>[key] }): boolean {
         let shouldUpdate = false;
         for (const key in newState) {
             const stateKey = key as keyof FaustUIItemProps<T>;
@@ -187,9 +204,10 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends Component
             } else if (stateKey in this.state && this.state[stateKey] !== stateValue) {
                 (this.state as any)[stateKey] = stateValue;
                 shouldUpdate = true;
-            } else return;
+            } else return false;
             if (shouldUpdate) this.emit(stateKey, this.state[stateKey]);
         }
+        return shouldUpdate;
     }
     /**
      * Create container with class name
@@ -233,6 +251,12 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends Component
         handleResize();
         return this;
     }
+    /**
+     * Count steps in range min-max with step
+     *
+     * @readonly
+     * @memberof AbstractItem
+     */
     get stepsCount() {
         const { type, max, min, step, enums } = this.state;
         const maxSteps = type === "enum" ? enums.length : type === "int" ? max - min : (max - min) / step;
