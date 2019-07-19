@@ -105,7 +105,7 @@ The layout calculation is done in 4 phases:
 
 Each phase of the calculation is called recursively and initiate by a "root" group. Thus once it's calculated, the "root" group and its descendants contains all information about position and size.
 
-## Redering
+## Rendering
 Component rendering constructors can be found below `./src/components` folder. After the layout calculation, `FaustUI` construct the `root` group with the group constructor that will construct all its descendants.
 
 The UI rendering is also done in 4 phases:
