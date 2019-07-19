@@ -12,7 +12,7 @@ export abstract class AbstractItem implements IItem {
     layout: TLayoutProp;
     constructor(item: TFaustUIItem) {
         Object.assign(this, item);
-        this.min = isFinite(+this.min) ? +this.min : Number.MIN_VALUE;
-        this.max = isFinite(+this.max) ? +this.max : Number.MIN_VALUE;
+        this.min = isFinite(+this.min) ? +this.min : 0;
+        this.max = isFinite(+this.max) ? +this.max : 1;
     }
 }
