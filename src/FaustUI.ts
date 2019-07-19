@@ -9,6 +9,15 @@ type TOptions = {
     ui?: TFaustUI;
 }
 
+/**
+ * The main class of UI constructor,
+ * listening to `resize` window event to resize component,
+ * listening to `message` window event to change UI or param value.
+ * See readme.
+ *
+ * @export
+ * @class FaustUI
+ */
 export class FaustUI {
     componentMap: { [path: string]: AbstractItem<any>[] } = {};
     DOMroot: HTMLDivElement;
@@ -17,6 +26,11 @@ export class FaustUI {
     grid: number;
     private _ui: TFaustUI;
     private _layout: TLayoutProp;
+    /**
+     * Calculate incoming UI's layout, bind window events
+     * @param {TOptions} options
+     * @memberof FaustUI
+     */
     constructor(options: TOptions) {
         const { root, ui: uiIn } = options;
         this.DOMroot = root;
@@ -37,6 +51,11 @@ export class FaustUI {
             }
         });
     }
+    /**
+     * Render the UI to DOM root
+     *
+     * @memberof FaustUI
+     */
     mount() {
         this.componentMap = {};
         this.DOMroot.innerHTML = "";
@@ -60,29 +79,65 @@ export class FaustUI {
         this.DOMroot.appendChild(this.faustUIRoot.container);
         this.faustUIRoot.componentDidMount();
     }
+    /**
+     * This method should be called by components to register itself to map.
+     *
+     * @param {string} path
+     * @param {AbstractItem<any>} item
+     * @memberof FaustUI
+     */
     register(path: string, item: AbstractItem<any>) {
         if (this.componentMap[path]) this.componentMap[path].push(item);
         else this.componentMap[path] = [item];
     }
+    /**
+     * Notify the component to change its value.
+     *
+     * @param {string} path
+     * @param {number} value
+     * @memberof FaustUI
+     */
     paramChangeByDSP(path: string, value: number) {
         if (this.componentMap[path]) this.componentMap[path].forEach(item => item.setState({ value }));
     }
-    paramChangeByUI(path: string, value: number) {
+    /**
+     * Can be overriden, called by components when its value is changed by user.
+     *
+     * @memberof FaustUI
+     */
+    paramChangeByUI = (path: string, value: number) => {
         if (!this.hostWindow) return;
         this.hostWindow.postMessage({ path, value, type: "param" }, "*");
     }
+    /**
+     * Calculate UI layout in grid then calculate grid size.
+     *
+     * @memberof FaustUI
+     */
     calc() {
         const { items, layout } = Layout.calc(this.ui);
         this._ui = items;
         this._layout = layout;
         this.calcGrid();
     }
+    /**
+     * Calculate grid size by DOM root size and layout size in grids.
+     *
+     * @returns
+     * @memberof FaustUI
+     */
     calcGrid() {
         const { width, height } = this.DOMroot.getBoundingClientRect();
         const grid = Math.max(40, Math.min(width / this._layout.width, height / this._layout.height));
         this.grid = grid;
         return grid;
     }
+    /**
+     * Force recalculate grid size and resize UI
+     *
+     * @returns
+     * @memberof FaustUI
+     */
     resize() {
         if (!this.faustUIRoot) return;
         this.calcGrid();
