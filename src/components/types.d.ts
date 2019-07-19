@@ -13,7 +13,7 @@ declare interface FaustUIItemProps<T extends FaustUIItemStyle> {
     enums?: { [key: string]: number };
     type?: "enum" | "int" | "float";
     unit?: string;
-    exponent?: number;
+    scale?: "linear" | "exp" | "log";
     style?: T;
     emitter?: FaustUI;
 }

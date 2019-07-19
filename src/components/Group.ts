@@ -55,13 +55,14 @@ export class Group extends Component<FaustUIGroupProps> {
         }
         const ioItem = item as TFaustUIInputItem | TFaustUIOutputItem;
         const { metaObject, enums } = this.parseMeta(ioItem.meta);
-        const { tooltip, unit } = metaObject;
+        const { tooltip, unit, scale } = metaObject;
         const { label, min, max, address, layout } = ioItem;
         const props: FaustUIItemProps<FaustUIItemStyle> = {
             label,
             address,
             tooltip,
             unit,
+            scale: scale || "linear",
             emitter,
             enums,
             style: {

@@ -2,7 +2,7 @@ import { AbstractItem } from "./AbstractItem";
 import { FaustUIItemProps, PointerDragEvent } from "./types";
 import "./Knob.scss";
 import { FaustUINentryStyle } from "./Nentry";
-import { toRad } from "./utils";
+import { toRad, normLog, normExp } from "./utils";
 
 interface FaustUIKnobStyle extends FaustUINentryStyle {
     knobwidth?: number;
@@ -153,13 +153,15 @@ export class Knob extends AbstractItem<FaustUIKnobStyle> {
         ctx.stroke();
     }
     getValueFromDelta(e: PointerDragEvent) {
-        const { type, min, max } = this.state;
+        const { type, min, max, enums, scale } = this.state;
         const stepRange = this.stepRange;
-        const trueSteps = this.steps;
-        const step = type === "enum" ? 1 : (max - min) / trueSteps;
-        const prevSteps = type === "enum" ? e.prevValue : (e.prevValue - min) / step;
-        const dSteps = Math.round((e.fromY - e.y) / stepRange);
-        const steps = Math.min(trueSteps, Math.max(0, prevSteps + dSteps));
+        const stepsCount = this.stepsCount;
+        const step = type === "enum" ? 1 : (max - min) / stepsCount;
+        const range = 100;
+        const prevDistance = AbstractItem.getDistance({ value: e.prevValue, type, min, max, enums, scale }) * range;
+        const distance = prevDistance + e.fromY - e.y;
+        let steps = Math.round((scale === "exp" ? normExp(distance / range) : scale === "log" ? normLog(distance / range) : distance / range) * range / stepRange);
+        steps = Math.min(stepsCount, Math.max(0, steps));
         if (type === "enum") return steps;
         if (type === "int") return Math.round(steps * step + min);
         return steps * step + min;

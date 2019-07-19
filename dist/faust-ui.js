@@ -1525,6 +1525,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Base_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Base.scss */ "./src/components/Base.scss");
 /* harmony import */ var _Base_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_Base_scss__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Component */ "./src/components/Component.ts");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils */ "./src/components/utils.ts");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -1532,6 +1533,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
+
 
 
 /**
@@ -1835,20 +1837,19 @@ class AbstractItem extends _Component__WEBPACK_IMPORTED_MODULE_1__["Component"] 
     return this;
   }
 
-  get steps() {
+  get stepsCount() {
     var _this$state = this.state,
         type = _this$state.type,
         max = _this$state.max,
         min = _this$state.min,
         step = _this$state.step,
         enums = _this$state.enums;
-    var full = 100;
-    var maxSteps = type === "enum" ? enums.length : type === "int" ? max - min : full;
+    var maxSteps = type === "enum" ? enums.length : type === "int" ? max - min : (max - min) / step;
 
     if (step) {
       if (type === "enum") return enums.length;
       if (type === "int") return Math.min(Math.floor((max - min) / (Math.round(step) || 1)), maxSteps);
-      return Math.min(Math.floor((max - min) / step), maxSteps);
+      return Math.floor((max - min) / step);
     }
 
     return maxSteps;
@@ -1867,8 +1868,27 @@ class AbstractItem extends _Component__WEBPACK_IMPORTED_MODULE_1__["Component"] 
         max = _this$state2.max,
         min = _this$state2.min,
         value = _this$state2.value,
-        enums = _this$state2.enums;
-    return type === "enum" ? value / enums.length : (value - min) / (max - min);
+        enums = _this$state2.enums,
+        scale = _this$state2.scale;
+    return AbstractItem.getDistance({
+      type,
+      max,
+      min,
+      value,
+      enums,
+      scale
+    });
+  }
+
+  static getDistance(state) {
+    var type = state.type,
+        max = state.max,
+        min = state.min,
+        value = state.value,
+        enums = state.enums,
+        scale = state.scale;
+    var normalized = type === "enum" ? value / enums.length : (value - min) / (max - min);
+    return scale === "exp" ? Object(_utils__WEBPACK_IMPORTED_MODULE_2__["normLog"])(normalized) : scale === "log" ? Object(_utils__WEBPACK_IMPORTED_MODULE_2__["normExp"])(normalized) : normalized;
   }
   /**
    * Mousemove pixels for each step
@@ -1880,8 +1900,8 @@ class AbstractItem extends _Component__WEBPACK_IMPORTED_MODULE_1__["Component"] 
 
   get stepRange() {
     var full = 100;
-    var trueSteps = this.steps;
-    return full / trueSteps;
+    var stepsCount = this.stepsCount;
+    return full / stepsCount;
   }
 
 }
@@ -1897,7 +1917,7 @@ _defineProperty(AbstractItem, "defaultProps", {
   enums: {},
   type: "float",
   unit: "",
-  exponent: 1,
+  scale: "linear",
   step: 0.01,
   style: {
     width: 45,
@@ -2481,7 +2501,8 @@ class Group extends _Component__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         enums = _this$parseMeta.enums;
 
     var tooltip = metaObject.tooltip,
-        unit = metaObject.unit;
+        unit = metaObject.unit,
+        scale = metaObject.scale;
     var label = ioItem.label,
         min = ioItem.min,
         max = ioItem.max,
@@ -2492,6 +2513,7 @@ class Group extends _Component__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       address,
       tooltip,
       unit,
+      scale: scale || "linear",
       emitter,
       enums,
       style: {
@@ -3149,13 +3171,24 @@ class Knob extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] {
     var _this$state = this.state,
         type = _this$state.type,
         min = _this$state.min,
-        max = _this$state.max;
+        max = _this$state.max,
+        enums = _this$state.enums,
+        scale = _this$state.scale;
     var stepRange = this.stepRange;
-    var trueSteps = this.steps;
-    var step = type === "enum" ? 1 : (max - min) / trueSteps;
-    var prevSteps = type === "enum" ? e.prevValue : (e.prevValue - min) / step;
-    var dSteps = Math.round((e.fromY - e.y) / stepRange);
-    var steps = Math.min(trueSteps, Math.max(0, prevSteps + dSteps));
+    var stepsCount = this.stepsCount;
+    var step = type === "enum" ? 1 : (max - min) / stepsCount;
+    var range = 100;
+    var prevDistance = _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"].getDistance({
+      value: e.prevValue,
+      type,
+      min,
+      max,
+      enums,
+      scale
+    }) * range;
+    var distance = prevDistance + e.fromY - e.y;
+    var steps = Math.round((scale === "exp" ? Object(_utils__WEBPACK_IMPORTED_MODULE_2__["normExp"])(distance / range) : scale === "log" ? Object(_utils__WEBPACK_IMPORTED_MODULE_2__["normLog"])(distance / range) : distance / range) * range / stepRange);
+    steps = Math.min(stepsCount, Math.max(0, steps));
     if (type === "enum") return steps;
     if (type === "int") return Math.round(steps * step + min);
     return steps * step + min;
@@ -4490,20 +4523,19 @@ class VSlider extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"]
     return super.mount();
   }
 
-  get trueSteps() {
+  get stepsCount() {
     var _this$state = this.state,
         type = _this$state.type,
         max = _this$state.max,
         min = _this$state.min,
         step = _this$state.step,
         enums = _this$state.enums;
-    var full = this.interactionRect[this.className === "vslider" ? 3 : 2];
-    var maxSteps = type === "enum" ? enums.length : type === "int" ? max - min : full;
+    var maxSteps = type === "enum" ? enums.length : type === "int" ? max - min : (max - min) / step;
 
     if (step) {
       if (type === "enum") return enums.length;
       if (type === "int") return Math.min(Math.floor((max - min) / (Math.round(step) || 0)), maxSteps);
-      return Math.min(Math.floor((max - min) / step), maxSteps);
+      return Math.floor((max - min) / step);
     }
 
     return maxSteps;
@@ -4511,20 +4543,23 @@ class VSlider extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"]
 
   get stepRange() {
     var full = this.interactionRect[this.className === "vslider" ? 3 : 2];
-    var trueSteps = this.trueSteps;
-    return full / trueSteps;
+    var stepsCount = this.stepsCount;
+    return full / stepsCount;
   }
 
   getValueFromPos(e) {
     var _this$state2 = this.state,
         type = _this$state2.type,
         min = _this$state2.min,
-        max = _this$state2.max;
+        max = _this$state2.max,
+        scale = _this$state2.scale;
     var stepRange = this.stepRange;
-    var trueSteps = this.trueSteps;
-    var step = type === "enum" ? 1 : (max - min) / trueSteps;
-    var steps = Math.round((this.className === "vslider" ? this.interactionRect[3] - (e.y - this.interactionRect[1]) : e.x - this.interactionRect[0]) / stepRange);
-    steps = Math.min(trueSteps, Math.max(0, steps));
+    var stepsCount = this.stepsCount;
+    var step = type === "enum" ? 1 : (max - min) / stepsCount;
+    var distance = this.className === "vslider" ? this.interactionRect[3] - (e.y - this.interactionRect[1]) : e.x - this.interactionRect[0];
+    var range = this.className === "vslider" ? this.interactionRect[3] : this.interactionRect[2];
+    var steps = Math.round((scale === "exp" ? Object(_utils__WEBPACK_IMPORTED_MODULE_2__["normExp"])(distance / range) : scale === "log" ? Object(_utils__WEBPACK_IMPORTED_MODULE_2__["normLog"])(distance / range) : distance / range) * range / stepRange);
+    steps = Math.min(stepsCount, Math.max(0, steps));
     if (type === "enum") return steps;
     if (type === "int") return Math.round(steps * step + min);
     return steps * step + min;
@@ -4538,7 +4573,7 @@ class VSlider extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"]
 /*!*********************************!*\
   !*** ./src/components/utils.ts ***!
   \*********************************/
-/*! exports provided: toMIDI, toRad, atodb, dbtoa, roundedRect, fillRoundedRect */
+/*! exports provided: toMIDI, toRad, atodb, dbtoa, normLog, normExp, roundedRect, fillRoundedRect */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4547,12 +4582,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toRad", function() { return toRad; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "atodb", function() { return atodb; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dbtoa", function() { return dbtoa; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "normLog", function() { return normLog; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "normExp", function() { return normExp; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "roundedRect", function() { return roundedRect; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fillRoundedRect", function() { return fillRoundedRect; });
 var toMIDI = f => ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"][(f % 12 + 12) % 12] + Math.round(f / 12 - 2);
 var toRad = degrees => degrees * Math.PI / 180;
 var atodb = a => 20 * Math.log10(a);
 var dbtoa = db => Math.pow(10, db / 20);
+var normLog = x => Math.log10(x * 99 + 1) / 2 || 0;
+var normExp = x => (Math.pow(10, 2 * x) - 1) / 99;
 var roundedRect = (ctx, x, y, width, height, radius) => {
   var radii = [0, 0, 0, 0];
   if (typeof radius === "number") radii.fill(radius);else radius.forEach((v, i) => radii[i] = v);

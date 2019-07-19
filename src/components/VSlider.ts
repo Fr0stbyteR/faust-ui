@@ -2,7 +2,7 @@ import { AbstractItem } from "./AbstractItem";
 import { FaustUIItemProps, PointerDownEvent, PointerDragEvent } from "./types";
 import "./VSlider.scss";
 import { FaustUINentryStyle } from "./Nentry";
-import { fillRoundedRect } from "./utils";
+import { fillRoundedRect, normLog, normExp } from "./utils";
 
 interface FaustUISliderStyle extends FaustUINentryStyle {
     sliderwidth?: number;
@@ -152,29 +152,30 @@ export class VSlider extends AbstractItem<FaustUISliderStyle> {
         ctx.fillStyle = slidercolor;
         fillRoundedRect(ctx, left - drawWidth, top + drawHeight * (1 - distance) - drawWidth, drawWidth * 3, drawWidth * 2, borderRadius);
     }
-    get trueSteps() {
+    get stepsCount() {
         const { type, max, min, step, enums } = this.state;
-        const full = this.interactionRect[this.className === "vslider" ? 3 : 2];
-        const maxSteps = type === "enum" ? enums.length : type === "int" ? max - min : full;
+        const maxSteps = type === "enum" ? enums.length : type === "int" ? max - min : (max - min) / step;
         if (step) {
             if (type === "enum") return enums.length;
             if (type === "int") return Math.min(Math.floor((max - min) / (Math.round(step) || 0)), maxSteps);
-            return Math.min(Math.floor((max - min) / step), maxSteps);
+            return Math.floor((max - min) / step);
         }
         return maxSteps;
     }
     get stepRange() {
         const full = this.interactionRect[this.className === "vslider" ? 3 : 2];
-        const trueSteps = this.trueSteps;
-        return full / trueSteps;
+        const stepsCount = this.stepsCount;
+        return full / stepsCount;
     }
     getValueFromPos(e: { x: number; y: number }) {
-        const { type, min, max } = this.state;
+        const { type, min, max, scale } = this.state;
         const stepRange = this.stepRange;
-        const trueSteps = this.trueSteps;
-        const step = type === "enum" ? 1 : (max - min) / trueSteps;
-        let steps = Math.round((this.className === "vslider" ? this.interactionRect[3] - (e.y - this.interactionRect[1]) : e.x - this.interactionRect[0]) / stepRange);
-        steps = Math.min(trueSteps, Math.max(0, steps));
+        const stepsCount = this.stepsCount;
+        const step = type === "enum" ? 1 : (max - min) / stepsCount;
+        const distance = (this.className === "vslider" ? this.interactionRect[3] - (e.y - this.interactionRect[1]) : e.x - this.interactionRect[0]);
+        const range = this.className === "vslider" ? this.interactionRect[3] : this.interactionRect[2];
+        let steps = Math.round((scale === "exp" ? normExp(distance / range) : scale === "log" ? normLog(distance / range) : distance / range) * range / stepRange);
+        steps = Math.min(stepsCount, Math.max(0, steps));
         if (type === "enum") return steps;
         if (type === "int") return Math.round(steps * step + min);
         return steps * step + min;

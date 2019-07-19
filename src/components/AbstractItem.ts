@@ -2,6 +2,7 @@
 import { FaustUIItemStyle, FaustUIItemProps, PointerDownEvent, PointerDragEvent, PointerUpEvent } from "./types";
 import "./Base.scss";
 import { Component } from "./Component";
+import { normExp, normLog } from "./utils";
 
 /**
  * Abstract class that describes a FaustUI Component
@@ -40,7 +41,7 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends Component
         enums: {},
         type: "float",
         unit: "",
-        exponent: 1,
+        scale: "linear",
         step: 0.01,
         style: { width: 45, height: 15, left: 0, top: 0 }
     }
@@ -232,14 +233,13 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends Component
         handleResize();
         return this;
     }
-    get steps() {
+    get stepsCount() {
         const { type, max, min, step, enums } = this.state;
-        const full = 100;
-        const maxSteps = type === "enum" ? enums.length : type === "int" ? max - min : full;
+        const maxSteps = type === "enum" ? enums.length : type === "int" ? max - min : (max - min) / step;
         if (step) {
             if (type === "enum") return enums.length;
             if (type === "int") return Math.min(Math.floor((max - min) / (Math.round(step) || 1)), maxSteps);
-            return Math.min(Math.floor((max - min) / step), maxSteps);
+            return Math.floor((max - min) / step);
         }
         return maxSteps;
     }
@@ -250,8 +250,13 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends Component
      * @memberof AbstractItem
      */
     get distance() {
-        const { type, max, min, value, enums } = this.state;
-        return type === "enum" ? value / enums.length : (value - min) / (max - min);
+        const { type, max, min, value, enums, scale } = this.state;
+        return AbstractItem.getDistance({ type, max, min, value, enums, scale });
+    }
+    static getDistance(state: { value: number; min: number; max: number; enums?: { [key: string]: number }; type: "enum" | "int" | "float"; scale: "linear" | "exp" | "log" }) {
+        const { type, max, min, value, enums, scale } = state;
+        const normalized = type === "enum" ? value / enums.length : (value - min) / (max - min);
+        return scale === "exp" ? normLog(normalized) : scale === "log" ? normExp(normalized) : normalized;
     }
     /**
      * Mousemove pixels for each step
@@ -261,7 +266,7 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends Component
      */
     get stepRange() {
         const full = 100;
-        const trueSteps = this.steps;
-        return full / trueSteps;
+        const stepsCount = this.stepsCount;
+        return full / stepsCount;
     }
 }
