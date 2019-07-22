@@ -266,9 +266,9 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends AbstractC
         canvas.width = width;
         ctx.clearRect(0, 0, width, height);
         ctx.fillStyle = color;
-        ctx.textBaseline = "top";
+        ctx.textBaseline = "middle";
         ctx.font = `bold ${height * 0.9}px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`;
-        ctx.fillText(label, 0, 0, width);
+        ctx.fillText(label, 0, height / 2, width);
         return this;
     }
     /**

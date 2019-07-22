@@ -105,7 +105,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".faust-ui-component {\n  display: flex;\n  position: absolute;\n  flex-direction: column;\n  overflow: hidden; }\n  .faust-ui-component:focus {\n    outline: none; }\n  .faust-ui-component > .faust-ui-component-label {\n    position: relative;\n    margin-bottom: 4px;\n    max-width: 100%;\n    user-select: none; }\n    .faust-ui-component > .faust-ui-component-label > canvas {\n      position: relative;\n      display: block;\n      width: 100%;\n      height: 100%; }\n  .faust-ui-component input {\n    box-shadow: none; }\n", ""]);
+exports.push([module.i, ".faust-ui-component {\n  display: flex;\n  position: absolute;\n  flex-direction: column;\n  overflow: hidden; }\n  .faust-ui-component:focus {\n    outline: none; }\n  .faust-ui-component > .faust-ui-component-label {\n    position: relative;\n    margin-top: 4px;\n    max-width: 100%;\n    user-select: none; }\n    .faust-ui-component > .faust-ui-component-label > canvas {\n      position: relative;\n      display: block;\n      width: 100%;\n      height: 100%; }\n  .faust-ui-component input {\n    box-shadow: none; }\n", ""]);
 
 
 /***/ }),
@@ -2093,9 +2093,9 @@ class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["Abst
     canvas.width = width;
     ctx.clearRect(0, 0, width, height);
     ctx.fillStyle = color;
-    ctx.textBaseline = "top";
+    ctx.textBaseline = "middle";
     ctx.font = "bold ".concat(height * 0.9, "px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"");
-    ctx.fillText(label, 0, 0, width);
+    ctx.fillText(label, 0, height / 2, width);
     return this;
   }
   /**
