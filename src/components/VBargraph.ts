@@ -126,12 +126,14 @@ export class VBargraph extends AbstractItem<FaustUIBargraphStyle> {
             this.maxTimer = window.setTimeout(() => {
                 this.maxValue = this.paintValue;
                 this.maxTimer = undefined;
+                this.schedule(this.paint);
             }, 1000);
         }
         if (paintValue < this.maxValue && typeof this.maxTimer === "undefined") {
             this.maxTimer = window.setTimeout(() => {
                 this.maxValue = this.paintValue;
                 this.maxTimer = undefined;
+                this.schedule(this.paint);
             }, 1000);
         }
         const maxValue = this.maxValue;
@@ -166,7 +168,7 @@ export class VBargraph extends AbstractItem<FaustUIBargraphStyle> {
             }
             if (maxValue > 0) {
                 const distance = Math.min(max, maxValue) / (max - min);
-                ctx.fillRect(left, Math.max(0, top + (1 - overloadStop - distance) * drawHeight - 1), drawWidth, 1);
+                ctx.fillRect(left, Math.max(top, top + (1 - overloadStop - distance) * drawHeight - 1), drawWidth, 1);
             }
         }
     }

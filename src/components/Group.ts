@@ -15,6 +15,7 @@ import { Numerical } from "./Numerical";
 import { HBargraph } from "./HBargraph";
 import { VBargraph } from "./VBargraph";
 import { Layout } from "../layout/Layout";
+import "./Group.scss";
 
 export class Group extends Component<FaustUIGroupProps> {
     static parseMeta(metaIn: TFaustUIMeta[]): { metaObject: TFaustUIMeta; enums?: { [key: string]: number } } {
