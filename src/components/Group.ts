@@ -48,7 +48,8 @@ export class Group extends AbstractComponent<FaustUIGroupProps> {
                     width: layout.width,
                     height: layout.height,
                     left: layout.offsetLeft,
-                    top: layout.offsetTop
+                    top: layout.offsetTop,
+                    labelcolor: "rgba(255, 255, 255, 0.7)"
                 },
                 emitter
             };
@@ -74,8 +75,8 @@ export class Group extends AbstractComponent<FaustUIGroupProps> {
                 top: layout.offsetTop
             },
             type: "float",
-            min: isFinite(+min) ? +min : Number.MIN_VALUE,
-            max: isFinite(+max) ? +max : Number.MAX_VALUE,
+            min: isFinite(min) ? min : 0,
+            max: isFinite(max) ? max : 1,
             step: "step" in item ? +item.step : 1,
             value: "init" in item ? +item.init || 0 : 0
         };
@@ -100,7 +101,21 @@ export class Group extends AbstractComponent<FaustUIGroupProps> {
      * @memberof AbstractItem
      */
     container: HTMLDivElement;
+    /**
+     * DOM Div container of label canvas
+     *
+     * @type {HTMLDivElement}
+     * @memberof AbstractItem
+     */
     label: HTMLDivElement;
+    /**
+     * Use canvas as label to fit full text in.
+     *
+     * @type {HTMLCanvasElement}
+     * @memberof AbstractItem
+     */
+    labelCanvas: HTMLCanvasElement;
+    labelCtx: CanvasRenderingContext2D;
     tabs: HTMLDivElement;
     children: (AbstractItem<FaustUIItemStyle> | Group)[];
     layout: TLayoutProp;
@@ -130,17 +145,36 @@ export class Group extends AbstractComponent<FaustUIGroupProps> {
         this.tabs.className = "faust-ui-tgroup-tabs";
         this.label = document.createElement("div");
         this.label.className = "faust-ui-group-label";
+        this.labelCanvas = document.createElement("canvas");
+        this.labelCtx = this.labelCanvas.getContext("2d");
         this.updateUI();
         this.children.forEach(item => item.componentWillMount());
         return this;
     }
+    paintLabel(): this {
+        const label = this.state.label;
+        const color = this.state.style.labelcolor;
+        const ctx = this.labelCtx;
+        const canvas = this.labelCanvas;
+        let { width, height } = this.label.getBoundingClientRect();
+        if (!width || !height) return this;
+        width = Math.floor(width);
+        height = Math.floor(height);
+        canvas.height = height;
+        canvas.width = width;
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = color;
+        ctx.textBaseline = "middle";
+        ctx.textAlign = "left";
+        ctx.font = `bold ${height * 0.9}px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`;
+        ctx.fillText(label, 0, height / 2, width);
+        return this;
+    }
     updateUI = () => {
         this.children = [];
-        const { label, style, type, items, emitter, isRoot } = this.state;
+        const { style, type, items, emitter, isRoot } = this.state;
         const { grid, left, top, width, height } = style;
-        this.label.innerText = label;
-        this.label.title = label;
-        this.label.style.fontSize = `${0.25 * grid}px`;
+        this.label.style.height = `${grid * 0.3}px`;
         this.container.style.left = `${left * grid}px`;
         this.container.style.top = `${top * grid}px`;
         this.container.style.width = `${width * grid}px`;
@@ -191,6 +225,7 @@ export class Group extends AbstractComponent<FaustUIGroupProps> {
         }
     }
     mount(): this {
+        this.label.appendChild(this.labelCanvas);
         this.container.appendChild(this.label);
         if (this.tabs.children.length) this.container.appendChild(this.tabs);
         this.children.forEach((item) => {
@@ -202,7 +237,7 @@ export class Group extends AbstractComponent<FaustUIGroupProps> {
     componentDidMount(): this {
         const handleResize = () => {
             const { grid, left, top, width, height } = this.state.style;
-            this.label.style.fontSize = `${0.25 * grid}px`;
+            this.label.style.height = `${grid * 0.3}px`;
             this.container.style.width = `${width * grid}px`;
             this.container.style.height = `${height * grid}px`;
             this.container.style.left = `${left * grid}px`;
@@ -218,6 +253,7 @@ export class Group extends AbstractComponent<FaustUIGroupProps> {
                     tab.style.lineHeight = `${grid - 10}px`;
                 }
             }
+            this.paintLabel();
             this.children.forEach(item => item.setState({ style: { grid } }));
         };
         this.on("style", () => this.schedule(handleResize));
@@ -227,10 +263,11 @@ export class Group extends AbstractComponent<FaustUIGroupProps> {
         };
         this.on("items", () => this.schedule(itemsChange));
         const labelChange = () => {
-            this.label.innerText = this.state.label;
+            this.paintLabel();
             this.label.title = this.state.label;
         };
         this.on("label", () => this.schedule(labelChange));
+        this.paintLabel();
         if (this.tabs && this.tabs.children.length) (this.tabs.children[0] as HTMLSpanElement).click();
         this.children.forEach(item => item.componentDidMount());
         return this;

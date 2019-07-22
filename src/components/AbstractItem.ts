@@ -236,7 +236,7 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends AbstractC
         this.container.className = ["faust-ui-component", "faust-ui-component-" + this.className].join(" ");
         this.container.tabIndex = 1;
         this.container.id = this.state.address;
-        this.container.title = this.state.tooltip;
+        if (this.state.tooltip) this.container.title = this.state.tooltip;
         this.label = document.createElement("div");
         this.label.className = "faust-ui-component-label";
         this.labelCanvas = document.createElement("canvas");
