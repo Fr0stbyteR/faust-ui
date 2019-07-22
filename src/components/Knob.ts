@@ -33,7 +33,6 @@ export class Knob extends AbstractItem<FaustUIKnobStyle> {
     }
     className = "knob";
 
-    label: HTMLDivElement;
     canvas: HTMLCanvasElement;
     inputNumber: HTMLInputElement;
     input: HTMLInputElement;
@@ -44,9 +43,6 @@ export class Knob extends AbstractItem<FaustUIKnobStyle> {
         this.canvas.width = 10;
         this.canvas.height = 10;
         this.ctx = this.canvas.getContext("2d");
-        this.label = document.createElement("div");
-        this.label.className = "faust-ui-component-label";
-        this.label.innerText = this.state.label;
         this.inputNumber = document.createElement("input");
         this.inputNumber.type = "number";
         this.inputNumber.value = (+this.state.value.toFixed(3)).toString();
@@ -68,11 +64,9 @@ export class Knob extends AbstractItem<FaustUIKnobStyle> {
         this.input.value = this.inputNumber.value + (this.state.unit || "");
     }
     setStyle = () => {
-        const { fontsize, height, grid, textcolor, labelcolor, bgcolor, bordercolor } = this.state.style;
+        const { fontsize, height, grid, textcolor, bgcolor, bordercolor } = this.state.style;
         this.input.style.fontSize = `${fontsize || height * grid * 0.1}px`;
         this.input.style.color = textcolor;
-        this.label.style.fontSize = `${height * grid * 0.1}px`;
-        this.label.style.color = labelcolor;
         this.container.style.backgroundColor = bgcolor;
         this.container.style.borderColor = bordercolor;
     }
@@ -85,8 +79,7 @@ export class Knob extends AbstractItem<FaustUIKnobStyle> {
             this.schedule(this.setStyle);
             this.schedule(this.paint);
         });
-        const labelChange = () => this.label.innerText = this.state.label;
-        this.on("label", () => this.schedule(labelChange));
+        this.on("label", () => this.schedule(this.paintLabel));
         const valueChange = () => {
             this.inputNumber.value = (+this.state.value.toFixed(3)).toString();
             this.input.value = this.inputNumber.value + (this.state.unit || "");

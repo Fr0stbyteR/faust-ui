@@ -1,6 +1,6 @@
 import { EventEmitter } from "events";
 
-export abstract class Component<T extends { [key: string]: any }> extends EventEmitter {
+export abstract class AbstractComponent<T extends { [key: string]: any }> extends EventEmitter {
     on<K extends keyof T>(type: K, listener: (e: T[K]) => void) {
         return super.on(type, listener);
     }
@@ -25,7 +25,7 @@ export abstract class Component<T extends { [key: string]: any }> extends EventE
      */
     static defaultProps: { [key: string]: any } = {};
     get defaultProps() {
-        return (this.constructor as typeof Component).defaultProps as T;
+        return (this.constructor as typeof AbstractComponent).defaultProps as T;
     }
     /**
      * Here stores corrent state of component
@@ -50,7 +50,7 @@ export abstract class Component<T extends { [key: string]: any }> extends EventE
      * @type {number}
      * @memberof Component
      */
-    frameReduce = 1;
+    frameReduce: number = 1;
     /**
      * Here stores current `requestAnimationFrame` reference
      * if we have a new state to render, we cancel the old one
@@ -69,7 +69,7 @@ export abstract class Component<T extends { [key: string]: any }> extends EventE
     private raf = () => {
         this.$frame++;
         if (this.$frame % this.frameReduce !== 0) {
-            window.cancelAnimationFrame(this.$raf);
+            if (this.$raf) window.cancelAnimationFrame(this.$raf);
             this.$raf = window.requestAnimationFrame(this.raf);
             return;
         }
@@ -121,7 +121,7 @@ export abstract class Component<T extends { [key: string]: any }> extends EventE
      */
     schedule(func: () => any) {
         if (this.tasks.indexOf(func) === -1) this.tasks.push(func);
-        window.cancelAnimationFrame(this.$raf);
+        if (this.$raf) window.cancelAnimationFrame(this.$raf);
         this.$raf = window.requestAnimationFrame(this.raf);
     }
 }

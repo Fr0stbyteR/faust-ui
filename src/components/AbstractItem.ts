@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FaustUIItemStyle, FaustUIItemProps, PointerDownEvent, PointerDragEvent, PointerUpEvent } from "./types";
 import "./Base.scss";
-import { Component } from "./Component";
+import { AbstractComponent } from "./AbstractComponent";
 import { normExp, normLog } from "./utils";
 
 /**
@@ -22,7 +22,7 @@ import { normExp, normLog } from "./utils";
  * @extends {EventEmitter}
  * @template T
  */
-export abstract class AbstractItem<T extends FaustUIItemStyle> extends Component<FaustUIItemProps<T>> {
+export abstract class AbstractItem<T extends FaustUIItemStyle> extends AbstractComponent<FaustUIItemProps<T>> {
     /**
      * The default state of the component.
      *
@@ -43,15 +43,30 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends Component
         unit: "",
         scale: "linear",
         step: 0.01,
-        style: { width: 45, height: 15, left: 0, top: 0 }
+        style: { width: 45, height: 15, left: 0, top: 0, labelcolor: "rgba(226, 222, 255, 0.5)" }
     }
     /**
-     * DOM Div container of the componnt
+     * DOM Div container of the component
      *
      * @type {HTMLDivElement}
      * @memberof AbstractItem
      */
     container: HTMLDivElement;
+    /**
+     * DOM Div container of label canvas
+     *
+     * @type {HTMLDivElement}
+     * @memberof AbstractItem
+     */
+    label: HTMLDivElement;
+    /**
+     * Use canvas as label to fit full text in.
+     *
+     * @type {HTMLCanvasElement}
+     * @memberof AbstractItem
+     */
+    labelCanvas: HTMLCanvasElement;
+    labelCtx: CanvasRenderingContext2D;
     /**
      * Override this to get css work
      *
@@ -222,6 +237,10 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends Component
         this.container.tabIndex = 1;
         this.container.id = this.state.address;
         if (this.state.tooltip) this.container.title = this.state.tooltip;
+        this.label = document.createElement("div");
+        this.label.className = "faust-ui-component-label";
+        this.labelCanvas = document.createElement("canvas");
+        this.labelCtx = this.labelCanvas.getContext("2d");
         return this;
     }
     /**
@@ -231,6 +250,25 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends Component
      * @memberof AbstractItem
      */
     mount(): this {
+        this.label.appendChild(this.labelCanvas);
+        return this;
+    }
+    paintLabel(): this {
+        const label = this.state.label;
+        const color = this.state.style.labelcolor;
+        const ctx = this.labelCtx;
+        const canvas = this.labelCanvas;
+        let { width, height } = this.label.getBoundingClientRect();
+        if (!width || !height) return this;
+        width = Math.floor(width);
+        height = Math.floor(height);
+        canvas.height = height;
+        canvas.width = width;
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = color;
+        ctx.textBaseline = "top";
+        ctx.font = `bold ${height * 0.9}px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`;
+        ctx.fillText(label, 0, 0, width);
         return this;
     }
     /**
@@ -246,6 +284,8 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends Component
             this.container.style.height = `${height * grid}px`;
             this.container.style.left = `${left * grid}px`;
             this.container.style.top = `${top * grid}px`;
+            this.label.style.height = `${grid * 0.25}px`;
+            this.paintLabel();
         };
         this.on("style", () => this.schedule(handleResize));
         handleResize();

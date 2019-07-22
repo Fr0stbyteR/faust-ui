@@ -33,7 +33,6 @@ export class VSlider extends AbstractItem<FaustUISliderStyle> {
     }
     className = "vslider";
 
-    label: HTMLDivElement;
     canvas: HTMLCanvasElement;
     inputNumber: HTMLInputElement;
     input: HTMLInputElement;
@@ -51,9 +50,6 @@ export class VSlider extends AbstractItem<FaustUISliderStyle> {
         this.canvas.width = 10;
         this.canvas.height = 10;
         this.ctx = this.canvas.getContext("2d");
-        this.label = document.createElement("div");
-        this.label.className = "faust-ui-component-label";
-        this.label.innerText = this.state.label;
         this.inputNumber = document.createElement("input");
         this.inputNumber.type = "number";
         this.inputNumber.value = (+this.state.value.toFixed(3)).toString();
@@ -75,12 +71,10 @@ export class VSlider extends AbstractItem<FaustUISliderStyle> {
         this.input.value = this.inputNumber.value + (this.state.unit || "");
     }
     setStyle = () => {
-        const { height, width, grid, fontsize, textcolor, labelcolor, bgcolor, bordercolor } = this.state.style;
+        const { height, width, grid, fontsize, textcolor, bgcolor, bordercolor } = this.state.style;
         const fontSize = Math.min(height * grid * 0.05, width * grid * 0.2);
         this.input.style.fontSize = `${fontsize || fontSize}px`;
         this.input.style.color = textcolor;
-        this.label.style.fontSize = `${fontSize}px`;
-        this.label.style.color = labelcolor;
         this.container.style.backgroundColor = bgcolor;
         this.container.style.borderColor = bordercolor;
     }
@@ -93,8 +87,7 @@ export class VSlider extends AbstractItem<FaustUISliderStyle> {
             this.schedule(this.setStyle);
             this.schedule(this.paint);
         });
-        const labelChange = () => this.label.innerText = this.state.label;
-        this.on("label", () => this.schedule(labelChange));
+        this.on("label", () => this.schedule(this.paintLabel));
         const valueChange = () => {
             this.inputNumber.value = (+this.state.value.toFixed(3)).toString();
             this.input.value = this.inputNumber.value + (this.state.unit || "");

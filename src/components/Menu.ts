@@ -30,13 +30,9 @@ export class Menu extends AbstractItem<FaustUIMenuStyle> {
     }
     className = "menu";
 
-    label: HTMLDivElement;
     select: HTMLSelectElement;
     componentWillMount() {
         super.componentWillMount();
-        this.label = document.createElement("div");
-        this.label.className = "faust-ui-component-label";
-        this.label.innerText = this.state.label;
         this.select = document.createElement("select");
         this.getOptions();
         this.setStyle();
@@ -61,20 +57,17 @@ export class Menu extends AbstractItem<FaustUIMenuStyle> {
         this.setValue(+(e.currentTarget as HTMLInputElement).value);
     }
     setStyle = () => {
-        const { height, grid, fontsize, textcolor, labelcolor, bgcolor, bordercolor } = this.state.style;
+        const { height, grid, fontsize, textcolor, bgcolor, bordercolor } = this.state.style;
         this.select.style.backgroundColor = bgcolor;
         this.select.style.borderColor = bordercolor;
         this.select.style.color = textcolor;
         this.select.style.fontSize = `${fontsize || height * grid / 4}px`;
-        this.label.style.fontSize = `${height * grid / 4}px`;
-        this.label.style.color = labelcolor;
     }
     componentDidMount() {
         super.componentDidMount();
         this.select.addEventListener("change", this.handleChange);
         this.on("style", () => this.schedule(this.setStyle));
-        const labelChange = () => this.label.innerText = this.state.label;
-        this.on("label", () => this.schedule(labelChange));
+        this.on("label", () => this.schedule(this.paintLabel));
         this.on("enums", () => this.schedule(this.getOptions));
         const valueChange = () => {
             for (let i = this.select.children.length - 1; i >= 0; i--) {

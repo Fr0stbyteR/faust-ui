@@ -30,13 +30,9 @@ export class Nentry extends AbstractItem<FaustUINentryStyle> {
     }
     className = "nentry";
 
-    label: HTMLDivElement;
     input: HTMLInputElement;
     componentWillMount() {
         super.componentWillMount();
-        this.label = document.createElement("div");
-        this.label.className = "faust-ui-component-label";
-        this.label.innerText = this.state.label;
         this.input = document.createElement("input");
         this.input.type = "number";
         this.input.value = (+this.state.value.toFixed(3)).toString();
@@ -50,20 +46,17 @@ export class Nentry extends AbstractItem<FaustUINentryStyle> {
         this.setValue(+(e.currentTarget as HTMLInputElement).value);
     }
     setStyle = () => {
-        const { height, grid, fontsize, textcolor, labelcolor, bgcolor, bordercolor } = this.state.style;
+        const { height, grid, fontsize, textcolor, bgcolor, bordercolor } = this.state.style;
         this.input.style.backgroundColor = bgcolor;
         this.input.style.borderColor = bordercolor;
         this.input.style.color = textcolor;
         this.input.style.fontSize = `${fontsize || height * grid / 4}px`;
-        this.label.style.fontSize = `${height * grid / 4}px`;
-        this.label.style.color = labelcolor;
     }
     componentDidMount() {
         super.componentDidMount();
         this.input.addEventListener("change", this.handleChange);
         this.on("style", () => this.schedule(this.setStyle));
-        const labelChange = () => this.label.innerText = this.state.label;
-        this.on("label", () => this.schedule(labelChange));
+        this.on("label", () => this.schedule(this.paintLabel));
         const valueChange = () => this.input.value = (+this.state.value.toFixed(3)).toString();
         this.on("value", () => this.schedule(valueChange));
         const maxChange = () => this.input.max = this.state.max.toString();

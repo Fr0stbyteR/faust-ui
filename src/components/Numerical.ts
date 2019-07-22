@@ -22,13 +22,9 @@ export class Numerical extends AbstractItem<FaustUINentryStyle> {
     }
     className = "numerical";
 
-    label: HTMLDivElement;
     input: HTMLInputElement;
     componentWillMount() {
         super.componentWillMount();
-        this.label = document.createElement("div");
-        this.label.className = "faust-ui-component-label";
-        this.label.innerText = this.state.label;
         this.input = document.createElement("input");
         this.input.disabled = true;
         this.input.value = (+this.state.value.toFixed(3)).toString() + (this.state.unit || "");
@@ -36,19 +32,16 @@ export class Numerical extends AbstractItem<FaustUINentryStyle> {
         return this;
     }
     setStyle = () => {
-        const { height, grid, fontsize, textcolor, labelcolor, bgcolor, bordercolor } = this.state.style;
+        const { height, grid, fontsize, textcolor, bgcolor, bordercolor } = this.state.style;
         this.input.style.backgroundColor = bgcolor;
         this.input.style.borderColor = bordercolor;
         this.input.style.color = textcolor;
         this.input.style.fontSize = `${fontsize || height * grid / 4}px`;
-        this.label.style.fontSize = `${height * grid / 4}px`;
-        this.label.style.color = labelcolor;
     }
     componentDidMount() {
         super.componentDidMount();
         this.on("style", () => this.schedule(this.setStyle));
-        const labelChange = () => this.label.innerText = this.state.label;
-        this.on("label", () => this.schedule(labelChange));
+        this.on("label", () => this.schedule(this.paintLabel));
         const valueChange = () => this.input.value = (+this.state.value.toFixed(3)).toString() + (this.state.unit || "");
         this.on("value", () => this.schedule(valueChange));
         return this;

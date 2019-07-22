@@ -36,7 +36,6 @@ export class VBargraph extends AbstractItem<FaustUIBargraphStyle> {
     }
     className = "vbargraph";
 
-    label: HTMLDivElement;
     canvas: HTMLCanvasElement;
     input: HTMLInputElement;
     flexDiv: HTMLDivElement;
@@ -52,9 +51,6 @@ export class VBargraph extends AbstractItem<FaustUIBargraphStyle> {
         this.canvas.width = 10;
         this.canvas.height = 10;
         this.ctx = this.canvas.getContext("2d");
-        this.label = document.createElement("div");
-        this.label.className = "faust-ui-component-label";
-        this.label.innerText = this.state.label;
         this.input = document.createElement("input");
         this.input.disabled = true;
         this.input.value = (+this.state.value.toFixed(3)).toString() + (this.state.unit || "");
@@ -62,12 +58,10 @@ export class VBargraph extends AbstractItem<FaustUIBargraphStyle> {
         return this;
     }
     setStyle = () => {
-        const { height, width, grid, fontsize, textcolor, labelcolor, bgcolor, bordercolor } = this.state.style;
+        const { height, width, grid, fontsize, textcolor, bgcolor, bordercolor } = this.state.style;
         const fontSize = Math.min(height * grid * 0.05, width * grid * 0.2);
         this.input.style.fontSize = `${fontsize || fontSize}px`;
         this.input.style.color = textcolor;
-        this.label.style.fontSize = `${fontSize}px`;
-        this.label.style.color = labelcolor;
         this.container.style.backgroundColor = bgcolor;
         this.container.style.borderColor = bordercolor;
     }
@@ -79,8 +73,7 @@ export class VBargraph extends AbstractItem<FaustUIBargraphStyle> {
             this.schedule(this.setStyle);
             this.schedule(this.paint);
         });
-        const labelChange = () => this.label.innerText = this.state.label;
-        this.on("label", () => this.schedule(labelChange));
+        this.on("label", () => this.schedule(this.paintLabel));
         const valueChange = () => this.input.value = (+this.state.value.toFixed(3)).toString() + (this.state.unit || "");
         this.on("value", () => {
             this.schedule(valueChange);

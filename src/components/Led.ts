@@ -36,7 +36,6 @@ export class Led extends AbstractItem<FaustUILedStyle> {
     }
     className = "led";
 
-    label: HTMLDivElement;
     canvasDiv: HTMLDivElement;
     canvas: HTMLCanvasElement;
     tempCanvas: HTMLCanvasElement;
@@ -54,16 +53,11 @@ export class Led extends AbstractItem<FaustUILedStyle> {
         this.tempCtx = this.tempCanvas.getContext("2d");
         this.tempCanvas.width = 128;
         this.tempCanvas.height = 1;
-        this.label = document.createElement("div");
-        this.label.className = "faust-ui-component-label";
-        this.label.innerText = this.state.label;
         this.setStyle();
         return this;
     }
     setStyle = () => {
-        const { height, grid, labelcolor, bgcolor, bordercolor } = this.state.style;
-        this.label.style.fontSize = `${height * grid * 0.25}px`;
-        this.label.style.color = labelcolor;
+        const { bgcolor, bordercolor } = this.state.style;
         this.container.style.backgroundColor = bgcolor;
         this.container.style.borderColor = bordercolor;
     }
@@ -72,8 +66,7 @@ export class Led extends AbstractItem<FaustUILedStyle> {
         this.canvas.addEventListener("mousedown", this.handleMouseDown);
         this.canvas.addEventListener("touchstart", this.handleTouchStart, { passive: false });
         this.on("style", () => this.schedule(this.setStyle));
-        const labelChange = () => this.label.innerText = this.state.label;
-        this.on("label", () => this.schedule(labelChange));
+        this.on("label", () => this.schedule(this.paintLabel));
         this.on("value", () => this.schedule(this.paint));
         this.on("max", () => this.schedule(this.paint));
         this.on("min", () => this.schedule(this.paint));

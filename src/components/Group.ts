@@ -1,5 +1,5 @@
 import { FaustUI } from "../FaustUI";
-import { Component } from "./Component";
+import { AbstractComponent } from "./AbstractComponent";
 import { AbstractItem } from "./AbstractItem";
 import { FaustUIItemProps, FaustUIItemStyle, FaustUIGroupProps } from "./types";
 import { HSlider } from "./HSlider";
@@ -17,7 +17,7 @@ import { VBargraph } from "./VBargraph";
 import { Layout } from "../layout/Layout";
 import "./Group.scss";
 
-export class Group extends Component<FaustUIGroupProps> {
+export class Group extends AbstractComponent<FaustUIGroupProps> {
     static parseMeta(metaIn: TFaustUIMeta[]): { metaObject: TFaustUIMeta; enums?: { [key: string]: number } } {
         const metaObject: TFaustUIMeta = {};
         if (!metaIn) return { metaObject };
@@ -113,7 +113,7 @@ export class Group extends Component<FaustUIGroupProps> {
                 for (const key in newState.style) {
                     const styleKey = key as keyof FaustUIItemStyle;
                     if (styleKey in this.state.style && this.state.style[styleKey] !== newState.style[styleKey]) {
-                        this.state.style[styleKey] = newState.style[styleKey];
+                        (this.state.style as any)[styleKey] = newState.style[styleKey];
                         shouldUpdate = true;
                     }
                 }

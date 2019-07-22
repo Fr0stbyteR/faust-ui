@@ -5,11 +5,9 @@ export class HBargraph extends VBargraph {
     className = "hbargraph";
 
     setStyle = () => {
-        const { height, grid, fontsize, textcolor, labelcolor, bgcolor, bordercolor } = this.state.style;
+        const { height, grid, fontsize, textcolor, bgcolor, bordercolor } = this.state.style;
         this.input.style.fontSize = `${fontsize || height * grid * 0.2}px`;
         this.input.style.color = textcolor;
-        this.label.style.fontSize = `${height * grid * 0.2}px`;
-        this.label.style.color = labelcolor;
         this.container.style.backgroundColor = bgcolor;
         this.container.style.borderColor = bordercolor;
     }

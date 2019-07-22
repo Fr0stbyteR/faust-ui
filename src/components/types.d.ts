@@ -31,6 +31,7 @@ declare interface FaustUIItemStyle {
     left?: number;
     top?: number;
     grid?: number;
+    labelcolor?: string;
 }
 declare interface PointerDownEvent {
     x: number;

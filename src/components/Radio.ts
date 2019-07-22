@@ -30,13 +30,9 @@ export class Radio extends AbstractItem<FaustUIRadioStyle> {
     }
     className = "radio";
 
-    label: HTMLDivElement;
     group: HTMLDivElement;
     componentWillMount() {
         super.componentWillMount();
-        this.label = document.createElement("div");
-        this.label.className = "faust-ui-component-label";
-        this.label.innerText = this.state.label;
         this.group = document.createElement("div");
         this.group.className = "faust-ui-component-radio-group";
         this.getOptions();
@@ -67,20 +63,17 @@ export class Radio extends AbstractItem<FaustUIRadioStyle> {
         this.setValue(+(e.currentTarget as HTMLInputElement).value);
     }
     setStyle = () => {
-        const { height, width, grid, fontsize, textcolor, labelcolor, bgcolor, bordercolor } = this.state.style;
+        const { height, width, grid, fontsize, textcolor, bgcolor, bordercolor } = this.state.style;
         const fontSize = Math.min(height * grid * 0.1, width * grid * 0.1);
         this.group.style.backgroundColor = bgcolor;
         this.group.style.borderColor = bordercolor;
         this.group.style.color = textcolor;
         this.group.style.fontSize = `${fontsize || fontSize}px`;
-        this.label.style.fontSize = `${fontSize}px`;
-        this.label.style.color = labelcolor;
     }
     componentDidMount() {
         super.componentDidMount();
         this.on("style", () => this.schedule(this.setStyle));
-        const labelChange = () => this.label.innerText = this.state.label;
-        this.on("label", () => this.schedule(labelChange));
+        this.on("label", () => this.schedule(this.paintLabel));
         this.on("enums", () => this.schedule(this.getOptions));
         const valueChange = () => {
             for (let i = this.group.children.length - 1; i >= 0; i--) {

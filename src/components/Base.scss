@@ -6,15 +6,17 @@
     &:focus {
         outline: none;
     }
-    & .faust-ui-component-label {
+    & > .faust-ui-component-label {
         position: relative;
-        font-weight: bold;
         margin-bottom: 4px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
         max-width: 100%;
-        overflow: hidden;
         user-select: none;
+        & > canvas {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
     }
     & input {
         box-shadow: none;
