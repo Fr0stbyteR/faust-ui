@@ -301,7 +301,7 @@ exports.push([module.i, ".faust-ui-component.faust-ui-component-vslider {\n  ali
 
 exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".faust-ui-root {\n  margin: 0px auto;\n  flex: 1 0 auto;\n  position: relative !important;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"; }\n", ""]);
+exports.push([module.i, ".faust-ui-root {\n  margin: 0px auto;\n  flex: 1 0 auto;\n  position: relative !important;\n  background-color: transparent !important;\n  border: none !important;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"; }\n", ""]);
 
 
 /***/ }),
@@ -2527,7 +2527,7 @@ class Group extends _Component__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       this.container.style.top = "".concat(top * grid, "px");
       this.container.style.width = "".concat(width * grid, "px");
       this.container.style.height = "".concat(height * grid, "px");
-      this.container.className = ["faust-ui-group", "faust-ui-".concat(type), "".concat(isRoot ? "faust-ui-root" : "")].join(" ");
+      this.container.className = ["".concat(isRoot ? "faust-ui-root" : ""), "faust-ui-group", "faust-ui-".concat(type)].join(" ");
       items.forEach(item => {
         if (item.type.endsWith("group")) {
           var component = Group.getComponent(item, emitter, grid);
