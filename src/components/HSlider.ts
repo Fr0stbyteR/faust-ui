@@ -5,6 +5,9 @@ import { VSlider } from "./VSlider";
 export class HSlider extends VSlider {
     className = "hslider";
 
+    paintLabel() {
+        return super.paintLabel("left");
+    }
     setStyle = () => {
         const { height, grid, fontsize, textcolor, bgcolor, bordercolor } = this.state.style;
         this.input.style.fontSize = `${fontsize || height * grid * 0.2}px`;

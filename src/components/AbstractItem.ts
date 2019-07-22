@@ -236,7 +236,7 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends AbstractC
         this.container.className = ["faust-ui-component", "faust-ui-component-" + this.className].join(" ");
         this.container.tabIndex = 1;
         this.container.id = this.state.address;
-        if (this.state.tooltip) this.container.title = this.state.tooltip;
+        this.container.title = this.state.tooltip;
         this.label = document.createElement("div");
         this.label.className = "faust-ui-component-label";
         this.labelCanvas = document.createElement("canvas");
@@ -253,7 +253,7 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends AbstractC
         this.label.appendChild(this.labelCanvas);
         return this;
     }
-    paintLabel(): this {
+    paintLabel(align?: CanvasTextAlign): this {
         const label = this.state.label;
         const color = this.state.style.labelcolor;
         const ctx = this.labelCtx;
@@ -267,8 +267,9 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends AbstractC
         ctx.clearRect(0, 0, width, height);
         ctx.fillStyle = color;
         ctx.textBaseline = "middle";
+        ctx.textAlign = align || "center";
         ctx.font = `bold ${height * 0.9}px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`;
-        ctx.fillText(label, 0, height / 2, width);
+        ctx.fillText(label, align === "left" ? 0 : align === "right" ? width : width / 2, height / 2, width);
         return this;
     }
     /**
