@@ -164,10 +164,10 @@ export class VSlider extends AbstractItem<FaustUISliderStyle> {
         return full / stepsCount;
     }
     getValueFromPos(e: { x: number; y: number }) {
-        const { type, min, max, scale } = this.state;
+        const { type, min, scale } = this.state;
+        const step = type === "enum" ? 1 : (this.state.step || 1);
         const stepRange = this.stepRange;
         const stepsCount = this.stepsCount;
-        const step = type === "enum" ? 1 : (max - min) / stepsCount;
         const distance = (this.className === "vslider" ? this.interactionRect[3] - (e.y - this.interactionRect[1]) : e.x - this.interactionRect[0]);
         const range = this.className === "vslider" ? this.interactionRect[3] : this.interactionRect[2];
         let steps = Math.round((scale === "exp" ? normExp(distance / range) : scale === "log" ? normLog(distance / range) : distance / range) * range / stepRange);

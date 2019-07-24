@@ -1978,7 +1978,7 @@ class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["Abst
     if (typeof min !== "number" || typeof max !== "number") return value;
     var v = Math.min(max, Math.max(min, value));
     if (!step) return v;
-    return min + Math.round((v - min) / step) * step;
+    return min + Math.floor((v - min) / step) * step;
   }
   /**
    * Use this method if you want the emitter to send value to DSP
@@ -3403,9 +3403,9 @@ class Knob extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] {
         max = _this$state.max,
         enums = _this$state.enums,
         scale = _this$state.scale;
+    var step = type === "enum" ? 1 : this.state.step || 1;
     var stepRange = this.stepRange;
     var stepsCount = this.stepsCount;
-    var step = type === "enum" ? 1 : (max - min) / stepsCount;
     var range = 100;
     var prevDistance = _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"].getDistance({
       value: e.prevValue,
@@ -4709,11 +4709,10 @@ class VSlider extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"]
     var _this$state2 = this.state,
         type = _this$state2.type,
         min = _this$state2.min,
-        max = _this$state2.max,
         scale = _this$state2.scale;
+    var step = type === "enum" ? 1 : this.state.step || 1;
     var stepRange = this.stepRange;
     var stepsCount = this.stepsCount;
-    var step = type === "enum" ? 1 : (max - min) / stepsCount;
     var distance = this.className === "vslider" ? this.interactionRect[3] - (e.y - this.interactionRect[1]) : e.x - this.interactionRect[0];
     var range = this.className === "vslider" ? this.interactionRect[3] : this.interactionRect[2];
     var steps = Math.round((scale === "exp" ? Object(_utils__WEBPACK_IMPORTED_MODULE_2__["normExp"])(distance / range) : scale === "log" ? Object(_utils__WEBPACK_IMPORTED_MODULE_2__["normLog"])(distance / range) : distance / range) * range / stepRange);

@@ -172,7 +172,7 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends AbstractC
         if (typeof min !== "number" || typeof max !== "number") return value;
         const v = Math.min(max, Math.max(min, value));
         if (!step) return v;
-        return min + Math.round((v - min) / step) * step;
+        return min + Math.floor((v - min) / step) * step;
     }
     /**
      * Use this method if you want the emitter to send value to DSP

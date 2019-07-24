@@ -159,9 +159,9 @@ export class Knob extends AbstractItem<FaustUIKnobStyle> {
     }
     getValueFromDelta(e: PointerDragEvent) {
         const { type, min, max, enums, scale } = this.state;
+        const step = type === "enum" ? 1 : (this.state.step || 1);
         const stepRange = this.stepRange;
         const stepsCount = this.stepsCount;
-        const step = type === "enum" ? 1 : (max - min) / stepsCount;
         const range = 100;
         const prevDistance = AbstractItem.getDistance({ value: e.prevValue, type, min, max, enums, scale }) * range;
         const distance = prevDistance + e.fromY - e.y;
