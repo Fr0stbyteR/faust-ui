@@ -1,13 +1,13 @@
 .faust-ui-component.faust-ui-component-knob {
     align-items: center;
-    & canvas {
+    & > canvas {
         position: relative;
         display: block;
         flex: 1 1 auto;
         min-height: 50%;
         width: 100%;
     }
-    & input {
+    & > input {
         position: relative;
         display: block;
         flex: 0 1 auto;

@@ -117,7 +117,9 @@ export class Knob extends AbstractItem<FaustUIKnobStyle> {
         const ctx = this.ctx;
         const canvas = this.canvas;
         const distance = this.distance;
-        const { width, height } = canvas.getBoundingClientRect();
+        let { width, height } = this.canvas.getBoundingClientRect();
+        width = Math.floor(width);
+        height = Math.floor(height);
         canvas.width = width;
         canvas.height = height;
 
