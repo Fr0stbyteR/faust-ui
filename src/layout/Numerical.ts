@@ -1,4 +1,4 @@
-import { AbstractOutputItem } from "./AbstractInputItem";
+import { AbstractOutputItem } from "./AbstractOutputItem";
 
 export class Numerical extends AbstractOutputItem {
     layout: TLayoutProp = {
