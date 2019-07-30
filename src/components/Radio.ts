@@ -51,7 +51,9 @@ export class Radio extends AbstractItem<FaustUIRadioStyle> {
                 input.name = address;
                 input.type = "radio";
                 if (i === 0) input.checked = true;
-                input.addEventListener("change", () => this.setValue(enums[key]));
+                input.addEventListener("change", () => {
+                    if (input.checked) this.setValue(enums[key])
+                });
                 div.appendChild(input);
                 div.append(key);
                 this.group.appendChild(div);

@@ -2185,7 +2185,7 @@ class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["Abst
         value = state.value,
         enums = state.enums,
         scale = state.scale;
-    var normalized = type === "enum" ? value / enums.length : (value - min) / (max - min);
+    var normalized = type === "enum" ? value / (enums.length - 1) : (value - min) / (max - min);
     return scale === "exp" ? Object(_utils__WEBPACK_IMPORTED_MODULE_2__["normLog"])(normalized) : scale === "log" ? Object(_utils__WEBPACK_IMPORTED_MODULE_2__["normExp"])(normalized) : normalized;
   }
   /**
@@ -2644,10 +2644,12 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["AbstractCom
       var matched = metaObject.style.match(enumsRegex);
 
       if (matched) {
+        var itemsRegex = /(?:(?:'|_)(.+?)(?:'|_):([-+]?[0-9]*\.?[0-9]+?))/g;
         var enums = {};
+        var item;
 
-        for (var i = 1; i < matched.length; i += 2) {
-          enums[matched[i]] = +matched[i + 1];
+        while (item = itemsRegex.exec(matched[0])) {
+          enums[item[1]] = +item[2];
         }
 
         return {
@@ -4096,7 +4098,9 @@ class Radio extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] {
           input.name = address;
           input.type = "radio";
           if (i === 0) input.checked = true;
-          input.addEventListener("change", () => _this.setValue(enums[key]));
+          input.addEventListener("change", e => {
+            if (input.checked) _this.setValue(enums[key]);
+          });
           div.appendChild(input);
           div.append(key);
 

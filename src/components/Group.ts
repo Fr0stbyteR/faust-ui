@@ -26,9 +26,11 @@ export class Group extends AbstractComponent<FaustUIGroupProps> {
             const enumsRegex = /\{(?:(?:'|_)(.+?)(?:'|_):([-+]?[0-9]*\.?[0-9]+?);)+(?:(?:'|_)(.+?)(?:'|_):([-+]?[0-9]*\.?[0-9]+?))\}/;
             const matched = metaObject.style.match(enumsRegex);
             if (matched) {
+                const itemsRegex = /(?:(?:'|_)(.+?)(?:'|_):([-+]?[0-9]*\.?[0-9]+?))/g;
                 const enums: { [key: string]: number } = {};
-                for (let i = 1; i < matched.length; i += 2) {
-                    enums[matched[i]] = +matched[i + 1];
+                let item;
+                while (item = itemsRegex.exec(matched[0])) {
+                    enums[item[1]] = +item[2];
                 }
                 return { metaObject, enums };
             }

@@ -320,7 +320,7 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends AbstractC
     }
     static getDistance(state: { value: number; min: number; max: number; enums?: { [key: string]: number }; type: "enum" | "int" | "float"; scale: "linear" | "exp" | "log" }) {
         const { type, max, min, value, enums, scale } = state;
-        const normalized = type === "enum" ? value / enums.length : (value - min) / (max - min);
+        const normalized = type === "enum" ? value / (enums.length - 1) : (value - min) / (max - min);
         return scale === "exp" ? normLog(normalized) : scale === "log" ? normExp(normalized) : normalized;
     }
     /**
