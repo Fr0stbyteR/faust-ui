@@ -1,19 +1,19 @@
 import { EventEmitter } from "events";
 
-export abstract class AbstractComponent<T extends { [key: string]: any }> extends EventEmitter {
-    on<K extends keyof T>(type: K, listener: (e: T[K]) => void) {
+export abstract class AbstractComponent<T = { [key: string]: any }> extends EventEmitter {
+    on<K extends keyof T>(type: K & string, listener: (e: T[K]) => void) {
         return super.on(type, listener);
     }
-    once<K extends keyof T>(type: K, listener: (e: T[K]) => void) {
+    once<K extends keyof T>(type: K & string, listener: (e: T[K]) => void) {
         return super.once(type, listener);
     }
-    off<K extends keyof T>(type: K, listener: (e: T[K]) => void) {
+    off<K extends keyof T>(type: K & string, listener: (e: T[K]) => void) {
         return super.off(type, listener);
     }
-    removeAllListeners<K extends keyof T>(type: K) {
+    removeAllListeners<K extends keyof T>(type: K & string) {
         return super.removeAllListeners(type);
     }
-    emit<K extends keyof T>(type: K, e?: T[K]) {
+    emit<K extends keyof T>(type: K & string, e?: T[K]) {
         return super.emit(type, e);
     }
     /**
@@ -69,10 +69,10 @@ export abstract class AbstractComponent<T extends { [key: string]: any }> extend
     private raf = () => {
         this.$frame++;
         if (this.$frame % this.frameReduce !== 0) {
-            if (this.$raf) window.cancelAnimationFrame(this.$raf);
             this.$raf = window.requestAnimationFrame(this.raf);
             return;
         }
+        this.$raf = undefined;
         this.tasks.forEach(f => f());
         this.tasks = [];
     };
@@ -103,10 +103,10 @@ export abstract class AbstractComponent<T extends { [key: string]: any }> extend
     setState(newState: { [K in keyof T]?: T[K] }) {
         let shouldUpdate = false;
         for (const key in newState) {
-            const stateKey = key as keyof T;
+            const stateKey = key as keyof T & string;
             const stateValue = newState[stateKey];
             if (stateKey in this.state && this.state[stateKey] !== stateValue) {
-                (this.state as any)[stateKey] = stateValue;
+                this.state[stateKey] = stateValue;
                 shouldUpdate = true;
             } else return;
             if (shouldUpdate) this.emit(stateKey, this.state[stateKey]);
@@ -121,7 +121,7 @@ export abstract class AbstractComponent<T extends { [key: string]: any }> extend
      */
     schedule(func: () => any) {
         if (this.tasks.indexOf(func) === -1) this.tasks.push(func);
-        if (this.$raf) window.cancelAnimationFrame(this.$raf);
+        if (this.$raf) return;
         this.$raf = window.requestAnimationFrame(this.raf);
     }
 }
