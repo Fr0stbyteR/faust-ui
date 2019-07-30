@@ -76,6 +76,7 @@ export class Menu extends AbstractItem<FaustUIMenuStyle> {
             }
         };
         this.on("value", () => this.schedule(valueChange));
+        valueChange();
         return this;
     }
     mount() {

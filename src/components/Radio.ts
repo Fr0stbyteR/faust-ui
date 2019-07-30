@@ -61,9 +61,6 @@ export class Radio extends AbstractItem<FaustUIRadioStyle> {
             }
         }
     }
-    handleChange = (e: Event) => {
-        this.setValue(+(e.currentTarget as HTMLInputElement).value);
-    }
     setStyle = () => {
         const { height, width, grid, fontsize, textcolor, bgcolor, bordercolor } = this.state.style;
         const fontSize = Math.min(height * grid * 0.1, width * grid * 0.1);
@@ -84,6 +81,7 @@ export class Radio extends AbstractItem<FaustUIRadioStyle> {
             }
         };
         this.on("value", () => this.schedule(valueChange));
+        valueChange();
         return this;
     }
     mount() {
