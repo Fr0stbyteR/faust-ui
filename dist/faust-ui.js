@@ -1669,11 +1669,11 @@ class AbstractComponent extends events__WEBPACK_IMPORTED_MODULE_0__["EventEmitte
       this.$frame++;
 
       if (this.$frame % this.frameReduce !== 0) {
-        if (this.$raf) window.cancelAnimationFrame(this.$raf);
         this.$raf = window.requestAnimationFrame(this.raf);
         return;
       }
 
+      this.$raf = undefined;
       this.tasks.forEach(f => f());
       this.tasks = [];
     });
@@ -1718,7 +1718,7 @@ class AbstractComponent extends events__WEBPACK_IMPORTED_MODULE_0__["EventEmitte
 
   schedule(func) {
     if (this.tasks.indexOf(func) === -1) this.tasks.push(func);
-    if (this.$raf) window.cancelAnimationFrame(this.$raf);
+    if (this.$raf) return;
     this.$raf = window.requestAnimationFrame(this.raf);
   }
 

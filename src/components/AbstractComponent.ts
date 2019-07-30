@@ -69,10 +69,10 @@ export abstract class AbstractComponent<T extends { [key: string]: any }> extend
     private raf = () => {
         this.$frame++;
         if (this.$frame % this.frameReduce !== 0) {
-            if (this.$raf) window.cancelAnimationFrame(this.$raf);
             this.$raf = window.requestAnimationFrame(this.raf);
             return;
         }
+        this.$raf = undefined;
         this.tasks.forEach(f => f());
         this.tasks = [];
     };
@@ -121,7 +121,7 @@ export abstract class AbstractComponent<T extends { [key: string]: any }> extend
      */
     schedule(func: () => any) {
         if (this.tasks.indexOf(func) === -1) this.tasks.push(func);
-        if (this.$raf) window.cancelAnimationFrame(this.$raf);
+        if (this.$raf) return;
         this.$raf = window.requestAnimationFrame(this.raf);
     }
 }
