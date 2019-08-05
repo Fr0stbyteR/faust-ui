@@ -8,15 +8,31 @@ from any GUI toolkits/frameworks and is purely abstract. Widgets can be
 **organizational** (e.g., `vgroup`, `hgroup`).
 
 Discrete and continuous elements are signal generators. For example, a `button`
-produces a signal which is 1 when the button is pressed and 0 otherwise: 
+produces a signal which is 1 when the button is pressed and 0 otherwise.
 
-When a Faust DSP code is compiled, a corresponding JSON file will be generated with data related to the DSP including its UI structure information. FaustUI takes these information as input in order to generate an user interface in an HTML environment with hooks to communicate with the actual DSP.
+When a Faust DSP code is compiled, a corresponding JSON file will be generated with data related to the DSP including its UI structure information. FaustUI takes this information as input in order to generate a user interface in an HTML environment with hooks to communicate with the actual DSP.
 
 ## Communicator
 `./src/FaustUI.ts` is the main class that can be loaded in a seperate browser `window` or `iframe`. the class listens to messages that comes by `window.postMessage`.
 Two type of messages are listening by the `FaustUI` class. 
 1. Parameter change: If the message has a `type` key with a value of `param`, the corresponding UI component with a same parameter path will display the changed parameter.
+```TypeScript
+{
+    type: "param",
+    path: "FaustDSP/gain",
+    value: 0.5
+}
+```
 2. New UI: If tye message has a `type` key with a value of `ui`, the class will re-render the incoming new UI.
+```TypeScript
+{
+    type: "ui",
+    ui: [{
+        type: "vgroup",
+        items: []
+    }]
+}
+```
 
 when a message is received, the window that initiated this message will be considered as the `host`. Then if a UI component is changed by user, the component will call `FaustUI` class's `paramChangeByUI` function which posts a `param` message to the `host` window. 
 
