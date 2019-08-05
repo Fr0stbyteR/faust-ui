@@ -44,7 +44,7 @@ Once a new UI needs to be rendered, the class will firstly send it to a layout p
 A structure definition of the UI information provided by Faust compiler can be found in `./src/types.d.ts`. The parser `./src/layout/Layout.ts` analyses the raw UI object recursively, then transform each UI component into a corresponding layout class instance. The class adds the dimensions and methods of components in order to calculate and adjust the position and the size of them. 
 
 ### Grid system
-The layout calculation uses `grids` as unit as components has an original width and height in `grids`. Once the layout is calculated, the amount of grids of each components should be fixed. Renderer can simply multiply these amount by a factor to change the actual relative size without recalculate their positions and demensions.
+The layout calculation uses `grids` as unit as components has an original width and height in `grids`. Once the layout is calculated, the number of grids of each component should be fixed. Renderer can simply multiply these amounts by a factor to change the actual relative size without recalculate their positions and dimensions.
 
 ### Primitives and their variations
 Faust have 3 organizational UI primitives, aka groups, a group contains other UI items that can also be groups: 
