@@ -116,6 +116,21 @@ The UI rendering is also done in 4 phases:
 
 A more detailed description of UI component class can be found in `./src/components/Component.ts`
 
+## Building
+Install dev dependencies:
+
+```bash
+npm install
+```
+
+If you don't want to build the minified js for testing purpose:
+
+```bash
+npm run build
+```
+
+To test, put the directory in a local server, then open the following page: `./dist/test.html`
+
 ## Versioning 
 You'll have to raise the package version number in `package.json` for `npm run update` to properly work.
 
