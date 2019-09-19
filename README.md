@@ -47,7 +47,7 @@ A structure definition of the UI information provided by Faust compiler can be f
 The layout calculation uses `grids` as unit as components has an original width and height in `grids`. Once the layout is calculated, the number of grids of each component should be fixed. Renderer can simply multiply these amounts by a factor to change the actual relative size without recalculate their positions and dimensions.
 
 ### Primitives and their variations
-Faust have 3 organizational UI primitives, aka groups, a group contains other UI items that can also be groups: 
+Faust has 3 organizational UI primitives, aka groups, a group contains other UI items that can also be groups: 
 
 `vgroup` for a group whose items are aligned vertically
 
@@ -57,7 +57,7 @@ Faust have 3 organizational UI primitives, aka groups, a group contains other UI
 
 5 "input" UI primitives that are UI-to-DSP controllers:
 
-`button` for a buton that gives `1` on press and `0` on release.
+`button` for a button that gives `1` on press and `0` on release.
 
 `checkbox` for a toggle that gives `1` or `0` by its state.
 
@@ -89,7 +89,7 @@ Variations that are supported officially for `hslider`, `vslider` and `nentry`:
 `numerical` (`[style:numerical)` Metadata) for a numerical box that displays only values.
 
 ### Sizing
-Each UI component has its initial dimensions in grids. Then some of them can be extensible in one or two axis if they have extra spaces. 
+Each UI component has its initial dimensions in grids. Then some of them can be extensible in one or two axes if they have extra spaces. 
 
 | type      | vertically extensible          | horizontal extensible          |
 |-----------|--------------------------------|--------------------------------|
@@ -110,16 +110,16 @@ Each UI component has its initial dimensions in grids. Then some of them can be 
 | numerical | no                             | no                             |
 
 ### Padding
-In order to render the layout elegantly, some paddings are added to the groups and between each items. These values can be found under `./src/layout/AbstractGroup.ts`. 
+In order to render the layout elegantly, some paddings are added to the groups and between each item. These values can be found under `./src/layout/AbstractGroup.ts`. 
 
 ## Layout Calculation
 The layout calculation is done in 4 phases:
-1. inject height and width information to each items.
+1. inject height and width information to each item.
 2. calculate groups' initial size by sum up descendants' size.
 3. expand items if they are extensible. The extra space in a group should be shared by all extensibles.
 4. calculate the coordination of each item, align them to the middle line of the group. This adds absolute position (x, y relative to root: `left` and `top`) and relative position (x, y relative to parent group: `offsetLeft` and `offsetTop`).
 
-Each phase of the calculation is called recursively and initiate by a "root" group. Thus once it's calculated, the "root" group and its descendants contains all information about position and size.
+Each phase of the calculation is called recursively and initiate by a "root" group. Thus, once it's calculated, the "root" group and its descendants contain all information about position and size.
 
 ## Rendering
 Component rendering constructors can be found below `./src/components` folder. After the layout calculation, `FaustUI` construct the `root` group with the group constructor that will construct all its descendants.
@@ -128,6 +128,6 @@ The UI rendering is also done in 4 phases:
 1. construct each component by its corresponding class constructor. The component register itself using `FaustUI` class's `register` method.
 2. `componentWillMount` method is called by a component's parent group, the component should prepare all DOM elements that need to be mounted to DOM tree.
 3. `mount` method is called by a component's parent group, the component should get its `container` mounted with children DOM elements. Then the parent group will fill its `container` by its children's `container`s.
-4. `componentDidMount` method is called by a component's parent group, the component now have all its DOM elements connected to the page. Thus their `getBoundingRect` method can be used in order to justify and draw canvas etc. It should also bind events to state changes in this phase.
+4. `componentDidMount` method is called by a component's parent group, the component now has all its DOM elements connected to the page. Thus their `getBoundingRect` method can be used in order to justify and draw canvas etc. It should also bind events to state changes in this phase.
 
 A more detailed description of UI component class can be found in `./src/components/Component.ts`
