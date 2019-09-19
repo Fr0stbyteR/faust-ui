@@ -15,4 +15,15 @@ export abstract class AbstractItem implements IItem {
         this.min = isFinite(+this.min) ? +this.min : 0;
         this.max = isFinite(+this.max) ? +this.max : 1;
     }
+
+    adjust(): this {
+        return this;
+    }
+
+    expand(dX: number, dY: number): this {
+        return this;
+    }
+    offset(): this {
+        return this;
+    }
 }

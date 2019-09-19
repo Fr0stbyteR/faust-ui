@@ -3,7 +3,7 @@ import { AbstractGroup } from "./AbstractGroup";
 export class HGroup extends AbstractGroup {
     adjust() {
         this.items.forEach((item) => {
-            if (item instanceof AbstractGroup) item.adjust();
+            item.adjust();
             this.layout.width += item.layout.width;
             this.layout.height = Math.max(this.layout.height, item.layout.height + 2 * AbstractGroup.padding + AbstractGroup.labelHeight);
         });
@@ -27,7 +27,7 @@ export class HGroup extends AbstractGroup {
                 dY$ = this.layout.height - 2 * AbstractGroup.padding - AbstractGroup.labelHeight - item.layout.height;
                 item.layout.height += dY$;
             }
-            if (item instanceof AbstractGroup) item.expand(dX$, dY$);
+            item.expand(dX$, dY$);
         });
         return this;
     }
@@ -43,7 +43,7 @@ export class HGroup extends AbstractGroup {
             item.layout.offsetTop += (height - labelHeight - item.layout.height) / 2 - padding;
             item.layout.left = (this.layout.left || 0) + item.layout.offsetLeft;
             item.layout.top = (this.layout.top || 0) + item.layout.offsetTop;
-            if (item instanceof AbstractGroup) item.offset();
+            item.offset();
             $left += item.layout.width + spaceBetween;
         });
         return this;
