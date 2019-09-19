@@ -131,3 +131,22 @@ The UI rendering is also done in 4 phases:
 4. `componentDidMount` method is called by a component's parent group, the component now has all its DOM elements connected to the page. Thus their `getBoundingRect` method can be used in order to justify and draw canvas etc. It should also bind events to state changes in this phase.
 
 A more detailed description of UI component class can be found in `./src/components/Component.ts`
+
+## Building
+Install dev dependencies:
+
+```bash
+npm install
+```
+
+If you don't want to build the minified js for testing purpose:
+
+```bash
+npm run build
+```
+
+To test, put the directory in a local server, then open the following page: `./dist/test.html`
+
+## Versioning 
+You'll have to raise the package version number in `package.json` for `npm run update` to properly work.
+

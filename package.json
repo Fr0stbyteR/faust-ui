@@ -1,6 +1,6 @@
 {
   "name": "faust-ui",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Faust UI elements compositor",
   "main": "./dist/faust-ui.js",
   "scripts": {
