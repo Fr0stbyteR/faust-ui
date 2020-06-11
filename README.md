@@ -1,14 +1,8 @@
 # FaustUI [![Badge](https://img.shields.io/badge/link-996.icu-%23FF4D5B.svg?style=flat-square)](https://996.icu/#/en_US)
 
-This project is an user interface parser, compositor and components renderer for Faust Programming language. [Faust user interface widgets/primitives](https://faust.grame.fr/doc/manual/index.html#user-interface-primitives-and-configuration) allow for an **abstract** description 
-of a user interface from within the Faust code. This description is independent 
-from any GUI toolkits/frameworks and is purely abstract. Widgets can be
-**discrete** (e.g., `button`, `checkbox`, etc.), **continuous**
-(e.g., `hslider`, `vslider`, `nentry`), and 
-**organizational** (e.g., `vgroup`, `hgroup`).
+This project is an user interface parser, compositor and components renderer for Faust Programming language. [Faust user interface widgets/primitives](https://faust.grame.fr/doc/manual/index.html#user-interface-primitives-and-configuration) allow for an **abstract** description of a user interface from within the Faust code. This description is independent from any GUI toolkits/frameworks and is purely abstract. Widgets can be **discrete** (e.g., `button`, `checkbox`, etc.), **continuous** (e.g., `hslider`, `vslider`, `nentry`), and  **organizational** (e.g., `vgroup`, `hgroup`).
 
-Discrete and continuous elements are signal generators. For example, a `button`
-produces a signal which is 1 when the button is pressed and 0 otherwise: 
+Discrete and continuous elements are signal generators. For example, a `button` produces a signal which is 1 when the button is pressed and 0 otherwise: 
 
 When a Faust DSP code is compiled, a corresponding JSON file will be generated with data related to the DSP including its UI structure information. FaustUI takes these information as input in order to generate an user interface in an HTML environment with hooks to communicate with the actual DSP.
 
@@ -18,7 +12,7 @@ Two type of messages are listening by the `FaustUI` class.
 1. Parameter change: If the message has a `type` key with a value of `param`, the corresponding UI component with a same parameter path will display the changed parameter.
 2. New UI: If tye message has a `type` key with a value of `ui`, the class will re-render the incoming new UI.
 
-when a message is received, the window that initiated this message will be considered as the `host`. Then if a UI component is changed by user, the component will call `FaustUI` class's `paramChangeByUI` function which posts a `param` message to the `host` window. 
+When a message is received, the window that initiated this message will be considered as the `host`. Then if a UI component is changed by user, the component will call `FaustUI` class's `paramChangeByUI` function which posts a `param` message to the `host` window. 
 
 User can also override the `paramChangeByUI` function or manually call `paramChangeByDSP` method to communicate differently with the UI or the DSP.
 
@@ -28,7 +22,7 @@ Once a new UI needs to be rendered, the class will firstly send it to a layout p
 A structure definition of the UI information provided by Faust compiler can be found in `./src/types.d.ts`. The parser `./src/layout/Layout.ts` analyses the raw UI object recursively, then transform each UI component into a corresponding layout class instance. The class adds the dimensions and methods of components in order to calculate and adjust the position and the size of them. 
 
 ### Grid system
-The layout calculation uses `grids` as unit as components has an original width and height in `grids`. Once the layout is calculated, the amount of grids of each components should be fixed. Renderer can simply multiply these amount by a factor to change the actual relative size without recalculate their positions and demensions.
+The layout calculation uses `grids` as unit as components has an original width and height in `grids`. Once the layout is calculated, the amount of grids of each components should be fixed. Renderer can simply multiply these amount by a factor to change the actual relative size without recalculating their positions and dimensions.
 
 ### Primitives and their variations
 Faust have 3 organizational UI primitives, aka groups, a group contains other UI items that can also be groups: 
@@ -57,8 +51,7 @@ Faust have 3 organizational UI primitives, aka groups, a group contains other UI
 
 `vbargraph` for a vertical bar-graph
 
-By defining a `style` metadata, user can eventually override the look of a UI primitive.
-Variations that are supported officially for `hslider`, `vslider` and `nentry`:
+By defining a `style` metadata, user can eventually override the look of a UI primitive. Variations that are supported officially for `hslider`, `vslider` and `nentry`:
 
 `knob` (`[style:knob]` Metadata) for a rotary control knob
 
