@@ -7,6 +7,8 @@ import { FaustUIGroupProps } from "./components/types";
 type TOptions = {
     root: HTMLDivElement;
     ui?: TFaustUI;
+    listenWindowResize?: boolean;
+    listenWindowMessage?: boolean;
 }
 
 /**
@@ -32,24 +34,28 @@ export class FaustUI {
      * @memberof FaustUI
      */
     constructor(options: TOptions) {
-        const { root, ui: uiIn } = options;
+        const { root, ui: uiIn, listenWindowResize, listenWindowMessage } = options;
         this.DOMroot = root;
         this.ui = uiIn || [];
-        window.addEventListener("resize", () => {
-            this.resize();
-        });
-        window.addEventListener("message", (e) => {
-            const { data, source } = e;
-            this.hostWindow = source as Window;
-            const { type } = data;
-            if (!type) return;
-            if (type === "ui") {
-                this.ui = data.ui;
-            } else if (type === "param") {
-                const { path, value } = data;
-                this.paramChangeByDSP(path, value);
-            }
-        });
+        if (typeof listenWindowResize === "undefined" || listenWindowResize === true) {
+            window.addEventListener("resize", () => {
+                this.resize();
+            });
+        }
+        if (typeof listenWindowMessage === "undefined" || listenWindowMessage === true) {
+            window.addEventListener("message", (e) => {
+                const { data, source } = e;
+                this.hostWindow = source as Window;
+                const { type } = data;
+                if (!type) return;
+                if (type === "ui") {
+                    this.ui = data.ui;
+                } else if (type === "param") {
+                    const { path, value } = data;
+                    this.paramChangeByDSP(path, value);
+                }
+            });
+        }
     }
     /**
      * Render the UI to DOM root
