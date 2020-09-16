@@ -44,14 +44,14 @@ export class Nentry extends AbstractItem<FaustUINentryStyle> {
     }
     handleChange = (e: Event) => {
         this.setValue(+(e.currentTarget as HTMLInputElement).value);
-    }
+    };
     setStyle = () => {
         const { height, grid, fontsize, textcolor, bgcolor, bordercolor } = this.state.style;
         this.input.style.backgroundColor = bgcolor;
         this.input.style.borderColor = bordercolor;
         this.input.style.color = textcolor;
         this.input.style.fontSize = `${fontsize || height * grid / 4}px`;
-    }
+    };
     componentDidMount() {
         super.componentDidMount();
         this.input.addEventListener("change", this.handleChange);

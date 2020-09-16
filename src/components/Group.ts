@@ -16,6 +16,7 @@ import { HBargraph } from "./HBargraph";
 import { VBargraph } from "./VBargraph";
 import { Layout } from "../layout/Layout";
 import "./Group.scss";
+import { TFaustUIMeta, TFaustUIItem, TFaustUIGroup, TFaustUIInputItem, TFaustUIOutputItem, TLayoutProp } from "../types";
 
 export class Group extends AbstractComponent<FaustUIGroupProps> {
     static parseMeta(metaIn: TFaustUIMeta[]): { metaObject: TFaustUIMeta; enums?: { [key: string]: number } } {
@@ -29,6 +30,7 @@ export class Group extends AbstractComponent<FaustUIGroupProps> {
                 const itemsRegex = /(?:(?:'|_)(.+?)(?:'|_):([-+]?[0-9]*\.?[0-9]+?))/g;
                 const enums: { [key: string]: number } = {};
                 let item;
+                // eslint-disable-next-line no-cond-assign
                 while (item = itemsRegex.exec(matched[0])) {
                     enums[item[1]] = +item[2];
                 }
@@ -225,7 +227,7 @@ export class Group extends AbstractComponent<FaustUIGroupProps> {
                 this.tabs.appendChild(tab);
             });
         }
-    }
+    };
     mount(): this {
         this.label.appendChild(this.labelCanvas);
         this.container.appendChild(this.label);

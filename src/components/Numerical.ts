@@ -37,7 +37,7 @@ export class Numerical extends AbstractItem<FaustUINentryStyle> {
         this.input.style.borderColor = bordercolor;
         this.input.style.color = textcolor;
         this.input.style.fontSize = `${fontsize || height * grid / 4}px`;
-    }
+    };
     componentDidMount() {
         super.componentDidMount();
         this.on("style", () => this.schedule(this.setStyle));

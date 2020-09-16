@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { IItem } from "./IItem";
 import { AbstractItem } from "./AbstractItem";
+import { TFaustUIGroupType, TLayoutProp } from "../types";
 
 export abstract class AbstractGroup implements IItem {
     static padding = 0.2;
@@ -23,6 +24,15 @@ export abstract class AbstractGroup implements IItem {
             height: AbstractGroup.padding * 2 + AbstractGroup.labelHeight,
             sizing
         };
+    }
+    adjust() {
+        return this;
+    }
+    expand(dX: number, dY: number) {
+        return this;
+    }
+    offset() {
+        return this;
     }
 
     /**

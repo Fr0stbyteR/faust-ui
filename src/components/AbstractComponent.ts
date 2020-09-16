@@ -1,29 +1,10 @@
-import { EventEmitter } from "events";
+import { TypedEventEmitter } from "../TypedEventEmitter";
 
-export abstract class AbstractComponent<T = { [key: string]: any }> extends EventEmitter {
-    on<K extends keyof T>(type: K & string, listener: (e: T[K]) => void) {
-        return super.on(type, listener);
-    }
-    once<K extends keyof T>(type: K & string, listener: (e: T[K]) => void) {
-        return super.once(type, listener);
-    }
-    off<K extends keyof T>(type: K & string, listener: (e: T[K]) => void) {
-        return super.off(type, listener);
-    }
-    removeAllListeners<K extends keyof T>(type: K & string) {
-        return super.removeAllListeners(type);
-    }
-    emit<K extends keyof T>(type: K & string, e?: T[K]) {
-        return super.emit(type, e);
-    }
+export abstract class AbstractComponent<T extends Record<string, any> = Record<string, any>> extends TypedEventEmitter<T> {
     /**
      * The default state of the component.
-     *
-     * @static
-     * @type {{ [key: string]: any }}
-     * @memberof Component
      */
-    static defaultProps: { [key: string]: any } = {};
+    static defaultProps: Record<string, any> = {};
     get defaultProps() {
         return (this.constructor as typeof AbstractComponent).defaultProps as T;
     }
@@ -31,40 +12,23 @@ export abstract class AbstractComponent<T = { [key: string]: any }> extends Even
      * Here stores corrent state of component
      * change the state with `setState` method to fire state events
      * then UI parts will get notified and rerender
-     *
-     * @type {T}
-     * @memberof Component
      */
     state: T;
     /**
      * Frame count in order to reduce frame rate
-     *
-     * @private
-     * @type {number}
-     * @memberof Component
      */
-    private $frame: number = 0;
+    private $frame = 0;
     /**
      * Frame reducing factor, 1 = render at every browser rendering tick, 2 will skip one every two ticks.
-     *
-     * @type {number}
-     * @memberof Component
      */
-    frameReduce: number = 1;
+    frameReduce = 1;
     /**
      * Here stores current `requestAnimationFrame` reference
      * if we have a new state to render, we cancel the old one
-     *
-     * @private
-     * @type {number}
-     * @memberof Component
      */
     private $raf: number;
     /**
      * `requestAnimationFrame` callback
-     *
-     * @private
-     * @memberof Component
      */
     private raf = () => {
         this.$frame++;
@@ -78,15 +42,10 @@ export abstract class AbstractComponent<T = { [key: string]: any }> extends Even
     };
     /**
      * tasks to execute in next redering tick
-     *
-     * @private
-     * @memberof Component
      */
     private tasks: (() => any)[] = [];
     /**
      * Initiate default state with incoming state.
-     * @param {T} [props]
-     * @memberof AbstractItem
      */
     constructor(props?: T) {
         super();
@@ -95,15 +54,10 @@ export abstract class AbstractComponent<T = { [key: string]: any }> extends Even
     }
     /**
      * set internal state and fire events for UI parts subscribed
-     *
-     * @param {{ [K in keyof T]?: T[K] }} newState
-     * @returns
-     * @memberof Component
      */
-    setState(newState: { [K in keyof T]?: T[K] }) {
+    setState(newState: Partial<T>) {
         let shouldUpdate = false;
-        for (const key in newState) {
-            const stateKey = key as keyof T & string;
+        for (const stateKey in newState) {
             const stateValue = newState[stateKey];
             if (stateKey in this.state && this.state[stateKey] !== stateValue) {
                 this.state[stateKey] = stateValue;
@@ -115,9 +69,6 @@ export abstract class AbstractComponent<T = { [key: string]: any }> extends Even
     /**
      * Use this method to request a new rendering
      * schedule what you need to do in next render tick in `raf` callback
-     *
-     * @returns
-     * @memberof Component
      */
     schedule(func: () => any) {
         if (this.tasks.indexOf(func) === -1) this.tasks.push(func);

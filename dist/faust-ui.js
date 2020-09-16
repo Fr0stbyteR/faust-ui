@@ -1515,6 +1515,248 @@ class FaustUI {
     return this._layout;
   }
 
+  get minWidth() {
+    return this._layout.width * 40;
+  }
+
+  get minHeight() {
+    return this._layout.height * 40;
+  }
+
+}
+
+/***/ }),
+
+/***/ "./src/TypedEventEmitter.ts":
+/*!**********************************!*\
+  !*** ./src/TypedEventEmitter.ts ***!
+  \**********************************/
+/*! exports provided: TypedEventEmitter, TypedEventEmitterNodeJS */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TypedEventEmitter", function() { return TypedEventEmitter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TypedEventEmitterNodeJS", function() { return TypedEventEmitterNodeJS; });
+/* harmony import */ var events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! events */ "./node_modules/events/events.js");
+/* harmony import */ var events__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(events__WEBPACK_IMPORTED_MODULE_0__);
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function (_e) { function e(_x) { return _e.apply(this, arguments); } e.toString = function () { return _e.toString(); }; return e; }(function (e) { throw e; }), f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function (_e2) { function e(_x2) { return _e2.apply(this, arguments); } e.toString = function () { return _e2.toString(); }; return e; }(function (e) { didErr = true; err = e; }), f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+class TypedEventEmitter {
+  constructor() {
+    _defineProperty(this, "_listeners", {});
+  }
+
+  get listeners() {
+    return this._listeners;
+  }
+
+  getListeners(eventName) {
+    if (!(eventName in this._listeners)) this._listeners[eventName] = [];
+    return this._listeners[eventName];
+  }
+
+  on(eventName, listener) {
+    if (this.getListeners(eventName).indexOf(listener) === -1) this.getListeners(eventName).push(listener);
+  }
+
+  off(eventName, listener) {
+    var i = this.getListeners(eventName).indexOf(listener);
+    if (i !== -1) this.getListeners(eventName).splice(i, 1);
+  }
+
+  emit(eventName, eventData) {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+      var listeners;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              listeners = _this.getListeners(eventName);
+
+              if (listeners) {
+                _context.next = 3;
+                break;
+              }
+
+              return _context.abrupt("return", []);
+
+            case 3:
+              return _context.abrupt("return", Promise.all(listeners.map(f => f(eventData))));
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  }
+
+  emitSerial(eventName, eventData) {
+    var _this2 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+      var listeners, _iterator, _step, listener;
+
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              listeners = _this2.getListeners(eventName);
+
+              if (listeners) {
+                _context2.next = 3;
+                break;
+              }
+
+              return _context2.abrupt("return");
+
+            case 3:
+              /* eslint-disable no-await-in-loop */
+              _iterator = _createForOfIteratorHelper(listeners);
+              _context2.prev = 4;
+
+              _iterator.s();
+
+            case 6:
+              if ((_step = _iterator.n()).done) {
+                _context2.next = 12;
+                break;
+              }
+
+              listener = _step.value;
+              _context2.next = 10;
+              return listener(eventData);
+
+            case 10:
+              _context2.next = 6;
+              break;
+
+            case 12:
+              _context2.next = 17;
+              break;
+
+            case 14:
+              _context2.prev = 14;
+              _context2.t0 = _context2["catch"](4);
+
+              _iterator.e(_context2.t0);
+
+            case 17:
+              _context2.prev = 17;
+
+              _iterator.f();
+
+              return _context2.finish(17);
+
+            case 20:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[4, 14, 17, 20]]);
+    }))();
+  }
+
+  emitSync(eventName, eventData) {
+    var listeners = this.getListeners(eventName);
+    if (!listeners) return;
+    listeners.map(f => f(eventData));
+  }
+
+  removeAllListeners(eventName) {
+    if (eventName) {
+      this._listeners[eventName] = [];
+    } else {
+      this._listeners = {};
+    }
+  }
+
+  listenerCount(eventName) {
+    if (!(eventName in this._listeners)) return 0;
+    return this._listeners[eventName].length;
+  }
+
+}
+class TypedEventEmitterNodeJS {
+  constructor() {
+    _defineProperty(this, "_emitter", new events__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]());
+  }
+
+  addListener(eventName, listener) {
+    return this._emitter.addListener(eventName, listener);
+  }
+
+  on(eventName, listener) {
+    return this._emitter.on(eventName, listener);
+  }
+
+  once(eventName, listener) {
+    return this._emitter.once(eventName, listener);
+  }
+
+  prependListener(eventName, listener) {
+    return this._emitter.prependListener(eventName, listener);
+  }
+
+  prependOnceListener(eventName, listener) {
+    return this._emitter.prependOnceListener(eventName, listener);
+  }
+
+  removeListener(eventName, listener) {
+    return this._emitter.removeListener(eventName, listener);
+  }
+
+  off(eventName, listener) {
+    return this._emitter.off(eventName, listener);
+  }
+
+  removeAllListeners(event) {
+    return this._emitter.removeAllListeners(event);
+  }
+
+  setMaxListeners(n) {
+    return this._emitter.setMaxListeners(n);
+  }
+
+  getMaxListeners() {
+    return this._emitter.getMaxListeners();
+  }
+
+  listeners(eventName) {
+    return this._emitter.listeners(eventName);
+  }
+
+  rawListeners(eventName) {
+    return this._emitter.rawListeners(eventName);
+  }
+
+  emit(eventName, e) {
+    return this._emitter.emit(eventName, e);
+  }
+
+  eventNames() {
+    return this._emitter.eventNames();
+  }
+
+  listenerCount(eventName) {
+    return this._emitter.listenerCount(eventName);
+  }
+
 }
 
 /***/ }),
@@ -1529,8 +1771,7 @@ class FaustUI {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AbstractComponent", function() { return AbstractComponent; });
-/* harmony import */ var events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! events */ "./node_modules/events/events.js");
-/* harmony import */ var events__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(events__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _TypedEventEmitter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../TypedEventEmitter */ "./src/TypedEventEmitter.ts");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -1538,35 +1779,10 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
-class AbstractComponent extends events__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"] {
-  on(type, listener) {
-    return super.on(type, listener);
-  }
-
-  once(type, listener) {
-    return super.once(type, listener);
-  }
-
-  off(type, listener) {
-    return super.off(type, listener);
-  }
-
-  removeAllListeners(type) {
-    return super.removeAllListeners(type);
-  }
-
-  emit(type, e) {
-    return super.emit(type, e);
-  }
+class AbstractComponent extends _TypedEventEmitter__WEBPACK_IMPORTED_MODULE_0__["TypedEventEmitter"] {
   /**
    * The default state of the component.
-   *
-   * @static
-   * @type {{ [key: string]: any }}
-   * @memberof Component
    */
-
-
   get defaultProps() {
     return this.constructor.defaultProps;
   }
@@ -1574,16 +1790,11 @@ class AbstractComponent extends events__WEBPACK_IMPORTED_MODULE_0__["EventEmitte
    * Here stores corrent state of component
    * change the state with `setState` method to fire state events
    * then UI parts will get notified and rerender
-   *
-   * @type {T}
-   * @memberof Component
    */
 
 
   /**
    * Initiate default state with incoming state.
-   * @param {T} [props]
-   * @memberof AbstractItem
    */
   constructor(props) {
     super();
@@ -1616,18 +1827,13 @@ class AbstractComponent extends events__WEBPACK_IMPORTED_MODULE_0__["EventEmitte
   }
   /**
    * set internal state and fire events for UI parts subscribed
-   *
-   * @param {{ [K in keyof T]?: T[K] }} newState
-   * @returns
-   * @memberof Component
    */
 
 
   setState(newState) {
     var shouldUpdate = false;
 
-    for (var _key in newState) {
-      var stateKey = _key;
+    for (var stateKey in newState) {
       var stateValue = newState[stateKey];
 
       if (stateKey in this.state && this.state[stateKey] !== stateValue) {
@@ -1641,9 +1847,6 @@ class AbstractComponent extends events__WEBPACK_IMPORTED_MODULE_0__["EventEmitte
   /**
    * Use this method to request a new rendering
    * schedule what you need to do in next render tick in `raf` callback
-   *
-   * @returns
-   * @memberof Component
    */
 
 
@@ -1694,49 +1897,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
  * `componentWillMount` prepare data before DOM get loads to page
  * `mount` get DOMs append to page
  * `componentDidMount` Now draw canvas etc.
- *
- * @export
- * @abstract
- * @class AbstractItem
- * @extends {EventEmitter}
- * @template T
  */
 
 class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["AbstractComponent"] {
   /**
    * The default state of the component.
-   *
-   * @static
-   * @type {FaustUIItemProps<FaustUIItemStyle>}
-   * @memberof AbstractItem
    */
 
   /**
    * DOM Div container of the component
-   *
-   * @type {HTMLDivElement}
-   * @memberof AbstractItem
    */
 
   /**
    * DOM Div container of label canvas
-   *
-   * @type {HTMLDivElement}
-   * @memberof AbstractItem
    */
 
   /**
    * Use canvas as label to fit full text in.
-   *
-   * @type {HTMLCanvasElement}
-   * @memberof AbstractItem
    */
 
   /**
    * Override this to get css work
-   *
-   * @type {string}
-   * @memberof AbstractItem
    */
 
   /**
@@ -1746,8 +1927,6 @@ class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["Abst
 
   /**
    * Initiate default state with incoming state.
-   * @param {FaustUIItemProps<T>} [props]
-   * @memberof AbstractItem
    */
   constructor(props) {
     super(props);
@@ -1901,10 +2080,6 @@ class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["Abst
   }
   /**
    * Get a nearest valid number
-   *
-   * @param {number} value
-   * @returns {number}
-   * @memberof AbstractItem
    */
 
 
@@ -1920,10 +2095,6 @@ class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["Abst
   }
   /**
    * Use this method if you want the emitter to send value to DSP
-   *
-   * @param {number} valueIn
-   * @returns {boolean}
-   * @memberof AbstractItem
    */
 
 
@@ -1937,9 +2108,6 @@ class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["Abst
   }
   /**
    * Send value to DSP
-   *
-   * @param {number} [valueIn]
-   * @memberof AbstractItem
    */
 
 
@@ -1949,10 +2117,6 @@ class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["Abst
   /**
    * set internal state and fire events for UI parts subscribed
    * This will not send anything to DSP
-   *
-   * @param {{ [key in keyof FaustUIItemProps<T>]?: FaustUIItemProps<T>[key] }} newState
-   * @returns {boolean} - is state updated
-   * @memberof AbstractItem
    */
 
 
@@ -1983,9 +2147,6 @@ class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["Abst
   /**
    * Create container with class name
    * override it with `super.componentWillMount();`
-   *
-   * @returns {this}
-   * @memberof AbstractItem
    */
 
 
@@ -2003,9 +2164,6 @@ class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["Abst
   }
   /**
    * Here append all child DOM to container
-   *
-   * @returns {this}
-   * @memberof AbstractItem
    */
 
 
@@ -2039,9 +2197,6 @@ class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["Abst
   }
   /**
    * will call this method when mounted
-   *
-   * @returns {this}
-   * @memberof AbstractItem
    */
 
 
@@ -2067,9 +2222,6 @@ class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["Abst
   }
   /**
    * Count steps in range min-max with step
-   *
-   * @readonly
-   * @memberof AbstractItem
    */
 
 
@@ -2092,9 +2244,6 @@ class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["Abst
   }
   /**
    * Normalized value between 0 - 1.
-   *
-   * @readonly
-   * @memberof AbstractItem
    */
 
 
@@ -2128,9 +2277,6 @@ class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["Abst
   }
   /**
    * Mousemove pixels for each step
-   *
-   * @readonly
-   * @memberof AbstractItem
    */
 
 
@@ -2573,7 +2719,7 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["AbstractCom
       if (matched) {
         var itemsRegex = /(?:(?:'|_)(.+?)(?:'|_):([-+]?[0-9]*\.?[0-9]+?))/g;
         var enums = {};
-        var item;
+        var item; // eslint-disable-next-line no-cond-assign
 
         while (item = itemsRegex.exec(matched[0])) {
           enums[item[1]] = +item[2];
@@ -4738,34 +4884,57 @@ module.exports = content.locals || {};
 /*!**********************!*\
   !*** ./src/index.ts ***!
   \**********************/
-/*! no exports provided */
+/*! exports provided: FaustUI, instantiate */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _FaustUI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FaustUI */ "./src/FaustUI.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "FaustUI", function() { return _FaustUI__WEBPACK_IMPORTED_MODULE_0__["FaustUI"]; });
 
-var faustUI = new _FaustUI__WEBPACK_IMPORTED_MODULE_0__["FaustUI"]({
-  root: document.getElementById("root")
-});
-var host;
-window.addEventListener("message", e => {
-  var source = e.source;
-  host = source;
-});
-window.addEventListener("keydown", e => {
-  if (host) host.postMessage({
-    type: "keydown",
-    key: e.key
-  }, "*");
-});
-window.addEventListener("keyup", e => {
-  if (host) host.postMessage({
-    type: "keyup",
-    key: e.key
-  }, "*");
-});
-window.faustUI = faustUI;
+/* harmony import */ var _instantiate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./instantiate */ "./src/instantiate.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "instantiate", function() { return _instantiate__WEBPACK_IMPORTED_MODULE_1__["instantiate"]; });
+
+
+
+
+/***/ }),
+
+/***/ "./src/instantiate.ts":
+/*!****************************!*\
+  !*** ./src/instantiate.ts ***!
+  \****************************/
+/*! exports provided: instantiate */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "instantiate", function() { return instantiate; });
+/* harmony import */ var _FaustUI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FaustUI */ "./src/FaustUI.ts");
+
+var instantiate = () => {
+  var faustUI = new _FaustUI__WEBPACK_IMPORTED_MODULE_0__["FaustUI"]({
+    root: document.getElementById("root")
+  });
+  var host;
+  window.addEventListener("message", e => {
+    var source = e.source;
+    host = source;
+  });
+  window.addEventListener("keydown", e => {
+    if (host) host.postMessage({
+      type: "keydown",
+      key: e.key
+    }, "*");
+  });
+  window.addEventListener("keyup", e => {
+    if (host) host.postMessage({
+      type: "keyup",
+      key: e.key
+    }, "*");
+  });
+  window.faustUI = faustUI;
+};
 
 /***/ }),
 
@@ -4805,6 +4974,18 @@ class AbstractGroup {
       height: AbstractGroup.padding * 2 + AbstractGroup.labelHeight,
       sizing
     };
+  }
+
+  adjust() {
+    return this;
+  }
+
+  expand(dX, dY) {
+    return this;
+  }
+
+  offset() {
+    return this;
   }
   /**
    * find recursively if the group has horizontal-sizable item
@@ -4942,12 +5123,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AbstractOutputItem", function() { return AbstractOutputItem; });
 /* harmony import */ var _AbstractItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AbstractItem */ "./src/layout/AbstractItem.ts");
 
-class AbstractOutputItem extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] {
-  constructor(item) {
-    super(item);
-  }
-
-}
+class AbstractOutputItem extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] {}
 
 /***/ }),
 
@@ -5242,11 +5418,6 @@ class Layout {
   }
   /**
    * Get the Layout class constructor of an item
-   *
-   * @static
-   * @param {TFaustUIItem} item
-   * @returns {AbstractItem | AbstractGroup}
-   * @memberof Layout
    */
 
 

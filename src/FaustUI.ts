@@ -3,13 +3,14 @@ import "./index.scss";
 import { AbstractItem } from "./components/AbstractItem";
 import { Group } from "./components/Group";
 import { FaustUIGroupProps } from "./components/types";
+import { TFaustUI, TLayoutProp } from "./types";
 
 type TOptions = {
     root: HTMLDivElement;
     ui?: TFaustUI;
     listenWindowResize?: boolean;
     listenWindowMessage?: boolean;
-}
+};
 
 /**
  * The main class of UI constructor,
@@ -114,7 +115,7 @@ export class FaustUI {
     paramChangeByUI = (path: string, value: number) => {
         if (!this.hostWindow) return;
         this.hostWindow.postMessage({ path, value, type: "param" }, "*");
-    }
+    };
     /**
      * Calculate UI layout in grid then calculate grid size.
      *
@@ -159,5 +160,11 @@ export class FaustUI {
     }
     get layout() {
         return this._layout;
+    }
+    get minWidth() {
+        return this._layout.width * 40;
+    }
+    get minHeight() {
+        return this._layout.height * 40;
     }
 }

@@ -6,7 +6,7 @@ export class Checkbox extends Button {
 
     handlePointerDown = () => {
         this.setValue(1 - this.state.value);
-    }
+    };
     handlePointerUp = () => {
-    }
+    };
 }

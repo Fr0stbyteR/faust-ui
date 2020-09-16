@@ -15,20 +15,10 @@ import { normExp, normLog } from "./utils";
  * `componentWillMount` prepare data before DOM get loads to page
  * `mount` get DOMs append to page
  * `componentDidMount` Now draw canvas etc.
- *
- * @export
- * @abstract
- * @class AbstractItem
- * @extends {EventEmitter}
- * @template T
  */
 export abstract class AbstractItem<T extends FaustUIItemStyle> extends AbstractComponent<FaustUIItemProps<T>> {
     /**
      * The default state of the component.
-     *
-     * @static
-     * @type {FaustUIItemProps<FaustUIItemStyle>}
-     * @memberof AbstractItem
      */
     static defaultProps: FaustUIItemProps<FaustUIItemStyle> = {
         value: 0,
@@ -44,34 +34,22 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends AbstractC
         scale: "linear",
         step: 0.01,
         style: { width: 45, height: 15, left: 0, top: 0, labelcolor: "rgba(226, 222, 255, 0.5)" }
-    }
+    };
     /**
      * DOM Div container of the component
-     *
-     * @type {HTMLDivElement}
-     * @memberof AbstractItem
      */
     container: HTMLDivElement;
     /**
      * DOM Div container of label canvas
-     *
-     * @type {HTMLDivElement}
-     * @memberof AbstractItem
      */
     label: HTMLDivElement;
     /**
      * Use canvas as label to fit full text in.
-     *
-     * @type {HTMLCanvasElement}
-     * @memberof AbstractItem
      */
     labelCanvas: HTMLCanvasElement;
     labelCtx: CanvasRenderingContext2D;
     /**
      * Override this to get css work
-     *
-     * @type {string}
-     * @memberof AbstractItem
      */
     className: string;
     frameReduce = 3;
@@ -151,8 +129,6 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends AbstractC
 
     /**
      * Initiate default state with incoming state.
-     * @param {FaustUIItemProps<T>} [props]
-     * @memberof AbstractItem
      */
     constructor(props?: FaustUIItemProps<T>) {
         super(props);
@@ -162,10 +138,6 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends AbstractC
     }
     /**
      * Get a nearest valid number
-     *
-     * @param {number} value
-     * @returns {number}
-     * @memberof AbstractItem
      */
     toValidNumber(value: number): number {
         const { min, max, step } = this.state;
@@ -176,10 +148,6 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends AbstractC
     }
     /**
      * Use this method if you want the emitter to send value to DSP
-     *
-     * @param {number} valueIn
-     * @returns {boolean}
-     * @memberof AbstractItem
      */
     setValue(valueIn: number): boolean {
         const value = this.toValidNumber(valueIn);
@@ -189,9 +157,6 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends AbstractC
     }
     /**
      * Send value to DSP
-     *
-     * @param {number} [valueIn]
-     * @memberof AbstractItem
      */
     change(valueIn?: number) {
         if (this.state.emitter) this.state.emitter.paramChangeByUI(this.state.address, typeof valueIn === "number" ? valueIn : this.state.value);
@@ -199,10 +164,6 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends AbstractC
     /**
      * set internal state and fire events for UI parts subscribed
      * This will not send anything to DSP
-     *
-     * @param {{ [key in keyof FaustUIItemProps<T>]?: FaustUIItemProps<T>[key] }} newState
-     * @returns {boolean} - is state updated
-     * @memberof AbstractItem
      */
     setState(newState: { [key in keyof FaustUIItemProps<T>]?: FaustUIItemProps<T>[key] }): boolean {
         let shouldUpdate = false;
@@ -227,9 +188,6 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends AbstractC
     /**
      * Create container with class name
      * override it with `super.componentWillMount();`
-     *
-     * @returns {this}
-     * @memberof AbstractItem
      */
     componentWillMount(): this {
         this.container = document.createElement("div");
@@ -245,9 +203,6 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends AbstractC
     }
     /**
      * Here append all child DOM to container
-     *
-     * @returns {this}
-     * @memberof AbstractItem
      */
     mount(): this {
         this.label.appendChild(this.labelCanvas);
@@ -274,9 +229,6 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends AbstractC
     }
     /**
      * will call this method when mounted
-     *
-     * @returns {this}
-     * @memberof AbstractItem
      */
     componentDidMount(): this {
         const handleResize = () => {
@@ -294,9 +246,6 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends AbstractC
     }
     /**
      * Count steps in range min-max with step
-     *
-     * @readonly
-     * @memberof AbstractItem
      */
     get stepsCount() {
         const { type, max, min, step, enums } = this.state;
@@ -310,9 +259,6 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends AbstractC
     }
     /**
      * Normalized value between 0 - 1.
-     *
-     * @readonly
-     * @memberof AbstractItem
      */
     get distance() {
         const { type, max, min, value, enums, scale } = this.state;
@@ -325,9 +271,6 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends AbstractC
     }
     /**
      * Mousemove pixels for each step
-     *
-     * @readonly
-     * @memberof AbstractItem
      */
     get stepRange() {
         const full = 100;

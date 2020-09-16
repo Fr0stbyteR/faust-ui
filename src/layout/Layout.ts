@@ -15,6 +15,7 @@ import { VGroup } from "./VGroup";
 import { TGroup } from "./TGroup";
 import { AbstractItem } from "./AbstractItem";
 import { AbstractGroup } from "./AbstractGroup";
+import { TFaustUIItem, TLayoutType, LayoutTypeMap, TFaustUI } from "../types";
 
 export class Layout {
     /**
@@ -46,11 +47,6 @@ export class Layout {
     }
     /**
      * Get the Layout class constructor of an item
-     *
-     * @static
-     * @param {TFaustUIItem} item
-     * @returns {AbstractItem | AbstractGroup}
-     * @memberof Layout
      */
     static getItem(item: TFaustUIItem): AbstractItem | AbstractGroup {
         const ctor: { [key in keyof LayoutTypeMap]: typeof AbstractItem | typeof AbstractGroup } = {

@@ -1,3 +1,4 @@
+import { TFaustUIInputItem } from "../types";
 import { AbstractItem } from "./AbstractItem";
 
 export abstract class AbstractInputItem extends AbstractItem {

@@ -14,7 +14,7 @@ export class HSlider extends VSlider {
         this.input.style.color = textcolor;
         this.container.style.backgroundColor = bgcolor;
         this.container.style.borderColor = bordercolor;
-    }
+    };
     paint = () => {
         const { sliderwidth, sliderbgcolor, sliderbgoncolor, slidercolor } = this.state.style;
         const ctx = this.ctx;
@@ -40,5 +40,5 @@ export class HSlider extends VSlider {
         // draw slider
         ctx.fillStyle = slidercolor;
         fillRoundedRect(ctx, left + drawWidth * distance - drawHeight, top - drawHeight, drawHeight * 2, drawHeight * 3, borderRadius);
-    }
+    };
 }
