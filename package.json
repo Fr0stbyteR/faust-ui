@@ -5,7 +5,8 @@
   "main": "./dist/faust-ui.js",
   "scripts": {
     "build": "webpack --mode development",
-    "dist": "npm run build && webpack --mode production"
+    "dist": "npm run build && webpack --mode production",
+    "build-esm": "rollup -c"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,9 @@
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-typescript": "^7.10.4",
     "@babel/runtime": "^7.11.2",
+    "@rollup/plugin-babel": "^5.2.1",
+    "@rollup/plugin-commonjs": "^15.0.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
     "@types/node": "^14.10.2",
     "@typescript-eslint/eslint-plugin": "^4.0.1",
     "@typescript-eslint/parser": "^4.0.1",
@@ -34,6 +38,8 @@
     "eslint-plugin-import": "^2.22.0",
     "node-sass": "^4.14.1",
     "raw-loader": "^4.0.1",
+    "rollup": "^2.27.1",
+    "rollup-plugin-scss": "^2.6.0",
     "sass-loader": "^10.0.2",
     "style-loader": "^1.2.1",
     "stylelint": "^13.7.0",

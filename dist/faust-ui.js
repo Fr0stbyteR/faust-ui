@@ -1358,10 +1358,12 @@ class FaustUI {
       }, "*");
     });
 
-    var root = options.root,
-        uiIn = options.ui,
-        listenWindowResize = options.listenWindowResize,
-        listenWindowMessage = options.listenWindowMessage;
+    const {
+      root,
+      ui: uiIn,
+      listenWindowResize,
+      listenWindowMessage
+    } = options;
     this.DOMroot = root;
     this.ui = uiIn || [];
 
@@ -1373,18 +1375,24 @@ class FaustUI {
 
     if (typeof listenWindowMessage === "undefined" || listenWindowMessage === true) {
       window.addEventListener("message", e => {
-        var data = e.data,
-            source = e.source;
+        const {
+          data,
+          source
+        } = e;
         this.hostWindow = source;
-        var type = data.type;
+        const {
+          type
+        } = data;
         if (!type) return;
 
         if (type === "ui") {
           this.ui = data.ui;
         } else if (type === "param") {
-          var _path = data.path,
-              value = data.value;
-          this.paramChangeByDSP(_path, value);
+          const {
+            path,
+            value
+          } = data;
+          this.paramChangeByDSP(path, value);
         }
       });
     }
@@ -1399,7 +1407,7 @@ class FaustUI {
   mount() {
     this.componentMap = {};
     this.DOMroot.innerHTML = "";
-    var props = {
+    const props = {
       label: "",
       type: "vgroup",
       items: this.ui,
@@ -1458,10 +1466,10 @@ class FaustUI {
    * @memberof FaustUI
    */
   calc() {
-    var _Layout$calc = _layout_Layout__WEBPACK_IMPORTED_MODULE_0__["Layout"].calc(this.ui),
-        items = _Layout$calc.items,
-        layout = _Layout$calc.layout;
-
+    const {
+      items,
+      layout
+    } = _layout_Layout__WEBPACK_IMPORTED_MODULE_0__["Layout"].calc(this.ui);
     this._ui = items;
     this._layout = layout;
     this.calcGrid();
@@ -1475,11 +1483,11 @@ class FaustUI {
 
 
   calcGrid() {
-    var _this$DOMroot$getBoun = this.DOMroot.getBoundingClientRect(),
-        width = _this$DOMroot$getBoun.width,
-        height = _this$DOMroot$getBoun.height;
-
-    var grid = Math.max(40, Math.min(width / this._layout.width, height / this._layout.height));
+    const {
+      width,
+      height
+    } = this.DOMroot.getBoundingClientRect();
+    const grid = Math.max(40, Math.min(width / this._layout.width, height / this._layout.height));
     this.grid = grid;
     return grid;
   }
@@ -1516,11 +1524,11 @@ class FaustUI {
   }
 
   get minWidth() {
-    return this._layout.width * 40;
+    return this._layout.width * 40 + 1;
   }
 
   get minHeight() {
-    return this._layout.height * 40;
+    return this._layout.height * 40 + 1;
   }
 
 }
@@ -1540,16 +1548,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TypedEventEmitterNodeJS", function() { return TypedEventEmitterNodeJS; });
 /* harmony import */ var events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! events */ "./node_modules/events/events.js");
 /* harmony import */ var events__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(events__WEBPACK_IMPORTED_MODULE_0__);
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function (_e) { function e(_x) { return _e.apply(this, arguments); } e.toString = function () { return _e.toString(); }; return e; }(function (e) { throw e; }), f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function (_e2) { function e(_x2) { return _e2.apply(this, arguments); } e.toString = function () { return _e2.toString(); }; return e; }(function (e) { didErr = true; err = e; }), f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
@@ -1572,108 +1570,28 @@ class TypedEventEmitter {
   }
 
   off(eventName, listener) {
-    var i = this.getListeners(eventName).indexOf(listener);
+    const i = this.getListeners(eventName).indexOf(listener);
     if (i !== -1) this.getListeners(eventName).splice(i, 1);
   }
 
-  emit(eventName, eventData) {
-    var _this = this;
-
-    return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-      var listeners;
-      return regeneratorRuntime.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              listeners = _this.getListeners(eventName);
-
-              if (listeners) {
-                _context.next = 3;
-                break;
-              }
-
-              return _context.abrupt("return", []);
-
-            case 3:
-              return _context.abrupt("return", Promise.all(listeners.map(f => f(eventData))));
-
-            case 4:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }))();
+  async emit(eventName, eventData) {
+    const listeners = this.getListeners(eventName);
+    if (!listeners) return [];
+    return Promise.all(listeners.map(f => f(eventData)));
   }
 
-  emitSerial(eventName, eventData) {
-    var _this2 = this;
+  async emitSerial(eventName, eventData) {
+    const listeners = this.getListeners(eventName);
+    if (!listeners) return;
+    /* eslint-disable no-await-in-loop */
 
-    return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-      var listeners, _iterator, _step, listener;
-
-      return regeneratorRuntime.wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              listeners = _this2.getListeners(eventName);
-
-              if (listeners) {
-                _context2.next = 3;
-                break;
-              }
-
-              return _context2.abrupt("return");
-
-            case 3:
-              /* eslint-disable no-await-in-loop */
-              _iterator = _createForOfIteratorHelper(listeners);
-              _context2.prev = 4;
-
-              _iterator.s();
-
-            case 6:
-              if ((_step = _iterator.n()).done) {
-                _context2.next = 12;
-                break;
-              }
-
-              listener = _step.value;
-              _context2.next = 10;
-              return listener(eventData);
-
-            case 10:
-              _context2.next = 6;
-              break;
-
-            case 12:
-              _context2.next = 17;
-              break;
-
-            case 14:
-              _context2.prev = 14;
-              _context2.t0 = _context2["catch"](4);
-
-              _iterator.e(_context2.t0);
-
-            case 17:
-              _context2.prev = 17;
-
-              _iterator.f();
-
-              return _context2.finish(17);
-
-            case 20:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2, null, [[4, 14, 17, 20]]);
-    }))();
+    for (const listener of listeners) {
+      await listener(eventData);
+    }
   }
 
   emitSync(eventName, eventData) {
-    var listeners = this.getListeners(eventName);
+    const listeners = this.getListeners(eventName);
     if (!listeners) return;
     listeners.map(f => f(eventData));
   }
@@ -1831,10 +1749,10 @@ class AbstractComponent extends _TypedEventEmitter__WEBPACK_IMPORTED_MODULE_0__[
 
 
   setState(newState) {
-    var shouldUpdate = false;
+    let shouldUpdate = false;
 
-    for (var stateKey in newState) {
-      var stateValue = newState[stateKey];
+    for (const stateKey in newState) {
+      const stateValue = newState[stateKey];
 
       if (stateKey in this.state && this.state[stateKey] !== stateValue) {
         this.state[stateKey] = stateValue;
@@ -1949,28 +1867,28 @@ class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["Abst
 
     _defineProperty(this, "handleTouchStart", e => {
       e.preventDefault();
-      var rect = e.currentTarget.getBoundingClientRect();
-      var prevX = e.touches[0].pageX;
-      var prevY = e.touches[0].pageY;
-      var fromX = prevX - rect.left;
-      var fromY = prevY - rect.top;
-      var prevValue = this.state.value;
+      const rect = e.currentTarget.getBoundingClientRect();
+      let prevX = e.touches[0].pageX;
+      let prevY = e.touches[0].pageY;
+      const fromX = prevX - rect.left;
+      const fromY = prevY - rect.top;
+      const prevValue = this.state.value;
       this.handlePointerDown({
         x: fromX,
         y: fromY,
         originalEvent: e
       });
 
-      var handleTouchMove = e => {
+      const handleTouchMove = e => {
         e.preventDefault();
-        var pageX = e.changedTouches[0].pageX;
-        var pageY = e.changedTouches[0].pageY;
-        var movementX = pageX - prevX;
-        var movementY = pageY - prevY;
+        const pageX = e.changedTouches[0].pageX;
+        const pageY = e.changedTouches[0].pageY;
+        const movementX = pageX - prevX;
+        const movementY = pageY - prevY;
         prevX = pageX;
         prevY = pageY;
-        var x = pageX - rect.left;
-        var y = pageY - rect.top;
+        const x = pageX - rect.left;
+        const y = pageY - rect.top;
         this.handlePointerDrag({
           prevValue,
           x,
@@ -1983,10 +1901,10 @@ class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["Abst
         });
       };
 
-      var handleTouchEnd = e => {
+      const handleTouchEnd = e => {
         e.preventDefault();
-        var x = e.changedTouches[0].pageX - rect.left;
-        var y = e.changedTouches[0].pageY - rect.top;
+        const x = e.changedTouches[0].pageX - rect.left;
+        const y = e.changedTouches[0].pageY - rect.top;
         this.handlePointerUp({
           x,
           y,
@@ -2011,20 +1929,20 @@ class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["Abst
     _defineProperty(this, "handleMouseDown", e => {
       e.preventDefault();
       e.currentTarget.focus();
-      var rect = e.currentTarget.getBoundingClientRect();
-      var fromX = e.pageX - rect.left;
-      var fromY = e.pageY - rect.top;
-      var prevValue = this.state.value;
+      const rect = e.currentTarget.getBoundingClientRect();
+      const fromX = e.pageX - rect.left;
+      const fromY = e.pageY - rect.top;
+      const prevValue = this.state.value;
       this.handlePointerDown({
         x: fromX,
         y: fromY,
         originalEvent: e
       });
 
-      var handleMouseMove = e => {
+      const handleMouseMove = e => {
         e.preventDefault();
-        var x = e.pageX - rect.left;
-        var y = e.pageY - rect.top;
+        const x = e.pageX - rect.left;
+        const y = e.pageY - rect.top;
         this.handlePointerDrag({
           prevValue,
           x,
@@ -2037,10 +1955,10 @@ class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["Abst
         });
       };
 
-      var handleMouseUp = e => {
+      const handleMouseUp = e => {
         e.preventDefault();
-        var x = e.pageX - rect.left;
-        var y = e.pageY - rect.top;
+        const x = e.pageX - rect.left;
+        const y = e.pageY - rect.top;
         this.handlePointerUp({
           x,
           y,
@@ -2084,12 +2002,13 @@ class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["Abst
 
 
   toValidNumber(value) {
-    var _this$state = this.state,
-        min = _this$state.min,
-        max = _this$state.max,
-        step = _this$state.step;
+    const {
+      min,
+      max,
+      step
+    } = this.state;
     if (typeof min !== "number" || typeof max !== "number") return value;
-    var v = Math.min(max, Math.max(min, value));
+    const v = Math.min(max, Math.max(min, value));
     if (!step) return v;
     return min + Math.floor((v - min) / step) * step;
   }
@@ -2099,8 +2018,8 @@ class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["Abst
 
 
   setValue(valueIn) {
-    var value = this.toValidNumber(valueIn);
-    var changed = this.setState({
+    const value = this.toValidNumber(valueIn);
+    const changed = this.setState({
       value
     });
     if (changed) this.change(value);
@@ -2121,14 +2040,14 @@ class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["Abst
 
 
   setState(newState) {
-    var shouldUpdate = false;
+    let shouldUpdate = false;
 
-    for (var _key in newState) {
-      var stateKey = _key;
-      var stateValue = newState[stateKey];
+    for (const key in newState) {
+      const stateKey = key;
+      const stateValue = newState[stateKey];
 
       if (stateKey === "style") {
-        for (var styleKey in newState.style) {
+        for (const styleKey in newState.style) {
           if (styleKey in this.state.style && this.state.style[styleKey] !== newState.style[styleKey]) {
             this.state.style[styleKey] = newState.style[styleKey];
             shouldUpdate = true;
@@ -2173,15 +2092,14 @@ class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["Abst
   }
 
   paintLabel(align) {
-    var label = this.state.label;
-    var color = this.state.style.labelcolor;
-    var ctx = this.labelCtx;
-    var canvas = this.labelCanvas;
-
-    var _this$label$getBoundi = this.label.getBoundingClientRect(),
-        width = _this$label$getBoundi.width,
-        height = _this$label$getBoundi.height;
-
+    const label = this.state.label;
+    const color = this.state.style.labelcolor;
+    const ctx = this.labelCtx;
+    const canvas = this.labelCanvas;
+    let {
+      width,
+      height
+    } = this.label.getBoundingClientRect();
     if (!width || !height) return this;
     width = Math.floor(width);
     height = Math.floor(height);
@@ -2201,13 +2119,14 @@ class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["Abst
 
 
   componentDidMount() {
-    var handleResize = () => {
-      var _this$state$style = this.state.style,
-          grid = _this$state$style.grid,
-          left = _this$state$style.left,
-          top = _this$state$style.top,
-          width = _this$state$style.width,
-          height = _this$state$style.height;
+    const handleResize = () => {
+      const {
+        grid,
+        left,
+        top,
+        width,
+        height
+      } = this.state.style;
       this.container.style.width = "".concat(width * grid, "px");
       this.container.style.height = "".concat(height * grid, "px");
       this.container.style.left = "".concat(left * grid, "px");
@@ -2226,13 +2145,14 @@ class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["Abst
 
 
   get stepsCount() {
-    var _this$state2 = this.state,
-        type = _this$state2.type,
-        max = _this$state2.max,
-        min = _this$state2.min,
-        step = _this$state2.step,
-        enums = _this$state2.enums;
-    var maxSteps = type === "enum" ? enums.length : type === "int" ? max - min : (max - min) / step;
+    const {
+      type,
+      max,
+      min,
+      step,
+      enums
+    } = this.state;
+    const maxSteps = type === "enum" ? enums.length : type === "int" ? max - min : (max - min) / step;
 
     if (step) {
       if (type === "enum") return enums.length;
@@ -2248,13 +2168,14 @@ class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["Abst
 
 
   get distance() {
-    var _this$state3 = this.state,
-        type = _this$state3.type,
-        max = _this$state3.max,
-        min = _this$state3.min,
-        value = _this$state3.value,
-        enums = _this$state3.enums,
-        scale = _this$state3.scale;
+    const {
+      type,
+      max,
+      min,
+      value,
+      enums,
+      scale
+    } = this.state;
     return AbstractItem.getDistance({
       type,
       max,
@@ -2266,13 +2187,15 @@ class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["Abst
   }
 
   static getDistance(state) {
-    var type = state.type,
-        max = state.max,
-        min = state.min,
-        value = state.value,
-        enums = state.enums,
-        scale = state.scale;
-    var normalized = type === "enum" ? value / (enums.length - 1) : (value - min) / (max - min);
+    const {
+      type,
+      max,
+      min,
+      value,
+      enums,
+      scale
+    } = state;
+    const normalized = type === "enum" ? value / (enums.length - 1) : (value - min) / (max - min);
     return scale === "exp" ? Object(_utils__WEBPACK_IMPORTED_MODULE_2__["normLog"])(normalized) : scale === "log" ? Object(_utils__WEBPACK_IMPORTED_MODULE_2__["normExp"])(normalized) : normalized;
   }
   /**
@@ -2281,8 +2204,8 @@ class AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_1__["Abst
 
 
   get stepRange() {
-    var full = 100;
-    var stepsCount = this.stepsCount;
+    const full = 100;
+    const stepsCount = this.stepsCount;
     return full / stepsCount;
   }
 
@@ -2402,20 +2325,23 @@ class Button extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] 
     _defineProperty(this, "span", void 0);
 
     _defineProperty(this, "setStyle", () => {
-      var _this$state = this.state,
-          value = _this$state.value,
-          style = _this$state.style;
-      var height = style.height,
-          grid = style.grid,
-          fontsize = style.fontsize,
-          fontname = style.fontname,
-          fontface = style.fontface,
-          textcolor = style.textcolor,
-          textoncolor = style.textoncolor,
-          bgoncolor = style.bgoncolor,
-          bgcolor = style.bgcolor,
-          bordercolor = style.bordercolor,
-          borderoncolor = style.borderoncolor;
+      const {
+        value,
+        style
+      } = this.state;
+      const {
+        height,
+        grid,
+        fontsize,
+        fontname,
+        fontface,
+        textcolor,
+        textoncolor,
+        bgoncolor,
+        bgcolor,
+        bordercolor,
+        borderoncolor
+      } = style;
       this.btn.style.backgroundColor = value ? bgoncolor : bgcolor;
       this.btn.style.borderColor = value ? borderoncolor : bordercolor;
       this.btn.style.color = value ? textoncolor : textcolor;
@@ -2434,7 +2360,7 @@ class Button extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] 
   }
 
   static get defaultProps() {
-    var inherited = super.defaultProps;
+    const inherited = super.defaultProps;
     return _objectSpread(_objectSpread({}, inherited), {}, {
       style: _objectSpread(_objectSpread({}, inherited.style), {}, {
         fontname: "Arial",
@@ -2471,7 +2397,7 @@ class Button extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] 
     this.btn.addEventListener("touchstart", this.handleTouchStart);
     this.on("style", () => this.schedule(this.setStyle));
 
-    var labelChange = () => this.span.innerText = this.state.label;
+    const labelChange = () => this.span.innerText = this.state.label;
 
     this.on("label", () => this.schedule(labelChange));
     this.on("value", () => this.schedule(this.setStyle));
@@ -2637,17 +2563,20 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["AbstractCom
 
     _defineProperty(this, "updateUI", () => {
       this.children = [];
-      var _this$state = this.state,
-          style = _this$state.style,
-          type = _this$state.type,
-          items = _this$state.items,
-          emitter = _this$state.emitter,
-          isRoot = _this$state.isRoot;
-      var grid = style.grid,
-          left = style.left,
-          top = style.top,
-          width = style.width,
-          height = style.height;
+      const {
+        style,
+        type,
+        items,
+        emitter,
+        isRoot
+      } = this.state;
+      const {
+        grid,
+        left,
+        top,
+        width,
+        height
+      } = style;
       this.label.style.height = "".concat(grid * 0.3, "px");
       this.container.style.left = "".concat(left * grid, "px");
       this.container.style.top = "".concat(top * grid, "px");
@@ -2656,11 +2585,11 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["AbstractCom
       this.container.className = ["faust-ui-group", "faust-ui-".concat(type), "".concat(isRoot ? "faust-ui-root" : "")].join(" ");
       items.forEach(item => {
         if (item.type.endsWith("group")) {
-          var component = Group.getComponent(item, emitter, grid);
+          const component = Group.getComponent(item, emitter, grid);
           if (component) this.children.push(component);
         } else {
-          var ioItem = item;
-          var itemComponent = Group.getComponent(ioItem, this.state.emitter, grid);
+          const ioItem = item;
+          const itemComponent = Group.getComponent(ioItem, this.state.emitter, grid);
           if (itemComponent) this.children.push(itemComponent);
         }
       });
@@ -2670,8 +2599,8 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["AbstractCom
         this.tabs.style.height = "".concat(grid, "px");
         this.tabs.style.top = "".concat(0.25 * grid, "px");
         this.state.items.forEach((item, i) => {
-          var label = item.label;
-          var tab = document.createElement("span");
+          const label = item.label;
+          const tab = document.createElement("span");
           tab.innerText = label;
           tab.className = "faust-ui-tgroup-tab";
           tab.style.fontSize = "".concat(0.25 * grid, "px");
@@ -2679,22 +2608,22 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["AbstractCom
           tab.style.height = "".concat(grid - 10, "px");
           tab.style.lineHeight = "".concat(grid - 10, "px");
           tab.addEventListener("click", () => {
-            var groups = [];
+            const groups = [];
 
-            for (var j = 0; j < this.container.children.length; j++) {
-              var element = this.container.children[j];
+            for (let j = 0; j < this.container.children.length; j++) {
+              const element = this.container.children[j];
               if (element.classList.contains("faust-ui-group")) groups.push(element);
             }
 
-            for (var _j = 0; _j < groups.length; _j++) {
-              var _element = groups[_j];
-              _element.style.visibility = i === _j ? "visible" : "hidden";
+            for (let j = 0; j < groups.length; j++) {
+              const element = groups[j];
+              element.style.visibility = i === j ? "visible" : "hidden";
             }
 
-            for (var _j2 = 0; _j2 < this.tabs.children.length; _j2++) {
-              var e = this.tabs.children[_j2];
+            for (let j = 0; j < this.tabs.children.length; j++) {
+              const e = this.tabs.children[j];
 
-              if (i !== _j2) {
+              if (i !== j) {
                 if (e.classList.contains("active")) e.classList.remove("active");
               } else e.classList.add("active");
             }
@@ -2706,20 +2635,20 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["AbstractCom
   }
 
   static parseMeta(metaIn) {
-    var metaObject = {};
+    const metaObject = {};
     if (!metaIn) return {
       metaObject
     };
     metaIn.forEach(m => Object.assign(metaObject, m));
 
     if (metaObject.style) {
-      var enumsRegex = /\{(?:(?:'|_)(.+?)(?:'|_):([-+]?[0-9]*\.?[0-9]+?);)+(?:(?:'|_)(.+?)(?:'|_):([-+]?[0-9]*\.?[0-9]+?))\}/;
-      var matched = metaObject.style.match(enumsRegex);
+      const enumsRegex = /\{(?:(?:'|_)(.+?)(?:'|_):([-+]?[0-9]*\.?[0-9]+?);)+(?:(?:'|_)(.+?)(?:'|_):([-+]?[0-9]*\.?[0-9]+?))\}/;
+      const matched = metaObject.style.match(enumsRegex);
 
       if (matched) {
-        var itemsRegex = /(?:(?:'|_)(.+?)(?:'|_):([-+]?[0-9]*\.?[0-9]+?))/g;
-        var enums = {};
-        var item; // eslint-disable-next-line no-cond-assign
+        const itemsRegex = /(?:(?:'|_)(.+?)(?:'|_):([-+]?[0-9]*\.?[0-9]+?))/g;
+        const enums = {};
+        let item; // eslint-disable-next-line no-cond-assign
 
         while (item = itemsRegex.exec(matched[0])) {
           enums[item[1]] = +item[2];
@@ -2738,46 +2667,50 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["AbstractCom
   }
 
   static getComponent(item, emitter, grid) {
-    var type = _layout_Layout__WEBPACK_IMPORTED_MODULE_13__["Layout"].predictType(item);
+    const type = _layout_Layout__WEBPACK_IMPORTED_MODULE_13__["Layout"].predictType(item);
 
     if (type.endsWith("group")) {
-      var _ref = item,
-          _label = _ref.label,
-          items = _ref.items,
-          _type = _ref.type,
-          _layout = _ref.layout;
-      var _props = {
-        label: _label,
-        type: _type,
+      const {
+        label,
+        items,
+        type,
+        layout
+      } = item;
+      const props = {
+        label,
+        type,
         items,
         style: {
           grid,
-          width: _layout.width,
-          height: _layout.height,
-          left: _layout.offsetLeft,
-          top: _layout.offsetTop,
+          width: layout.width,
+          height: layout.height,
+          left: layout.offsetLeft,
+          top: layout.offsetTop,
           labelcolor: "rgba(255, 255, 255, 0.7)"
         },
         emitter
       };
-      return new Group(_props);
+      return new Group(props);
     }
 
-    var ioItem = item;
-
-    var _this$parseMeta = this.parseMeta(ioItem.meta),
-        metaObject = _this$parseMeta.metaObject,
-        enums = _this$parseMeta.enums;
-
-    var tooltip = metaObject.tooltip,
-        unit = metaObject.unit,
-        scale = metaObject.scale;
-    var label = ioItem.label,
-        min = ioItem.min,
-        max = ioItem.max,
-        address = ioItem.address,
-        layout = ioItem.layout;
-    var props = {
+    const ioItem = item;
+    const {
+      metaObject,
+      enums
+    } = this.parseMeta(ioItem.meta);
+    const {
+      tooltip,
+      unit,
+      scale
+    } = metaObject;
+    const {
+      label,
+      min,
+      max,
+      address,
+      layout
+    } = ioItem;
+    const props = {
       label,
       address,
       tooltip,
@@ -2821,15 +2754,15 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["AbstractCom
 
 
   setState(newState) {
-    var shouldUpdate = false;
+    let shouldUpdate = false;
 
-    for (var _key in newState) {
-      var stateKey = _key;
-      var stateValue = newState[stateKey];
+    for (const key in newState) {
+      const stateKey = key;
+      const stateValue = newState[stateKey];
 
       if (stateKey === "style") {
-        for (var _key2 in newState.style) {
-          var styleKey = _key2;
+        for (const key in newState.style) {
+          const styleKey = key;
 
           if (styleKey in this.state.style && this.state.style[styleKey] !== newState.style[styleKey]) {
             this.state.style[styleKey] = newState.style[styleKey];
@@ -2859,15 +2792,14 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["AbstractCom
   }
 
   paintLabel() {
-    var label = this.state.label;
-    var color = this.state.style.labelcolor;
-    var ctx = this.labelCtx;
-    var canvas = this.labelCanvas;
-
-    var _this$label$getBoundi = this.label.getBoundingClientRect(),
-        width = _this$label$getBoundi.width,
-        height = _this$label$getBoundi.height;
-
+    const label = this.state.label;
+    const color = this.state.style.labelcolor;
+    const ctx = this.labelCtx;
+    const canvas = this.labelCanvas;
+    let {
+      width,
+      height
+    } = this.label.getBoundingClientRect();
     if (!width || !height) return this;
     width = Math.floor(width);
     height = Math.floor(height);
@@ -2894,13 +2826,14 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["AbstractCom
   }
 
   componentDidMount() {
-    var handleResize = () => {
-      var _this$state$style = this.state.style,
-          grid = _this$state$style.grid,
-          left = _this$state$style.left,
-          top = _this$state$style.top,
-          width = _this$state$style.width,
-          height = _this$state$style.height;
+    const handleResize = () => {
+      const {
+        grid,
+        left,
+        top,
+        width,
+        height
+      } = this.state.style;
       this.label.style.height = "".concat(grid * 0.3, "px");
       this.container.style.width = "".concat(width * grid, "px");
       this.container.style.height = "".concat(height * grid, "px");
@@ -2911,8 +2844,8 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["AbstractCom
         this.tabs.style.height = "".concat(grid, "px");
         this.tabs.style.top = "".concat(0.25 * grid, "px");
 
-        for (var i = 0; i < this.tabs.children.length; i++) {
-          var tab = this.tabs.children[i];
+        for (let i = 0; i < this.tabs.children.length; i++) {
+          const tab = this.tabs.children[i];
           tab.style.fontSize = "".concat(0.25 * grid, "px");
           tab.style.width = "".concat(2 * grid - 10, "px");
           tab.style.height = "".concat(grid - 10, "px");
@@ -2930,14 +2863,14 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["AbstractCom
 
     this.on("style", () => this.schedule(handleResize));
 
-    var itemsChange = () => {
+    const itemsChange = () => {
       this.updateUI();
       this.children.forEach(item => item.componentWillMount());
     };
 
     this.on("items", () => this.schedule(itemsChange));
 
-    var labelChange = () => {
+    const labelChange = () => {
       this.paintLabel();
       this.label.title = this.state.label;
     };
@@ -3006,13 +2939,14 @@ class HBargraph extends _VBargraph__WEBPACK_IMPORTED_MODULE_1__["VBargraph"] {
     _defineProperty(this, "className", "hbargraph");
 
     _defineProperty(this, "setStyle", () => {
-      var _this$state$style = this.state.style,
-          height = _this$state$style.height,
-          grid = _this$state$style.grid,
-          fontsize = _this$state$style.fontsize,
-          textcolor = _this$state$style.textcolor,
-          bgcolor = _this$state$style.bgcolor,
-          bordercolor = _this$state$style.bordercolor;
+      const {
+        height,
+        grid,
+        fontsize,
+        textcolor,
+        bgcolor,
+        bordercolor
+      } = this.state.style;
       this.input.style.fontSize = "".concat(fontsize || height * grid * 0.2, "px");
       this.input.style.color = textcolor;
       this.container.style.backgroundColor = bgcolor;
@@ -3020,34 +2954,35 @@ class HBargraph extends _VBargraph__WEBPACK_IMPORTED_MODULE_1__["VBargraph"] {
     });
 
     _defineProperty(this, "paint", () => {
-      var _this$state$style2 = this.state.style,
-          barwidth = _this$state$style2.barwidth,
-          barbgcolor = _this$state$style2.barbgcolor,
-          coldcolor = _this$state$style2.coldcolor,
-          warmcolor = _this$state$style2.warmcolor,
-          hotcolor = _this$state$style2.hotcolor,
-          overloadcolor = _this$state$style2.overloadcolor;
-      var _this$state = this.state,
-          min = _this$state.min,
-          max = _this$state.max,
-          value = _this$state.value;
-      var ctx = this.ctx;
-      var canvas = this.canvas;
-
-      var _this$canvasDiv$getBo = this.canvasDiv.getBoundingClientRect(),
-          width = _this$canvasDiv$getBo.width,
-          height = _this$canvasDiv$getBo.height;
-
+      const {
+        barwidth,
+        barbgcolor,
+        coldcolor,
+        warmcolor,
+        hotcolor,
+        overloadcolor
+      } = this.state.style;
+      const {
+        min,
+        max,
+        value
+      } = this.state;
+      const ctx = this.ctx;
+      const canvas = this.canvas;
+      let {
+        width,
+        height
+      } = this.canvasDiv.getBoundingClientRect();
       width = Math.floor(width);
       height = Math.floor(height);
       canvas.width = width;
       canvas.height = height;
-      var drawWidth = width * 0.9;
-      var drawHeight = barwidth || Math.min(height / 3, drawWidth * 0.05);
-      var left = width * 0.05;
-      var top = (height - drawHeight) * 0.5;
+      const drawWidth = width * 0.9;
+      const drawHeight = barwidth || Math.min(height / 3, drawWidth * 0.05);
+      const left = width * 0.05;
+      const top = (height - drawHeight) * 0.5;
       this.paintValue = value;
-      var paintValue = this.paintValue;
+      const paintValue = this.paintValue;
 
       if (paintValue > this.maxValue) {
         this.maxValue = paintValue;
@@ -3065,12 +3000,12 @@ class HBargraph extends _VBargraph__WEBPACK_IMPORTED_MODULE_1__["VBargraph"] {
         }, 1000);
       }
 
-      var maxValue = this.maxValue;
-      var coldStop = (-18 - min) / (max - min);
-      var warmStop = (-6 - min) / (max - min);
-      var hotStop = (-3 - min) / (max - min);
-      var overloadStop = -min / (max - min);
-      var gradient = ctx.createLinearGradient(left, 0, drawWidth, 0);
+      const maxValue = this.maxValue;
+      const coldStop = (-18 - min) / (max - min);
+      const warmStop = (-6 - min) / (max - min);
+      const hotStop = (-3 - min) / (max - min);
+      const overloadStop = -min / (max - min);
+      const gradient = ctx.createLinearGradient(left, 0, drawWidth, 0);
       if (coldStop <= 1 && coldStop >= 0) gradient.addColorStop(coldStop, coldcolor);else if (coldStop > 1) gradient.addColorStop(1, coldcolor);
       if (warmStop <= 1 && warmStop >= 0) gradient.addColorStop(warmStop, warmcolor);
       if (hotStop <= 1 && hotStop >= 0) gradient.addColorStop(hotStop, hotcolor);
@@ -3081,27 +3016,24 @@ class HBargraph extends _VBargraph__WEBPACK_IMPORTED_MODULE_1__["VBargraph"] {
       ctx.fillStyle = gradient;
 
       if (paintValue > min) {
-        var distance = (Math.min(0, paintValue) - min) / (max - min);
+        const distance = (Math.min(0, paintValue) - min) / (max - min);
         ctx.fillRect(left, top, distance * drawWidth, drawHeight);
       }
 
       if (paintValue > 0) {
-        var _distance = Math.min(max, paintValue) / (max - min);
-
-        ctx.fillRect(left + overloadStop * drawWidth + 1, top, _distance * drawWidth - 1, drawHeight);
+        const distance = Math.min(max, paintValue) / (max - min);
+        ctx.fillRect(left + overloadStop * drawWidth + 1, top, distance * drawWidth - 1, drawHeight);
       }
 
       if (maxValue > paintValue) {
         if (maxValue <= 0) {
-          var _distance2 = (Math.min(0, maxValue) - min) / (max - min);
-
-          ctx.fillRect(left + _distance2 * drawWidth - 1, top, 1, drawHeight);
+          const distance = (Math.min(0, maxValue) - min) / (max - min);
+          ctx.fillRect(left + distance * drawWidth - 1, top, 1, drawHeight);
         }
 
         if (maxValue > 0) {
-          var _distance3 = Math.min(max, maxValue) / (max - min);
-
-          ctx.fillRect(left + Math.min(drawWidth - 1, (overloadStop + _distance3) * drawWidth), top, 1, drawHeight);
+          const distance = Math.min(max, maxValue) / (max - min);
+          ctx.fillRect(left + Math.min(drawWidth - 1, (overloadStop + distance) * drawWidth), top, 1, drawHeight);
         }
       }
     });
@@ -3170,13 +3102,14 @@ class HSlider extends _VSlider__WEBPACK_IMPORTED_MODULE_2__["VSlider"] {
     _defineProperty(this, "className", "hslider");
 
     _defineProperty(this, "setStyle", () => {
-      var _this$state$style = this.state.style,
-          height = _this$state$style.height,
-          grid = _this$state$style.grid,
-          fontsize = _this$state$style.fontsize,
-          textcolor = _this$state$style.textcolor,
-          bgcolor = _this$state$style.bgcolor,
-          bordercolor = _this$state$style.bordercolor;
+      const {
+        height,
+        grid,
+        fontsize,
+        textcolor,
+        bgcolor,
+        bordercolor
+      } = this.state.style;
       this.input.style.fontSize = "".concat(fontsize || height * grid * 0.2, "px");
       this.input.style.color = textcolor;
       this.container.style.backgroundColor = bgcolor;
@@ -3184,30 +3117,30 @@ class HSlider extends _VSlider__WEBPACK_IMPORTED_MODULE_2__["VSlider"] {
     });
 
     _defineProperty(this, "paint", () => {
-      var _this$state$style2 = this.state.style,
-          sliderwidth = _this$state$style2.sliderwidth,
-          sliderbgcolor = _this$state$style2.sliderbgcolor,
-          sliderbgoncolor = _this$state$style2.sliderbgoncolor,
-          slidercolor = _this$state$style2.slidercolor;
-      var ctx = this.ctx;
-      var canvas = this.canvas;
-      var distance = this.distance;
-
-      var _this$canvasDiv$getBo = this.canvasDiv.getBoundingClientRect(),
-          width = _this$canvasDiv$getBo.width,
-          height = _this$canvasDiv$getBo.height;
-
+      const {
+        sliderwidth,
+        sliderbgcolor,
+        sliderbgoncolor,
+        slidercolor
+      } = this.state.style;
+      const ctx = this.ctx;
+      const canvas = this.canvas;
+      const distance = this.distance;
+      let {
+        width,
+        height
+      } = this.canvasDiv.getBoundingClientRect();
       width = Math.floor(width);
       height = Math.floor(height);
       canvas.width = width;
       canvas.height = height;
-      var drawWidth = width * 0.9;
-      var drawHeight = sliderwidth || Math.min(height / 3, drawWidth * 0.05);
-      var left = width * 0.05;
-      var top = (height - drawHeight) * 0.5;
-      var borderRadius = drawHeight * 0.25;
+      const drawWidth = width * 0.9;
+      const drawHeight = sliderwidth || Math.min(height / 3, drawWidth * 0.05);
+      const left = width * 0.05;
+      const top = (height - drawHeight) * 0.5;
+      const borderRadius = drawHeight * 0.25;
       this.interactionRect = [left, 0, drawWidth, height];
-      var grd = ctx.createLinearGradient(left, 0, left + drawWidth, 0);
+      const grd = ctx.createLinearGradient(left, 0, left + drawWidth, 0);
       grd.addColorStop(Math.max(0, Math.min(1, distance)), sliderbgoncolor);
       grd.addColorStop(Math.max(0, Math.min(1, distance)), sliderbgcolor);
       ctx.fillStyle = grd;
@@ -3293,10 +3226,10 @@ class Knob extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] {
     _defineProperty(this, "ctx", void 0);
 
     _defineProperty(this, "handleChange", e => {
-      var value = parseFloat(e.currentTarget.value);
+      const value = parseFloat(e.currentTarget.value);
 
       if (isFinite(value)) {
-        var changed = this.setValue(+this.inputNumber.value);
+        const changed = this.setValue(+this.inputNumber.value);
         if (changed) return;
       }
 
@@ -3304,13 +3237,14 @@ class Knob extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] {
     });
 
     _defineProperty(this, "setStyle", () => {
-      var _this$state$style = this.state.style,
-          fontsize = _this$state$style.fontsize,
-          height = _this$state$style.height,
-          grid = _this$state$style.grid,
-          textcolor = _this$state$style.textcolor,
-          bgcolor = _this$state$style.bgcolor,
-          bordercolor = _this$state$style.bordercolor;
+      const {
+        fontsize,
+        height,
+        grid,
+        textcolor,
+        bgcolor,
+        bordercolor
+      } = this.state.style;
       this.input.style.fontSize = "".concat(fontsize || height * grid * 0.1, "px");
       this.input.style.color = textcolor;
       this.container.style.backgroundColor = bgcolor;
@@ -3318,37 +3252,37 @@ class Knob extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] {
     });
 
     _defineProperty(this, "paint", () => {
-      var _this$state$style2 = this.state.style,
-          knobwidth = _this$state$style2.knobwidth,
-          knobcolor = _this$state$style2.knobcolor,
-          knoboncolor = _this$state$style2.knoboncolor,
-          needlecolor = _this$state$style2.needlecolor;
-      var ctx = this.ctx;
-      var canvas = this.canvas;
-      var distance = this.distance;
-
-      var _this$canvas$getBound = this.canvas.getBoundingClientRect(),
-          width = _this$canvas$getBound.width,
-          height = _this$canvas$getBound.height;
-
+      const {
+        knobwidth,
+        knobcolor,
+        knoboncolor,
+        needlecolor
+      } = this.state.style;
+      const ctx = this.ctx;
+      const canvas = this.canvas;
+      const distance = this.distance;
+      let {
+        width,
+        height
+      } = this.canvas.getBoundingClientRect();
       width = Math.floor(width);
       height = Math.floor(height);
       canvas.width = width;
       canvas.height = height;
-      var start = 5 / 8 * Math.PI;
-      var end = 19 / 8 * Math.PI;
-      var valPos = start + Object(_utils__WEBPACK_IMPORTED_MODULE_2__["toRad"])(distance * 315);
-      var dialHeight = Math.min(width, height) * 0.75;
-      var dialRadius = dialHeight * 0.5;
-      var dialCenterX = width * 0.5;
-      var dialCenterY = height * 0.5; // const arcStartX = dialCenterX + (dialHeight * 0.5 * Math.cos(start));
+      const start = 5 / 8 * Math.PI;
+      const end = 19 / 8 * Math.PI;
+      const valPos = start + Object(_utils__WEBPACK_IMPORTED_MODULE_2__["toRad"])(distance * 315);
+      const dialHeight = Math.min(width, height) * 0.75;
+      const dialRadius = dialHeight * 0.5;
+      const dialCenterX = width * 0.5;
+      const dialCenterY = height * 0.5; // const arcStartX = dialCenterX + (dialHeight * 0.5 * Math.cos(start));
       // const arcStartY = dialCenterY + (dialHeight * 0.5 * Math.sin(start));
       // const arcEndX = dialCenterX + (dialHeight * 0.5 * Math.cos(end));
       // const arcEndY = dialCenterY + (dialHeight * 0.5 * Math.sin(end));
 
-      var valuePosX = dialCenterX + dialHeight * 0.5 * Math.cos(valPos);
-      var valuePosY = dialCenterY + dialHeight * 0.5 * Math.sin(valPos);
-      var lineWidth = knobwidth || dialRadius * 0.2;
+      const valuePosX = dialCenterX + dialHeight * 0.5 * Math.cos(valPos);
+      const valuePosY = dialCenterY + dialHeight * 0.5 * Math.sin(valPos);
+      const lineWidth = knobwidth || dialRadius * 0.2;
       ctx.strokeStyle = knobcolor;
       ctx.lineWidth = lineWidth;
       ctx.lineCap = "round"; // draw background arc
@@ -3373,13 +3307,13 @@ class Knob extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] {
     });
 
     _defineProperty(this, "handlePointerDrag", e => {
-      var newValue = this.getValueFromDelta(e);
+      const newValue = this.getValueFromDelta(e);
       if (newValue !== this.state.value) this.setValue(newValue);
     });
   }
 
   static get defaultProps() {
-    var inherited = super.defaultProps;
+    const inherited = super.defaultProps;
     return _objectSpread(_objectSpread({}, inherited), {}, {
       style: _objectSpread(_objectSpread({}, inherited.style), {}, {
         fontname: "Arial",
@@ -3429,7 +3363,7 @@ class Knob extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] {
     });
     this.on("label", () => this.schedule(this.paintLabel));
 
-    var valueChange = () => {
+    const valueChange = () => {
       this.inputNumber.value = (+this.state.value.toFixed(3)).toString();
       this.input.value = this.inputNumber.value + (this.state.unit || "");
     };
@@ -3439,21 +3373,21 @@ class Knob extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] {
       this.schedule(this.paint);
     });
 
-    var maxChange = () => this.inputNumber.max = this.state.max.toString();
+    const maxChange = () => this.inputNumber.max = this.state.max.toString();
 
     this.on("max", () => {
       this.schedule(maxChange);
       this.schedule(this.paint);
     });
 
-    var minChange = () => this.inputNumber.min = this.state.min.toString();
+    const minChange = () => this.inputNumber.min = this.state.min.toString();
 
     this.on("min", () => {
       this.schedule(minChange);
       this.schedule(this.paint);
     });
 
-    var stepChange = () => this.inputNumber.step = this.state.step.toString();
+    const stepChange = () => this.inputNumber.step = this.state.step.toString();
 
     this.on("step", () => {
       this.schedule(stepChange);
@@ -3471,17 +3405,18 @@ class Knob extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] {
   }
 
   getValueFromDelta(e) {
-    var _this$state = this.state,
-        type = _this$state.type,
-        min = _this$state.min,
-        max = _this$state.max,
-        enums = _this$state.enums,
-        scale = _this$state.scale;
-    var step = type === "enum" ? 1 : this.state.step || 1;
-    var stepRange = this.stepRange;
-    var stepsCount = this.stepsCount;
-    var range = 100;
-    var prevDistance = _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"].getDistance({
+    const {
+      type,
+      min,
+      max,
+      enums,
+      scale
+    } = this.state;
+    const step = type === "enum" ? 1 : this.state.step || 1;
+    const stepRange = this.stepRange;
+    const stepsCount = this.stepsCount;
+    const range = 100;
+    const prevDistance = _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"].getDistance({
       value: e.prevValue,
       type,
       min,
@@ -3489,8 +3424,8 @@ class Knob extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] {
       enums,
       scale
     }) * range;
-    var distance = prevDistance + e.fromY - e.y;
-    var steps = Math.round((scale === "exp" ? Object(_utils__WEBPACK_IMPORTED_MODULE_2__["normExp"])(distance / range) : scale === "log" ? Object(_utils__WEBPACK_IMPORTED_MODULE_2__["normLog"])(distance / range) : distance / range) * range / stepRange);
+    const distance = prevDistance + e.fromY - e.y;
+    let steps = Math.round((scale === "exp" ? Object(_utils__WEBPACK_IMPORTED_MODULE_2__["normExp"])(distance / range) : scale === "log" ? Object(_utils__WEBPACK_IMPORTED_MODULE_2__["normLog"])(distance / range) : distance / range) * range / stepRange);
     steps = Math.min(stepsCount, Math.max(0, steps));
     if (type === "enum") return steps;
     if (type === "int") return Math.round(steps * step + min);
@@ -3568,52 +3503,56 @@ class Led extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] {
     _defineProperty(this, "tempCtx", void 0);
 
     _defineProperty(this, "setStyle", () => {
-      var _this$state$style = this.state.style,
-          bgcolor = _this$state$style.bgcolor,
-          bordercolor = _this$state$style.bordercolor;
+      const {
+        bgcolor,
+        bordercolor
+      } = this.state.style;
       this.container.style.backgroundColor = bgcolor;
       this.container.style.borderColor = bordercolor;
     });
 
     _defineProperty(this, "paint", () => {
-      var _this$state$style2 = this.state.style,
-          shape = _this$state$style2.shape,
-          ledbgcolor = _this$state$style2.ledbgcolor,
-          coldcolor = _this$state$style2.coldcolor,
-          warmcolor = _this$state$style2.warmcolor,
-          hotcolor = _this$state$style2.hotcolor,
-          overloadcolor = _this$state$style2.overloadcolor;
-      var _this$state = this.state,
-          min = _this$state.min,
-          max = _this$state.max;
-      var canvas = this.canvas,
-          ctx = this.ctx,
-          tempCanvas = this.tempCanvas,
-          tempCtx = this.tempCtx,
-          distance = this.distance;
-
-      var _canvas$getBoundingCl = canvas.getBoundingClientRect(),
-          width = _canvas$getBoundingCl.width,
-          height = _canvas$getBoundingCl.height;
-
+      const {
+        shape,
+        ledbgcolor,
+        coldcolor,
+        warmcolor,
+        hotcolor,
+        overloadcolor
+      } = this.state.style;
+      const {
+        min,
+        max
+      } = this.state;
+      const {
+        canvas,
+        ctx,
+        tempCanvas,
+        tempCtx,
+        distance
+      } = this;
+      const {
+        width,
+        height
+      } = canvas.getBoundingClientRect();
       canvas.width = width;
       canvas.height = height;
-      var drawHeight = Math.min(height, width) * 0.75;
-      var drawWidth = drawHeight;
-      var left = (width - drawWidth) * 0.5;
-      var top = (height - drawHeight) * 0.5;
-      var coldStop = (-18 - min) / (max - min);
-      var warmStop = (-6 - min) / (max - min);
-      var hotStop = (-3 - min) / (max - min);
-      var overloadStop = -min / (max - min);
-      var gradient = tempCtx.createLinearGradient(0, 0, tempCanvas.width, 0);
+      const drawHeight = Math.min(height, width) * 0.75;
+      const drawWidth = drawHeight;
+      const left = (width - drawWidth) * 0.5;
+      const top = (height - drawHeight) * 0.5;
+      const coldStop = (-18 - min) / (max - min);
+      const warmStop = (-6 - min) / (max - min);
+      const hotStop = (-3 - min) / (max - min);
+      const overloadStop = -min / (max - min);
+      const gradient = tempCtx.createLinearGradient(0, 0, tempCanvas.width, 0);
       if (coldStop <= 1 && coldStop >= 0) gradient.addColorStop(coldStop, coldcolor);else if (coldStop > 1) gradient.addColorStop(1, coldcolor);
       if (warmStop <= 1 && warmStop >= 0) gradient.addColorStop(warmStop, warmcolor);
       if (hotStop <= 1 && hotStop >= 0) gradient.addColorStop(hotStop, hotcolor);
       if (overloadStop <= 1 && overloadStop >= 0) gradient.addColorStop(overloadStop, overloadcolor);else if (overloadStop < 0) gradient.addColorStop(0, coldcolor);
       tempCtx.fillStyle = gradient;
       tempCtx.fillRect(0, 0, tempCanvas.width, 10);
-      var d = tempCtx.getImageData(Math.min(tempCanvas.width - 1, distance * tempCanvas.width), 0, 1, 1).data;
+      const d = tempCtx.getImageData(Math.min(tempCanvas.width - 1, distance * tempCanvas.width), 0, 1, 1).data;
       if (distance) ctx.fillStyle = "rgb(".concat(d[0], ", ").concat(d[1], ", ").concat(d[2], ")");else ctx.fillStyle = ledbgcolor;
       if (shape === "circle") ctx.arc(width / 2, height / 2, width / 2 - left, 0, 2 * Math.PI);else ctx.rect(left, top, drawWidth, drawHeight);
       ctx.fill();
@@ -3621,7 +3560,7 @@ class Led extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] {
   }
 
   static get defaultProps() {
-    var inherited = super.defaultProps;
+    const inherited = super.defaultProps;
     return _objectSpread(_objectSpread({}, inherited), {}, {
       style: _objectSpread(_objectSpread({}, inherited.style), {}, {
         fontname: "Arial",
@@ -3747,13 +3686,14 @@ class Menu extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] {
     });
 
     _defineProperty(this, "setStyle", () => {
-      var _this$state$style = this.state.style,
-          height = _this$state$style.height,
-          grid = _this$state$style.grid,
-          fontsize = _this$state$style.fontsize,
-          textcolor = _this$state$style.textcolor,
-          bgcolor = _this$state$style.bgcolor,
-          bordercolor = _this$state$style.bordercolor;
+      const {
+        height,
+        grid,
+        fontsize,
+        textcolor,
+        bgcolor,
+        bordercolor
+      } = this.state.style;
       this.select.style.backgroundColor = bgcolor;
       this.select.style.borderColor = bordercolor;
       this.select.style.color = textcolor;
@@ -3762,7 +3702,7 @@ class Menu extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] {
   }
 
   static get defaultProps() {
-    var inherited = super.defaultProps;
+    const inherited = super.defaultProps;
     return _objectSpread(_objectSpread({}, inherited), {}, {
       style: _objectSpread(_objectSpread({}, inherited.style), {}, {
         fontname: "Arial",
@@ -3785,14 +3725,16 @@ class Menu extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] {
   }
 
   getOptions() {
-    var enums = this.state.enums;
+    const {
+      enums
+    } = this.state;
     this.select.innerHTML = "";
 
     if (enums) {
-      var i = 0;
+      let i = 0;
 
-      for (var key in enums) {
-        var option = document.createElement("option");
+      for (const key in enums) {
+        const option = document.createElement("option");
         option.value = enums[key].toString();
         option.text = key;
         if (i === 0) option.selected = true;
@@ -3809,9 +3751,9 @@ class Menu extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] {
     this.on("label", () => this.schedule(this.paintLabel));
     this.on("enums", () => this.schedule(this.getOptions));
 
-    var valueChange = () => {
-      for (var i = this.select.children.length - 1; i >= 0; i--) {
-        var option = this.select.children[i];
+    const valueChange = () => {
+      for (let i = this.select.children.length - 1; i >= 0; i--) {
+        const option = this.select.children[i];
         if (+option.value === this.state.value) this.select.selectedIndex = i;
       }
     };
@@ -3894,13 +3836,14 @@ class Nentry extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] 
     });
 
     _defineProperty(this, "setStyle", () => {
-      var _this$state$style = this.state.style,
-          height = _this$state$style.height,
-          grid = _this$state$style.grid,
-          fontsize = _this$state$style.fontsize,
-          textcolor = _this$state$style.textcolor,
-          bgcolor = _this$state$style.bgcolor,
-          bordercolor = _this$state$style.bordercolor;
+      const {
+        height,
+        grid,
+        fontsize,
+        textcolor,
+        bgcolor,
+        bordercolor
+      } = this.state.style;
       this.input.style.backgroundColor = bgcolor;
       this.input.style.borderColor = bordercolor;
       this.input.style.color = textcolor;
@@ -3909,7 +3852,7 @@ class Nentry extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] 
   }
 
   static get defaultProps() {
-    var inherited = super.defaultProps;
+    const inherited = super.defaultProps;
     return _objectSpread(_objectSpread({}, inherited), {}, {
       style: _objectSpread(_objectSpread({}, inherited.style), {}, {
         fontname: "Arial",
@@ -3941,19 +3884,19 @@ class Nentry extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] 
     this.on("style", () => this.schedule(this.setStyle));
     this.on("label", () => this.schedule(this.paintLabel));
 
-    var valueChange = () => this.input.value = (+this.state.value.toFixed(3)).toString();
+    const valueChange = () => this.input.value = (+this.state.value.toFixed(3)).toString();
 
     this.on("value", () => this.schedule(valueChange));
 
-    var maxChange = () => this.input.max = this.state.max.toString();
+    const maxChange = () => this.input.max = this.state.max.toString();
 
     this.on("max", () => this.schedule(maxChange));
 
-    var minChange = () => this.input.min = this.state.min.toString();
+    const minChange = () => this.input.min = this.state.min.toString();
 
     this.on("min", () => this.schedule(minChange));
 
-    var stepChange = () => this.input.step = this.state.step.toString();
+    const stepChange = () => this.input.step = this.state.step.toString();
 
     this.on("step", () => this.schedule(stepChange));
     return this;
@@ -4028,13 +3971,14 @@ class Numerical extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem
     _defineProperty(this, "input", void 0);
 
     _defineProperty(this, "setStyle", () => {
-      var _this$state$style = this.state.style,
-          height = _this$state$style.height,
-          grid = _this$state$style.grid,
-          fontsize = _this$state$style.fontsize,
-          textcolor = _this$state$style.textcolor,
-          bgcolor = _this$state$style.bgcolor,
-          bordercolor = _this$state$style.bordercolor;
+      const {
+        height,
+        grid,
+        fontsize,
+        textcolor,
+        bgcolor,
+        bordercolor
+      } = this.state.style;
       this.input.style.backgroundColor = bgcolor;
       this.input.style.borderColor = bordercolor;
       this.input.style.color = textcolor;
@@ -4043,7 +3987,7 @@ class Numerical extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem
   }
 
   static get defaultProps() {
-    var inherited = super.defaultProps;
+    const inherited = super.defaultProps;
     return _objectSpread(_objectSpread({}, inherited), {}, {
       style: _objectSpread(_objectSpread({}, inherited.style), {}, {
         fontname: "Arial",
@@ -4071,7 +4015,7 @@ class Numerical extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem
     this.on("style", () => this.schedule(this.setStyle));
     this.on("label", () => this.schedule(this.paintLabel));
 
-    var valueChange = () => this.input.value = (+this.state.value.toFixed(3)).toString() + (this.state.unit || "");
+    const valueChange = () => this.input.value = (+this.state.value.toFixed(3)).toString() + (this.state.unit || "");
 
     this.on("value", () => this.schedule(valueChange));
     return this;
@@ -4139,58 +4083,51 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 class Radio extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] {
   constructor() {
-    var _this;
-
     super(...arguments);
-    _this = this;
 
     _defineProperty(this, "className", "radio");
 
     _defineProperty(this, "group", void 0);
 
     _defineProperty(this, "getOptions", () => {
-      var _this$state = this.state,
-          enums = _this$state.enums,
-          address = _this$state.address;
+      const {
+        enums,
+        address
+      } = this.state;
       this.group.innerHTML = "";
 
       if (enums) {
-        var i = 0;
+        let i = 0;
 
-        var _loop = function _loop(key) {
-          var input = document.createElement("input");
-          var div = document.createElement("div");
+        for (const key in enums) {
+          const input = document.createElement("input");
+          const div = document.createElement("div");
           input.value = enums[key].toString();
           input.name = address;
           input.type = "radio";
           if (i === 0) input.checked = true;
           input.addEventListener("change", () => {
-            if (input.checked) _this.setValue(enums[key]);
+            if (input.checked) this.setValue(enums[key]);
           });
           div.appendChild(input);
           div.append(key);
-
-          _this.group.appendChild(div);
-
+          this.group.appendChild(div);
           i++;
-        };
-
-        for (var key in enums) {
-          _loop(key);
         }
       }
     });
 
     _defineProperty(this, "setStyle", () => {
-      var _this$state$style = this.state.style,
-          height = _this$state$style.height,
-          width = _this$state$style.width,
-          grid = _this$state$style.grid,
-          fontsize = _this$state$style.fontsize,
-          textcolor = _this$state$style.textcolor,
-          bgcolor = _this$state$style.bgcolor,
-          bordercolor = _this$state$style.bordercolor;
-      var fontSize = Math.min(height * grid * 0.1, width * grid * 0.1);
+      const {
+        height,
+        width,
+        grid,
+        fontsize,
+        textcolor,
+        bgcolor,
+        bordercolor
+      } = this.state.style;
+      const fontSize = Math.min(height * grid * 0.1, width * grid * 0.1);
       this.group.style.backgroundColor = bgcolor;
       this.group.style.borderColor = bordercolor;
       this.group.style.color = textcolor;
@@ -4199,7 +4136,7 @@ class Radio extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] {
   }
 
   static get defaultProps() {
-    var inherited = super.defaultProps;
+    const inherited = super.defaultProps;
     return _objectSpread(_objectSpread({}, inherited), {}, {
       style: _objectSpread(_objectSpread({}, inherited.style), {}, {
         fontname: "Arial",
@@ -4228,9 +4165,9 @@ class Radio extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"] {
     this.on("label", () => this.schedule(this.paintLabel));
     this.on("enums", () => this.schedule(this.getOptions));
 
-    var valueChange = () => {
-      for (var i = this.group.children.length - 1; i >= 0; i--) {
-        var input = this.group.children[i].querySelector("input");
+    const valueChange = () => {
+      for (let i = this.group.children.length - 1; i >= 0; i--) {
+        const input = this.group.children[i].querySelector("input");
         if (+input.value === this.state.value) input.checked = true;
       }
     };
@@ -4317,15 +4254,16 @@ class VBargraph extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem
     _defineProperty(this, "ctx", void 0);
 
     _defineProperty(this, "setStyle", () => {
-      var _this$state$style = this.state.style,
-          height = _this$state$style.height,
-          width = _this$state$style.width,
-          grid = _this$state$style.grid,
-          fontsize = _this$state$style.fontsize,
-          textcolor = _this$state$style.textcolor,
-          bgcolor = _this$state$style.bgcolor,
-          bordercolor = _this$state$style.bordercolor;
-      var fontSize = Math.min(height * grid * 0.05, width * grid * 0.2);
+      const {
+        height,
+        width,
+        grid,
+        fontsize,
+        textcolor,
+        bgcolor,
+        bordercolor
+      } = this.state.style;
+      const fontSize = Math.min(height * grid * 0.05, width * grid * 0.2);
       this.input.style.fontSize = "".concat(fontsize || fontSize, "px");
       this.input.style.color = textcolor;
       this.container.style.backgroundColor = bgcolor;
@@ -4339,34 +4277,35 @@ class VBargraph extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem
     _defineProperty(this, "maxTimer", void 0);
 
     _defineProperty(this, "paint", () => {
-      var _this$state$style2 = this.state.style,
-          barwidth = _this$state$style2.barwidth,
-          barbgcolor = _this$state$style2.barbgcolor,
-          coldcolor = _this$state$style2.coldcolor,
-          warmcolor = _this$state$style2.warmcolor,
-          hotcolor = _this$state$style2.hotcolor,
-          overloadcolor = _this$state$style2.overloadcolor;
-      var _this$state = this.state,
-          min = _this$state.min,
-          max = _this$state.max,
-          value = _this$state.value;
-      var ctx = this.ctx;
-      var canvas = this.canvas;
-
-      var _this$canvasDiv$getBo = this.canvasDiv.getBoundingClientRect(),
-          width = _this$canvasDiv$getBo.width,
-          height = _this$canvasDiv$getBo.height;
-
+      const {
+        barwidth,
+        barbgcolor,
+        coldcolor,
+        warmcolor,
+        hotcolor,
+        overloadcolor
+      } = this.state.style;
+      const {
+        min,
+        max,
+        value
+      } = this.state;
+      const ctx = this.ctx;
+      const canvas = this.canvas;
+      let {
+        width,
+        height
+      } = this.canvasDiv.getBoundingClientRect();
       width = Math.floor(width);
       height = Math.floor(height);
       canvas.width = width;
       canvas.height = height;
-      var drawHeight = height * 0.9;
-      var drawWidth = barwidth || Math.min(width / 3, drawHeight * 0.05);
-      var left = (width - drawWidth) * 0.5;
-      var top = height * 0.05;
+      const drawHeight = height * 0.9;
+      const drawWidth = barwidth || Math.min(width / 3, drawHeight * 0.05);
+      const left = (width - drawWidth) * 0.5;
+      const top = height * 0.05;
       this.paintValue = value;
-      var paintValue = this.paintValue;
+      const paintValue = this.paintValue;
 
       if (paintValue > this.maxValue) {
         this.maxValue = paintValue;
@@ -4386,12 +4325,12 @@ class VBargraph extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem
         }, 1000);
       }
 
-      var maxValue = this.maxValue;
-      var coldStop = (-18 - min) / (max - min);
-      var warmStop = (-6 - min) / (max - min);
-      var hotStop = (-3 - min) / (max - min);
-      var overloadStop = -min / (max - min);
-      var gradient = ctx.createLinearGradient(0, drawHeight, 0, top);
+      const maxValue = this.maxValue;
+      const coldStop = (-18 - min) / (max - min);
+      const warmStop = (-6 - min) / (max - min);
+      const hotStop = (-3 - min) / (max - min);
+      const overloadStop = -min / (max - min);
+      const gradient = ctx.createLinearGradient(0, drawHeight, 0, top);
       if (coldStop <= 1 && coldStop >= 0) gradient.addColorStop(coldStop, coldcolor);else if (coldStop > 1) gradient.addColorStop(1, coldcolor);
       if (warmStop <= 1 && warmStop >= 0) gradient.addColorStop(warmStop, warmcolor);
       if (hotStop <= 1 && hotStop >= 0) gradient.addColorStop(hotStop, hotcolor);
@@ -4402,34 +4341,31 @@ class VBargraph extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem
       ctx.fillStyle = gradient;
 
       if (paintValue > min) {
-        var distance = (Math.min(0, paintValue) - min) / (max - min);
+        const distance = (Math.min(0, paintValue) - min) / (max - min);
         ctx.fillRect(left, top + (1 - distance) * drawHeight, drawWidth, drawHeight * distance);
       }
 
       if (paintValue > 0) {
-        var _distance = Math.min(max, paintValue) / (max - min);
-
-        ctx.fillRect(left, top + (1 - overloadStop - _distance) * drawHeight, drawWidth, drawHeight * _distance - 1);
+        const distance = Math.min(max, paintValue) / (max - min);
+        ctx.fillRect(left, top + (1 - overloadStop - distance) * drawHeight, drawWidth, drawHeight * distance - 1);
       }
 
       if (maxValue > paintValue) {
         if (maxValue <= 0) {
-          var _distance2 = (Math.min(0, maxValue) - min) / (max - min);
-
-          ctx.fillRect(left, top + (1 - _distance2) * drawHeight, drawWidth, 1);
+          const distance = (Math.min(0, maxValue) - min) / (max - min);
+          ctx.fillRect(left, top + (1 - distance) * drawHeight, drawWidth, 1);
         }
 
         if (maxValue > 0) {
-          var _distance3 = Math.min(max, maxValue) / (max - min);
-
-          ctx.fillRect(left, Math.max(top, top + (1 - overloadStop - _distance3) * drawHeight - 1), drawWidth, 1);
+          const distance = Math.min(max, maxValue) / (max - min);
+          ctx.fillRect(left, Math.max(top, top + (1 - overloadStop - distance) * drawHeight - 1), drawWidth, 1);
         }
       }
     });
   }
 
   static get defaultProps() {
-    var inherited = super.defaultProps;
+    const inherited = super.defaultProps;
     return _objectSpread(_objectSpread({}, inherited), {}, {
       style: _objectSpread(_objectSpread({}, inherited.style), {}, {
         fontname: "Arial",
@@ -4478,7 +4414,7 @@ class VBargraph extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem
     });
     this.on("label", () => this.schedule(this.paintLabel));
 
-    var valueChange = () => this.input.value = (+this.state.value.toFixed(3)).toString() + (this.state.unit || "");
+    const valueChange = () => this.input.value = (+this.state.value.toFixed(3)).toString() + (this.state.unit || "");
 
     this.on("value", () => {
       this.schedule(valueChange);
@@ -4577,10 +4513,10 @@ class VSlider extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"]
     _defineProperty(this, "interactionRect", [0, 0, 0, 0]);
 
     _defineProperty(this, "handleChange", e => {
-      var value = parseFloat(e.currentTarget.value);
+      const value = parseFloat(e.currentTarget.value);
 
       if (isFinite(value)) {
-        var changed = this.setValue(+value);
+        const changed = this.setValue(+value);
         if (changed) return;
       }
 
@@ -4588,15 +4524,16 @@ class VSlider extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"]
     });
 
     _defineProperty(this, "setStyle", () => {
-      var _this$state$style = this.state.style,
-          height = _this$state$style.height,
-          width = _this$state$style.width,
-          grid = _this$state$style.grid,
-          fontsize = _this$state$style.fontsize,
-          textcolor = _this$state$style.textcolor,
-          bgcolor = _this$state$style.bgcolor,
-          bordercolor = _this$state$style.bordercolor;
-      var fontSize = Math.min(height * grid * 0.05, width * grid * 0.2);
+      const {
+        height,
+        width,
+        grid,
+        fontsize,
+        textcolor,
+        bgcolor,
+        bordercolor
+      } = this.state.style;
+      const fontSize = Math.min(height * grid * 0.05, width * grid * 0.2);
       this.input.style.fontSize = "".concat(fontsize || fontSize, "px");
       this.input.style.color = textcolor;
       this.container.style.backgroundColor = bgcolor;
@@ -4604,30 +4541,30 @@ class VSlider extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"]
     });
 
     _defineProperty(this, "paint", () => {
-      var _this$state$style2 = this.state.style,
-          sliderwidth = _this$state$style2.sliderwidth,
-          sliderbgcolor = _this$state$style2.sliderbgcolor,
-          sliderbgoncolor = _this$state$style2.sliderbgoncolor,
-          slidercolor = _this$state$style2.slidercolor;
-      var ctx = this.ctx;
-      var canvas = this.canvas;
-      var distance = this.distance;
-
-      var _this$canvasDiv$getBo = this.canvasDiv.getBoundingClientRect(),
-          width = _this$canvasDiv$getBo.width,
-          height = _this$canvasDiv$getBo.height;
-
+      const {
+        sliderwidth,
+        sliderbgcolor,
+        sliderbgoncolor,
+        slidercolor
+      } = this.state.style;
+      const ctx = this.ctx;
+      const canvas = this.canvas;
+      const distance = this.distance;
+      let {
+        width,
+        height
+      } = this.canvasDiv.getBoundingClientRect();
       width = Math.floor(width);
       height = Math.floor(height);
       canvas.width = width;
       canvas.height = height;
-      var drawHeight = height * 0.9;
-      var drawWidth = sliderwidth || Math.min(width / 3, drawHeight * 0.05);
-      var left = (width - drawWidth) * 0.5;
-      var top = height * 0.05;
-      var borderRadius = drawWidth * 0.25;
+      const drawHeight = height * 0.9;
+      const drawWidth = sliderwidth || Math.min(width / 3, drawHeight * 0.05);
+      const left = (width - drawWidth) * 0.5;
+      const top = height * 0.05;
+      const borderRadius = drawWidth * 0.25;
       this.interactionRect = [0, top, width, drawHeight];
-      var grd = ctx.createLinearGradient(0, top, 0, top + drawHeight);
+      const grd = ctx.createLinearGradient(0, top, 0, top + drawHeight);
       grd.addColorStop(Math.max(0, Math.min(1, 1 - distance)), sliderbgcolor);
       grd.addColorStop(Math.max(0, Math.min(1, 1 - distance)), sliderbgoncolor);
       ctx.fillStyle = grd;
@@ -4638,20 +4575,22 @@ class VSlider extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"]
     });
 
     _defineProperty(this, "handlePointerDown", e => {
-      var value = this.state.value;
+      const {
+        value
+      } = this.state;
       if (e.x < this.interactionRect[0] || e.x > this.interactionRect[0] + this.interactionRect[2] || e.y < this.interactionRect[1] || e.y > this.interactionRect[1] + this.interactionRect[3]) return;
-      var newValue = this.getValueFromPos(e);
+      const newValue = this.getValueFromPos(e);
       if (newValue !== value) this.setValue(this.getValueFromPos(e));
     });
 
     _defineProperty(this, "handlePointerDrag", e => {
-      var newValue = this.getValueFromPos(e);
+      const newValue = this.getValueFromPos(e);
       if (newValue !== this.state.value) this.setValue(newValue);
     });
   }
 
   static get defaultProps() {
-    var inherited = super.defaultProps;
+    const inherited = super.defaultProps;
     return _objectSpread(_objectSpread({}, inherited), {}, {
       style: _objectSpread(_objectSpread({}, inherited.style), {}, {
         fontname: "Arial",
@@ -4705,7 +4644,7 @@ class VSlider extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"]
     });
     this.on("label", () => this.schedule(this.paintLabel));
 
-    var valueChange = () => {
+    const valueChange = () => {
       this.inputNumber.value = (+this.state.value.toFixed(3)).toString();
       this.input.value = this.inputNumber.value + (this.state.unit || "");
     };
@@ -4715,21 +4654,21 @@ class VSlider extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"]
       this.schedule(this.paint);
     });
 
-    var maxChange = () => this.inputNumber.max = this.state.max.toString();
+    const maxChange = () => this.inputNumber.max = this.state.max.toString();
 
     this.on("max", () => {
       this.schedule(maxChange);
       this.schedule(this.paint);
     });
 
-    var minChange = () => this.inputNumber.min = this.state.min.toString();
+    const minChange = () => this.inputNumber.min = this.state.min.toString();
 
     this.on("min", () => {
       this.schedule(minChange);
       this.schedule(this.paint);
     });
 
-    var stepChange = () => this.inputNumber.step = this.state.step.toString();
+    const stepChange = () => this.inputNumber.step = this.state.step.toString();
 
     this.on("step", () => {
       this.schedule(stepChange);
@@ -4749,13 +4688,14 @@ class VSlider extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"]
   }
 
   get stepsCount() {
-    var _this$state = this.state,
-        type = _this$state.type,
-        max = _this$state.max,
-        min = _this$state.min,
-        step = _this$state.step,
-        enums = _this$state.enums;
-    var maxSteps = type === "enum" ? enums.length : type === "int" ? max - min : (max - min) / step;
+    const {
+      type,
+      max,
+      min,
+      step,
+      enums
+    } = this.state;
+    const maxSteps = type === "enum" ? enums.length : type === "int" ? max - min : (max - min) / step;
 
     if (step) {
       if (type === "enum") return enums.length;
@@ -4767,22 +4707,23 @@ class VSlider extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["AbstractItem"]
   }
 
   get stepRange() {
-    var full = this.interactionRect[this.className === "vslider" ? 3 : 2];
-    var stepsCount = this.stepsCount;
+    const full = this.interactionRect[this.className === "vslider" ? 3 : 2];
+    const stepsCount = this.stepsCount;
     return full / stepsCount;
   }
 
   getValueFromPos(e) {
-    var _this$state2 = this.state,
-        type = _this$state2.type,
-        min = _this$state2.min,
-        scale = _this$state2.scale;
-    var step = type === "enum" ? 1 : this.state.step || 1;
-    var stepRange = this.stepRange;
-    var stepsCount = this.stepsCount;
-    var distance = this.className === "vslider" ? this.interactionRect[3] - (e.y - this.interactionRect[1]) : e.x - this.interactionRect[0];
-    var range = this.className === "vslider" ? this.interactionRect[3] : this.interactionRect[2];
-    var steps = Math.round((scale === "exp" ? Object(_utils__WEBPACK_IMPORTED_MODULE_2__["normExp"])(distance / range) : scale === "log" ? Object(_utils__WEBPACK_IMPORTED_MODULE_2__["normLog"])(distance / range) : distance / range) * range / stepRange);
+    const {
+      type,
+      min,
+      scale
+    } = this.state;
+    const step = type === "enum" ? 1 : this.state.step || 1;
+    const stepRange = this.stepRange;
+    const stepsCount = this.stepsCount;
+    const distance = this.className === "vslider" ? this.interactionRect[3] - (e.y - this.interactionRect[1]) : e.x - this.interactionRect[0];
+    const range = this.className === "vslider" ? this.interactionRect[3] : this.interactionRect[2];
+    let steps = Math.round((scale === "exp" ? Object(_utils__WEBPACK_IMPORTED_MODULE_2__["normExp"])(distance / range) : scale === "log" ? Object(_utils__WEBPACK_IMPORTED_MODULE_2__["normLog"])(distance / range) : distance / range) * range / stepRange);
     steps = Math.min(stepsCount, Math.max(0, steps));
     if (type === "enum") return steps;
     if (type === "int") return Math.round(steps * step + min);
@@ -4810,14 +4751,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "normExp", function() { return normExp; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "roundedRect", function() { return roundedRect; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fillRoundedRect", function() { return fillRoundedRect; });
-var toMIDI = f => ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"][(f % 12 + 12) % 12] + Math.round(f / 12 - 2);
-var toRad = degrees => degrees * Math.PI / 180;
-var atodb = a => 20 * Math.log10(a);
-var dbtoa = db => Math.pow(10, db / 20);
-var normLog = x => Math.log10(x * 99 + 1) / 2 || 0;
-var normExp = x => (Math.pow(10, 2 * x) - 1) / 99;
-var roundedRect = (ctx, x, y, width, height, radius) => {
-  var radii = [0, 0, 0, 0];
+const toMIDI = f => ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"][(f % 12 + 12) % 12] + Math.round(f / 12 - 2);
+const toRad = degrees => degrees * Math.PI / 180;
+const atodb = a => 20 * Math.log10(a);
+const dbtoa = db => 10 ** (db / 20);
+const normLog = x => Math.log10(x * 99 + 1) / 2 || 0;
+const normExp = x => (10 ** (2 * x) - 1) / 99;
+const roundedRect = (ctx, x, y, width, height, radius) => {
+  const radii = [0, 0, 0, 0];
   if (typeof radius === "number") radii.fill(radius);else radius.forEach((v, i) => radii[i] = v);
   ctx.beginPath();
   ctx.moveTo(x + radii[0], y);
@@ -4832,8 +4773,8 @@ var roundedRect = (ctx, x, y, width, height, radius) => {
   ctx.closePath();
   ctx.stroke();
 };
-var fillRoundedRect = (ctx, x, y, width, height, radius) => {
-  var radii = [0, 0, 0, 0];
+const fillRoundedRect = (ctx, x, y, width, height, radius) => {
+  const radii = [0, 0, 0, 0];
   if (typeof radius === "number") radii.fill(radius);else radius.forEach((v, i) => radii[i] = v);
   ctx.beginPath();
   ctx.moveTo(x + radii[0], y);
@@ -4912,13 +4853,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "instantiate", function() { return instantiate; });
 /* harmony import */ var _FaustUI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FaustUI */ "./src/FaustUI.ts");
 
-var instantiate = () => {
-  var faustUI = new _FaustUI__WEBPACK_IMPORTED_MODULE_0__["FaustUI"]({
+const instantiate = () => {
+  const faustUI = new _FaustUI__WEBPACK_IMPORTED_MODULE_0__["FaustUI"]({
     root: document.getElementById("root")
   });
-  var host;
+  let host;
   window.addEventListener("message", e => {
-    var source = e.source;
+    const {
+      source
+    } = e;
     host = source;
   });
   window.addEventListener("keydown", e => {
@@ -4965,9 +4908,11 @@ class AbstractGroup {
 
     this.isRoot = !!isRoot;
     Object.assign(this, group);
-    var hasHSizingDesc = this.hasHSizingDesc,
-        hasVSizingDesc = this.hasVSizingDesc;
-    var sizing = hasHSizingDesc && hasVSizingDesc ? "both" : hasHSizingDesc ? "horizontal" : hasVSizingDesc ? "vertical" : "none";
+    const {
+      hasHSizingDesc,
+      hasVSizingDesc
+    } = this;
+    const sizing = hasHSizingDesc && hasVSizingDesc ? "both" : hasHSizingDesc ? "horizontal" : hasVSizingDesc ? "vertical" : "none";
     this.layout = {
       type: group.type,
       width: AbstractGroup.padding * 2,
@@ -5242,14 +5187,14 @@ class HGroup extends _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"
   }
 
   expand(dX) {
-    var hExpandItems = 0;
+    let hExpandItems = 0;
     this.items.forEach(item => {
       // Count items that need to expand horizontally
       if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") hExpandItems++;
     });
     this.items.forEach(item => {
-      var dX$ = 0;
-      var dY$ = 0; // Space available to expand for current item
+      let dX$ = 0;
+      let dY$ = 0; // Space available to expand for current item
 
       if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") {
         dX$ = hExpandItems ? dX / hExpandItems : 0;
@@ -5267,12 +5212,16 @@ class HGroup extends _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"
   }
 
   offset() {
-    var labelHeight = _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].labelHeight,
-        padding = _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].padding,
-        spaceBetween = _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].spaceBetween;
-    var $left = padding;
-    var $top = padding + labelHeight;
-    var height = this.layout.height;
+    const {
+      labelHeight,
+      padding,
+      spaceBetween
+    } = _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"];
+    let $left = padding;
+    const $top = padding + labelHeight;
+    const {
+      height
+    } = this.layout;
     this.items.forEach(item => {
       item.layout.offsetLeft = $left;
       item.layout.offsetTop = $top; // center the item
@@ -5422,7 +5371,7 @@ class Layout {
 
 
   static getItem(item) {
-    var ctor = {
+    const ctor = {
       hslider: _HSlider__WEBPACK_IMPORTED_MODULE_0__["HSlider"],
       vslider: _VSlider__WEBPACK_IMPORTED_MODULE_1__["VSlider"],
       nentry: _Nentry__WEBPACK_IMPORTED_MODULE_2__["Nentry"],
@@ -5439,7 +5388,7 @@ class Layout {
       vgroup: _VGroup__WEBPACK_IMPORTED_MODULE_13__["VGroup"],
       tgroup: _TGroup__WEBPACK_IMPORTED_MODULE_14__["TGroup"]
     };
-    var layoutType = this.predictType(item);
+    const layoutType = this.predictType(item);
     return new ctor[layoutType](item);
   }
 
@@ -5451,7 +5400,7 @@ class Layout {
   }
 
   static calc(ui) {
-    var rootGroup = new _VGroup__WEBPACK_IMPORTED_MODULE_13__["VGroup"]({
+    const rootGroup = new _VGroup__WEBPACK_IMPORTED_MODULE_13__["VGroup"]({
       items: this.getItems(ui),
       type: "vgroup",
       label: ""
@@ -5638,7 +5587,7 @@ class TGroup extends _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"
       this.layout.width = Math.max(this.layout.width, item.layout.width + 2 * _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].padding);
       this.layout.height = Math.max(this.layout.height, item.layout.height + 2 * _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].padding + TGroup.labelHeight);
     });
-    var tabsCount = this.items.length;
+    const tabsCount = this.items.length;
     this.layout.width = Math.max(this.layout.width, tabsCount * TGroup.tabLayout.width + 2 * TGroup.padding);
     this.layout.height += TGroup.tabLayout.height;
     if (this.layout.width < 1) this.layout.width += 1;
@@ -5646,11 +5595,11 @@ class TGroup extends _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"
   }
 
   expand() {
-    var tabsCount = this.items.length;
+    const tabsCount = this.items.length;
     this.items.forEach(item => {
-      var dY$ = 0; // Space available to expand for current item
+      let dY$ = 0; // Space available to expand for current item
 
-      var dX$ = 0;
+      let dX$ = 0;
       if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") dX$ = this.layout.width - 2 * _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].padding - item.layout.width;
       if (item.layout.sizing === "both" || item.layout.sizing === "vertical") dY$ = this.layout.height - 2 * _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].padding - _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].labelHeight - (tabsCount ? TGroup.tabLayout.height : 0) - item.layout.height;
       item.expand(dX$, dY$);
@@ -5659,10 +5608,12 @@ class TGroup extends _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"
   }
 
   offset() {
-    var labelHeight = _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].labelHeight,
-        padding = _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].padding;
-    var $left = padding;
-    var $top = padding + labelHeight + TGroup.tabLayout.height;
+    const {
+      labelHeight,
+      padding
+    } = _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"];
+    const $left = padding;
+    const $top = padding + labelHeight + TGroup.tabLayout.height;
     this.items.forEach(item => {
       item.layout.offsetLeft = $left;
       item.layout.offsetTop = $top;
@@ -5737,13 +5688,13 @@ class VGroup extends _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"
   }
 
   expand(dX, dY) {
-    var vExpandItems = 0;
+    let vExpandItems = 0;
     this.items.forEach(item => {
       if (item.layout.sizing === "both" || item.layout.sizing === "vertical") vExpandItems++;
     });
     this.items.forEach(item => {
-      var dX$ = 0;
-      var dY$ = 0; // Space available to expand for current item
+      let dX$ = 0;
+      let dY$ = 0; // Space available to expand for current item
 
       if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") {
         dX$ = this.layout.width - 2 * _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].padding - item.layout.width;
@@ -5761,12 +5712,16 @@ class VGroup extends _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"
   }
 
   offset() {
-    var labelHeight = _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].labelHeight,
-        padding = _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].padding,
-        spaceBetween = _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"].spaceBetween;
-    var $left = padding;
-    var $top = padding + labelHeight;
-    var width = this.layout.width;
+    const {
+      labelHeight,
+      padding,
+      spaceBetween
+    } = _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["AbstractGroup"];
+    const $left = padding;
+    let $top = padding + labelHeight;
+    const {
+      width
+    } = this.layout;
     this.items.forEach(item => {
       item.layout.offsetLeft = $left;
       item.layout.offsetTop = $top; // center the item

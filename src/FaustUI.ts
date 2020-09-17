@@ -162,9 +162,9 @@ export class FaustUI {
         return this._layout;
     }
     get minWidth() {
-        return this._layout.width * 40;
+        return this._layout.width * 40 + 1;
     }
     get minHeight() {
-        return this._layout.height * 40;
+        return this._layout.height * 40 + 1;
     }
 }
