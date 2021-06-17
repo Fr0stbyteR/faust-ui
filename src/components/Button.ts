@@ -53,7 +53,7 @@ export class Button extends AbstractItem<FaustUIButtonStyle> {
         this.btn.style.fontSize = `${fontsize || height * grid / 4}px`;
         this.btn.style.fontFamily = `${fontname}, sans-serif`;
         this.btn.style.fontStyle = fontface;
-    }
+    };
     mount() {
         this.btn.appendChild(this.span);
         this.container.appendChild(this.btn);
@@ -71,8 +71,8 @@ export class Button extends AbstractItem<FaustUIButtonStyle> {
     }
     handlePointerDown = () => {
         this.setValue(1);
-    }
+    };
     handlePointerUp = () => {
         this.setValue(0);
-    }
+    };
 }

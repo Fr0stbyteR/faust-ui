@@ -29,6 +29,7 @@ export class Group extends AbstractComponent<FaustUIGroupProps> {
                 const itemsRegex = /(?:(?:'|_)(.+?)(?:'|_):([-+]?[0-9]*\.?[0-9]+?))/g;
                 const enums: { [key: string]: number } = {};
                 let item;
+                // eslint-disable-next-line no-cond-assign
                 while (item = itemsRegex.exec(matched[0])) {
                     enums[item[1]] = +item[2];
                 }
@@ -209,7 +210,7 @@ export class Group extends AbstractComponent<FaustUIGroupProps> {
                     const groups: HTMLDivElement[] = [];
                     for (let j = 0; j < this.container.children.length; j++) {
                         const element = this.container.children[j] as HTMLDivElement;
-                        if (element.classList.contains("faust-ui-group")) groups.push(element);
+                        if (j > 1) groups.push(element);
                     }
                     for (let j = 0; j < groups.length; j++) {
                         const element = groups[j] as HTMLDivElement;
@@ -225,7 +226,7 @@ export class Group extends AbstractComponent<FaustUIGroupProps> {
                 this.tabs.appendChild(tab);
             });
         }
-    }
+    };
     mount(): this {
         this.label.appendChild(this.labelCanvas);
         this.container.appendChild(this.label);

@@ -64,7 +64,7 @@ export class VBargraph extends AbstractItem<FaustUIBargraphStyle> {
         this.input.style.color = textcolor;
         this.container.style.backgroundColor = bgcolor;
         this.container.style.borderColor = bordercolor;
-    }
+    };
     componentDidMount() {
         super.componentDidMount();
         this.canvas.addEventListener("mousedown", this.handleMouseDown);
@@ -93,8 +93,8 @@ export class VBargraph extends AbstractItem<FaustUIBargraphStyle> {
         this.container.appendChild(this.flexDiv);
         return super.mount();
     }
-    paintValue: number = 0;
-    maxValue: number = -Infinity;
+    paintValue = 0;
+    maxValue = -Infinity;
     maxTimer: number;
     paint = () => {
         const { barwidth, barbgcolor, coldcolor, warmcolor, hotcolor, overloadcolor } = this.state.style;
@@ -164,5 +164,5 @@ export class VBargraph extends AbstractItem<FaustUIBargraphStyle> {
                 ctx.fillRect(left, Math.max(top, top + (1 - overloadStop - distance) * drawHeight - 1), drawWidth, 1);
             }
         }
-    }
+    };
 }

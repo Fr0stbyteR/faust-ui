@@ -43,14 +43,14 @@ export abstract class AbstractComponent<T = { [key: string]: any }> extends Even
      * @type {number}
      * @memberof Component
      */
-    private $frame: number = 0;
+    private $frame = 0;
     /**
      * Frame reducing factor, 1 = render at every browser rendering tick, 2 will skip one every two ticks.
      *
      * @type {number}
      * @memberof Component
      */
-    frameReduce: number = 1;
+    frameReduce = 1;
     /**
      * Here stores current `requestAnimationFrame` reference
      * if we have a new state to render, we cancel the old one

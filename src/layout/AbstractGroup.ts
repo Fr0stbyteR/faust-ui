@@ -51,4 +51,13 @@ export abstract class AbstractGroup implements IItem {
             return item.layout.sizing === "vertical" || item.layout.sizing === "both";
         });
     }
+    adjust() {
+        return this;
+    }
+    expand(dX: number, dY: number) {
+        return this;
+    }
+    offset() {
+        return this;
+    }
 }

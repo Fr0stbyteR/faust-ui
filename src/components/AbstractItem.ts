@@ -44,7 +44,7 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends AbstractC
         scale: "linear",
         step: 0.01,
         style: { width: 45, height: 15, left: 0, top: 0, labelcolor: "rgba(226, 222, 255, 0.5)" }
-    }
+    };
     /**
      * DOM Div container of the component
      *

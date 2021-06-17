@@ -55,14 +55,14 @@ export class Menu extends AbstractItem<FaustUIMenuStyle> {
     }
     handleChange = (e: Event) => {
         this.setValue(+(e.currentTarget as HTMLInputElement).value);
-    }
+    };
     setStyle = () => {
         const { height, grid, fontsize, textcolor, bgcolor, bordercolor } = this.state.style;
         this.select.style.backgroundColor = bgcolor;
         this.select.style.borderColor = bordercolor;
         this.select.style.color = textcolor;
         this.select.style.fontSize = `${fontsize || height * grid / 4}px`;
-    }
+    };
     componentDidMount() {
         super.componentDidMount();
         this.select.addEventListener("change", this.handleChange);

@@ -30,7 +30,7 @@ type TFaustUIMeta = {
     tooltip?: string;
     hidden?: string;
     [key: string]: string;
-}
+};
 type TFaustUIGroupType = "vgroup" | "hgroup" | "tgroup";
 type TFaustUIOutputType = "hbargraph" | "vbargraph";
 type TFaustUIInputType = "vslider" | "hslider" | "button" | "checkbox" | "nentry";
@@ -39,7 +39,7 @@ type TFaustUIGroup = {
     label: string;
     items: TFaustUIItem[];
     layout?: TLayoutProp;
-}
+};
 type TFaustUIType = TFaustUIGroupType | TFaustUIOutputType | TFaustUIInputType;
 interface FaustUIEventMap {
     "paramChangeByUI": { path: string; value: number };
@@ -58,7 +58,7 @@ type TLayoutProp = {
     width: number;
     height: number;
     sizing: "horizontal" | "vertical" | "both" | "none";
-}
+};
 type TLayoutType = "vgroup" | "hgroup" | "tgroup" | "hbargraph" | "vbargraph" | "vslider" | "hslider" | "button" | "checkbox" | "nentry" | "knob" | "menu" | "radio" | "led" | "numerical";
 type TLayout = { [path: string]: TLayoutProp };
 interface LayoutTypeMap {

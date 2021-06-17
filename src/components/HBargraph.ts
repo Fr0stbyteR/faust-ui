@@ -13,7 +13,7 @@ export class HBargraph extends VBargraph {
         this.input.style.color = textcolor;
         this.container.style.backgroundColor = bgcolor;
         this.container.style.borderColor = bordercolor;
-    }
+    };
     paint = () => {
         const { barwidth, barbgcolor, coldcolor, warmcolor, hotcolor, overloadcolor } = this.state.style;
         const { min, max, value } = this.state;
@@ -80,5 +80,5 @@ export class HBargraph extends VBargraph {
                 ctx.fillRect(left + Math.min(drawWidth - 1, (overloadStop + distance) * drawWidth), top, 1, drawHeight);
             }
         }
-    }
+    };
 }
