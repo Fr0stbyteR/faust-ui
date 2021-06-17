@@ -7,7 +7,7 @@ import { FaustUIGroupProps } from "./components/types";
 type TOptions = {
     root: HTMLDivElement;
     ui?: TFaustUI;
-}
+};
 
 /**
  * The main class of UI constructor,
@@ -108,7 +108,7 @@ export class FaustUI {
     paramChangeByUI = (path: string, value: number) => {
         if (!this.hostWindow) return;
         this.hostWindow.postMessage({ path, value, type: "param" }, "*");
-    }
+    };
     /**
      * Calculate UI layout in grid then calculate grid size.
      *

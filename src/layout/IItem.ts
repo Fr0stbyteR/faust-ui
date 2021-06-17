@@ -27,7 +27,7 @@ export interface IItem {
      * @returns {this}
      * @memberof AbstractGroup
      */
-    adjust();
+    adjust(): this;
     /**
      * Expand flexible items within a group
      *
@@ -36,7 +36,7 @@ export interface IItem {
      * @returns {this}
      * @memberof AbstractGroup
      */
-    expand(dX: number, dY: number);
+    expand(dX: number, dY: number): this;
 
     /**
      * calculate all the items' absolute coordination (in grids)
@@ -44,5 +44,5 @@ export interface IItem {
      * @returns {this}
      * @memberof AbstractGroup
      */
-    offset();
+    offset(): this;
 }

@@ -60,7 +60,7 @@ export class Led extends AbstractItem<FaustUILedStyle> {
         const { bgcolor, bordercolor } = this.state.style;
         this.container.style.backgroundColor = bgcolor;
         this.container.style.borderColor = bordercolor;
-    }
+    };
     componentDidMount() {
         super.componentDidMount();
         this.canvas.addEventListener("mousedown", this.handleMouseDown);
@@ -111,5 +111,5 @@ export class Led extends AbstractItem<FaustUILedStyle> {
         if (shape === "circle") ctx.arc(width / 2, height / 2, width / 2 - left, 0, 2 * Math.PI);
         else ctx.rect(left, top, drawWidth, drawHeight);
         ctx.fill();
-    }
+    };
 }

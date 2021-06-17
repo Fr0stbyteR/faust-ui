@@ -4,7 +4,7 @@ export class TGroup extends AbstractGroup {
     static tabLayout = {
         width: 2,
         height: 1
-    }
+    };
     adjust() {
         this.items.forEach((item) => {
             item.adjust();

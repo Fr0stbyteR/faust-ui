@@ -69,7 +69,7 @@ export class VSlider extends AbstractItem<FaustUISliderStyle> {
             if (changed) return;
         }
         this.input.value = this.inputNumber.value + (this.state.unit || "");
-    }
+    };
     setStyle = () => {
         const { height, width, grid, fontsize, textcolor, bgcolor, bordercolor } = this.state.style;
         const fontSize = Math.min(height * grid * 0.05, width * grid * 0.2);
@@ -77,7 +77,7 @@ export class VSlider extends AbstractItem<FaustUISliderStyle> {
         this.input.style.color = textcolor;
         this.container.style.backgroundColor = bgcolor;
         this.container.style.borderColor = bordercolor;
-    }
+    };
     componentDidMount() {
         super.componentDidMount();
         this.input.addEventListener("change", this.handleChange);
@@ -147,7 +147,7 @@ export class VSlider extends AbstractItem<FaustUISliderStyle> {
         // draw slider
         ctx.fillStyle = slidercolor;
         fillRoundedRect(ctx, left - drawWidth, top + drawHeight * (1 - distance) - drawWidth, drawWidth * 3, drawWidth * 2, borderRadius);
-    }
+    };
     get stepsCount() {
         const { type, max, min, step, enums } = this.state;
         const maxSteps = type === "enum" ? enums.length : type === "int" ? max - min : (max - min) / step;
@@ -186,9 +186,9 @@ export class VSlider extends AbstractItem<FaustUISliderStyle> {
         ) return;
         const newValue = this.getValueFromPos(e);
         if (newValue !== value) this.setValue(this.getValueFromPos(e));
-    }
+    };
     handlePointerDrag = (e: PointerDragEvent) => {
         const newValue = this.getValueFromPos(e);
         if (newValue !== this.state.value) this.setValue(newValue);
-    }
+    };
 }

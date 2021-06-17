@@ -62,14 +62,14 @@ export class Knob extends AbstractItem<FaustUIKnobStyle> {
             if (changed) return;
         }
         this.input.value = this.inputNumber.value + (this.state.unit || "");
-    }
+    };
     setStyle = () => {
         const { fontsize, height, grid, textcolor, bgcolor, bordercolor } = this.state.style;
         this.input.style.fontSize = `${fontsize || height * grid * 0.1}px`;
         this.input.style.color = textcolor;
         this.container.style.backgroundColor = bgcolor;
         this.container.style.borderColor = bordercolor;
-    }
+    };
     componentDidMount() {
         super.componentDidMount();
         this.input.addEventListener("change", this.handleChange);
@@ -158,7 +158,7 @@ export class Knob extends AbstractItem<FaustUIKnobStyle> {
         ctx.moveTo(dialCenterX, dialCenterY);
         ctx.lineTo(valuePosX, valuePosY);
         ctx.stroke();
-    }
+    };
     getValueFromDelta(e: PointerDragEvent) {
         const { type, min, max, enums, scale } = this.state;
         const step = type === "enum" ? 1 : (this.state.step || 1);
@@ -176,5 +176,5 @@ export class Knob extends AbstractItem<FaustUIKnobStyle> {
     handlePointerDrag = (e: PointerDragEvent) => {
         const newValue = this.getValueFromDelta(e);
         if (newValue !== this.state.value) this.setValue(newValue);
-    }
+    };
 }
