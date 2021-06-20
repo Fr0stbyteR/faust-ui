@@ -1,6 +1,7 @@
+import { TFaustUIItem } from "../types";
 import { FaustUI } from "../FaustUI";
 
-declare interface FaustUIItemProps<T extends FaustUIItemStyle> {
+export interface FaustUIItemProps<T extends FaustUIItemStyle> {
     value?: number;
     active?: boolean;
     focus?: boolean;
@@ -17,7 +18,7 @@ declare interface FaustUIItemProps<T extends FaustUIItemStyle> {
     style?: T;
     emitter?: FaustUI;
 }
-declare interface FaustUIGroupProps {
+export interface FaustUIGroupProps {
     label?: string;
     type?: "tgroup" | "vgroup" | "hgroup";
     style?: FaustUIItemStyle;
@@ -25,7 +26,7 @@ declare interface FaustUIGroupProps {
     isRoot?: boolean;
     emitter?: FaustUI;
 }
-declare interface FaustUIItemStyle {
+export interface FaustUIItemStyle {
     width?: number;
     height?: number;
     left?: number;
@@ -33,12 +34,12 @@ declare interface FaustUIItemStyle {
     grid?: number;
     labelcolor?: string;
 }
-declare interface PointerDownEvent {
+export interface PointerDownEvent {
     x: number;
     y: number;
     originalEvent: MouseEvent | TouchEvent;
 }
-declare interface PointerDragEvent {
+export interface PointerDragEvent {
     prevValue: number;
     x: number;
     y: number;
@@ -48,7 +49,7 @@ declare interface PointerDragEvent {
     movementY: number;
     originalEvent: MouseEvent | TouchEvent;
 }
-declare interface PointerUpEvent {
+export interface PointerUpEvent {
     x: number;
     y: number;
     originalEvent: MouseEvent | TouchEvent;

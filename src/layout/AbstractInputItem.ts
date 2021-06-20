@@ -1,4 +1,5 @@
 import { AbstractItem } from "./AbstractItem";
+import { TFaustUIInputItem } from "../types";
 
 export abstract class AbstractInputItem extends AbstractItem {
     init: number;

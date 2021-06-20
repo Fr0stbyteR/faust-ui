@@ -12,7 +12,7 @@ export class TGroup extends AbstractGroup {
             this.layout.height = Math.max(this.layout.height, item.layout.height + 2 * AbstractGroup.padding + TGroup.labelHeight);
         });
         const tabsCount = this.items.length;
-        this.layout.width = Math.max(this.layout.width, tabsCount * TGroup.tabLayout.width + 2 * TGroup.padding);
+        this.layout.width = Math.max(this.layout.width, tabsCount * TGroup.tabLayout.width);
         this.layout.height += TGroup.tabLayout.height;
         if (this.layout.width < 1) this.layout.width += 1;
         return this;

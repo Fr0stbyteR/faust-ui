@@ -1,3 +1,4 @@
+import { TLayoutProp } from "../types";
 import { AbstractInputItem } from "./AbstractInputItem";
 
 export class HSlider extends AbstractInputItem {
