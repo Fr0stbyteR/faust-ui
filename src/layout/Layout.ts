@@ -15,15 +15,11 @@ import { VGroup } from "./VGroup";
 import { TGroup } from "./TGroup";
 import { AbstractItem } from "./AbstractItem";
 import { AbstractGroup } from "./AbstractGroup";
+import { TFaustUIItem, TLayoutType, TFaustUI } from "../types";
 
 export class Layout {
     /**
      * Get the rendering type of an item by parsing its metadata
-     *
-     * @static
-     * @param {TFaustUIItem} item
-     * @returns {TLayoutType}
-     * @memberof Layout
      */
     static predictType(item: TFaustUIItem): TLayoutType {
         if (item.type === "vgroup"
@@ -46,14 +42,9 @@ export class Layout {
     }
     /**
      * Get the Layout class constructor of an item
-     *
-     * @static
-     * @param {TFaustUIItem} item
-     * @returns {AbstractItem | AbstractGroup}
-     * @memberof Layout
      */
     static getItem(item: TFaustUIItem): AbstractItem | AbstractGroup {
-        const ctor: { [key in keyof LayoutTypeMap]: typeof AbstractItem | typeof AbstractGroup } = {
+        const Ctor = {
             hslider: HSlider,
             vslider: VSlider,
             nentry: Nentry,
@@ -71,7 +62,7 @@ export class Layout {
             tgroup: TGroup
         };
         const layoutType = this.predictType(item);
-        return new ctor[layoutType](item as any);
+        return new Ctor[layoutType](item as any);
     }
     static getItems(items: TFaustUIItem[]) {
         return items.map((item) => {

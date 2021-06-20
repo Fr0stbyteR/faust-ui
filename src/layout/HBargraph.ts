@@ -1,3 +1,4 @@
+import { TLayoutProp } from "../types";
 import { AbstractOutputItem } from "./AbstractOutputItem";
 
 export class HBargraph extends AbstractOutputItem {

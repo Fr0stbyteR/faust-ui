@@ -3,6 +3,7 @@
   "version": "0.0.8",
   "description": "Faust UI elements compositor",
   "main": "./dist/faust-ui.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "webpack --mode development",
     "dist": "npm run build && webpack --mode production"
@@ -23,6 +24,7 @@
     "@babel/preset-env": "^7.14.5",
     "@babel/preset-typescript": "^7.14.5",
     "@babel/runtime": "^7.14.6",
+    "@shren/typed-event-emitter": "^1.0.2",
     "@typescript-eslint/eslint-plugin": "^4.27.0",
     "@typescript-eslint/parser": "^4.27.0",
     "babel-eslint": "^10.1.0",
@@ -31,6 +33,7 @@
     "eslint": "^7.28.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.23.4",
+    "mini-css-extract-plugin": "^1.6.0",
     "node-sass": "^6.0.0",
     "raw-loader": "^4.0.2",
     "sass-loader": "^12.1.0",

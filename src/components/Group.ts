@@ -15,6 +15,7 @@ import { Numerical } from "./Numerical";
 import { HBargraph } from "./HBargraph";
 import { VBargraph } from "./VBargraph";
 import { Layout } from "../layout/Layout";
+import { TFaustUIMeta, TFaustUIItem, TFaustUIGroup, TFaustUIInputItem, TFaustUIOutputItem, TLayoutProp } from "../types";
 import "./Group.scss";
 
 export class Group extends AbstractComponent<FaustUIGroupProps> {
@@ -99,23 +100,14 @@ export class Group extends AbstractComponent<FaustUIGroupProps> {
     }
     /**
      * DOM Div container of the group
-     *
-     * @type {HTMLDivElement}
-     * @memberof AbstractItem
      */
     container: HTMLDivElement;
     /**
      * DOM Div container of label canvas
-     *
-     * @type {HTMLDivElement}
-     * @memberof AbstractItem
      */
     label: HTMLDivElement;
     /**
      * Use canvas as label to fit full text in.
-     *
-     * @type {HTMLCanvasElement}
-     * @memberof AbstractItem
      */
     labelCanvas: HTMLCanvasElement;
     labelCtx: CanvasRenderingContext2D;
@@ -142,7 +134,7 @@ export class Group extends AbstractComponent<FaustUIGroupProps> {
             if (shouldUpdate) this.emit(stateKey, this.state[stateKey]);
         }
     }
-    componentWillMount(): this {
+    componentWillMount() {
         this.container = document.createElement("div");
         this.tabs = document.createElement("div");
         this.tabs.className = "faust-ui-tgroup-tabs";
@@ -154,7 +146,7 @@ export class Group extends AbstractComponent<FaustUIGroupProps> {
         this.children.forEach(item => item.componentWillMount());
         return this;
     }
-    paintLabel(): this {
+    paintLabel() {
         const label = this.state.label;
         const color = this.state.style.labelcolor;
         const ctx = this.labelCtx;
@@ -203,9 +195,9 @@ export class Group extends AbstractComponent<FaustUIGroupProps> {
                 tab.innerText = label;
                 tab.className = "faust-ui-tgroup-tab";
                 tab.style.fontSize = `${0.25 * grid}px`;
-                tab.style.width = `${2 * grid - 10}px`;
-                tab.style.height = `${grid - 10}px`;
-                tab.style.lineHeight = `${grid - 10}px`;
+                tab.style.width = `${2 * grid - 20}px`;
+                tab.style.height = `${grid - 20}px`;
+                tab.style.lineHeight = `${grid - 20}px`;
                 tab.addEventListener("click", () => {
                     const groups: HTMLDivElement[] = [];
                     for (let j = 0; j < this.container.children.length; j++) {
@@ -227,7 +219,7 @@ export class Group extends AbstractComponent<FaustUIGroupProps> {
             });
         }
     };
-    mount(): this {
+    mount() {
         this.label.appendChild(this.labelCanvas);
         this.container.appendChild(this.label);
         if (this.tabs.children.length) this.container.appendChild(this.tabs);
@@ -237,7 +229,7 @@ export class Group extends AbstractComponent<FaustUIGroupProps> {
         });
         return this;
     }
-    componentDidMount(): this {
+    componentDidMount() {
         const handleResize = () => {
             const { grid, left, top, width, height } = this.state.style;
             this.label.style.height = `${grid * 0.3}px`;
@@ -251,9 +243,9 @@ export class Group extends AbstractComponent<FaustUIGroupProps> {
                 for (let i = 0; i < this.tabs.children.length; i++) {
                     const tab = this.tabs.children[i] as HTMLSpanElement;
                     tab.style.fontSize = `${0.25 * grid}px`;
-                    tab.style.width = `${2 * grid - 10}px`;
-                    tab.style.height = `${grid - 10}px`;
-                    tab.style.lineHeight = `${grid - 10}px`;
+                    tab.style.width = `${2 * grid - 20}px`;
+                    tab.style.height = `${grid - 20}px`;
+                    tab.style.lineHeight = `${grid - 20}px`;
                 }
             }
             this.paintLabel();

@@ -1,3 +1,4 @@
+import { TFaustUIInputType, TFaustUIItem, TFaustUIMeta, TFaustUIOutputType, TLayoutProp } from "../types";
 import { IItem } from "./IItem";
 
 export abstract class AbstractItem implements IItem {

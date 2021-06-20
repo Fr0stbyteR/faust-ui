@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { IItem } from "./IItem";
 import { AbstractItem } from "./AbstractItem";
+import { TFaustUIGroupType, TLayoutProp } from "../types";
 
 export abstract class AbstractGroup implements IItem {
     static padding = 0.2;
@@ -27,10 +28,6 @@ export abstract class AbstractGroup implements IItem {
 
     /**
      * find recursively if the group has horizontal-sizable item
-     *
-     * @readonly
-     * @type {boolean}
-     * @memberof AbstractGroup
      */
     get hasHSizingDesc(): boolean {
         return !!this.items.find((item) => {
@@ -40,10 +37,6 @@ export abstract class AbstractGroup implements IItem {
     }
     /**
      * find recursively if the group has vertical-sizable item
-     *
-     * @readonly
-     * @type {boolean}
-     * @memberof AbstractGroup
      */
     get hasVSizingDesc(): boolean {
         return !!this.items.find((item) => {
