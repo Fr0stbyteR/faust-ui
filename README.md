@@ -122,6 +122,11 @@ If you don't want to build the minified js for testing purpose:
 npm run build
 ```
 
+Otherwise use:
+
+```bash
+npm run dist
+```
 To test, put the directory in a local server, then open the following page: `./dist/test.html`
 
 ## Versioning 
