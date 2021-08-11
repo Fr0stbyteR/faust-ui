@@ -2,7 +2,7 @@ import { AbstractItem } from "./AbstractItem";
 import { FaustUIItemProps, PointerDownEvent, PointerDragEvent } from "./types";
 import "./VSlider.scss";
 import { FaustUINentryStyle } from "./Nentry";
-import { fillRoundedRect, normLog, normExp } from "./utils";
+import { fillRoundedRect, normLog, normExp, denormalize, normalize } from "./utils";
 
 interface FaustUISliderStyle extends FaustUINentryStyle {
     sliderwidth?: number;
@@ -164,13 +164,15 @@ export class VSlider extends AbstractItem<FaustUISliderStyle> {
         return full / stepsCount;
     }
     getValueFromPos(e: { x: number; y: number }) {
-        const { type, min, scale } = this.state;
+        const { type, min, max, scale } = this.state;
         const step = type === "enum" ? 1 : (this.state.step || 1);
         const stepRange = this.stepRange;
         const stepsCount = this.stepsCount;
         const distance = (this.className === "vslider" ? this.interactionRect[3] - (e.y - this.interactionRect[1]) : e.x - this.interactionRect[0]);
         const range = this.className === "vslider" ? this.interactionRect[3] : this.interactionRect[2];
-        let steps = Math.round((scale === "exp" ? normExp(distance / range) : scale === "log" ? normLog(distance / range) : distance / range) * range / stepRange);
+        const denormalized = denormalize(distance / range, min, max);
+        const v = scale === "exp" ? normExp(denormalized, min, max) : scale === "log" ? normLog(denormalized, min, max) : denormalized;
+        let steps = Math.round(normalize(v, min, max) * range / stepRange);
         steps = Math.min(stepsCount, Math.max(0, steps));
         if (type === "enum") return steps;
         if (type === "int") return Math.round(steps * step + min);

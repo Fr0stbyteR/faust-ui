@@ -2,7 +2,7 @@
 import { FaustUIItemStyle, FaustUIItemProps, PointerDownEvent, PointerDragEvent, PointerUpEvent } from "./types";
 import "./Base.scss";
 import { AbstractComponent } from "./AbstractComponent";
-import { normExp, normLog } from "./utils";
+import { normalize, normExp, normLog } from "./utils";
 
 /**
  * Abstract class that describes a FaustUI Component
@@ -267,8 +267,9 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends AbstractC
     }
     static getDistance(state: { value: number; min: number; max: number; enums?: { [key: string]: number }; type: "enum" | "int" | "float"; scale: "linear" | "exp" | "log" }) {
         const { type, max, min, value, enums, scale } = state;
-        const normalized = type === "enum" ? value / (enums.length - 1) : (value - min) / (max - min);
-        return scale === "exp" ? normLog(normalized) : scale === "log" ? normExp(normalized) : normalized;
+        if (type === "enum") return value / (enums.length - 1);
+        const v = scale === "exp" ? normLog(value, min, max) : scale === "log" ? normExp(value, min, max) : value;
+        return normalize(v, min, max);
     }
     /**
      * Mousemove pixels for each step

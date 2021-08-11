@@ -2,7 +2,7 @@ import { AbstractItem } from "./AbstractItem";
 import { FaustUIItemProps, PointerDragEvent } from "./types";
 import "./Knob.scss";
 import { FaustUINentryStyle } from "./Nentry";
-import { toRad, normLog, normExp } from "./utils";
+import { toRad, normLog, normExp, denormalize, normalize } from "./utils";
 
 interface FaustUIKnobStyle extends FaustUINentryStyle {
     knobwidth?: number;
@@ -167,7 +167,9 @@ export class Knob extends AbstractItem<FaustUIKnobStyle> {
         const range = 100;
         const prevDistance = AbstractItem.getDistance({ value: e.prevValue, type, min, max, enums, scale }) * range;
         const distance = prevDistance + e.fromY - e.y;
-        let steps = Math.round((scale === "exp" ? normExp(distance / range) : scale === "log" ? normLog(distance / range) : distance / range) * range / stepRange);
+        const denormalized = denormalize(distance / range, min, max);
+        const v = scale === "exp" ? normExp(denormalized, min, max) : scale === "log" ? normLog(denormalized, min, max) : denormalized;
+        let steps = Math.round(normalize(v, min, max) * range / stepRange);
         steps = Math.min(stepsCount, Math.max(0, steps));
         if (type === "enum") return steps;
         if (type === "int") return Math.round(steps * step + min);
