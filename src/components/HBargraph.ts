@@ -1,3 +1,4 @@
+import { AbstractItem } from "./AbstractItem";
 import "./HBargraph.scss";
 import { VBargraph } from "./VBargraph";
 
@@ -16,7 +17,7 @@ export class HBargraph extends VBargraph {
     };
     paint = () => {
         const { barwidth, barbgcolor, coldcolor, warmcolor, hotcolor, overloadcolor } = this.state.style;
-        const { min, max, value } = this.state;
+        const { type, max, min, enums, scale, value } = this.state;
         const ctx = this.ctx;
         const canvas = this.canvas;
         let { width, height } = this.canvasDiv.getBoundingClientRect();
@@ -63,20 +64,20 @@ export class HBargraph extends VBargraph {
         if (paintValue < max) ctx.fillRect(left + drawWidth * overloadStop + 1, top, drawWidth * (1 - overloadStop) - 1, drawHeight);
         ctx.fillStyle = gradient;
         if (paintValue > min) {
-            const distance = (Math.min(0, paintValue) - min) / (max - min);
+            const distance = AbstractItem.getDistance({ type, max, min, enums, scale, value: Math.min(0, paintValue) });
             ctx.fillRect(left, top, distance * drawWidth, drawHeight);
         }
         if (paintValue > 0) {
-            const distance = Math.min(max, paintValue) / (max - min);
+            const distance = AbstractItem.getDistance({ type, max, min, enums, scale, value: Math.min(max, paintValue) });
             ctx.fillRect(left + overloadStop * drawWidth + 1, top, distance * drawWidth - 1, drawHeight);
         }
         if (maxValue > paintValue) {
             if (maxValue <= 0) {
-                const distance = (Math.min(0, maxValue) - min) / (max - min);
+                const distance = AbstractItem.getDistance({ type, max, min, enums, scale, value: Math.min(0, maxValue) });
                 ctx.fillRect(left + distance * drawWidth - 1, top, 1, drawHeight);
             }
             if (maxValue > 0) {
-                const distance = Math.min(max, maxValue) / (max - min);
+                const distance = AbstractItem.getDistance({ type, max, min, enums, scale, value: Math.min(max, maxValue) });
                 ctx.fillRect(left + Math.min(drawWidth - 1, (overloadStop + distance) * drawWidth), top, 1, drawHeight);
             }
         }

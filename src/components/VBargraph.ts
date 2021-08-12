@@ -98,7 +98,7 @@ export class VBargraph extends AbstractItem<FaustUIBargraphStyle> {
     maxTimer: number;
     paint = () => {
         const { barwidth, barbgcolor, coldcolor, warmcolor, hotcolor, overloadcolor } = this.state.style;
-        const { min, max, value } = this.state;
+        const { type, max, min, enums, scale, value } = this.state;
         const ctx = this.ctx;
         const canvas = this.canvas;
         let { width, height } = this.canvasDiv.getBoundingClientRect();
@@ -147,20 +147,20 @@ export class VBargraph extends AbstractItem<FaustUIBargraphStyle> {
         if (paintValue < max) ctx.fillRect(left, top, drawWidth, (1 - overloadStop) * drawHeight - 1);
         ctx.fillStyle = gradient;
         if (paintValue > min) {
-            const distance = (Math.min(0, paintValue) - min) / (max - min);
+            const distance = AbstractItem.getDistance({ type, max, min, enums, scale, value: Math.min(0, paintValue) });
             ctx.fillRect(left, top + (1 - distance) * drawHeight, drawWidth, drawHeight * distance);
         }
         if (paintValue > 0) {
-            const distance = Math.min(max, paintValue) / (max - min);
+            const distance = AbstractItem.getDistance({ type, max, min, enums, scale, value: Math.min(max, paintValue) });
             ctx.fillRect(left, top + (1 - overloadStop - distance) * drawHeight, drawWidth, drawHeight * distance - 1);
         }
         if (maxValue > paintValue) {
             if (maxValue <= 0) {
-                const distance = (Math.min(0, maxValue) - min) / (max - min);
+                const distance = AbstractItem.getDistance({ type, max, min, enums, scale, value: Math.min(0, maxValue) });
                 ctx.fillRect(left, top + (1 - distance) * drawHeight, drawWidth, 1);
             }
             if (maxValue > 0) {
-                const distance = Math.min(max, maxValue) / (max - min);
+                const distance = AbstractItem.getDistance({ type, max, min, enums, scale, value: Math.min(max, maxValue) });
                 ctx.fillRect(left, Math.max(top, top + (1 - overloadStop - distance) * drawHeight - 1), drawWidth, 1);
             }
         }
