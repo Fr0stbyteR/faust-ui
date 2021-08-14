@@ -1444,7 +1444,7 @@ class HBargraph extends _VBargraph__WEBPACK_IMPORTED_MODULE_2__.VBargraph {
       var coldStop = (-18 - min) / (max - min);
       var warmStop = (-6 - min) / (max - min);
       var hotStop = (-3 - min) / (max - min);
-      var overloadStop = -min / (max - min);
+      var overloadStop = Math.max(0, -min / (max - min));
       var gradient = ctx.createLinearGradient(left, 0, drawWidth, 0);
       if (coldStop <= 1 && coldStop >= 0) gradient.addColorStop(coldStop, coldcolor);else if (coldStop > 1) gradient.addColorStop(1, coldcolor);
       if (warmStop <= 1 && warmStop >= 0) gradient.addColorStop(warmStop, warmcolor);
@@ -1456,14 +1456,14 @@ class HBargraph extends _VBargraph__WEBPACK_IMPORTED_MODULE_2__.VBargraph {
       ctx.fillStyle = gradient;
 
       if (paintValue > min) {
-        var distance = _AbstractItem__WEBPACK_IMPORTED_MODULE_0__.AbstractItem.getDistance({
+        var distance = Math.max(0, _AbstractItem__WEBPACK_IMPORTED_MODULE_0__.AbstractItem.getDistance({
           type,
           max,
           min,
           enums,
           scale,
           value: Math.min(0, paintValue)
-        });
+        }));
         ctx.fillRect(left, top, distance * drawWidth, drawHeight);
       }
 
@@ -1482,14 +1482,14 @@ class HBargraph extends _VBargraph__WEBPACK_IMPORTED_MODULE_2__.VBargraph {
 
       if (maxValue > paintValue) {
         if (maxValue <= 0) {
-          var _distance2 = _AbstractItem__WEBPACK_IMPORTED_MODULE_0__.AbstractItem.getDistance({
+          var _distance2 = Math.max(0, _AbstractItem__WEBPACK_IMPORTED_MODULE_0__.AbstractItem.getDistance({
             type,
             max,
             min,
             enums,
             scale,
             value: Math.min(0, maxValue)
-          });
+          }));
 
           ctx.fillRect(left + _distance2 * drawWidth - 1, top, 1, drawHeight);
         }
@@ -2558,7 +2558,7 @@ class VBargraph extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__.AbstractItem 
       var coldStop = (-18 - min) / (max - min);
       var warmStop = (-6 - min) / (max - min);
       var hotStop = (-3 - min) / (max - min);
-      var overloadStop = -min / (max - min);
+      var overloadStop = Math.max(0, -min / (max - min));
       var gradient = ctx.createLinearGradient(0, drawHeight, 0, top);
       if (coldStop <= 1 && coldStop >= 0) gradient.addColorStop(coldStop, coldcolor);else if (coldStop > 1) gradient.addColorStop(1, coldcolor);
       if (warmStop <= 1 && warmStop >= 0) gradient.addColorStop(warmStop, warmcolor);
@@ -2570,14 +2570,14 @@ class VBargraph extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__.AbstractItem 
       ctx.fillStyle = gradient;
 
       if (paintValue > min) {
-        var distance = _AbstractItem__WEBPACK_IMPORTED_MODULE_0__.AbstractItem.getDistance({
+        var distance = Math.max(0, _AbstractItem__WEBPACK_IMPORTED_MODULE_0__.AbstractItem.getDistance({
           type,
           max,
           min,
           enums,
           scale,
           value: Math.min(0, paintValue)
-        });
+        }));
         ctx.fillRect(left, top + (1 - distance) * drawHeight, drawWidth, drawHeight * distance);
       }
 
@@ -2596,14 +2596,14 @@ class VBargraph extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__.AbstractItem 
 
       if (maxValue > paintValue) {
         if (maxValue <= 0) {
-          var _distance2 = _AbstractItem__WEBPACK_IMPORTED_MODULE_0__.AbstractItem.getDistance({
+          var _distance2 = Math.max(0, _AbstractItem__WEBPACK_IMPORTED_MODULE_0__.AbstractItem.getDistance({
             type,
             max,
             min,
             enums,
             scale,
             value: Math.min(0, maxValue)
-          });
+          }));
 
           ctx.fillRect(left, top + (1 - _distance2) * drawHeight, drawWidth, 1);
         }

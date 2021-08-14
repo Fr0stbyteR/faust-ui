@@ -133,7 +133,7 @@ export class VBargraph extends AbstractItem<FaustUIBargraphStyle> {
         const coldStop = (-18 - min) / (max - min);
         const warmStop = (-6 - min) / (max - min);
         const hotStop = (-3 - min) / (max - min);
-        const overloadStop = -min / (max - min);
+        const overloadStop = Math.max(0, -min / (max - min));
         const gradient = ctx.createLinearGradient(0, drawHeight, 0, top);
         if (coldStop <= 1 && coldStop >= 0) gradient.addColorStop(coldStop, coldcolor);
         else if (coldStop > 1) gradient.addColorStop(1, coldcolor);
@@ -147,7 +147,7 @@ export class VBargraph extends AbstractItem<FaustUIBargraphStyle> {
         if (paintValue < max) ctx.fillRect(left, top, drawWidth, (1 - overloadStop) * drawHeight - 1);
         ctx.fillStyle = gradient;
         if (paintValue > min) {
-            const distance = AbstractItem.getDistance({ type, max, min, enums, scale, value: Math.min(0, paintValue) });
+            const distance = Math.max(0, AbstractItem.getDistance({ type, max, min, enums, scale, value: Math.min(0, paintValue) }));
             ctx.fillRect(left, top + (1 - distance) * drawHeight, drawWidth, drawHeight * distance);
         }
         if (paintValue > 0) {
@@ -156,7 +156,7 @@ export class VBargraph extends AbstractItem<FaustUIBargraphStyle> {
         }
         if (maxValue > paintValue) {
             if (maxValue <= 0) {
-                const distance = AbstractItem.getDistance({ type, max, min, enums, scale, value: Math.min(0, maxValue) });
+                const distance = Math.max(0, AbstractItem.getDistance({ type, max, min, enums, scale, value: Math.min(0, maxValue) }));
                 ctx.fillRect(left, top + (1 - distance) * drawHeight, drawWidth, 1);
             }
             if (maxValue > 0) {

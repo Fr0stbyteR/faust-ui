@@ -50,7 +50,7 @@ export class HBargraph extends VBargraph {
         const coldStop = (-18 - min) / (max - min);
         const warmStop = (-6 - min) / (max - min);
         const hotStop = (-3 - min) / (max - min);
-        const overloadStop = -min / (max - min);
+        const overloadStop = Math.max(0, -min / (max - min));
         const gradient = ctx.createLinearGradient(left, 0, drawWidth, 0);
         if (coldStop <= 1 && coldStop >= 0) gradient.addColorStop(coldStop, coldcolor);
         else if (coldStop > 1) gradient.addColorStop(1, coldcolor);
@@ -64,7 +64,7 @@ export class HBargraph extends VBargraph {
         if (paintValue < max) ctx.fillRect(left + drawWidth * overloadStop + 1, top, drawWidth * (1 - overloadStop) - 1, drawHeight);
         ctx.fillStyle = gradient;
         if (paintValue > min) {
-            const distance = AbstractItem.getDistance({ type, max, min, enums, scale, value: Math.min(0, paintValue) });
+            const distance = Math.max(0, AbstractItem.getDistance({ type, max, min, enums, scale, value: Math.min(0, paintValue) }));
             ctx.fillRect(left, top, distance * drawWidth, drawHeight);
         }
         if (paintValue > 0) {
@@ -73,7 +73,7 @@ export class HBargraph extends VBargraph {
         }
         if (maxValue > paintValue) {
             if (maxValue <= 0) {
-                const distance = AbstractItem.getDistance({ type, max, min, enums, scale, value: Math.min(0, maxValue) });
+                const distance = Math.max(0, AbstractItem.getDistance({ type, max, min, enums, scale, value: Math.min(0, maxValue) }));
                 ctx.fillRect(left + distance * drawWidth - 1, top, 1, drawHeight);
             }
             if (maxValue > 0) {
