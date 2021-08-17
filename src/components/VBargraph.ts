@@ -151,7 +151,7 @@ export class VBargraph extends AbstractItem<FaustUIBargraphStyle> {
             ctx.fillRect(left, top + (1 - distance) * drawHeight, drawWidth, drawHeight * distance);
         }
         if (paintValue > 0) {
-            const distance = AbstractItem.getDistance({ type, max, min, enums, scale, value: Math.min(max, paintValue) });
+            const distance = Math.max(0, AbstractItem.getDistance({ type, max, min, enums, scale, value: Math.min(max, paintValue) }) - overloadStop);
             ctx.fillRect(left, top + (1 - overloadStop - distance) * drawHeight, drawWidth, drawHeight * distance - 1);
         }
         if (maxValue > paintValue) {
@@ -160,7 +160,7 @@ export class VBargraph extends AbstractItem<FaustUIBargraphStyle> {
                 ctx.fillRect(left, top + (1 - distance) * drawHeight, drawWidth, 1);
             }
             if (maxValue > 0) {
-                const distance = AbstractItem.getDistance({ type, max, min, enums, scale, value: Math.min(max, maxValue) });
+                const distance = Math.max(0, AbstractItem.getDistance({ type, max, min, enums, scale, value: Math.min(max, maxValue) }) - overloadStop);
                 ctx.fillRect(left, Math.max(top, top + (1 - overloadStop - distance) * drawHeight - 1), drawWidth, 1);
             }
         }

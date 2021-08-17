@@ -38,12 +38,14 @@ export class HBargraph extends VBargraph {
             this.maxTimer = window.setTimeout(() => {
                 this.maxValue = this.paintValue;
                 this.maxTimer = undefined;
+                this.schedule(this.paint);
             }, 1000);
         }
         if (paintValue < this.maxValue && typeof this.maxTimer === "undefined") {
             this.maxTimer = window.setTimeout(() => {
                 this.maxValue = this.paintValue;
                 this.maxTimer = undefined;
+                this.schedule(this.paint);
             }, 1000);
         }
         const maxValue = this.maxValue;
@@ -68,7 +70,7 @@ export class HBargraph extends VBargraph {
             ctx.fillRect(left, top, distance * drawWidth, drawHeight);
         }
         if (paintValue > 0) {
-            const distance = AbstractItem.getDistance({ type, max, min, enums, scale, value: Math.min(max, paintValue) });
+            const distance = Math.max(0, AbstractItem.getDistance({ type, max, min, enums, scale, value: Math.min(max, paintValue) }) - overloadStop);
             ctx.fillRect(left + overloadStop * drawWidth + 1, top, distance * drawWidth - 1, drawHeight);
         }
         if (maxValue > paintValue) {
@@ -77,7 +79,7 @@ export class HBargraph extends VBargraph {
                 ctx.fillRect(left + distance * drawWidth - 1, top, 1, drawHeight);
             }
             if (maxValue > 0) {
-                const distance = AbstractItem.getDistance({ type, max, min, enums, scale, value: Math.min(max, maxValue) });
+                const distance = Math.max(0, AbstractItem.getDistance({ type, max, min, enums, scale, value: Math.min(max, maxValue) }) - overloadStop);
                 ctx.fillRect(left + Math.min(drawWidth - 1, (overloadStop + distance) * drawWidth), top, 1, drawHeight);
             }
         }
