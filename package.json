@@ -1,6 +1,6 @@
 {
-  "name": "faust-ui",
-  "version": "1.0.0",
+  "name": "@shren/faust-ui",
+  "version": "1.0.4",
   "description": "Faust UI elements compositor",
   "main": "./dist/faust-ui.js",
   "types": "dist/index.d.ts",
