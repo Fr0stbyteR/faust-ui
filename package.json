@@ -2,7 +2,7 @@
   "name": "@shren/faust-ui",
   "version": "1.0.5",
   "description": "Faust UI elements compositor",
-  "main": "./dist/faust-ui.js",
+  "main": "./dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "webpack --mode development"
