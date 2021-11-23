@@ -1,8 +1,8 @@
-import { TLayoutProp } from "../types";
-import { AbstractInputItem } from "./AbstractInputItem";
+import AbstractInputItem from "./AbstractInputItem";
+import { LayoutProps } from "../types";
 
-export class Checkbox extends AbstractInputItem {
-    layout: TLayoutProp = {
+export default class Checkbox extends AbstractInputItem {
+    layout: LayoutProps = {
         type: "checkbox",
         width: 2,
         height: 1,

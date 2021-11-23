@@ -1,26 +1,33 @@
-import { FaustUI } from "../FaustUI";
-import { AbstractComponent } from "./AbstractComponent";
-import { AbstractItem } from "./AbstractItem";
-import { FaustUIItemProps, FaustUIItemStyle, FaustUIGroupProps } from "./types";
-import { HSlider } from "./HSlider";
-import { VSlider } from "./VSlider";
-import { Nentry } from "./Nentry";
-import { Button } from "./Button";
-import { Checkbox } from "./Checkbox";
-import { Knob } from "./Knob";
-import { Menu } from "./Menu";
-import { Radio } from "./Radio";
-import { Led } from "./Led";
-import { Numerical } from "./Numerical";
-import { HBargraph } from "./HBargraph";
-import { VBargraph } from "./VBargraph";
-import { Layout } from "../layout/Layout";
-import { TFaustUIMeta, TFaustUIItem, TFaustUIGroup, TFaustUIInputItem, TFaustUIOutputItem, TLayoutProp } from "../types";
+import type { FaustUIMeta } from "@shren/faustwasm";
+import AbstractComponent from "./AbstractComponent";
+import AbstractItem from "./AbstractItem";
+import HSlider from "./HSlider";
+import VSlider from "./VSlider";
+import Nentry from "./Nentry";
+import Button from "./Button";
+import Checkbox from "./Checkbox";
+import Knob from "./Knob";
+import Menu from "./Menu";
+import Radio from "./Radio";
+import Led from "./Led";
+import Numerical from "./Numerical";
+import HBargraph from "./HBargraph";
+import VBargraph from "./VBargraph";
+import Layout from "../layout/Layout";
+import type FaustUI from "../FaustUI";
+import type LayoutAbstractGroup from "../layout/AbstractGroup";
+import type LayoutAbstractInputItem from "../layout/AbstractInputItem";
+import type LayoutAbstractOutputItem from "../layout/AbstractOutputItem";
+import type { FaustUIItemProps, FaustUIItemStyle, FaustUIGroupProps } from "./types";
+import type { LayoutProps } from "../types";
 import "./Group.scss";
 
-export class Group extends AbstractComponent<FaustUIGroupProps> {
-    static parseMeta(metaIn: TFaustUIMeta[]): { metaObject: TFaustUIMeta; enums?: { [key: string]: number } } {
-        const metaObject: TFaustUIMeta = {};
+export interface GroupProps extends FaustUIGroupProps {
+    items?: (LayoutAbstractGroup | LayoutAbstractInputItem | LayoutAbstractOutputItem)[];
+}
+export default class Group extends AbstractComponent<FaustUIGroupProps> {
+    static parseMeta(metaIn: FaustUIMeta[]): { metaObject: FaustUIMeta; enums?: { [key: string]: number } } {
+        const metaObject: FaustUIMeta = {};
         if (!metaIn) return { metaObject };
         metaIn.forEach(m => Object.assign(metaObject, m));
         if (metaObject.style) {
@@ -39,11 +46,11 @@ export class Group extends AbstractComponent<FaustUIGroupProps> {
         }
         return { metaObject };
     }
-    static getComponent(item: TFaustUIItem, emitter: FaustUI, grid: number) {
+    static getComponent(item: LayoutAbstractGroup | LayoutAbstractInputItem | LayoutAbstractOutputItem, emitter: FaustUI, grid: number) {
         const type = Layout.predictType(item);
         if (type.endsWith("group")) {
-            const { label, items, type, layout } = item as TFaustUIGroup;
-            const props: FaustUIGroupProps = {
+            const { label, items, type, layout } = item as LayoutAbstractGroup;
+            const props: GroupProps = {
                 label,
                 type,
                 items,
@@ -59,7 +66,7 @@ export class Group extends AbstractComponent<FaustUIGroupProps> {
             };
             return new Group(props);
         }
-        const ioItem = item as TFaustUIInputItem | TFaustUIOutputItem;
+        const ioItem = item as LayoutAbstractInputItem | LayoutAbstractOutputItem;
         const { metaObject, enums } = this.parseMeta(ioItem.meta);
         const { tooltip, unit, scale } = metaObject;
         const { label, min, max, address, layout } = ioItem;
@@ -113,7 +120,7 @@ export class Group extends AbstractComponent<FaustUIGroupProps> {
     labelCtx: CanvasRenderingContext2D;
     tabs: HTMLDivElement;
     children: (AbstractItem<FaustUIItemStyle> | Group)[];
-    layout: TLayoutProp;
+    layout: LayoutProps;
     setState(newState: { [key in keyof FaustUIGroupProps]?: FaustUIGroupProps[key] }) {
         let shouldUpdate = false;
         for (const key in newState) {
@@ -167,7 +174,7 @@ export class Group extends AbstractComponent<FaustUIGroupProps> {
     }
     updateUI = () => {
         this.children = [];
-        const { style, type, items, emitter, isRoot } = this.state;
+        const { style, type, items, emitter, isRoot } = this.state as GroupProps;
         const { grid, left, top, width, height } = style;
         this.label.style.height = `${grid * 0.3}px`;
         this.container.style.left = `${left * grid}px`;
@@ -180,7 +187,7 @@ export class Group extends AbstractComponent<FaustUIGroupProps> {
                 const component = Group.getComponent(item, emitter, grid);
                 if (component) this.children.push(component);
             } else {
-                const ioItem = item as TFaustUIInputItem | TFaustUIOutputItem;
+                const ioItem = item as LayoutAbstractInputItem | LayoutAbstractOutputItem;
                 const itemComponent = Group.getComponent(ioItem, this.state.emitter, grid);
                 if (itemComponent) this.children.push(itemComponent);
             }

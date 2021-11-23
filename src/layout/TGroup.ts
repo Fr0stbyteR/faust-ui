@@ -1,6 +1,6 @@
-import { AbstractGroup } from "./AbstractGroup";
+import AbstractGroup from "./AbstractGroup";
 
-export class TGroup extends AbstractGroup {
+export default class TGroup extends AbstractGroup {
     static tabLayout = {
         width: 2,
         height: 1

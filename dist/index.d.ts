@@ -1,2 +1,2 @@
-export { FaustUI } from "../src/FaustUI";
-export { instantiate } from "../src/instantiate";
+export * from "../src/index";
+export * from "../src/types";

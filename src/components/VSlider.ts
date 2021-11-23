@@ -1,8 +1,8 @@
-import { AbstractItem } from "./AbstractItem";
-import { FaustUIItemProps, PointerDownEvent, PointerDragEvent } from "./types";
-import "./VSlider.scss";
-import { FaustUINentryStyle } from "./Nentry";
+import AbstractItem from "./AbstractItem";
 import { fillRoundedRect, normLog, normExp, denormalize, normalize } from "./utils";
+import type { FaustUIItemProps, PointerDownEvent, PointerDragEvent } from "./types";
+import type { FaustUINentryStyle } from "./Nentry";
+import "./VSlider.scss";
 
 interface FaustUISliderStyle extends FaustUINentryStyle {
     sliderwidth?: number;
@@ -10,7 +10,7 @@ interface FaustUISliderStyle extends FaustUINentryStyle {
     sliderbgoncolor?: string;
     slidercolor?: string;
 }
-export class VSlider extends AbstractItem<FaustUISliderStyle> {
+export default class VSlider extends AbstractItem<FaustUISliderStyle> {
     static get defaultProps(): FaustUIItemProps<FaustUISliderStyle> {
         const inherited = super.defaultProps;
         return {

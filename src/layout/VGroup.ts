@@ -1,6 +1,6 @@
-import { AbstractGroup } from "./AbstractGroup";
+import AbstractGroup from "./AbstractGroup";
 
-export class VGroup extends AbstractGroup {
+export default class VGroup extends AbstractGroup {
     adjust() {
         this.items.forEach((item) => {
             item.adjust();

@@ -1,7 +1,7 @@
-import { AbstractItem } from "./AbstractItem";
-import { FaustUIItemProps } from "./types";
+import AbstractItem from "./AbstractItem";
+import type { FaustUIItemProps } from "./types";
+import type { FaustUINentryStyle } from "./Nentry";
 import "./Led.scss";
-import { FaustUINentryStyle } from "./Nentry";
 
 interface FaustUILedStyle extends FaustUINentryStyle {
     shape?: "circle" | "square";
@@ -11,7 +11,7 @@ interface FaustUILedStyle extends FaustUINentryStyle {
     hotcolor?: string;
     overloadcolor?: string;
 }
-export class Led extends AbstractItem<FaustUILedStyle> {
+export default class Led extends AbstractItem<FaustUILedStyle> {
     static get defaultProps(): FaustUIItemProps<FaustUILedStyle> {
         const inherited = super.defaultProps;
         return {

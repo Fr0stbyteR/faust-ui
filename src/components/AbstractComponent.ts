@@ -1,6 +1,6 @@
 import TypedEventEmitter from "@shren/typed-event-emitter";
 
-export abstract class AbstractComponent<T = { [key: string]: any }> extends TypedEventEmitter<T> {
+export default abstract class AbstractComponent<T = { [key: string]: any }> extends TypedEventEmitter<T> {
     /**
      * The default state of the component.
      */
@@ -50,7 +50,6 @@ export abstract class AbstractComponent<T = { [key: string]: any }> extends Type
     constructor(props?: T) {
         super();
         this.state = { ...this.defaultProps, ...props };
-        return this;
     }
     /**
      * set internal state and fire events for UI parts subscribed

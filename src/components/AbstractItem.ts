@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { FaustUIItemStyle, FaustUIItemProps, PointerDownEvent, PointerDragEvent, PointerUpEvent } from "./types";
-import "./Base.scss";
-import { AbstractComponent } from "./AbstractComponent";
+import AbstractComponent from "./AbstractComponent";
 import { normalize, normExp, normLog } from "./utils";
+import type { FaustUIItemStyle, FaustUIItemProps, PointerDownEvent, PointerDragEvent, PointerUpEvent } from "./types";
+import "./Base.scss";
 
 /**
  * Abstract class that describes a FaustUI Component
@@ -16,7 +15,7 @@ import { normalize, normExp, normLog } from "./utils";
  * `mount` get DOMs append to page
  * `componentDidMount` Now draw canvas etc.
  */
-export abstract class AbstractItem<T extends FaustUIItemStyle> extends AbstractComponent<FaustUIItemProps<T>> {
+export default abstract class AbstractItem<T extends FaustUIItemStyle> extends AbstractComponent<FaustUIItemProps<T>> {
     /**
      * The default state of the component.
      */
@@ -134,7 +133,6 @@ export abstract class AbstractItem<T extends FaustUIItemStyle> extends AbstractC
         super(props);
         this.state.style = { ...this.defaultProps.style, ...props.style };
         if (this.state.emitter) this.state.emitter.register(this.state.address, this);
-        return this;
     }
     /**
      * Get a nearest valid number

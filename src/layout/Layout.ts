@@ -1,27 +1,28 @@
-import { HSlider } from "./HSlider";
-import { VSlider } from "./VSlider";
-import { Nentry } from "./Nentry";
-import { Button } from "./Button";
-import { Checkbox } from "./Checkbox";
-import { Knob } from "./Knob";
-import { Menu } from "./Menu";
-import { Radio } from "./Radio";
-import { Led } from "./Led";
-import { Numerical } from "./Numerical";
-import { HBargraph } from "./HBargraph";
-import { VBargraph } from "./VBargraph";
-import { HGroup } from "./HGroup";
-import { VGroup } from "./VGroup";
-import { TGroup } from "./TGroup";
-import { AbstractItem } from "./AbstractItem";
-import { AbstractGroup } from "./AbstractGroup";
-import { TFaustUIItem, TLayoutType, TFaustUI } from "../types";
+import type { FaustUIItem } from "@shren/faustwasm";
+import HSlider from "./HSlider";
+import VSlider from "./VSlider";
+import Nentry from "./Nentry";
+import Button from "./Button";
+import Checkbox from "./Checkbox";
+import Knob from "./Knob";
+import Menu from "./Menu";
+import Radio from "./Radio";
+import Led from "./Led";
+import Numerical from "./Numerical";
+import HBargraph from "./HBargraph";
+import VBargraph from "./VBargraph";
+import HGroup from "./HGroup";
+import VGroup from "./VGroup";
+import TGroup from "./TGroup";
+import type AbstractItem from "./AbstractItem";
+import type AbstractGroup from "./AbstractGroup";
+import type { TLayoutType } from "../types";
 
-export class Layout {
+export default class Layout {
     /**
      * Get the rendering type of an item by parsing its metadata
      */
-    static predictType(item: TFaustUIItem): TLayoutType {
+    static predictType(item: FaustUIItem): TLayoutType {
         if (item.type === "vgroup"
                 || item.type === "hgroup"
                 || item.type === "tgroup"
@@ -43,7 +44,7 @@ export class Layout {
     /**
      * Get the Layout class constructor of an item
      */
-    static getItem(item: TFaustUIItem): AbstractItem | AbstractGroup {
+    static getItem(item: FaustUIItem): AbstractItem | AbstractGroup {
         const Ctor = {
             hslider: HSlider,
             vslider: VSlider,
@@ -64,13 +65,13 @@ export class Layout {
         const layoutType = this.predictType(item);
         return new Ctor[layoutType](item as any);
     }
-    static getItems(items: TFaustUIItem[]) {
+    static getItems(items: FaustUIItem[]) {
         return items.map((item) => {
             if ("items" in item) item.items = this.getItems(item.items);
             return this.getItem(item);
         });
     }
-    static calc(ui: TFaustUI) {
+    static calc(ui: FaustUIItem[]) {
         const rootGroup = new VGroup({ items: this.getItems(ui), type: "vgroup", label: "" }, true);
         rootGroup.adjust();
         rootGroup.expand(0, 0);

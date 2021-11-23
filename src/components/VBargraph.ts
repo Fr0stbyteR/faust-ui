@@ -1,7 +1,7 @@
-import { AbstractItem } from "./AbstractItem";
-import { FaustUIItemProps } from "./types";
+import AbstractItem from "./AbstractItem";
+import type { FaustUIItemProps } from "./types";
+import type { FaustUINentryStyle } from "./Nentry";
 import "./VBargraph.scss";
-import { FaustUINentryStyle } from "./Nentry";
 
 interface FaustUIBargraphStyle extends FaustUINentryStyle {
     barwidth?: number;
@@ -11,7 +11,7 @@ interface FaustUIBargraphStyle extends FaustUINentryStyle {
     hotcolor?: string;
     overloadcolor?: string;
 }
-export class VBargraph extends AbstractItem<FaustUIBargraphStyle> {
+export default class VBargraph extends AbstractItem<FaustUIBargraphStyle> {
     static get defaultProps(): FaustUIItemProps<FaustUIBargraphStyle> {
         const inherited = super.defaultProps;
         return {

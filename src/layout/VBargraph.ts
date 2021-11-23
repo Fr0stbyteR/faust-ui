@@ -1,8 +1,8 @@
-import { TLayoutProp } from "../types";
-import { AbstractOutputItem } from "./AbstractOutputItem";
+import AbstractOutputItem from "./AbstractOutputItem";
+import type { LayoutProps } from "../types";
 
-export class VBargraph extends AbstractOutputItem {
-    layout: TLayoutProp = {
+export default class VBargraph extends AbstractOutputItem {
+    layout: LayoutProps = {
         type: "vbargraph",
         width: 1,
         height: 5,

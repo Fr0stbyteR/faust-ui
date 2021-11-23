@@ -1,8 +1,8 @@
-import { TLayoutProp } from "../types";
-import { AbstractOutputItem } from "./AbstractOutputItem";
+import AbstractOutputItem from "./AbstractOutputItem";
+import type { LayoutProps } from "../types";
 
-export class Led extends AbstractOutputItem {
-    layout: TLayoutProp = {
+export default class Led extends AbstractOutputItem {
+    layout: LayoutProps = {
         type: "led",
         width: 1,
         height: 1,

@@ -1,8 +1,8 @@
-import { TLayoutProp } from "../types";
-import { AbstractInputItem } from "./AbstractInputItem";
+import AbstractInputItem from "./AbstractInputItem";
+import type { LayoutProps } from "../types";
 
-export class Nentry extends AbstractInputItem {
-    layout: TLayoutProp = {
+export default class Nentry extends AbstractInputItem {
+    layout: LayoutProps = {
         type: "nentry",
         width: 1,
         height: 1,

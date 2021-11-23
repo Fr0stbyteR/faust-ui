@@ -1,2 +1,2 @@
-export { FaustUI } from "./FaustUI";
-export { instantiate } from "./instantiate";
+export { default as FaustUI } from "./FaustUI";
+export { default as instantiate } from "./instantiate";

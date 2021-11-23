@@ -1,16 +1,17 @@
-import { Layout } from "./layout/Layout";
+import type { FaustUIDescriptor, FaustUIItem } from "@shren/faustwasm";
+import Layout from "./layout/Layout";
+import AbstractItem from "./components/AbstractItem";
+import Group from "./components/Group";
+import type { FaustUIGroupProps } from "./components/types";
+import type { LayoutProps } from "./types";
 import "./index.scss";
-import { AbstractItem } from "./components/AbstractItem";
-import { Group } from "./components/Group";
-import { FaustUIGroupProps } from "./components/types";
-import { TFaustUI, TLayoutProp } from "./types";
 
-type TOptions = {
+interface IOptions {
     root: HTMLDivElement;
-    ui?: TFaustUI;
+    ui?: FaustUIDescriptor;
     listenWindowResize?: boolean;
     listenWindowMessage?: boolean;
-};
+}
 
 /**
  * The main class of UI constructor,
@@ -18,18 +19,18 @@ type TOptions = {
  * listening to `message` window event to change UI or param value.
  * See readme.
  */
-export class FaustUI {
+export default class FaustUI {
     componentMap: { [path: string]: AbstractItem<any>[] } = {};
     DOMroot: HTMLDivElement;
     faustUIRoot: Group;
     hostWindow: Window;
     grid: number;
-    private _ui: TFaustUI;
-    private _layout: TLayoutProp;
+    private _ui: FaustUIItem[];
+    private _layout: LayoutProps;
     /**
      * Calculate incoming UI's layout, bind window events
      */
-    constructor(options: TOptions) {
+    constructor(options: IOptions) {
         const { root, ui: uiIn, listenWindowResize, listenWindowMessage } = options;
         this.DOMroot = root;
         this.ui = uiIn || [];

@@ -1,10 +1,11 @@
-import { TFaustUIType, TLayoutProp } from "../types";
+import type { FaustUIType } from "@shren/faustwasm";
+import type { LayoutProps } from "../types";
 
-export interface IItem {
+export default interface IItem {
     /**
      * Initial type of item given by Faust compiler
      */
-    type: TFaustUIType;
+    type: FaustUIType;
     /**
      * Initial item label given by Faust compiler
      */
@@ -12,7 +13,7 @@ export interface IItem {
     /**
      * Calculated layout
      */
-    layout: TLayoutProp;
+    layout: LayoutProps;
 
     /**
      * Adjust group width and height by its items' dimensions

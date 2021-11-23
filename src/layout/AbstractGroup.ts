@@ -1,19 +1,19 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { IItem } from "./IItem";
-import { AbstractItem } from "./AbstractItem";
-import { TFaustUIGroupType, TLayoutProp } from "../types";
+import type { FaustUIGroupType } from "@shren/faustwasm";
+import IItem from "./IItem";
+import AbstractItem from "./AbstractItem";
+import type { LayoutProps } from "../types";
 
-export abstract class AbstractGroup implements IItem {
+export default abstract class AbstractGroup implements IItem {
     static padding = 0.2;
     static labelHeight = 0.25;
     static spaceBetween = 0.1;
     isRoot: boolean;
-    type: TFaustUIGroupType;
+    type: FaustUIGroupType;
     label: string;
     items: (AbstractGroup | AbstractItem)[];
-    layout: TLayoutProp;
+    layout: LayoutProps;
 
-    constructor(group: { type: TFaustUIGroupType; label: string; items: (AbstractGroup | AbstractItem)[] }, isRoot?: boolean) {
+    constructor(group: { type: FaustUIGroupType; label: string; items: (AbstractGroup | AbstractItem)[] }, isRoot?: boolean) {
         this.isRoot = !!isRoot;
         Object.assign(this, group);
         const { hasHSizingDesc, hasVSizingDesc } = this;

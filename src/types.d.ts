@@ -1,55 +1,14 @@
-export type TFaustUI = TFaustUIItem[];
-export type TFaustUIItem = TFaustUIInputItem | TFaustUIOutputItem | TFaustUIGroup;
-export type TFaustUIInputItem = {
-    type: TFaustUIInputType;
-    label: string;
-    address: string;
-    index: number;
-    init?: number;
-    min?: number;
-    max?: number;
-    step?: number;
-    meta?: TFaustUIMeta[];
-    layout?: TLayoutProp;
-};
-export type TFaustUIOutputItem = {
-    type: TFaustUIOutputType;
-    label: string;
-    address: string;
-    index: number;
-    min?: number;
-    max?: number;
-    meta?: TFaustUIMeta[];
-    layout?: TLayoutProp;
-};
-export type TFaustUIMeta = {
-    [order: number]: string;
-    style?: string; // "knob" | "menu{'Name0':value0;'Name1':value1}" | "radio{'Name0':value0;'Name1':value1}" | "led";
-    unit?: string;
-    scale?: "linear" | "exp" | "log";
-    tooltip?: string;
-    hidden?: string;
-    [key: string]: string;
-};
-export type TFaustUIGroupType = "vgroup" | "hgroup" | "tgroup";
-export type TFaustUIOutputType = "hbargraph" | "vbargraph";
-export type TFaustUIInputType = "vslider" | "hslider" | "button" | "checkbox" | "nentry";
-export type TFaustUIGroup = {
-    type: TFaustUIGroupType;
-    label: string;
-    items: TFaustUIItem[];
-    layout?: TLayoutProp;
-};
-export type TFaustUIType = TFaustUIGroupType | TFaustUIOutputType | TFaustUIInputType;
+import type { FaustUIDescriptor, FaustUIGroup, FaustUIInputItem, FaustUIOutputItem } from "@shren/faustwasm";
+
 export interface FaustUIEventMap {
     "paramChangeByUI": { path: string; value: number };
     "paramChangeByDSP": { path: string; value: number };
-    "uiWillChange": TFaustUI;
-    "uiChanged": TFaustUI;
-    "uiConnected": TFaustUI;
+    "uiWillChange": FaustUIDescriptor;
+    "uiChanged": FaustUIDescriptor;
+    "uiConnected": FaustUIDescriptor;
     "layoutChange": undefined;
 }
-export type TLayoutProp = {
+export interface LayoutProps {
     type: TLayoutType;
     left?: number;
     top?: number;
@@ -58,23 +17,23 @@ export type TLayoutProp = {
     width: number;
     height: number;
     sizing: "horizontal" | "vertical" | "both" | "none";
-};
+}
 export type TLayoutType = "vgroup" | "hgroup" | "tgroup" | "hbargraph" | "vbargraph" | "vslider" | "hslider" | "button" | "checkbox" | "nentry" | "knob" | "menu" | "radio" | "led" | "numerical";
-export type TLayout = { [path: string]: TLayoutProp };
+export interface ILayout { [path: string]: LayoutProps }
 export interface LayoutTypeMap {
-    "vgroup": TFaustUIGroup;
-    "hgroup": TFaustUIGroup;
-    "tgroup": TFaustUIGroup;
-    "hbargraph": TFaustUIOutputItem;
-    "vbargraph": TFaustUIOutputItem;
-    "led": TFaustUIOutputItem;
-    "numerical": TFaustUIOutputItem;
-    "vslider": TFaustUIInputItem;
-    "hslider": TFaustUIInputItem;
-    "button": TFaustUIInputItem;
-    "checkbox": TFaustUIInputItem;
-    "nentry": TFaustUIInputItem;
-    "knob": TFaustUIInputItem;
-    "menu": TFaustUIInputItem;
-    "radio": TFaustUIInputItem;
+    "vgroup": FaustUIGroup;
+    "hgroup": FaustUIGroup;
+    "tgroup": FaustUIGroup;
+    "hbargraph": FaustUIOutputItem;
+    "vbargraph": FaustUIOutputItem;
+    "led": FaustUIOutputItem;
+    "numerical": FaustUIOutputItem;
+    "vslider": FaustUIInputItem;
+    "hslider": FaustUIInputItem;
+    "button": FaustUIInputItem;
+    "checkbox": FaustUIInputItem;
+    "nentry": FaustUIInputItem;
+    "knob": FaustUIInputItem;
+    "menu": FaustUIInputItem;
+    "radio": FaustUIInputItem;
 }

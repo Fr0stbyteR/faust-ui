@@ -1,8 +1,8 @@
-import { AbstractItem } from "./AbstractItem";
+import AbstractItem from "./AbstractItem";
+import VBargraph from "./VBargraph";
 import "./HBargraph.scss";
-import { VBargraph } from "./VBargraph";
 
-export class HBargraph extends VBargraph {
+export default class HBargraph extends VBargraph {
     className = "hbargraph";
 
     paintLabel() {

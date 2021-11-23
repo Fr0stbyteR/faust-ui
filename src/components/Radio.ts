@@ -1,5 +1,5 @@
-import { AbstractItem } from "./AbstractItem";
-import { FaustUIItemStyle, FaustUIItemProps } from "./types";
+import AbstractItem from "./AbstractItem";
+import type { FaustUIItemStyle, FaustUIItemProps } from "./types";
 import "./Radio.scss";
 
 export interface FaustUIRadioStyle extends FaustUIItemStyle {
@@ -11,7 +11,7 @@ export interface FaustUIRadioStyle extends FaustUIItemStyle {
     labelcolor?: string;
     textcolor?: string;
 }
-export class Radio extends AbstractItem<FaustUIRadioStyle> {
+export default class Radio extends AbstractItem<FaustUIRadioStyle> {
     static get defaultProps(): FaustUIItemProps<FaustUIRadioStyle> {
         const inherited = super.defaultProps;
         return {

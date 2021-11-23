@@ -1,5 +1,5 @@
-import { AbstractItem } from "./AbstractItem";
-import { FaustUIItemStyle, FaustUIItemProps } from "./types";
+import AbstractItem from "./AbstractItem";
+import type { FaustUIItemStyle, FaustUIItemProps } from "./types";
 import "./Button.scss";
 
 export interface FaustUIButtonStyle extends FaustUIItemStyle {
@@ -13,7 +13,7 @@ export interface FaustUIButtonStyle extends FaustUIItemStyle {
     textcolor?: string;
     textoncolor?: string;
 }
-export class Button extends AbstractItem<FaustUIButtonStyle> {
+export default class Button extends AbstractItem<FaustUIButtonStyle> {
     static get defaultProps(): FaustUIItemProps<FaustUIButtonStyle> {
         const inherited = super.defaultProps;
         return {

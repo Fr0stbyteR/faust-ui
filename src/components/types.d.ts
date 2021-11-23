@@ -1,5 +1,5 @@
-import { TFaustUIItem } from "../types";
-import { FaustUI } from "../FaustUI";
+import type { FaustUIItem } from "@shren/faustwasm";
+import type FaustUI from "../FaustUI";
 
 export interface FaustUIItemProps<T extends FaustUIItemStyle> {
     value?: number;
@@ -22,7 +22,7 @@ export interface FaustUIGroupProps {
     label?: string;
     type?: "tgroup" | "vgroup" | "hgroup";
     style?: FaustUIItemStyle;
-    items?: TFaustUIItem[];
+    items?: FaustUIItem[];
     isRoot?: boolean;
     emitter?: FaustUI;
 }

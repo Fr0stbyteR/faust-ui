@@ -1,8 +1,8 @@
-import "./HSlider.scss";
 import { fillRoundedRect } from "./utils";
-import { VSlider } from "./VSlider";
+import VSlider from "./VSlider";
+import "./HSlider.scss";
 
-export class HSlider extends VSlider {
+export default class HSlider extends VSlider {
     className = "hslider";
 
     paintLabel() {

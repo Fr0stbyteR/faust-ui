@@ -1,5 +1,5 @@
-import { AbstractItem } from "./AbstractItem";
-import { FaustUIItemStyle, FaustUIItemProps } from "./types";
+import AbstractItem from "./AbstractItem";
+import type { FaustUIItemStyle, FaustUIItemProps } from "./types";
 import "./Menu.scss";
 
 export interface FaustUIMenuStyle extends FaustUIItemStyle {
@@ -11,7 +11,7 @@ export interface FaustUIMenuStyle extends FaustUIItemStyle {
     labelcolor?: string;
     textcolor?: string;
 }
-export class Menu extends AbstractItem<FaustUIMenuStyle> {
+export default class Menu extends AbstractItem<FaustUIMenuStyle> {
     static get defaultProps(): FaustUIItemProps<FaustUIMenuStyle> {
         const inherited = super.defaultProps;
         return {

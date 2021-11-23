@@ -1,7 +1,8 @@
-import { AbstractInputItem } from "./AbstractInputItem";
+import AbstractInputItem from "./AbstractInputItem";
+import type { LayoutProps } from "../types";
 
-export class VSlider extends AbstractInputItem {
-    layout: TLayoutProp = {
+export default class VSlider extends AbstractInputItem {
+    layout: LayoutProps = {
         type: "vslider",
         width: 1,
         height: 5,

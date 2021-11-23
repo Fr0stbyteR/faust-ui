@@ -1,17 +1,18 @@
-import { TFaustUIInputType, TFaustUIItem, TFaustUIMeta, TFaustUIOutputType, TLayoutProp } from "../types";
-import { IItem } from "./IItem";
+import type { FaustUIInputType, FaustUIItem, FaustUIMeta, FaustUIOutputType } from "@shren/faustwasm";
+import type { LayoutProps } from "../types";
+import type IItem from "./IItem";
 
-export abstract class AbstractItem implements IItem {
-    type: TFaustUIInputType | TFaustUIOutputType;
+export default abstract class AbstractItem implements IItem {
+    type: FaustUIInputType | FaustUIOutputType;
     label: string;
     address: string;
     index: number;
     init: number;
     min: number;
     max: number;
-    meta?: TFaustUIMeta[];
-    layout: TLayoutProp;
-    constructor(item: TFaustUIItem) {
+    meta?: FaustUIMeta[];
+    layout: LayoutProps;
+    constructor(item: FaustUIItem) {
         Object.assign(this, item);
         this.min = isFinite(+this.min) ? +this.min : 0;
         this.max = isFinite(+this.max) ? +this.max : 1;
@@ -20,7 +21,6 @@ export abstract class AbstractItem implements IItem {
     adjust(): this {
         return this;
     }
-
     expand(dX: number, dY: number): this {
         return this;
     }

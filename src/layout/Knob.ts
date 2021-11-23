@@ -1,8 +1,8 @@
-import { TLayoutProp } from "../types";
-import { AbstractInputItem } from "./AbstractInputItem";
+import AbstractInputItem from "./AbstractInputItem";
+import type { LayoutProps } from "../types";
 
-export class Knob extends AbstractInputItem {
-    layout: TLayoutProp = {
+export default class Knob extends AbstractInputItem {
+    layout: LayoutProps = {
         type: "knob",
         width: 1,
         height: 1.75,

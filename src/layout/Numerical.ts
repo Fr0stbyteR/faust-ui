@@ -1,8 +1,8 @@
-import { TLayoutProp } from "../types";
-import { AbstractOutputItem } from "./AbstractOutputItem";
+import AbstractOutputItem from "./AbstractOutputItem";
+import type { LayoutProps } from "../types";
 
-export class Numerical extends AbstractOutputItem {
-    layout: TLayoutProp = {
+export default class Numerical extends AbstractOutputItem {
+    layout: LayoutProps = {
         type: "numerical",
         width: 1,
         height: 1,

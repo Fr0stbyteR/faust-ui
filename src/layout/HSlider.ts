@@ -1,8 +1,8 @@
-import { TLayoutProp } from "../types";
-import { AbstractInputItem } from "./AbstractInputItem";
+import AbstractInputItem from "./AbstractInputItem";
+import type { LayoutProps } from "../types";
 
-export class HSlider extends AbstractInputItem {
-    layout: TLayoutProp = {
+export default class HSlider extends AbstractInputItem {
+    layout: LayoutProps = {
         type: "hslider",
         width: 5,
         height: 1,

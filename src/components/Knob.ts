@@ -1,8 +1,8 @@
-import { AbstractItem } from "./AbstractItem";
-import { FaustUIItemProps, PointerDragEvent } from "./types";
-import "./Knob.scss";
-import { FaustUINentryStyle } from "./Nentry";
+import AbstractItem from "./AbstractItem";
 import { toRad, normLog, normExp, denormalize, normalize } from "./utils";
+import type { FaustUIItemProps, PointerDragEvent } from "./types";
+import type { FaustUINentryStyle } from "./Nentry";
+import "./Knob.scss";
 
 interface FaustUIKnobStyle extends FaustUINentryStyle {
     knobwidth?: number;
@@ -10,7 +10,7 @@ interface FaustUIKnobStyle extends FaustUINentryStyle {
     knoboncolor?: string;
     needlecolor?: string;
 }
-export class Knob extends AbstractItem<FaustUIKnobStyle> {
+export default class Knob extends AbstractItem<FaustUIKnobStyle> {
     static get defaultProps(): FaustUIItemProps<FaustUIKnobStyle> {
         const inherited = super.defaultProps;
         return {

@@ -16,8 +16,14 @@ const config = {
   module: {
     rules: [{
         test: /\.(ts|js)x?$/,
-        use: "babel-loader",
-        exclude: /node_modules/,
+        use: {
+          loader: 'esbuild-loader',
+          options: {
+            loader: 'tsx',
+            target: 'es2017'
+          }
+        },
+        exclude: /node_modules/
       },
       {
         test: /\.s[ac]ss$/,
@@ -58,8 +64,14 @@ const esmConfig = {
   module: {
     rules: [{
         test: /\.(ts|js)x?$/,
-        use: "babel-loader",
-        exclude: /node_modules/,
+        use: {
+          loader: 'esbuild-loader',
+          options: {
+            loader: 'tsx',
+            target: 'es2017'
+          }
+        },
+        exclude: /node_modules/
       },
       {
         test: /\.s[ac]ss$/,
@@ -96,15 +108,15 @@ const esmConfig = {
 module.exports = (env, argv) => {
   if (argv.mode === 'development') {
     config.devtool = 'source-map';
-    config.output.filename = 'faust-ui.js';
+    config.output.filename = 'index.js';
     esmConfig.devtool = 'source-map';
-    esmConfig.output.filename = 'faust-ui.js';
+    esmConfig.output.filename = 'index.js';
   }
   if (argv.mode === 'production') {
     config.devtool = 'source-map';
-    config.output.filename = 'faust-ui.min.js';
+    config.output.filename = 'index.js';
     esmConfig.devtool = 'source-map';
-    esmConfig.output.filename = 'faust-ui.min.js';
+    esmConfig.output.filename = 'index.js';
   }
   return [config, esmConfig];
 };

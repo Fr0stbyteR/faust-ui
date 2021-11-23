@@ -1,7 +1,11 @@
-import { FaustUI } from "./FaustUI";
+import FaustUI from "./FaustUI";
 
-export const instantiate = () => {
-    const faustUI = new FaustUI({ root: document.getElementById("root") as HTMLDivElement });
+const instantiate = () => {
+    const faustUI = new FaustUI({
+        root: document.getElementById("root") as HTMLDivElement,
+        listenWindowResize: true,
+        listenWindowMessage: true
+    });
     let host: Window;
     window.addEventListener("message", (e) => {
         const { source } = e;
@@ -16,3 +20,5 @@ export const instantiate = () => {
     });
     (window as any).faustUI = faustUI;
 };
+
+export default instantiate;

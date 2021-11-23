@@ -1,9 +1,9 @@
-import { AbstractItem } from "./AbstractItem";
-import { FaustUIItemProps } from "./types";
+import AbstractItem from "./AbstractItem";
+import type { FaustUIItemProps } from "./types";
+import type { FaustUINentryStyle } from "./Nentry";
 import "./Numerical.scss";
-import { FaustUINentryStyle } from "./Nentry";
 
-export class Numerical extends AbstractItem<FaustUINentryStyle> {
+export default class Numerical extends AbstractItem<FaustUINentryStyle> {
     static get defaultProps(): FaustUIItemProps<FaustUINentryStyle> {
         const inherited = super.defaultProps;
         return {

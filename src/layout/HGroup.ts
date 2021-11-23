@@ -1,6 +1,6 @@
-import { AbstractGroup } from "./AbstractGroup";
+import AbstractGroup from "./AbstractGroup";
 
-export class HGroup extends AbstractGroup {
+export default class HGroup extends AbstractGroup {
     adjust() {
         this.items.forEach((item) => {
             item.adjust();

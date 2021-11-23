@@ -1,8 +1,8 @@
-import { TLayoutProp } from "../types";
-import { AbstractInputItem } from "./AbstractInputItem";
+import AbstractInputItem from "./AbstractInputItem";
+import { LayoutProps } from "../types";
 
-export class Button extends AbstractInputItem {
-    layout: TLayoutProp = {
+export default class Button extends AbstractInputItem {
+    layout: LayoutProps = {
         type: "button",
         width: 2,
         height: 1,

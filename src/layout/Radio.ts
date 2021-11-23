@@ -1,8 +1,8 @@
-import { TLayoutProp } from "../types";
-import { AbstractInputItem } from "./AbstractInputItem";
+import AbstractInputItem from "./AbstractInputItem";
+import type { LayoutProps } from "../types";
 
-export class Radio extends AbstractInputItem {
-    layout: TLayoutProp = {
+export default class Radio extends AbstractInputItem {
+    layout: LayoutProps = {
         type: "radio",
         width: 2,
         height: 2, // TODO: vradio and hradio
