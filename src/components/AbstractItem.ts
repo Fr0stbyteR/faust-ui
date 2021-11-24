@@ -61,28 +61,28 @@ export default abstract class AbstractItem<T extends FaustUIItemStyle> extends A
     handleTouchStart = (e: TouchEvent) => {
         e.preventDefault();
         const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-        let prevX = e.touches[0].pageX;
-        let prevY = e.touches[0].pageY;
+        let prevX = e.touches[0].clientX;
+        let prevY = e.touches[0].clientY;
         const fromX = prevX - rect.left;
         const fromY = prevY - rect.top;
         const prevValue = this.state.value;
         this.handlePointerDown({ x: fromX, y: fromY, originalEvent: e });
         const handleTouchMove = (e: TouchEvent) => {
             e.preventDefault();
-            const pageX = e.changedTouches[0].pageX;
-            const pageY = e.changedTouches[0].pageY;
-            const movementX = pageX - prevX;
-            const movementY = pageY - prevY;
-            prevX = pageX;
-            prevY = pageY;
-            const x = pageX - rect.left;
-            const y = pageY - rect.top;
+            const clientX = e.changedTouches[0].clientX;
+            const clientY = e.changedTouches[0].clientY;
+            const movementX = clientX - prevX;
+            const movementY = clientY - prevY;
+            prevX = clientX;
+            prevY = clientY;
+            const x = clientX - rect.left;
+            const y = clientY - rect.top;
             this.handlePointerDrag({ prevValue, x, y, fromX, fromY, movementX, movementY, originalEvent: e });
         };
         const handleTouchEnd = (e: TouchEvent) => {
             e.preventDefault();
-            const x = e.changedTouches[0].pageX - rect.left;
-            const y = e.changedTouches[0].pageY - rect.top;
+            const x = e.changedTouches[0].clientX - rect.left;
+            const y = e.changedTouches[0].clientY - rect.top;
             this.handlePointerUp({ x, y, originalEvent: e });
             document.removeEventListener("touchmove", handleTouchMove);
             document.removeEventListener("touchend", handleTouchEnd);
@@ -96,20 +96,20 @@ export default abstract class AbstractItem<T extends FaustUIItemStyle> extends A
         e.preventDefault();
         (e.currentTarget as HTMLElement).focus();
         const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-        const fromX = e.pageX - rect.left;
-        const fromY = e.pageY - rect.top;
+        const fromX = e.clientX - rect.left;
+        const fromY = e.clientY - rect.top;
         const prevValue = this.state.value;
         this.handlePointerDown({ x: fromX, y: fromY, originalEvent: e });
         const handleMouseMove = (e: MouseEvent) => {
             e.preventDefault();
-            const x = e.pageX - rect.left;
-            const y = e.pageY - rect.top;
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
             this.handlePointerDrag({ prevValue, x, y, fromX, fromY, movementX: e.movementX, movementY: e.movementY, originalEvent: e });
         };
         const handleMouseUp = (e: MouseEvent) => {
             e.preventDefault();
-            const x = e.pageX - rect.left;
-            const y = e.pageY - rect.top;
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
             this.handlePointerUp({ x, y, originalEvent: e });
             document.removeEventListener("mousemove", handleMouseMove);
             document.removeEventListener("mouseup", handleMouseUp);

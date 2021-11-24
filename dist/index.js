@@ -899,28 +899,28 @@ const _AbstractItem = class extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_
     this.handleTouchStart = (e) => {
       e.preventDefault();
       const rect = e.currentTarget.getBoundingClientRect();
-      let prevX = e.touches[0].pageX;
-      let prevY = e.touches[0].pageY;
+      let prevX = e.touches[0].clientX;
+      let prevY = e.touches[0].clientY;
       const fromX = prevX - rect.left;
       const fromY = prevY - rect.top;
       const prevValue = this.state.value;
       this.handlePointerDown({ x: fromX, y: fromY, originalEvent: e });
       const handleTouchMove = (e2) => {
         e2.preventDefault();
-        const pageX = e2.changedTouches[0].pageX;
-        const pageY = e2.changedTouches[0].pageY;
-        const movementX = pageX - prevX;
-        const movementY = pageY - prevY;
-        prevX = pageX;
-        prevY = pageY;
-        const x = pageX - rect.left;
-        const y = pageY - rect.top;
+        const clientX = e2.changedTouches[0].clientX;
+        const clientY = e2.changedTouches[0].clientY;
+        const movementX = clientX - prevX;
+        const movementY = clientY - prevY;
+        prevX = clientX;
+        prevY = clientY;
+        const x = clientX - rect.left;
+        const y = clientY - rect.top;
         this.handlePointerDrag({ prevValue, x, y, fromX, fromY, movementX, movementY, originalEvent: e2 });
       };
       const handleTouchEnd = (e2) => {
         e2.preventDefault();
-        const x = e2.changedTouches[0].pageX - rect.left;
-        const y = e2.changedTouches[0].pageY - rect.top;
+        const x = e2.changedTouches[0].clientX - rect.left;
+        const y = e2.changedTouches[0].clientY - rect.top;
         this.handlePointerUp({ x, y, originalEvent: e2 });
         document.removeEventListener("touchmove", handleTouchMove);
         document.removeEventListener("touchend", handleTouchEnd);
@@ -936,20 +936,20 @@ const _AbstractItem = class extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_
       e.preventDefault();
       e.currentTarget.focus();
       const rect = e.currentTarget.getBoundingClientRect();
-      const fromX = e.pageX - rect.left;
-      const fromY = e.pageY - rect.top;
+      const fromX = e.clientX - rect.left;
+      const fromY = e.clientY - rect.top;
       const prevValue = this.state.value;
       this.handlePointerDown({ x: fromX, y: fromY, originalEvent: e });
       const handleMouseMove = (e2) => {
         e2.preventDefault();
-        const x = e2.pageX - rect.left;
-        const y = e2.pageY - rect.top;
+        const x = e2.clientX - rect.left;
+        const y = e2.clientY - rect.top;
         this.handlePointerDrag({ prevValue, x, y, fromX, fromY, movementX: e2.movementX, movementY: e2.movementY, originalEvent: e2 });
       };
       const handleMouseUp = (e2) => {
         e2.preventDefault();
-        const x = e2.pageX - rect.left;
-        const y = e2.pageY - rect.top;
+        const x = e2.clientX - rect.left;
+        const y = e2.clientY - rect.top;
         this.handlePointerUp({ x, y, originalEvent: e2 });
         document.removeEventListener("mousemove", handleMouseMove);
         document.removeEventListener("mouseup", handleMouseUp);
