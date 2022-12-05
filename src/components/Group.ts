@@ -31,10 +31,10 @@ export default class Group extends AbstractComponent<FaustUIGroupProps> {
         if (!metaIn) return { metaObject };
         metaIn.forEach(m => Object.assign(metaObject, m));
         if (metaObject.style) {
-            const enumsRegex = /\{(?:(?:'|_)(.+?)(?:'|_):([-+]?[0-9]*\.?[0-9]+?);)+(?:(?:'|_)(.+?)(?:'|_):([-+]?[0-9]*\.?[0-9]+?))\}/;
+            const enumsRegex = /\{(?:(?:'|_|-)(.+?)(?:'|_|-):([-+]?[0-9]*\.?[0-9]+?);)+(?:(?:'|_|-)(.+?)(?:'|_|-):([-+]?[0-9]*\.?[0-9]+?))\}/;
             const matched = metaObject.style.match(enumsRegex);
             if (matched) {
-                const itemsRegex = /(?:(?:'|_)(.+?)(?:'|_):([-+]?[0-9]*\.?[0-9]+?))/g;
+                const itemsRegex = /(?:(?:'|_|-)(.+?)(?:'|_|-):([-+]?[0-9]*\.?[0-9]+?))/g;
                 const enums: { [key: string]: number } = {};
                 let item;
                 // eslint-disable-next-line no-cond-assign

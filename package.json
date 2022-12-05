@@ -17,7 +17,7 @@
   "author": "Fr0stbyteR",
   "license": "GPL-3.0-or-later",
   "devDependencies": {
-    "@shren/faustwasm": "^0.0.5",
+    "@shren/faustwasm": "^0.0.12",
     "@shren/typed-event-emitter": "^1.1.1",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
