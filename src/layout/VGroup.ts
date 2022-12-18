@@ -29,6 +29,7 @@ export default class VGroup extends AbstractGroup {
             }
             item.expand(dX$, dY$);
         });
+        this.layout.height += dY;
         return this;
     }
     offset() {
