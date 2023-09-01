@@ -2895,18 +2895,18 @@ class VSlider extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["default"] {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "atodb": () => (/* binding */ atodb),
-/* harmony export */   "dbtoa": () => (/* binding */ dbtoa),
-/* harmony export */   "denormalize": () => (/* binding */ denormalize),
-/* harmony export */   "fillRoundedRect": () => (/* binding */ fillRoundedRect),
-/* harmony export */   "iNormExp": () => (/* binding */ iNormExp),
-/* harmony export */   "iNormLog": () => (/* binding */ iNormLog),
-/* harmony export */   "normExp": () => (/* binding */ normExp),
-/* harmony export */   "normLog": () => (/* binding */ normLog),
-/* harmony export */   "normalize": () => (/* binding */ normalize),
-/* harmony export */   "roundedRect": () => (/* binding */ roundedRect),
-/* harmony export */   "toMIDI": () => (/* binding */ toMIDI),
-/* harmony export */   "toRad": () => (/* binding */ toRad)
+/* harmony export */   atodb: () => (/* binding */ atodb),
+/* harmony export */   dbtoa: () => (/* binding */ dbtoa),
+/* harmony export */   denormalize: () => (/* binding */ denormalize),
+/* harmony export */   fillRoundedRect: () => (/* binding */ fillRoundedRect),
+/* harmony export */   iNormExp: () => (/* binding */ iNormExp),
+/* harmony export */   iNormLog: () => (/* binding */ iNormLog),
+/* harmony export */   normExp: () => (/* binding */ normExp),
+/* harmony export */   normLog: () => (/* binding */ normLog),
+/* harmony export */   normalize: () => (/* binding */ normalize),
+/* harmony export */   roundedRect: () => (/* binding */ roundedRect),
+/* harmony export */   toMIDI: () => (/* binding */ toMIDI),
+/* harmony export */   toRad: () => (/* binding */ toRad)
 /* harmony export */ });
 const toMIDI = (f) => ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"][(f % 12 + 12) % 12] + Math.round(f / 12 - 2);
 const toRad = (degrees) => degrees * Math.PI / 180;
@@ -4944,6 +4944,11 @@ module.exports = styleTagTransform;
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/nonce */
+/******/ 	(() => {
+/******/ 		__webpack_require__.nc = undefined;
+/******/ 	})();
+/******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
@@ -4953,8 +4958,8 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "FaustUI": () => (/* reexport safe */ _FaustUI__WEBPACK_IMPORTED_MODULE_0__["default"]),
-/* harmony export */   "instantiate": () => (/* reexport safe */ _instantiate__WEBPACK_IMPORTED_MODULE_1__["default"])
+/* harmony export */   FaustUI: () => (/* reexport safe */ _FaustUI__WEBPACK_IMPORTED_MODULE_0__["default"]),
+/* harmony export */   instantiate: () => (/* reexport safe */ _instantiate__WEBPACK_IMPORTED_MODULE_1__["default"])
 /* harmony export */ });
 /* harmony import */ var _FaustUI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FaustUI */ "./src/FaustUI.ts");
 /* harmony import */ var _instantiate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./instantiate */ "./src/instantiate.ts");
