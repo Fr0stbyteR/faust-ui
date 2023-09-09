@@ -1,4 +1,4 @@
-import type { FaustUIDescriptor, FaustUIGroup, FaustUIInputItem, FaustUIOutputItem } from "@shren/faustwasm";
+import type { FaustUIDescriptor, FaustUIGroup, FaustUIInputItem, FaustUIOutputItem } from "@grame/faustwasm";
 
 export interface FaustUIEventMap {
     "paramChangeByUI": { path: string; value: number };

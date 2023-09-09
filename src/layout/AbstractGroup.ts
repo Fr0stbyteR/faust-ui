@@ -1,4 +1,4 @@
-import type { FaustUIGroupType } from "@shren/faustwasm";
+import type { FaustUIGroupType } from "@grame/faustwasm";
 import IItem from "./IItem";
 import AbstractItem from "./AbstractItem";
 import type { LayoutProps } from "../types";

@@ -1,4 +1,4 @@
-import type { FaustUIInputItem } from "@shren/faustwasm";
+import type { FaustUIInputItem } from "@grame/faustwasm";
 import AbstractItem from "./AbstractItem";
 
 export default abstract class AbstractInputItem extends AbstractItem {

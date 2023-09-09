@@ -1,4 +1,4 @@
-import type { FaustUIItem } from "@shren/faustwasm";
+import type { FaustUIItem } from "@grame/faustwasm";
 import type FaustUI from "../FaustUI";
 
 export interface FaustUIItemProps<T extends FaustUIItemStyle> {

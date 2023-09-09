@@ -1,4 +1,4 @@
-import type { FaustUIDescriptor, FaustUIItem } from "@shren/faustwasm";
+import type { FaustUIDescriptor, FaustUIItem } from "@grame/faustwasm";
 import Layout from "./layout/Layout";
 import AbstractItem from "./components/AbstractItem";
 import Group from "./components/Group";

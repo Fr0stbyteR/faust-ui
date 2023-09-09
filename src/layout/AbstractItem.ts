@@ -1,4 +1,4 @@
-import type { FaustUIInputType, FaustUIItem, FaustUIMeta, FaustUIOutputType } from "@shren/faustwasm";
+import type { FaustUIInputType, FaustUIItem, FaustUIMeta, FaustUIOutputType } from "@grame/faustwasm";
 import type { LayoutProps } from "../types";
 import type IItem from "./IItem";
 

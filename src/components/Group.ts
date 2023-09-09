@@ -1,4 +1,4 @@
-import type { FaustUIMeta } from "@shren/faustwasm";
+import type { FaustUIMeta } from "@grame/faustwasm";
 import AbstractComponent from "./AbstractComponent";
 import AbstractItem from "./AbstractItem";
 import HSlider from "./HSlider";

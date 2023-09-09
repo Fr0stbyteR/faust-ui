@@ -1,4 +1,4 @@
-import type { FaustUIItem } from "@shren/faustwasm";
+import type { FaustUIItem } from "@grame/faustwasm";
 import HSlider from "./HSlider";
 import VSlider from "./VSlider";
 import Nentry from "./Nentry";
