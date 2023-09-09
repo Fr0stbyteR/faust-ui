@@ -20,6 +20,7 @@
     & .faust-ui-tgroup-tabs {
         position: absolute;
         display: inline-block;
+        white-space: nowrap;
         & .faust-ui-tgroup-tab {
             position: relative;
             display: inline-block;
