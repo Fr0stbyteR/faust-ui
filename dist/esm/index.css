@@ -380,6 +380,7 @@
   position: absolute;
   display: inline-block;
   white-space: nowrap;
+  left: 0px;
 }
 .faust-ui-group .faust-ui-tgroup-tabs .faust-ui-tgroup-tab {
   position: relative;
