@@ -2719,7 +2719,6 @@ class HGroup extends _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"] {
       }
       item.expand(dX$, dY$);
     });
-    this.layout.width += dX;
     return this;
   }
   offset() {
@@ -3166,7 +3165,6 @@ class VGroup extends _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"] {
       }
       item.expand(dX$, dY$);
     });
-    this.layout.height += dY;
     return this;
   }
   offset() {

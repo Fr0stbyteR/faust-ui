@@ -29,7 +29,7 @@ export default class HGroup extends AbstractGroup {
             }
             item.expand(dX$, dY$);
         });
-        this.layout.width += dX;
+        // this.layout.width += dX;
         return this;
     }
     offset() {
