@@ -1,6 +1,6 @@
 import TypedEventEmitter from "@shren/typed-event-emitter";
 
-export default abstract class AbstractComponent<T = { [key: string]: any }> extends TypedEventEmitter<T> {
+export default abstract class AbstractComponent<T extends { [key: string]: any; }> extends TypedEventEmitter<T> {
     /**
      * The default state of the component.
      */

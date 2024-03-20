@@ -5,7 +5,8 @@
   "main": "./dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "webpack --mode development"
+    "build": "webpack --mode development",
+    "postbuild": "dts-bundle-generator src/index.ts -o ./dist/index.d.ts --external-imports @grame/faustwasm --external-inlines @shren/typed-event-emitter"
   },
   "repository": {
     "type": "git",
@@ -17,21 +18,18 @@
   "author": "Fr0stbyteR",
   "license": "GPL-3.0-or-later",
   "devDependencies": {
-    "@grame/faustwasm": "^0.0.32",
+    "@grame/faustwasm": "^0.0.64",
     "@shren/typed-event-emitter": "^1.1.1",
-    "@typescript-eslint/eslint-plugin": "^5.4.0",
-    "@typescript-eslint/parser": "^5.4.0",
+    "@types/emscripten": "^1.39.10",
     "css-loader": "^6.5.1",
+    "dts-bundle-generator": "^9.3.1",
     "esbuild-loader": "^2.16.0",
-    "eslint": "^8.3.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.3",
     "mini-css-extract-plugin": "^2.4.5",
     "raw-loader": "^4.0.2",
     "sass": "^1.43.4",
     "sass-loader": "^12.3.0",
     "style-loader": "^3.3.1",
-    "typescript": "^4.5.2",
+    "typescript": "^5.4.2",
     "webpack": "^5.64.2",
     "webpack-cli": "^4.9.1"
   }
