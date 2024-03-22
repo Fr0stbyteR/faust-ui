@@ -458,7 +458,7 @@ const _AbstractItem = class extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_
       const stateValue = newState[stateKey];
       if (stateKey === "style") {
         for (const styleKey in newState.style) {
-          if (styleKey in this.state.style && this.state.style[styleKey] !== newState.style[styleKey]) {
+          if (styleKey in this.state.style) {
             this.state.style[styleKey] = newState.style[styleKey];
             shouldUpdate = true;
           }
@@ -495,13 +495,17 @@ const _AbstractItem = class extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_
     const color = this.state.style.labelcolor;
     const ctx = this.labelCtx;
     const canvas = this.labelCanvas;
+    const ratio = window.devicePixelRatio || 1;
     let { width, height } = this.label.getBoundingClientRect();
     if (!width || !height)
       return this;
     width = Math.floor(width);
     height = Math.floor(height);
-    canvas.height = height;
-    canvas.width = width;
+    const scaledWidth = Math.floor(width * ratio);
+    const scaledHeight = Math.floor(height * ratio);
+    canvas.width = scaledWidth;
+    canvas.height = scaledHeight;
+    ctx.scale(ratio, ratio);
     ctx.clearRect(0, 0, width, height);
     ctx.fillStyle = color;
     ctx.textBaseline = "middle";
@@ -903,7 +907,7 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["default"] {
       if (stateKey === "style") {
         for (const key2 in newState.style) {
           const styleKey = key2;
-          if (styleKey in this.state.style && this.state.style[styleKey] !== newState.style[styleKey]) {
+          if (styleKey in this.state.style) {
             this.state.style[styleKey] = newState.style[styleKey];
             shouldUpdate = true;
           }
@@ -934,13 +938,17 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["default"] {
     const color = this.state.style.labelcolor;
     const ctx = this.labelCtx;
     const canvas = this.labelCanvas;
+    const ratio = window.devicePixelRatio || 1;
     let { width, height } = this.label.getBoundingClientRect();
     if (!width || !height)
       return this;
     width = Math.floor(width);
     height = Math.floor(height);
-    canvas.height = height;
-    canvas.width = width;
+    const scaledWidth = Math.floor(width * ratio);
+    const scaledHeight = Math.floor(height * ratio);
+    canvas.width = scaledWidth;
+    canvas.height = scaledHeight;
+    ctx.scale(ratio, ratio);
     ctx.clearRect(0, 0, width, height);
     ctx.fillStyle = color;
     ctx.textBaseline = "middle";
@@ -1036,11 +1044,15 @@ class HBargraph extends _VBargraph__WEBPACK_IMPORTED_MODULE_1__["default"] {
       const { type, max, min, enums, scale, value } = this.state;
       const ctx = this.ctx;
       const canvas = this.canvas;
+      const ratio = window.devicePixelRatio || 1;
       let { width, height } = this.canvasDiv.getBoundingClientRect();
       width = Math.floor(width);
       height = Math.floor(height);
-      canvas.width = width;
-      canvas.height = height;
+      const scaledWidth = Math.floor(width * ratio);
+      const scaledHeight = Math.floor(height * ratio);
+      canvas.width = scaledWidth;
+      canvas.height = scaledHeight;
+      ctx.scale(ratio, ratio);
       const drawWidth = width * 0.9;
       const drawHeight = barwidth || Math.min(height / 3, drawWidth * 0.05);
       const left = width * 0.05;
@@ -1148,11 +1160,15 @@ class HSlider extends _VSlider__WEBPACK_IMPORTED_MODULE_1__["default"] {
       const ctx = this.ctx;
       const canvas = this.canvas;
       const distance = this.distance;
+      const ratio = window.devicePixelRatio || 1;
       let { width, height } = this.canvasDiv.getBoundingClientRect();
       width = Math.floor(width);
       height = Math.floor(height);
-      canvas.width = width;
-      canvas.height = height;
+      const scaledWidth = Math.floor(width * ratio);
+      const scaledHeight = Math.floor(height * ratio);
+      canvas.width = scaledWidth;
+      canvas.height = scaledHeight;
+      ctx.scale(ratio, ratio);
       const drawWidth = width * 0.9;
       const drawHeight = sliderwidth || Math.min(height / 3, drawWidth * 0.05);
       const left = width * 0.05;
@@ -1236,11 +1252,15 @@ class Knob extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["default"] {
       const ctx = this.ctx;
       const canvas = this.canvas;
       const distance = this.distance;
+      const ratio = window.devicePixelRatio || 1;
       let { width, height } = this.canvas.getBoundingClientRect();
       width = Math.floor(width);
       height = Math.floor(height);
-      canvas.width = width;
-      canvas.height = height;
+      const scaledWidth = Math.floor(width * ratio);
+      const scaledHeight = Math.floor(height * ratio);
+      canvas.width = scaledWidth;
+      canvas.height = scaledHeight;
+      ctx.scale(ratio, ratio);
       const start = 5 / 8 * Math.PI;
       const end = 19 / 8 * Math.PI;
       const valPos = start + (0,_utils__WEBPACK_IMPORTED_MODULE_1__.toRad)(distance * 315);
@@ -1422,9 +1442,15 @@ class Led extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["default"] {
       const { shape, ledbgcolor, coldcolor, warmcolor, hotcolor, overloadcolor } = this.state.style;
       const { min, max } = this.state;
       const { canvas, ctx, tempCanvas, tempCtx, distance } = this;
-      const { width, height } = canvas.getBoundingClientRect();
-      canvas.width = width;
-      canvas.height = height;
+      const ratio = window.devicePixelRatio || 1;
+      let { width, height } = canvas.getBoundingClientRect();
+      width = Math.floor(width);
+      height = Math.floor(height);
+      const scaledWidth = Math.floor(width * ratio);
+      const scaledHeight = Math.floor(height * ratio);
+      canvas.width = scaledWidth;
+      canvas.height = scaledHeight;
+      ctx.scale(ratio, ratio);
       const drawHeight = Math.min(height, width) * 0.75;
       const drawWidth = drawHeight;
       const left = (width - drawWidth) * 0.5;
@@ -1984,11 +2010,15 @@ class VBargraph extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["default"] {
       const { type, max, min, enums, scale, value } = this.state;
       const ctx = this.ctx;
       const canvas = this.canvas;
+      const ratio = window.devicePixelRatio || 1;
       let { width, height } = this.canvasDiv.getBoundingClientRect();
       width = Math.floor(width);
       height = Math.floor(height);
-      canvas.width = width;
-      canvas.height = height;
+      const scaledWidth = Math.floor(width * ratio);
+      const scaledHeight = Math.floor(height * ratio);
+      canvas.width = scaledWidth;
+      canvas.height = scaledHeight;
+      ctx.scale(ratio, ratio);
       const drawHeight = height * 0.9;
       const drawWidth = barwidth || Math.min(width / 3, drawHeight * 0.05);
       const left = (width - drawWidth) * 0.5;
@@ -2187,11 +2217,15 @@ class VSlider extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["default"] {
       const ctx = this.ctx;
       const canvas = this.canvas;
       const distance = this.distance;
+      const ratio = window.devicePixelRatio || 1;
       let { width, height } = this.canvasDiv.getBoundingClientRect();
       width = Math.floor(width);
       height = Math.floor(height);
-      canvas.width = width;
-      canvas.height = height;
+      const scaledWidth = Math.floor(width * ratio);
+      const scaledHeight = Math.floor(height * ratio);
+      canvas.width = scaledWidth;
+      canvas.height = scaledHeight;
+      ctx.scale(ratio, ratio);
       const drawHeight = height * 0.9;
       const drawWidth = sliderwidth || Math.min(width / 3, drawHeight * 0.05);
       const left = (width - drawWidth) * 0.5;

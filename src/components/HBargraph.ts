@@ -20,11 +20,17 @@ export default class HBargraph extends VBargraph {
         const { type, max, min, enums, scale, value } = this.state;
         const ctx = this.ctx;
         const canvas = this.canvas;
+        const ratio = window.devicePixelRatio || 1;
         let { width, height } = this.canvasDiv.getBoundingClientRect();
         width = Math.floor(width);
         height = Math.floor(height);
-        canvas.width = width;
-        canvas.height = height;
+        const scaledWidth = Math.floor(width * ratio);
+        const scaledHeight = Math.floor(height * ratio);
+        canvas.width = scaledWidth;
+        canvas.height = scaledHeight;
+        // canvas.style.width = width + "px";
+        // canvas.style.height = height + "px";
+        ctx.scale(ratio, ratio);
 
         const drawWidth = width * 0.9;
         const drawHeight = barwidth || Math.min(height / 3, drawWidth * 0.05);

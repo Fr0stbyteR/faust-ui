@@ -117,11 +117,17 @@ export default class Knob extends AbstractItem<FaustUIKnobStyle> {
         const ctx = this.ctx;
         const canvas = this.canvas;
         const distance = this.distance;
+        const ratio = window.devicePixelRatio || 1;
         let { width, height } = this.canvas.getBoundingClientRect();
         width = Math.floor(width);
         height = Math.floor(height);
-        canvas.width = width;
-        canvas.height = height;
+        const scaledWidth = Math.floor(width * ratio);
+        const scaledHeight = Math.floor(height * ratio);
+        canvas.width = scaledWidth;
+        canvas.height = scaledHeight;
+        // canvas.style.width = width + "px";
+        // canvas.style.height = height + "px";
+        ctx.scale(ratio, ratio);
 
         const start = 5 / 8 * Math.PI;
         const end = 19 / 8 * Math.PI;

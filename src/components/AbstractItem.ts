@@ -171,7 +171,7 @@ export default abstract class AbstractItem<T extends FaustUIItemStyle> extends A
             const stateValue = newState[stateKey];
             if (stateKey === "style") {
                 for (const styleKey in newState.style) {
-                    if (styleKey in this.state.style && this.state.style[styleKey] !== newState.style[styleKey]) {
+                    if (styleKey in this.state.style /* Fix hidden -> canvas not rendered bug && this.state.style[styleKey] !== newState.style[styleKey] */) {
                         this.state.style[styleKey] = newState.style[styleKey];
                         shouldUpdate = true;
                     }
@@ -212,12 +212,18 @@ export default abstract class AbstractItem<T extends FaustUIItemStyle> extends A
         const color = this.state.style.labelcolor;
         const ctx = this.labelCtx;
         const canvas = this.labelCanvas;
+        const ratio = window.devicePixelRatio || 1;
         let { width, height } = this.label.getBoundingClientRect();
         if (!width || !height) return this;
         width = Math.floor(width);
         height = Math.floor(height);
-        canvas.height = height;
-        canvas.width = width;
+        const scaledWidth = Math.floor(width * ratio);
+        const scaledHeight = Math.floor(height * ratio);
+        canvas.width = scaledWidth;
+        canvas.height = scaledHeight;
+        // canvas.style.width = width + "px";
+        // canvas.style.height = height + "px";
+        ctx.scale(ratio, ratio);
         ctx.clearRect(0, 0, width, height);
         ctx.fillStyle = color;
         ctx.textBaseline = "middle";

@@ -84,9 +84,17 @@ export default class Led extends AbstractItem<FaustUILedStyle> {
         const { shape, ledbgcolor, coldcolor, warmcolor, hotcolor, overloadcolor } = this.state.style;
         const { min, max } = this.state;
         const { canvas, ctx, tempCanvas, tempCtx, distance } = this;
-        const { width, height } = canvas.getBoundingClientRect();
-        canvas.width = width;
-        canvas.height = height;
+        const ratio = window.devicePixelRatio || 1;
+        let { width, height } = canvas.getBoundingClientRect();
+        width = Math.floor(width);
+        height = Math.floor(height);
+        const scaledWidth = Math.floor(width * ratio);
+        const scaledHeight = Math.floor(height * ratio);
+        canvas.width = scaledWidth;
+        canvas.height = scaledHeight;
+        // canvas.style.width = width + "px";
+        // canvas.style.height = height + "px";
+        ctx.scale(ratio, ratio);
 
         const drawHeight = Math.min(height, width) * 0.75;
         const drawWidth = drawHeight;

@@ -127,11 +127,17 @@ export default class VSlider extends AbstractItem<FaustUISliderStyle> {
         const ctx = this.ctx;
         const canvas = this.canvas;
         const distance = this.distance;
+        const ratio = window.devicePixelRatio || 1;
         let { width, height } = this.canvasDiv.getBoundingClientRect();
         width = Math.floor(width);
         height = Math.floor(height);
-        canvas.width = width;
-        canvas.height = height;
+        const scaledWidth = Math.floor(width * ratio);
+        const scaledHeight = Math.floor(height * ratio);
+        canvas.width = scaledWidth;
+        canvas.height = scaledHeight;
+        // canvas.style.width = width + "px";
+        // canvas.style.height = height + "px";
+        ctx.scale(ratio, ratio);
 
         const drawHeight = height * 0.9;
         const drawWidth = sliderwidth || Math.min(width / 3, drawHeight * 0.05);
