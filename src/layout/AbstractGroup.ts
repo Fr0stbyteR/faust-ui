@@ -21,7 +21,7 @@ export default abstract class AbstractGroup implements IItem {
         this.layout = {
             type: group.type,
             width: AbstractGroup.padding * 2,
-            height: AbstractGroup.padding * 2 + AbstractGroup.labelHeight,
+            height: AbstractGroup.padding * 2 + (this.isRoot ? 0 : AbstractGroup.labelHeight),
             sizing
         };
     }

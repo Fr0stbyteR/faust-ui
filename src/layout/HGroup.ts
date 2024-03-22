@@ -5,7 +5,7 @@ export default class HGroup extends AbstractGroup {
         this.items.forEach((item) => {
             item.adjust();
             this.layout.width += item.layout.width;
-            this.layout.height = Math.max(this.layout.height, item.layout.height + 2 * AbstractGroup.padding + AbstractGroup.labelHeight);
+            this.layout.height = Math.max(this.layout.height, item.layout.height + 2 * AbstractGroup.padding + (this.isRoot ? 0 : AbstractGroup.labelHeight));
         });
         this.layout.width += AbstractGroup.spaceBetween * (this.items.length - 1);
         if (this.layout.width < 1) this.layout.width += 1;
@@ -24,7 +24,7 @@ export default class HGroup extends AbstractGroup {
                 item.layout.width += dX$;
             }
             if (item.layout.sizing === "both" || item.layout.sizing === "vertical") {
-                dY$ = this.layout.height - 2 * AbstractGroup.padding - AbstractGroup.labelHeight - item.layout.height;
+                dY$ = this.layout.height - 2 * AbstractGroup.padding - (this.isRoot ? 0 : AbstractGroup.labelHeight) - item.layout.height;
                 item.layout.height += dY$;
             }
             item.expand(dX$, dY$);
@@ -35,13 +35,13 @@ export default class HGroup extends AbstractGroup {
     offset() {
         const { labelHeight, padding, spaceBetween } = AbstractGroup;
         let $left = padding;
-        const $top = padding + labelHeight;
+        const $top = padding + (this.isRoot ? 0 : labelHeight);
         const { height } = this.layout;
         this.items.forEach((item) => {
             item.layout.offsetLeft = $left;
             item.layout.offsetTop = $top;
             // center the item
-            item.layout.offsetTop += (height - labelHeight - item.layout.height) / 2 - padding;
+            item.layout.offsetTop += (height - (this.isRoot ? 0 : labelHeight) - item.layout.height) / 2 - padding;
             item.layout.left = (this.layout.left || 0) + item.layout.offsetLeft;
             item.layout.top = (this.layout.top || 0) + item.layout.offsetTop;
             item.offset();

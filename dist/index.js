@@ -1296,7 +1296,8 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["default"] {
       this.children = [];
       const { style, type, items, emitter, isRoot } = this.state;
       const { grid, left, top, width, height } = style;
-      this.label.style.height = `${grid * 0.3}px`;
+      if (!this.state.isRoot)
+        this.label.style.height = `${grid * 0.3}px`;
       this.container.style.left = `${left * grid}px`;
       this.container.style.top = `${top * grid}px`;
       this.container.style.width = `${width * grid}px`;
@@ -1469,15 +1470,19 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["default"] {
     this.container = document.createElement("div");
     this.tabs = document.createElement("div");
     this.tabs.className = "faust-ui-tgroup-tabs";
-    this.label = document.createElement("div");
-    this.label.className = "faust-ui-group-label";
-    this.labelCanvas = document.createElement("canvas");
-    this.labelCtx = this.labelCanvas.getContext("2d");
+    if (!this.state.isRoot) {
+      this.label = document.createElement("div");
+      this.label.className = "faust-ui-group-label";
+      this.labelCanvas = document.createElement("canvas");
+      this.labelCtx = this.labelCanvas.getContext("2d");
+    }
     this.updateUI();
     this.children.forEach((item) => item.componentWillMount());
     return this;
   }
   paintLabel() {
+    if (this.state.isRoot)
+      return this;
     const label = this.state.label;
     const color = this.state.style.labelcolor;
     const ctx = this.labelCtx;
@@ -1502,8 +1507,10 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["default"] {
     return this;
   }
   mount() {
-    this.label.appendChild(this.labelCanvas);
-    this.container.appendChild(this.label);
+    if (!this.state.isRoot) {
+      this.label.appendChild(this.labelCanvas);
+      this.container.appendChild(this.label);
+    }
     if (this.tabs.children.length)
       this.container.appendChild(this.tabs);
     this.children.forEach((item) => {
@@ -1515,7 +1522,8 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["default"] {
   componentDidMount() {
     const handleResize = () => {
       const { grid, left, top, width, height } = this.state.style;
-      this.label.style.height = `${grid * 0.3}px`;
+      if (!this.state.isRoot)
+        this.label.style.height = `${grid * 0.3}px`;
       this.container.style.width = `${width * grid}px`;
       this.container.style.height = `${height * grid}px`;
       this.container.style.left = `${left * grid}px`;
@@ -3065,7 +3073,7 @@ const _AbstractGroup = class {
     this.layout = {
       type: group.type,
       width: _AbstractGroup.padding * 2,
-      height: _AbstractGroup.padding * 2 + _AbstractGroup.labelHeight,
+      height: _AbstractGroup.padding * 2 + (this.isRoot ? 0 : _AbstractGroup.labelHeight),
       sizing
     };
   }
@@ -3271,7 +3279,7 @@ class HGroup extends _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"] {
     this.items.forEach((item) => {
       item.adjust();
       this.layout.width += item.layout.width;
-      this.layout.height = Math.max(this.layout.height, item.layout.height + 2 * _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"].padding + _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"].labelHeight);
+      this.layout.height = Math.max(this.layout.height, item.layout.height + 2 * _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"].padding + (this.isRoot ? 0 : _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"].labelHeight));
     });
     this.layout.width += _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"].spaceBetween * (this.items.length - 1);
     if (this.layout.width < 1)
@@ -3292,7 +3300,7 @@ class HGroup extends _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"] {
         item.layout.width += dX$;
       }
       if (item.layout.sizing === "both" || item.layout.sizing === "vertical") {
-        dY$ = this.layout.height - 2 * _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"].padding - _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"].labelHeight - item.layout.height;
+        dY$ = this.layout.height - 2 * _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"].padding - (this.isRoot ? 0 : _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"].labelHeight) - item.layout.height;
         item.layout.height += dY$;
       }
       item.expand(dX$, dY$);
@@ -3302,12 +3310,12 @@ class HGroup extends _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"] {
   offset() {
     const { labelHeight, padding, spaceBetween } = _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"];
     let $left = padding;
-    const $top = padding + labelHeight;
+    const $top = padding + (this.isRoot ? 0 : labelHeight);
     const { height } = this.layout;
     this.items.forEach((item) => {
       item.layout.offsetLeft = $left;
       item.layout.offsetTop = $top;
-      item.layout.offsetTop += (height - labelHeight - item.layout.height) / 2 - padding;
+      item.layout.offsetTop += (height - (this.isRoot ? 0 : labelHeight) - item.layout.height) / 2 - padding;
       item.layout.left = (this.layout.left || 0) + item.layout.offsetLeft;
       item.layout.top = (this.layout.top || 0) + item.layout.offsetTop;
       item.offset();
@@ -3644,7 +3652,7 @@ const _TGroup = class extends _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["defau
       if (item.layout.sizing === "both" || item.layout.sizing === "horizontal")
         dX$ = this.layout.width - 2 * _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"].padding - item.layout.width;
       if (item.layout.sizing === "both" || item.layout.sizing === "vertical")
-        dY$ = this.layout.height - 2 * _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"].padding - _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"].labelHeight - (tabsCount ? _TGroup.tabLayout.height : 0) - item.layout.height;
+        dY$ = this.layout.height - 2 * _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"].padding - (this.isRoot ? 0 : _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"].labelHeight) - (tabsCount ? _TGroup.tabLayout.height : 0) - item.layout.height;
       item.expand(dX$, dY$);
     });
     return this;
@@ -3652,7 +3660,7 @@ const _TGroup = class extends _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["defau
   offset() {
     const { labelHeight, padding } = _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"];
     const $left = padding;
-    const $top = padding + labelHeight + _TGroup.tabLayout.height;
+    const $top = padding + (this.isRoot ? 0 : labelHeight) + _TGroup.tabLayout.height;
     this.items.forEach((item) => {
       item.layout.offsetLeft = $left;
       item.layout.offsetTop = $top;
@@ -3748,7 +3756,7 @@ class VGroup extends _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"] {
   offset() {
     const { labelHeight, padding, spaceBetween } = _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"];
     const $left = padding;
-    let $top = padding + labelHeight;
+    let $top = padding + (this.isRoot ? 0 : labelHeight);
     const { width } = this.layout;
     this.items.forEach((item) => {
       item.layout.offsetLeft = $left;

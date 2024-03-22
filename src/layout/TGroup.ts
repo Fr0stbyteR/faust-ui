@@ -23,7 +23,7 @@ export default class TGroup extends AbstractGroup {
             let dY$ = 0; // Space available to expand for current item
             let dX$ = 0;
             if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") dX$ = this.layout.width - 2 * AbstractGroup.padding - item.layout.width;
-            if (item.layout.sizing === "both" || item.layout.sizing === "vertical") dY$ = this.layout.height - 2 * AbstractGroup.padding - AbstractGroup.labelHeight - (tabsCount ? TGroup.tabLayout.height : 0) - item.layout.height;
+            if (item.layout.sizing === "both" || item.layout.sizing === "vertical") dY$ = this.layout.height - 2 * AbstractGroup.padding - (this.isRoot ? 0 : AbstractGroup.labelHeight) - (tabsCount ? TGroup.tabLayout.height : 0) - item.layout.height;
             item.expand(dX$, dY$);
         });
         return this;
@@ -31,7 +31,7 @@ export default class TGroup extends AbstractGroup {
     offset() {
         const { labelHeight, padding } = AbstractGroup;
         const $left = padding;
-        const $top = padding + labelHeight + TGroup.tabLayout.height;
+        const $top = padding + (this.isRoot ? 0 : labelHeight) + TGroup.tabLayout.height;
         this.items.forEach((item) => {
             item.layout.offsetLeft = $left;
             item.layout.offsetTop = $top;

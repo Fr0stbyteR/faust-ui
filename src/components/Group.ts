@@ -145,15 +145,18 @@ export default class Group extends AbstractComponent<FaustUIGroupProps> {
         this.container = document.createElement("div");
         this.tabs = document.createElement("div");
         this.tabs.className = "faust-ui-tgroup-tabs";
-        this.label = document.createElement("div");
-        this.label.className = "faust-ui-group-label";
-        this.labelCanvas = document.createElement("canvas");
-        this.labelCtx = this.labelCanvas.getContext("2d");
+        if (!this.state.isRoot) {
+            this.label = document.createElement("div");
+            this.label.className = "faust-ui-group-label";
+            this.labelCanvas = document.createElement("canvas");
+            this.labelCtx = this.labelCanvas.getContext("2d");
+        }
         this.updateUI();
         this.children.forEach(item => item.componentWillMount());
         return this;
     }
     paintLabel() {
+        if (this.state.isRoot) return this;
         const label = this.state.label;
         const color = this.state.style.labelcolor;
         const ctx = this.labelCtx;
@@ -182,7 +185,7 @@ export default class Group extends AbstractComponent<FaustUIGroupProps> {
         this.children = [];
         const { style, type, items, emitter, isRoot } = this.state as GroupProps;
         const { grid, left, top, width, height } = style;
-        this.label.style.height = `${grid * 0.3}px`;
+        if (!this.state.isRoot) this.label.style.height = `${grid * 0.3}px`;
         this.container.style.left = `${left * grid}px`;
         this.container.style.top = `${top * grid}px`;
         this.container.style.width = `${width * grid}px`;
@@ -233,8 +236,10 @@ export default class Group extends AbstractComponent<FaustUIGroupProps> {
         }
     };
     mount() {
-        this.label.appendChild(this.labelCanvas);
-        this.container.appendChild(this.label);
+        if (!this.state.isRoot) {
+            this.label.appendChild(this.labelCanvas);
+            this.container.appendChild(this.label);
+        }
         if (this.tabs.children.length) this.container.appendChild(this.tabs);
         this.children.forEach((item) => {
             item.mount();
@@ -245,7 +250,7 @@ export default class Group extends AbstractComponent<FaustUIGroupProps> {
     componentDidMount() {
         const handleResize = () => {
             const { grid, left, top, width, height } = this.state.style;
-            this.label.style.height = `${grid * 0.3}px`;
+            if (!this.state.isRoot) this.label.style.height = `${grid * 0.3}px`;
             this.container.style.width = `${width * grid}px`;
             this.container.style.height = `${height * grid}px`;
             this.container.style.left = `${left * grid}px`;

@@ -35,7 +35,7 @@ export default class VGroup extends AbstractGroup {
     offset() {
         const { labelHeight, padding, spaceBetween } = AbstractGroup;
         const $left = padding;
-        let $top = padding + labelHeight;
+        let $top = padding + (this.isRoot ? 0 : labelHeight);
         const { width } = this.layout;
         this.items.forEach((item) => {
             item.layout.offsetLeft = $left;
