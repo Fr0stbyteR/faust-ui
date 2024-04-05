@@ -13,7 +13,7 @@ export interface FaustUISoundfileStyle extends FaustUIItemStyle {
     textcolor?: string;
     textoncolor?: string;
 }
-export default class Button extends AbstractItem<FaustUISoundfileStyle> {
+export default class Soundfile extends AbstractItem<FaustUISoundfileStyle> {
     static get defaultProps(): FaustUIItemProps<FaustUISoundfileStyle> {
         const inherited = super.defaultProps;
         return {
