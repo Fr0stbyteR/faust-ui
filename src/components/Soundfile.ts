@@ -70,9 +70,9 @@ export default class Button extends AbstractItem<FaustUISoundfileStyle> {
         return this;
     }
     handlePointerDown = () => {
-        this.setValue(1);
+        //this.setValue(1);
     };
     handlePointerUp = () => {
-        this.setValue(0);
+        //this.setValue(0);
     };
 }
