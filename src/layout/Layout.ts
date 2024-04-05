@@ -2,6 +2,7 @@ import type { FaustUIItem } from "@grame/faustwasm";
 import HSlider from "./HSlider";
 import VSlider from "./VSlider";
 import Nentry from "./Nentry";
+import Soundfile from "./Soundfile";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
 import Knob from "./Knob";
@@ -24,10 +25,11 @@ export default class Layout {
      */
     static predictType(item: FaustUIItem): TLayoutType {
         if (item.type === "vgroup"
-                || item.type === "hgroup"
-                || item.type === "tgroup"
-                || item.type === "button"
-                || item.type === "checkbox"
+            || item.type === "hgroup"
+            || item.type === "tgroup"
+            || item.type === "button"
+            || item.type === "checkbox"
+            || item.type === "soundfile"
         ) return item.type;
         if (item.type === "hbargraph" || item.type === "vbargraph") {
             if (item.meta && item.meta.find(meta => meta.style && meta.style.startsWith("led"))) return "led";
@@ -49,6 +51,7 @@ export default class Layout {
             hslider: HSlider,
             vslider: VSlider,
             nentry: Nentry,
+            soundfile: Soundfile,
             button: Button,
             checkbox: Checkbox,
             knob: Knob,

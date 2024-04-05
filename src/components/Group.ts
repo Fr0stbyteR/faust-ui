@@ -4,6 +4,7 @@ import AbstractItem from "./AbstractItem";
 import HSlider from "./HSlider";
 import VSlider from "./VSlider";
 import Nentry from "./Nentry";
+import Soundfile from "./Soundfile";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
 import Knob from "./Knob";
@@ -94,6 +95,7 @@ export default class Group extends AbstractComponent<FaustUIGroupProps> {
         if (type === "button") return new Button(props);
         if (type === "checkbox") return new Checkbox(props);
         if (type === "nentry") return new Nentry(props);
+        if (type === "soundfile") return new Soundfile(props);
         if (type === "knob") return new Knob(props);
         if (type === "menu") return new Menu(props);
         if (type === "radio") return new Radio(props);

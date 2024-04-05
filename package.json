@@ -1,6 +1,6 @@
 {
   "name": "@shren/faust-ui",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "Faust UI elements compositor",
   "main": "./dist/index.js",
   "types": "dist/index.d.ts",
@@ -18,7 +18,7 @@
   "author": "Fr0stbyteR",
   "license": "GPL-3.0-or-later",
   "devDependencies": {
-    "@grame/faustwasm": "^0.0.64",
+    "@grame/faustwasm": "^0.0.67",
     "@shren/typed-event-emitter": "^1.1.1",
     "@types/emscripten": "^1.39.10",
     "css-loader": "^6.5.1",
