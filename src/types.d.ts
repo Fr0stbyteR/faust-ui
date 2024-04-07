@@ -18,7 +18,7 @@ export interface LayoutProps {
     height: number;
     sizing: "horizontal" | "vertical" | "both" | "none";
 }
-export type TLayoutType = "vgroup" | "hgroup" | "tgroup" | "hbargraph" | "vbargraph" | "vslider" | "hslider" | "button" | "checkbox" | "nentry" | "knob" | "menu" | "radio" | "led" | "numerical";
+export type TLayoutType = "vgroup" | "hgroup" | "tgroup" | "hbargraph" | "vbargraph" | "vslider" | "hslider" | "button" | "checkbox" | "nentry" | "soundfile" | "knob" | "menu" | "radio" | "led" | "numerical";
 export interface ILayout { [path: string]: LayoutProps }
 export interface LayoutTypeMap {
     "vgroup": FaustUIGroup;
@@ -33,6 +33,7 @@ export interface LayoutTypeMap {
     "button": FaustUIInputItem;
     "checkbox": FaustUIInputItem;
     "nentry": FaustUIInputItem;
+    "soundfile": FaustUIInputItem;
     "knob": FaustUIInputItem;
     "menu": FaustUIInputItem;
     "radio": FaustUIInputItem;
