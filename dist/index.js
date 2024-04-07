@@ -147,7 +147,30 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".faust-ui-component {\n  display: flex;\n  position: absolute;\n  flex-direction: column;\n  overflow: hidden;\n}\n.faust-ui-component:focus {\n  outline: none;\n}\n.faust-ui-component > .faust-ui-component-label {\n  position: relative;\n  margin-top: 4px;\n  width: 100%;\n  user-select: none;\n}\n.faust-ui-component > .faust-ui-component-label > canvas {\n  position: relative;\n  display: block;\n  max-width: 100%;\n  max-height: 100%;\n}\n.faust-ui-component input {\n  box-shadow: none;\n}", "",{"version":3,"sources":["webpack://./src/components/Base.scss"],"names":[],"mappings":"AAAA;EACI,aAAA;EACA,kBAAA;EACA,sBAAA;EACA,gBAAA;AACJ;AAAI;EACI,aAAA;AAER;AAAI;EACI,kBAAA;EACA,eAAA;EACA,WAAA;EACA,iBAAA;AAER;AADQ;EACI,kBAAA;EACA,cAAA;EACA,eAAA;EACA,gBAAA;AAGZ;AAAI;EACI,gBAAA;AAER","sourcesContent":[".faust-ui-component {\n    display: flex;\n    position: absolute;\n    flex-direction: column;\n    overflow: hidden;\n    &:focus {\n        outline: none;\n    }\n    & > .faust-ui-component-label {\n        position: relative;\n        margin-top: 4px;\n        width: 100%;\n        user-select: none;\n        & > canvas {\n            position: relative;\n            display: block;\n            max-width: 100%;\n            max-height: 100%;\n        }\n    }\n    & input {\n        box-shadow: none;\n    }\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `.faust-ui-component {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  overflow: hidden;
+}
+.faust-ui-component:focus {
+  outline: none;
+}
+.faust-ui-component > .faust-ui-component-label {
+  position: relative;
+  margin-top: 4px;
+  width: 100%;
+  user-select: none;
+}
+.faust-ui-component > .faust-ui-component-label > canvas {
+  position: relative;
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}
+.faust-ui-component input {
+  box-shadow: none;
+}`, "",{"version":3,"sources":["webpack://./src/components/Base.scss"],"names":[],"mappings":"AAAA;EACI,aAAA;EACA,kBAAA;EACA,sBAAA;EACA,gBAAA;AACJ;AAAI;EACI,aAAA;AAER;AAAI;EACI,kBAAA;EACA,eAAA;EACA,WAAA;EACA,iBAAA;AAER;AADQ;EACI,kBAAA;EACA,cAAA;EACA,eAAA;EACA,gBAAA;AAGZ;AAAI;EACI,gBAAA;AAER","sourcesContent":[".faust-ui-component {\n    display: flex;\n    position: absolute;\n    flex-direction: column;\n    overflow: hidden;\n    &:focus {\n        outline: none;\n    }\n    & > .faust-ui-component-label {\n        position: relative;\n        margin-top: 4px;\n        width: 100%;\n        user-select: none;\n        & > canvas {\n            position: relative;\n            display: block;\n            max-width: 100%;\n            max-height: 100%;\n        }\n    }\n    & input {\n        box-shadow: none;\n    }\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -173,7 +196,20 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".faust-ui-component.faust-ui-component-button > div {\n  display: flex;\n  position: relative;\n  cursor: pointer;\n  border-width: 1px;\n  text-align: center;\n  border-radius: 4px;\n  flex: 1 0 auto;\n  border-style: solid;\n}\n.faust-ui-component.faust-ui-component-button > div > span {\n  user-select: none;\n  margin: auto;\n}", "",{"version":3,"sources":["webpack://./src/components/Button.scss"],"names":[],"mappings":"AACI;EACI,aAAA;EACA,kBAAA;EACA,eAAA;EACA,iBAAA;EACA,kBAAA;EACA,kBAAA;EACA,cAAA;EACA,mBAAA;AAAR;AACQ;EACI,iBAAA;EACA,YAAA;AACZ","sourcesContent":[".faust-ui-component.faust-ui-component-button {\n    & > div {\n        display: flex;\n        position: relative;\n        cursor: pointer;\n        border-width: 1px;\n        text-align: center;\n        border-radius: 4px;\n        flex: 1 0 auto;\n        border-style: solid;\n        & > span {\n            user-select: none;\n            margin: auto;\n        }\n    }\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `.faust-ui-component.faust-ui-component-button > div {
+  display: flex;
+  position: relative;
+  cursor: pointer;
+  border-width: 1px;
+  text-align: center;
+  border-radius: 4px;
+  flex: 1 0 auto;
+  border-style: solid;
+}
+.faust-ui-component.faust-ui-component-button > div > span {
+  user-select: none;
+  margin: auto;
+}`, "",{"version":3,"sources":["webpack://./src/components/Button.scss"],"names":[],"mappings":"AACI;EACI,aAAA;EACA,kBAAA;EACA,eAAA;EACA,iBAAA;EACA,kBAAA;EACA,kBAAA;EACA,cAAA;EACA,mBAAA;AAAR;AACQ;EACI,iBAAA;EACA,YAAA;AACZ","sourcesContent":[".faust-ui-component.faust-ui-component-button {\n    & > div {\n        display: flex;\n        position: relative;\n        cursor: pointer;\n        border-width: 1px;\n        text-align: center;\n        border-radius: 4px;\n        flex: 1 0 auto;\n        border-style: solid;\n        & > span {\n            user-select: none;\n            margin: auto;\n        }\n    }\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -199,7 +235,20 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".faust-ui-component.faust-ui-component-checkbox > div {\n  display: flex;\n  position: relative;\n  cursor: pointer;\n  border-width: 1px;\n  text-align: center;\n  border-radius: 1px;\n  flex: 1 0 auto;\n  border-style: solid;\n}\n.faust-ui-component.faust-ui-component-checkbox > div > span {\n  margin: auto;\n  user-select: none;\n}", "",{"version":3,"sources":["webpack://./src/components/Checkbox.scss"],"names":[],"mappings":"AACI;EACI,aAAA;EACA,kBAAA;EACA,eAAA;EACA,iBAAA;EACA,kBAAA;EACA,kBAAA;EACA,cAAA;EACA,mBAAA;AAAR;AACQ;EACI,YAAA;EACA,iBAAA;AACZ","sourcesContent":[".faust-ui-component.faust-ui-component-checkbox {\n    & > div {\n        display: flex;\n        position: relative;\n        cursor: pointer;\n        border-width: 1px;\n        text-align: center;\n        border-radius: 1px;\n        flex: 1 0 auto;\n        border-style: solid;\n        & > span {\n            margin: auto;\n            user-select: none;\n        }\n    }\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `.faust-ui-component.faust-ui-component-checkbox > div {
+  display: flex;
+  position: relative;
+  cursor: pointer;
+  border-width: 1px;
+  text-align: center;
+  border-radius: 1px;
+  flex: 1 0 auto;
+  border-style: solid;
+}
+.faust-ui-component.faust-ui-component-checkbox > div > span {
+  margin: auto;
+  user-select: none;
+}`, "",{"version":3,"sources":["webpack://./src/components/Checkbox.scss"],"names":[],"mappings":"AACI;EACI,aAAA;EACA,kBAAA;EACA,eAAA;EACA,iBAAA;EACA,kBAAA;EACA,kBAAA;EACA,cAAA;EACA,mBAAA;AAAR;AACQ;EACI,YAAA;EACA,iBAAA;AACZ","sourcesContent":[".faust-ui-component.faust-ui-component-checkbox {\n    & > div {\n        display: flex;\n        position: relative;\n        cursor: pointer;\n        border-width: 1px;\n        text-align: center;\n        border-radius: 1px;\n        flex: 1 0 auto;\n        border-style: solid;\n        & > span {\n            margin: auto;\n            user-select: none;\n        }\n    }\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -225,7 +274,50 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".faust-ui-group {\n  position: absolute;\n  display: block;\n  background-color: rgba(80, 80, 80, 0.75);\n  border-radius: 4px;\n  border: 1px rgba(255, 255, 255, 0.25) solid;\n}\n.faust-ui-group > .faust-ui-group-label {\n  position: relative;\n  margin: 4px;\n  width: calc(100% - 8px);\n  user-select: none;\n}\n.faust-ui-group > .faust-ui-group-label > canvas {\n  position: relative;\n  display: block;\n  max-width: 100%;\n  max-height: 100%;\n}\n.faust-ui-group .faust-ui-tgroup-tabs {\n  position: absolute;\n  display: inline-block;\n  white-space: nowrap;\n  left: 0px;\n}\n.faust-ui-group .faust-ui-tgroup-tabs .faust-ui-tgroup-tab {\n  position: relative;\n  display: inline-block;\n  border-radius: 5px;\n  cursor: pointer;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  user-select: none;\n  margin: 10px;\n  text-align: center;\n  background-color: rgba(255, 255, 255, 0.5);\n}\n.faust-ui-group .faust-ui-tgroup-tabs .faust-ui-tgroup-tab:hover {\n  background-color: rgb(255, 255, 255);\n}\n.faust-ui-group .faust-ui-tgroup-tabs .faust-ui-tgroup-tab.active {\n  background-color: rgb(40, 40, 40);\n  color: white;\n}", "",{"version":3,"sources":["webpack://./src/components/Group.scss"],"names":[],"mappings":"AACA;EACI,kBAAA;EACA,cAAA;EACA,wCAAA;EACA,kBAAA;EACA,2CAAA;AAAJ;AACI;EACI,kBAAA;EACA,WAAA;EACA,uBAAA;EACA,iBAAA;AACR;AAAQ;EACI,kBAAA;EACA,cAAA;EACA,eAAA;EACA,gBAAA;AAEZ;AACI;EACI,kBAAA;EACA,qBAAA;EACA,mBAAA;EACA,SAAA;AACR;AAAQ;EACI,kBAAA;EACA,qBAAA;EACA,kBAAA;EACA,eAAA;EACA,uBAAA;EACA,mBAAA;EACA,iBAAA;EACA,YAAA;EACA,kBAAA;EACA,0CAAA;AAEZ;AADY;EACI,oCAAA;AAGhB;AADY;EACI,iCAAA;EACA,YAAA;AAGhB","sourcesContent":["\n.faust-ui-group {\n    position: absolute;\n    display: block;\n    background-color: rgba(80, 80, 80, 0.75);\n    border-radius: 4px;\n    border: 1px rgba(255, 255, 255, 0.25) solid;\n    & > .faust-ui-group-label {\n        position: relative;\n        margin: 4px;\n        width: calc(100% - 8px);\n        user-select: none;\n        & > canvas {\n            position: relative;\n            display: block;\n            max-width: 100%;\n            max-height: 100%;\n        }\n    }\n    & .faust-ui-tgroup-tabs {\n        position: absolute;\n        display: inline-block;\n        white-space: nowrap;\n        left: 0px;\n        & .faust-ui-tgroup-tab {\n            position: relative;\n            display: inline-block;\n            border-radius: 5px;\n            cursor: pointer;\n            text-overflow: ellipsis;\n            white-space: nowrap;\n            user-select: none;\n            margin: 10px;\n            text-align: center;\n            background-color: rgba(255, 255, 255, 0.5);\n            &:hover {\n                background-color: rgba(255, 255, 255, 1);\n            }\n            &.active {\n                background-color: rgba(40, 40, 40, 1);\n                color: white;\n            }\n        }\n    }\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `.faust-ui-group {
+  position: absolute;
+  display: block;
+  background-color: rgba(80, 80, 80, 0.75);
+  border-radius: 4px;
+  border: 1px rgba(255, 255, 255, 0.25) solid;
+}
+.faust-ui-group > .faust-ui-group-label {
+  position: relative;
+  margin: 4px;
+  width: calc(100% - 8px);
+  user-select: none;
+}
+.faust-ui-group > .faust-ui-group-label > canvas {
+  position: relative;
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}
+.faust-ui-group .faust-ui-tgroup-tabs {
+  position: absolute;
+  display: inline-block;
+  white-space: nowrap;
+  left: 0px;
+}
+.faust-ui-group .faust-ui-tgroup-tabs .faust-ui-tgroup-tab {
+  position: relative;
+  display: inline-block;
+  border-radius: 5px;
+  cursor: pointer;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  user-select: none;
+  margin: 10px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.faust-ui-group .faust-ui-tgroup-tabs .faust-ui-tgroup-tab:hover {
+  background-color: rgb(255, 255, 255);
+}
+.faust-ui-group .faust-ui-tgroup-tabs .faust-ui-tgroup-tab.active {
+  background-color: rgb(40, 40, 40);
+  color: white;
+}`, "",{"version":3,"sources":["webpack://./src/components/Group.scss"],"names":[],"mappings":"AACA;EACI,kBAAA;EACA,cAAA;EACA,wCAAA;EACA,kBAAA;EACA,2CAAA;AAAJ;AACI;EACI,kBAAA;EACA,WAAA;EACA,uBAAA;EACA,iBAAA;AACR;AAAQ;EACI,kBAAA;EACA,cAAA;EACA,eAAA;EACA,gBAAA;AAEZ;AACI;EACI,kBAAA;EACA,qBAAA;EACA,mBAAA;EACA,SAAA;AACR;AAAQ;EACI,kBAAA;EACA,qBAAA;EACA,kBAAA;EACA,eAAA;EACA,uBAAA;EACA,mBAAA;EACA,iBAAA;EACA,YAAA;EACA,kBAAA;EACA,0CAAA;AAEZ;AADY;EACI,oCAAA;AAGhB;AADY;EACI,iCAAA;EACA,YAAA;AAGhB","sourcesContent":["\n.faust-ui-group {\n    position: absolute;\n    display: block;\n    background-color: rgba(80, 80, 80, 0.75);\n    border-radius: 4px;\n    border: 1px rgba(255, 255, 255, 0.25) solid;\n    & > .faust-ui-group-label {\n        position: relative;\n        margin: 4px;\n        width: calc(100% - 8px);\n        user-select: none;\n        & > canvas {\n            position: relative;\n            display: block;\n            max-width: 100%;\n            max-height: 100%;\n        }\n    }\n    & .faust-ui-tgroup-tabs {\n        position: absolute;\n        display: inline-block;\n        white-space: nowrap;\n        left: 0px;\n        & .faust-ui-tgroup-tab {\n            position: relative;\n            display: inline-block;\n            border-radius: 5px;\n            cursor: pointer;\n            text-overflow: ellipsis;\n            white-space: nowrap;\n            user-select: none;\n            margin: 10px;\n            text-align: center;\n            background-color: rgba(255, 255, 255, 0.5);\n            &:hover {\n                background-color: rgba(255, 255, 255, 1);\n            }\n            &.active {\n                background-color: rgba(40, 40, 40, 1);\n                color: white;\n            }\n        }\n    }\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -251,7 +343,42 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".faust-ui-component.faust-ui-component-hbargraph > .faust-ui-component-label {\n  flex: 0 0 auto;\n}\n.faust-ui-component.faust-ui-component-hbargraph > .faust-ui-component-hbargraph-flexdiv {\n  position: relative;\n  display: flex;\n  flex-direction: row-reverse;\n  flex: 1 1 auto;\n  width: 100%;\n  height: auto;\n}\n.faust-ui-component.faust-ui-component-hbargraph > .faust-ui-component-hbargraph-flexdiv > .faust-ui-component-hbargraph-canvasdiv {\n  position: relative;\n  display: block;\n  flex: 1 1 auto;\n  height: 100%;\n  margin: auto;\n}\n.faust-ui-component.faust-ui-component-hbargraph > .faust-ui-component-hbargraph-flexdiv > .faust-ui-component-hbargraph-canvasdiv > canvas {\n  position: absolute;\n  display: block;\n  height: 100%;\n  width: 100%;\n}\n.faust-ui-component.faust-ui-component-hbargraph > .faust-ui-component-hbargraph-flexdiv > input {\n  position: relative;\n  display: block;\n  flex: 0 1 auto;\n  text-align: center;\n  background-color: rgba(255, 255, 255, 0.25);\n  margin: auto 5px auto auto;\n  border-width: 0px;\n  border-radius: 4px;\n  width: calc(20% - 13px);\n  padding: 2px 4px;\n}", "",{"version":3,"sources":["webpack://./src/components/HBargraph.scss"],"names":[],"mappings":"AACI;EACI,cAAA;AAAR;AAEI;EACI,kBAAA;EACA,aAAA;EACA,2BAAA;EACA,cAAA;EACA,WAAA;EACA,YAAA;AAAR;AACQ;EACI,kBAAA;EACA,cAAA;EACA,cAAA;EACA,YAAA;EACA,YAAA;AACZ;AAAY;EACI,kBAAA;EACA,cAAA;EACA,YAAA;EACA,WAAA;AAEhB;AACQ;EACI,kBAAA;EACA,cAAA;EACA,cAAA;EACA,kBAAA;EACA,2CAAA;EACA,0BAAA;EACA,iBAAA;EACA,kBAAA;EACA,uBAAA;EACA,gBAAA;AACZ","sourcesContent":[".faust-ui-component.faust-ui-component-hbargraph {\n    & > .faust-ui-component-label {\n        flex: 0 0 auto;\n    }\n    & > .faust-ui-component-hbargraph-flexdiv {\n        position: relative;\n        display: flex;\n        flex-direction: row-reverse;\n        flex: 1 1 auto;\n        width: 100%;\n        height: auto;\n        & > .faust-ui-component-hbargraph-canvasdiv {\n            position: relative;\n            display: block;\n            flex: 1 1 auto;\n            height: 100%;\n            margin: auto;\n            & > canvas {\n                position: absolute;\n                display: block;\n                height: 100%;\n                width: 100%;\n            }\n        }\n        & > input {\n            position: relative;\n            display: block;\n            flex: 0 1 auto;\n            text-align: center;\n            background-color: rgba(255, 255, 255, 0.25);\n            margin: auto 5px auto auto;\n            border-width: 0px;\n            border-radius: 4px;\n            width: calc(20% - 13px);\n            padding: 2px 4px;\n        }\n    }\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `.faust-ui-component.faust-ui-component-hbargraph > .faust-ui-component-label {
+  flex: 0 0 auto;
+}
+.faust-ui-component.faust-ui-component-hbargraph > .faust-ui-component-hbargraph-flexdiv {
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+  flex: 1 1 auto;
+  width: 100%;
+  height: auto;
+}
+.faust-ui-component.faust-ui-component-hbargraph > .faust-ui-component-hbargraph-flexdiv > .faust-ui-component-hbargraph-canvasdiv {
+  position: relative;
+  display: block;
+  flex: 1 1 auto;
+  height: 100%;
+  margin: auto;
+}
+.faust-ui-component.faust-ui-component-hbargraph > .faust-ui-component-hbargraph-flexdiv > .faust-ui-component-hbargraph-canvasdiv > canvas {
+  position: absolute;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.faust-ui-component.faust-ui-component-hbargraph > .faust-ui-component-hbargraph-flexdiv > input {
+  position: relative;
+  display: block;
+  flex: 0 1 auto;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.25);
+  margin: auto 5px auto auto;
+  border-width: 0px;
+  border-radius: 4px;
+  width: calc(20% - 13px);
+  padding: 2px 4px;
+}`, "",{"version":3,"sources":["webpack://./src/components/HBargraph.scss"],"names":[],"mappings":"AACI;EACI,cAAA;AAAR;AAEI;EACI,kBAAA;EACA,aAAA;EACA,2BAAA;EACA,cAAA;EACA,WAAA;EACA,YAAA;AAAR;AACQ;EACI,kBAAA;EACA,cAAA;EACA,cAAA;EACA,YAAA;EACA,YAAA;AACZ;AAAY;EACI,kBAAA;EACA,cAAA;EACA,YAAA;EACA,WAAA;AAEhB;AACQ;EACI,kBAAA;EACA,cAAA;EACA,cAAA;EACA,kBAAA;EACA,2CAAA;EACA,0BAAA;EACA,iBAAA;EACA,kBAAA;EACA,uBAAA;EACA,gBAAA;AACZ","sourcesContent":[".faust-ui-component.faust-ui-component-hbargraph {\n    & > .faust-ui-component-label {\n        flex: 0 0 auto;\n    }\n    & > .faust-ui-component-hbargraph-flexdiv {\n        position: relative;\n        display: flex;\n        flex-direction: row-reverse;\n        flex: 1 1 auto;\n        width: 100%;\n        height: auto;\n        & > .faust-ui-component-hbargraph-canvasdiv {\n            position: relative;\n            display: block;\n            flex: 1 1 auto;\n            height: 100%;\n            margin: auto;\n            & > canvas {\n                position: absolute;\n                display: block;\n                height: 100%;\n                width: 100%;\n            }\n        }\n        & > input {\n            position: relative;\n            display: block;\n            flex: 0 1 auto;\n            text-align: center;\n            background-color: rgba(255, 255, 255, 0.25);\n            margin: auto 5px auto auto;\n            border-width: 0px;\n            border-radius: 4px;\n            width: calc(20% - 13px);\n            padding: 2px 4px;\n        }\n    }\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -277,7 +404,47 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".faust-ui-component.faust-ui-component-hslider > .faust-ui-component-label {\n  flex: 0 0 auto;\n}\n.faust-ui-component.faust-ui-component-hslider > .faust-ui-component-hslider-flexdiv {\n  position: relative;\n  display: flex;\n  flex-direction: row-reverse;\n  flex: 1 1 auto;\n  width: 100%;\n  height: auto;\n}\n.faust-ui-component.faust-ui-component-hslider > .faust-ui-component-hslider-flexdiv > .faust-ui-component-hslider-canvasdiv {\n  position: relative;\n  display: block;\n  flex: 1 1 auto;\n  height: 100%;\n  margin: auto;\n}\n.faust-ui-component.faust-ui-component-hslider > .faust-ui-component-hslider-flexdiv > .faust-ui-component-hslider-canvasdiv > canvas {\n  position: absolute;\n  display: block;\n  height: 100%;\n  width: 100%;\n}\n.faust-ui-component.faust-ui-component-hslider > .faust-ui-component-hslider-flexdiv > input {\n  position: relative;\n  display: block;\n  flex: 0 1 auto;\n  text-align: center;\n  background-color: rgba(255, 255, 255, 0.25);\n  margin: auto 5px auto auto;\n  border-width: 0px;\n  border-radius: 4px;\n  width: calc(20% - 13px);\n  padding: 2px 4px;\n  -moz-appearance: textfield;\n}\n.faust-ui-component.faust-ui-component-hslider > .faust-ui-component-hslider-flexdiv > input::-webkit-inner-spin-button, .faust-ui-component.faust-ui-component-hslider > .faust-ui-component-hslider-flexdiv > input::-webkit-outer-spin-button {\n  -webkit-appearance: none;\n  margin: 0;\n}", "",{"version":3,"sources":["webpack://./src/components/HSlider.scss"],"names":[],"mappings":"AACI;EACI,cAAA;AAAR;AAEI;EACI,kBAAA;EACA,aAAA;EACA,2BAAA;EACA,cAAA;EACA,WAAA;EACA,YAAA;AAAR;AACQ;EACI,kBAAA;EACA,cAAA;EACA,cAAA;EACA,YAAA;EACA,YAAA;AACZ;AAAY;EACI,kBAAA;EACA,cAAA;EACA,YAAA;EACA,WAAA;AAEhB;AACQ;EACI,kBAAA;EACA,cAAA;EACA,cAAA;EACA,kBAAA;EACA,2CAAA;EACA,0BAAA;EACA,iBAAA;EACA,kBAAA;EACA,uBAAA;EACA,gBAAA;EACA,0BAAA;AACZ;AAAY;EAEI,wBAAA;EACA,SAAA;AAChB","sourcesContent":[".faust-ui-component.faust-ui-component-hslider {\n    & > .faust-ui-component-label {\n        flex: 0 0 auto;\n    }\n    & > .faust-ui-component-hslider-flexdiv {\n        position: relative;\n        display: flex;\n        flex-direction: row-reverse;\n        flex: 1 1 auto;\n        width: 100%;\n        height: auto;\n        & > .faust-ui-component-hslider-canvasdiv {\n            position: relative;\n            display: block;\n            flex: 1 1 auto;\n            height: 100%;\n            margin: auto;\n            & > canvas {\n                position: absolute;\n                display: block;\n                height: 100%;\n                width: 100%;\n            }\n        }\n        & > input {\n            position: relative;\n            display: block;\n            flex: 0 1 auto;\n            text-align: center;\n            background-color: rgba(255, 255, 255, 0.25);\n            margin: auto 5px auto auto;\n            border-width: 0px;\n            border-radius: 4px;\n            width: calc(20% - 13px);\n            padding: 2px 4px;\n            -moz-appearance:textfield;\n            &::-webkit-inner-spin-button, \n            &::-webkit-outer-spin-button {\n                -webkit-appearance: none;\n                margin: 0;\n            }\n        }\n    }\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `.faust-ui-component.faust-ui-component-hslider > .faust-ui-component-label {
+  flex: 0 0 auto;
+}
+.faust-ui-component.faust-ui-component-hslider > .faust-ui-component-hslider-flexdiv {
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+  flex: 1 1 auto;
+  width: 100%;
+  height: auto;
+}
+.faust-ui-component.faust-ui-component-hslider > .faust-ui-component-hslider-flexdiv > .faust-ui-component-hslider-canvasdiv {
+  position: relative;
+  display: block;
+  flex: 1 1 auto;
+  height: 100%;
+  margin: auto;
+}
+.faust-ui-component.faust-ui-component-hslider > .faust-ui-component-hslider-flexdiv > .faust-ui-component-hslider-canvasdiv > canvas {
+  position: absolute;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.faust-ui-component.faust-ui-component-hslider > .faust-ui-component-hslider-flexdiv > input {
+  position: relative;
+  display: block;
+  flex: 0 1 auto;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.25);
+  margin: auto 5px auto auto;
+  border-width: 0px;
+  border-radius: 4px;
+  width: calc(20% - 13px);
+  padding: 2px 4px;
+  -moz-appearance: textfield;
+}
+.faust-ui-component.faust-ui-component-hslider > .faust-ui-component-hslider-flexdiv > input::-webkit-inner-spin-button, .faust-ui-component.faust-ui-component-hslider > .faust-ui-component-hslider-flexdiv > input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}`, "",{"version":3,"sources":["webpack://./src/components/HSlider.scss"],"names":[],"mappings":"AACI;EACI,cAAA;AAAR;AAEI;EACI,kBAAA;EACA,aAAA;EACA,2BAAA;EACA,cAAA;EACA,WAAA;EACA,YAAA;AAAR;AACQ;EACI,kBAAA;EACA,cAAA;EACA,cAAA;EACA,YAAA;EACA,YAAA;AACZ;AAAY;EACI,kBAAA;EACA,cAAA;EACA,YAAA;EACA,WAAA;AAEhB;AACQ;EACI,kBAAA;EACA,cAAA;EACA,cAAA;EACA,kBAAA;EACA,2CAAA;EACA,0BAAA;EACA,iBAAA;EACA,kBAAA;EACA,uBAAA;EACA,gBAAA;EACA,0BAAA;AACZ;AAAY;EAEI,wBAAA;EACA,SAAA;AAChB","sourcesContent":[".faust-ui-component.faust-ui-component-hslider {\n    & > .faust-ui-component-label {\n        flex: 0 0 auto;\n    }\n    & > .faust-ui-component-hslider-flexdiv {\n        position: relative;\n        display: flex;\n        flex-direction: row-reverse;\n        flex: 1 1 auto;\n        width: 100%;\n        height: auto;\n        & > .faust-ui-component-hslider-canvasdiv {\n            position: relative;\n            display: block;\n            flex: 1 1 auto;\n            height: 100%;\n            margin: auto;\n            & > canvas {\n                position: absolute;\n                display: block;\n                height: 100%;\n                width: 100%;\n            }\n        }\n        & > input {\n            position: relative;\n            display: block;\n            flex: 0 1 auto;\n            text-align: center;\n            background-color: rgba(255, 255, 255, 0.25);\n            margin: auto 5px auto auto;\n            border-width: 0px;\n            border-radius: 4px;\n            width: calc(20% - 13px);\n            padding: 2px 4px;\n            -moz-appearance:textfield;\n            &::-webkit-inner-spin-button, \n            &::-webkit-outer-spin-button {\n                -webkit-appearance: none;\n                margin: 0;\n            }\n        }\n    }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -303,7 +470,33 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".faust-ui-component.faust-ui-component-knob {\n  align-items: center;\n}\n.faust-ui-component.faust-ui-component-knob > canvas {\n  position: relative;\n  display: block;\n  flex: 1 1 auto;\n  min-height: 50%;\n  width: 100%;\n}\n.faust-ui-component.faust-ui-component-knob > input {\n  position: relative;\n  display: block;\n  flex: 0 1 auto;\n  text-align: center;\n  background-color: rgba(255, 255, 255, 0.25);\n  margin: 0px;\n  border-width: 0px;\n  border-radius: 4px;\n  max-width: calc(100% - 8px);\n  padding: 2px 4px;\n  -moz-appearance: textfield;\n}\n.faust-ui-component.faust-ui-component-knob > input::-webkit-inner-spin-button, .faust-ui-component.faust-ui-component-knob > input::-webkit-outer-spin-button {\n  -webkit-appearance: none;\n  margin: 0;\n}", "",{"version":3,"sources":["webpack://./src/components/Knob.scss"],"names":[],"mappings":"AAAA;EACI,mBAAA;AACJ;AAAI;EACI,kBAAA;EACA,cAAA;EACA,cAAA;EACA,eAAA;EACA,WAAA;AAER;AAAI;EACI,kBAAA;EACA,cAAA;EACA,cAAA;EACA,kBAAA;EACA,2CAAA;EACA,WAAA;EACA,iBAAA;EACA,kBAAA;EACA,2BAAA;EACA,gBAAA;EACA,0BAAA;AAER;AADQ;EAEI,wBAAA;EACA,SAAA;AAEZ","sourcesContent":[".faust-ui-component.faust-ui-component-knob {\n    align-items: center;\n    & > canvas {\n        position: relative;\n        display: block;\n        flex: 1 1 auto;\n        min-height: 50%;\n        width: 100%;\n    }\n    & > input {\n        position: relative;\n        display: block;\n        flex: 0 1 auto;\n        text-align: center;\n        background-color: rgba(255, 255, 255, 0.25);\n        margin: 0px;\n        border-width: 0px;\n        border-radius: 4px;\n        max-width: calc(100% - 8px);\n        padding: 2px 4px;\n        -moz-appearance:textfield;\n        &::-webkit-inner-spin-button, \n        &::-webkit-outer-spin-button {\n            -webkit-appearance: none;\n            margin: 0;\n        }\n    }\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `.faust-ui-component.faust-ui-component-knob {
+  align-items: center;
+}
+.faust-ui-component.faust-ui-component-knob > canvas {
+  position: relative;
+  display: block;
+  flex: 1 1 auto;
+  min-height: 50%;
+  width: 100%;
+}
+.faust-ui-component.faust-ui-component-knob > input {
+  position: relative;
+  display: block;
+  flex: 0 1 auto;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.25);
+  margin: 0px;
+  border-width: 0px;
+  border-radius: 4px;
+  max-width: calc(100% - 8px);
+  padding: 2px 4px;
+  -moz-appearance: textfield;
+}
+.faust-ui-component.faust-ui-component-knob > input::-webkit-inner-spin-button, .faust-ui-component.faust-ui-component-knob > input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}`, "",{"version":3,"sources":["webpack://./src/components/Knob.scss"],"names":[],"mappings":"AAAA;EACI,mBAAA;AACJ;AAAI;EACI,kBAAA;EACA,cAAA;EACA,cAAA;EACA,eAAA;EACA,WAAA;AAER;AAAI;EACI,kBAAA;EACA,cAAA;EACA,cAAA;EACA,kBAAA;EACA,2CAAA;EACA,WAAA;EACA,iBAAA;EACA,kBAAA;EACA,2BAAA;EACA,gBAAA;EACA,0BAAA;AAER;AADQ;EAEI,wBAAA;EACA,SAAA;AAEZ","sourcesContent":[".faust-ui-component.faust-ui-component-knob {\n    align-items: center;\n    & > canvas {\n        position: relative;\n        display: block;\n        flex: 1 1 auto;\n        min-height: 50%;\n        width: 100%;\n    }\n    & > input {\n        position: relative;\n        display: block;\n        flex: 0 1 auto;\n        text-align: center;\n        background-color: rgba(255, 255, 255, 0.25);\n        margin: 0px;\n        border-width: 0px;\n        border-radius: 4px;\n        max-width: calc(100% - 8px);\n        padding: 2px 4px;\n        -moz-appearance:textfield;\n        &::-webkit-inner-spin-button, \n        &::-webkit-outer-spin-button {\n            -webkit-appearance: none;\n            margin: 0;\n        }\n    }\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -329,7 +522,24 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".faust-ui-component.faust-ui-component-led {\n  align-items: center;\n}\n.faust-ui-component.faust-ui-component-led > .faust-ui-component-label {\n  flex: 0 0 auto;\n}\n.faust-ui-component.faust-ui-component-led > .faust-ui-component-led-canvasdiv {\n  position: relative;\n  display: block;\n  flex: 1 1 auto;\n  width: 100%;\n}\n.faust-ui-component.faust-ui-component-led > .faust-ui-component-led-canvasdiv > canvas {\n  position: absolute;\n  display: block;\n  height: 100%;\n  width: 100%;\n}", "",{"version":3,"sources":["webpack://./src/components/Led.scss"],"names":[],"mappings":"AAAA;EACI,mBAAA;AACJ;AAAI;EACI,cAAA;AAER;AAAI;EACI,kBAAA;EACA,cAAA;EACA,cAAA;EACA,WAAA;AAER;AADQ;EACI,kBAAA;EACA,cAAA;EACA,YAAA;EACA,WAAA;AAGZ","sourcesContent":[".faust-ui-component.faust-ui-component-led {\n    align-items: center;\n    & > .faust-ui-component-label {\n        flex: 0 0 auto;\n    }\n    & > .faust-ui-component-led-canvasdiv {\n        position: relative;\n        display: block;\n        flex: 1 1 auto;\n        width: 100%;\n        & > canvas {\n            position: absolute;\n            display: block;\n            height: 100%;\n            width: 100%;\n        }\n    }\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `.faust-ui-component.faust-ui-component-led {
+  align-items: center;
+}
+.faust-ui-component.faust-ui-component-led > .faust-ui-component-label {
+  flex: 0 0 auto;
+}
+.faust-ui-component.faust-ui-component-led > .faust-ui-component-led-canvasdiv {
+  position: relative;
+  display: block;
+  flex: 1 1 auto;
+  width: 100%;
+}
+.faust-ui-component.faust-ui-component-led > .faust-ui-component-led-canvasdiv > canvas {
+  position: absolute;
+  display: block;
+  height: 100%;
+  width: 100%;
+}`, "",{"version":3,"sources":["webpack://./src/components/Led.scss"],"names":[],"mappings":"AAAA;EACI,mBAAA;AACJ;AAAI;EACI,cAAA;AAER;AAAI;EACI,kBAAA;EACA,cAAA;EACA,cAAA;EACA,WAAA;AAER;AADQ;EACI,kBAAA;EACA,cAAA;EACA,YAAA;EACA,WAAA;AAGZ","sourcesContent":[".faust-ui-component.faust-ui-component-led {\n    align-items: center;\n    & > .faust-ui-component-label {\n        flex: 0 0 auto;\n    }\n    & > .faust-ui-component-led-canvasdiv {\n        position: relative;\n        display: block;\n        flex: 1 1 auto;\n        width: 100%;\n        & > canvas {\n            position: absolute;\n            display: block;\n            height: 100%;\n            width: 100%;\n        }\n    }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -355,7 +565,17 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".faust-ui-component.faust-ui-component-menu {\n  align-items: center;\n}\n.faust-ui-component.faust-ui-component-menu > select {\n  margin: 0px;\n  text-align: center;\n  border-width: 1px;\n  border-radius: 4px;\n  padding: 2px 4px;\n  width: calc(100% - 8px);\n}", "",{"version":3,"sources":["webpack://./src/components/Menu.scss"],"names":[],"mappings":"AAAA;EACI,mBAAA;AACJ;AAAI;EACI,WAAA;EACA,kBAAA;EACA,iBAAA;EACA,kBAAA;EACA,gBAAA;EACA,uBAAA;AAER","sourcesContent":[".faust-ui-component.faust-ui-component-menu {\n    align-items: center;\n    & > select {\n        margin: 0px;\n        text-align: center;\n        border-width: 1px;\n        border-radius: 4px;\n        padding: 2px 4px;\n        width: calc(100% - 8px);\n    }\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `.faust-ui-component.faust-ui-component-menu {
+  align-items: center;
+}
+.faust-ui-component.faust-ui-component-menu > select {
+  margin: 0px;
+  text-align: center;
+  border-width: 1px;
+  border-radius: 4px;
+  padding: 2px 4px;
+  width: calc(100% - 8px);
+}`, "",{"version":3,"sources":["webpack://./src/components/Menu.scss"],"names":[],"mappings":"AAAA;EACI,mBAAA;AACJ;AAAI;EACI,WAAA;EACA,kBAAA;EACA,iBAAA;EACA,kBAAA;EACA,gBAAA;EACA,uBAAA;AAER","sourcesContent":[".faust-ui-component.faust-ui-component-menu {\n    align-items: center;\n    & > select {\n        margin: 0px;\n        text-align: center;\n        border-width: 1px;\n        border-radius: 4px;\n        padding: 2px 4px;\n        width: calc(100% - 8px);\n    }\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -381,7 +601,20 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".faust-ui-component.faust-ui-component-nentry {\n  align-items: center;\n}\n.faust-ui-component.faust-ui-component-nentry input {\n  margin: 0px;\n  text-align: center;\n  border-width: 1px;\n  border-radius: 4px;\n  padding: 2px 4px;\n  width: calc(100% - 8px);\n}\n.faust-ui-component.faust-ui-component-nentry input::-webkit-inner-spin-button, .faust-ui-component.faust-ui-component-nentry input::-webkit-outer-spin-button {\n  opacity: 1;\n}", "",{"version":3,"sources":["webpack://./src/components/Nentry.scss"],"names":[],"mappings":"AAAA;EACI,mBAAA;AACJ;AAAI;EACI,WAAA;EACA,kBAAA;EACA,iBAAA;EACA,kBAAA;EACA,gBAAA;EACA,uBAAA;AAER;AADQ;EAEI,UAAA;AAEZ","sourcesContent":[".faust-ui-component.faust-ui-component-nentry {\n    align-items: center;\n    & input {\n        margin: 0px;\n        text-align: center;\n        border-width: 1px;\n        border-radius: 4px;\n        padding: 2px 4px;\n        width: calc(100% - 8px);\n        &::-webkit-inner-spin-button, \n        &::-webkit-outer-spin-button {\n            opacity: 1;\n        }\n    }\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `.faust-ui-component.faust-ui-component-nentry {
+  align-items: center;
+}
+.faust-ui-component.faust-ui-component-nentry input {
+  margin: 0px;
+  text-align: center;
+  border-width: 1px;
+  border-radius: 4px;
+  padding: 2px 4px;
+  width: calc(100% - 8px);
+}
+.faust-ui-component.faust-ui-component-nentry input::-webkit-inner-spin-button, .faust-ui-component.faust-ui-component-nentry input::-webkit-outer-spin-button {
+  opacity: 1;
+}`, "",{"version":3,"sources":["webpack://./src/components/Nentry.scss"],"names":[],"mappings":"AAAA;EACI,mBAAA;AACJ;AAAI;EACI,WAAA;EACA,kBAAA;EACA,iBAAA;EACA,kBAAA;EACA,gBAAA;EACA,uBAAA;AAER;AADQ;EAEI,UAAA;AAEZ","sourcesContent":[".faust-ui-component.faust-ui-component-nentry {\n    align-items: center;\n    & input {\n        margin: 0px;\n        text-align: center;\n        border-width: 1px;\n        border-radius: 4px;\n        padding: 2px 4px;\n        width: calc(100% - 8px);\n        &::-webkit-inner-spin-button, \n        &::-webkit-outer-spin-button {\n            opacity: 1;\n        }\n    }\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -407,7 +640,21 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".faust-ui-component.faust-ui-component-numerical {\n  align-items: center;\n}\n.faust-ui-component.faust-ui-component-numerical > input {\n  position: relative;\n  display: block;\n  flex: 0 1 auto;\n  text-align: center;\n  background-color: rgba(255, 255, 255, 0.25);\n  margin: auto;\n  border-width: 0px;\n  border-radius: 4px;\n  width: calc(100% - 8px);\n  padding: 2px 4px;\n}", "",{"version":3,"sources":["webpack://./src/components/Numerical.scss"],"names":[],"mappings":"AAAA;EACI,mBAAA;AACJ;AAAI;EACI,kBAAA;EACA,cAAA;EACA,cAAA;EACA,kBAAA;EACA,2CAAA;EACA,YAAA;EACA,iBAAA;EACA,kBAAA;EACA,uBAAA;EACA,gBAAA;AAER","sourcesContent":[".faust-ui-component.faust-ui-component-numerical {\n    align-items: center;\n    & > input {\n        position: relative;\n        display: block;\n        flex: 0 1 auto;\n        text-align: center;\n        background-color: rgba(255, 255, 255, 0.25);\n        margin: auto;\n        border-width: 0px;\n        border-radius: 4px;\n        width: calc(100% - 8px);\n        padding: 2px 4px;\n    }\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `.faust-ui-component.faust-ui-component-numerical {
+  align-items: center;
+}
+.faust-ui-component.faust-ui-component-numerical > input {
+  position: relative;
+  display: block;
+  flex: 0 1 auto;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.25);
+  margin: auto;
+  border-width: 0px;
+  border-radius: 4px;
+  width: calc(100% - 8px);
+  padding: 2px 4px;
+}`, "",{"version":3,"sources":["webpack://./src/components/Numerical.scss"],"names":[],"mappings":"AAAA;EACI,mBAAA;AACJ;AAAI;EACI,kBAAA;EACA,cAAA;EACA,cAAA;EACA,kBAAA;EACA,2CAAA;EACA,YAAA;EACA,iBAAA;EACA,kBAAA;EACA,uBAAA;EACA,gBAAA;AAER","sourcesContent":[".faust-ui-component.faust-ui-component-numerical {\n    align-items: center;\n    & > input {\n        position: relative;\n        display: block;\n        flex: 0 1 auto;\n        text-align: center;\n        background-color: rgba(255, 255, 255, 0.25);\n        margin: auto;\n        border-width: 0px;\n        border-radius: 4px;\n        width: calc(100% - 8px);\n        padding: 2px 4px;\n    }\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -433,7 +680,65 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".faust-ui-component.faust-ui-component-radio {\n  align-items: center;\n}\n.faust-ui-component.faust-ui-component-radio > .faust-ui-component-label {\n  flex: 0 0 auto;\n  margin-top: auto;\n}\n.faust-ui-component.faust-ui-component-radio > .faust-ui-component-radio-group {\n  flex: 0 0 auto;\n  margin-bottom: auto;\n  border-width: 1px;\n  border-radius: 4px;\n  padding: 2px 4px;\n  width: calc(100% - 8px);\n}\n.faust-ui-component.faust-ui-component-radio > .faust-ui-component-radio-group > div {\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n}", "",{"version":3,"sources":["webpack://./src/components/Radio.scss"],"names":[],"mappings":"AAAA;EACI,mBAAA;AACJ;AAAI;EACI,cAAA;EACA,gBAAA;AAER;AAAI;EACI,cAAA;EACA,mBAAA;EACA,iBAAA;EACA,kBAAA;EACA,gBAAA;EACA,uBAAA;AAER;AADQ;EACI,uBAAA;EACA,mBAAA;EACA,gBAAA;AAGZ","sourcesContent":[".faust-ui-component.faust-ui-component-radio {\n    align-items: center;\n    & > .faust-ui-component-label {\n        flex: 0 0 auto;\n        margin-top: auto;\n    }\n    & > .faust-ui-component-radio-group {\n        flex: 0 0 auto;\n        margin-bottom: auto;\n        border-width: 1px;\n        border-radius: 4px;\n        padding: 2px 4px;\n        width: calc(100% - 8px);\n        & > div {\n            text-overflow: ellipsis;\n            white-space: nowrap;\n            overflow: hidden;\n        }\n    }\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `.faust-ui-component.faust-ui-component-radio {
+  align-items: center;
+}
+.faust-ui-component.faust-ui-component-radio > .faust-ui-component-label {
+  flex: 0 0 auto;
+  margin-top: auto;
+}
+.faust-ui-component.faust-ui-component-radio > .faust-ui-component-radio-group {
+  flex: 0 0 auto;
+  margin-bottom: auto;
+  border-width: 1px;
+  border-radius: 4px;
+  padding: 2px 4px;
+  width: calc(100% - 8px);
+}
+.faust-ui-component.faust-ui-component-radio > .faust-ui-component-radio-group > div {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}`, "",{"version":3,"sources":["webpack://./src/components/Radio.scss"],"names":[],"mappings":"AAAA;EACI,mBAAA;AACJ;AAAI;EACI,cAAA;EACA,gBAAA;AAER;AAAI;EACI,cAAA;EACA,mBAAA;EACA,iBAAA;EACA,kBAAA;EACA,gBAAA;EACA,uBAAA;AAER;AADQ;EACI,uBAAA;EACA,mBAAA;EACA,gBAAA;AAGZ","sourcesContent":[".faust-ui-component.faust-ui-component-radio {\n    align-items: center;\n    & > .faust-ui-component-label {\n        flex: 0 0 auto;\n        margin-top: auto;\n    }\n    & > .faust-ui-component-radio-group {\n        flex: 0 0 auto;\n        margin-bottom: auto;\n        border-width: 1px;\n        border-radius: 4px;\n        padding: 2px 4px;\n        width: calc(100% - 8px);\n        & > div {\n            text-overflow: ellipsis;\n            white-space: nowrap;\n            overflow: hidden;\n        }\n    }\n}"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/Soundfile.scss":
+/*!********************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/Soundfile.scss ***!
+  \********************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `.faust-ui-component.faust-ui-component-soundfile > div {
+  display: flex;
+  position: relative;
+  cursor: pointer;
+  border-width: 1px;
+  text-align: center;
+  border-radius: 4px;
+  flex: 1 0 auto;
+  border-style: solid;
+}
+.faust-ui-component.faust-ui-component-soundfile > div > span {
+  user-select: none;
+  margin: auto;
+}`, "",{"version":3,"sources":["webpack://./src/components/Soundfile.scss"],"names":[],"mappings":"AACI;EACI,aAAA;EACA,kBAAA;EACA,eAAA;EACA,iBAAA;EACA,kBAAA;EACA,kBAAA;EACA,cAAA;EACA,mBAAA;AAAR;AACQ;EACI,iBAAA;EACA,YAAA;AACZ","sourcesContent":[".faust-ui-component.faust-ui-component-soundfile {\n    & > div {\n        display: flex;\n        position: relative;\n        cursor: pointer;\n        border-width: 1px;\n        text-align: center;\n        border-radius: 4px;\n        flex: 1 0 auto;\n        border-style: solid;\n        & > span {\n            user-select: none;\n            margin: auto;\n        }\n    }\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -459,7 +764,45 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".faust-ui-component.faust-ui-component-vbargraph {\n  align-items: center;\n}\n.faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-label {\n  flex: 0 0 auto;\n}\n.faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-vbargraph-flexdiv {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  flex: 1 1 auto;\n  width: 100%;\n  height: inherit;\n}\n.faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-vbargraph-flexdiv > .faust-ui-component-vbargraph-canvasdiv {\n  position: relative;\n  display: block;\n  flex: 1 1 auto;\n  width: 100%;\n}\n.faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-vbargraph-flexdiv > .faust-ui-component-vbargraph-canvasdiv > canvas {\n  position: absolute;\n  display: block;\n  height: 100%;\n  width: 100%;\n}\n.faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-vbargraph-flexdiv > input {\n  position: relative;\n  display: block;\n  flex: 0 1 auto;\n  text-align: center;\n  background-color: rgba(255, 255, 255, 0.25);\n  margin: 5px auto auto auto;\n  border-width: 0px;\n  border-radius: 4px;\n  height: 5%;\n  width: calc(100% - 8px);\n  padding: 2px 4px;\n}", "",{"version":3,"sources":["webpack://./src/components/VBargraph.scss"],"names":[],"mappings":"AAAA;EACI,mBAAA;AACJ;AAAI;EACI,cAAA;AAER;AAAI;EACI,kBAAA;EACA,aAAA;EACA,sBAAA;EACA,cAAA;EACA,WAAA;EACA,eAAA;AAER;AADQ;EACI,kBAAA;EACA,cAAA;EACA,cAAA;EACA,WAAA;AAGZ;AAFY;EACI,kBAAA;EACA,cAAA;EACA,YAAA;EACA,WAAA;AAIhB;AADQ;EACI,kBAAA;EACA,cAAA;EACA,cAAA;EACA,kBAAA;EACA,2CAAA;EACA,0BAAA;EACA,iBAAA;EACA,kBAAA;EACA,UAAA;EACA,uBAAA;EACA,gBAAA;AAGZ","sourcesContent":[".faust-ui-component.faust-ui-component-vbargraph {\n    align-items: center;\n    & > .faust-ui-component-label {\n        flex: 0 0 auto;\n    }\n    & > .faust-ui-component-vbargraph-flexdiv {\n        position: relative;\n        display: flex;\n        flex-direction: column;\n        flex: 1 1 auto;\n        width: 100%;\n        height: inherit;\n        & > .faust-ui-component-vbargraph-canvasdiv {\n            position: relative;\n            display: block;\n            flex: 1 1 auto;\n            width: 100%;\n            & > canvas {\n                position: absolute;\n                display: block;\n                height: 100%;\n                width: 100%;\n            }\n        }\n        & > input {\n            position: relative;\n            display: block;\n            flex: 0 1 auto;\n            text-align: center;\n            background-color: rgba(255, 255, 255, 0.25);\n            margin: 5px auto auto auto;\n            border-width: 0px;\n            border-radius: 4px;\n            height: 5%;\n            width: calc(100% - 8px);\n            padding: 2px 4px;\n        }\n    }\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `.faust-ui-component.faust-ui-component-vbargraph {
+  align-items: center;
+}
+.faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-label {
+  flex: 0 0 auto;
+}
+.faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-vbargraph-flexdiv {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  width: 100%;
+  height: inherit;
+}
+.faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-vbargraph-flexdiv > .faust-ui-component-vbargraph-canvasdiv {
+  position: relative;
+  display: block;
+  flex: 1 1 auto;
+  width: 100%;
+}
+.faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-vbargraph-flexdiv > .faust-ui-component-vbargraph-canvasdiv > canvas {
+  position: absolute;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-vbargraph-flexdiv > input {
+  position: relative;
+  display: block;
+  flex: 0 1 auto;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.25);
+  margin: 5px auto auto auto;
+  border-width: 0px;
+  border-radius: 4px;
+  height: 5%;
+  width: calc(100% - 8px);
+  padding: 2px 4px;
+}`, "",{"version":3,"sources":["webpack://./src/components/VBargraph.scss"],"names":[],"mappings":"AAAA;EACI,mBAAA;AACJ;AAAI;EACI,cAAA;AAER;AAAI;EACI,kBAAA;EACA,aAAA;EACA,sBAAA;EACA,cAAA;EACA,WAAA;EACA,eAAA;AAER;AADQ;EACI,kBAAA;EACA,cAAA;EACA,cAAA;EACA,WAAA;AAGZ;AAFY;EACI,kBAAA;EACA,cAAA;EACA,YAAA;EACA,WAAA;AAIhB;AADQ;EACI,kBAAA;EACA,cAAA;EACA,cAAA;EACA,kBAAA;EACA,2CAAA;EACA,0BAAA;EACA,iBAAA;EACA,kBAAA;EACA,UAAA;EACA,uBAAA;EACA,gBAAA;AAGZ","sourcesContent":[".faust-ui-component.faust-ui-component-vbargraph {\n    align-items: center;\n    & > .faust-ui-component-label {\n        flex: 0 0 auto;\n    }\n    & > .faust-ui-component-vbargraph-flexdiv {\n        position: relative;\n        display: flex;\n        flex-direction: column;\n        flex: 1 1 auto;\n        width: 100%;\n        height: inherit;\n        & > .faust-ui-component-vbargraph-canvasdiv {\n            position: relative;\n            display: block;\n            flex: 1 1 auto;\n            width: 100%;\n            & > canvas {\n                position: absolute;\n                display: block;\n                height: 100%;\n                width: 100%;\n            }\n        }\n        & > input {\n            position: relative;\n            display: block;\n            flex: 0 1 auto;\n            text-align: center;\n            background-color: rgba(255, 255, 255, 0.25);\n            margin: 5px auto auto auto;\n            border-width: 0px;\n            border-radius: 4px;\n            height: 5%;\n            width: calc(100% - 8px);\n            padding: 2px 4px;\n        }\n    }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -485,7 +828,50 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".faust-ui-component.faust-ui-component-vslider {\n  align-items: center;\n}\n.faust-ui-component.faust-ui-component-vslider > .faust-ui-component-label {\n  flex: 0 0 auto;\n}\n.faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  flex: 1 1 auto;\n  width: 100%;\n  height: auto;\n}\n.faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv > .faust-ui-component-vslider-canvasdiv {\n  position: relative;\n  display: block;\n  flex: 1 1 auto;\n  width: 100%;\n}\n.faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv > .faust-ui-component-vslider-canvasdiv > canvas {\n  position: absolute;\n  display: block;\n  height: 100%;\n  width: 100%;\n}\n.faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv input {\n  position: relative;\n  display: block;\n  flex: 0 1 auto;\n  text-align: center;\n  background-color: rgba(255, 255, 255, 0.25);\n  margin: 5px auto auto auto;\n  border-width: 0px;\n  border-radius: 4px;\n  height: 5%;\n  max-width: calc(100% - 8px);\n  padding: 2px 4px;\n  -moz-appearance: textfield;\n}\n.faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv input::-webkit-inner-spin-button, .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv input::-webkit-outer-spin-button {\n  -webkit-appearance: none;\n  margin: 0;\n}", "",{"version":3,"sources":["webpack://./src/components/VSlider.scss"],"names":[],"mappings":"AAAA;EACI,mBAAA;AACJ;AAAI;EACI,cAAA;AAER;AAAI;EACI,kBAAA;EACA,aAAA;EACA,sBAAA;EACA,cAAA;EACA,WAAA;EACA,YAAA;AAER;AADQ;EACI,kBAAA;EACA,cAAA;EACA,cAAA;EACA,WAAA;AAGZ;AAFY;EACI,kBAAA;EACA,cAAA;EACA,YAAA;EACA,WAAA;AAIhB;AADQ;EACI,kBAAA;EACA,cAAA;EACA,cAAA;EACA,kBAAA;EACA,2CAAA;EACA,0BAAA;EACA,iBAAA;EACA,kBAAA;EACA,UAAA;EACA,2BAAA;EACA,gBAAA;EACA,0BAAA;AAGZ;AAFY;EAEI,wBAAA;EACA,SAAA;AAGhB","sourcesContent":[".faust-ui-component.faust-ui-component-vslider {\n    align-items: center;\n    & > .faust-ui-component-label {\n        flex: 0 0 auto;\n    }\n    & > .faust-ui-component-vslider-flexdiv {\n        position: relative;\n        display: flex;\n        flex-direction: column;\n        flex: 1 1 auto;\n        width: 100%;\n        height: auto;\n        & > .faust-ui-component-vslider-canvasdiv {\n            position: relative;\n            display: block;\n            flex: 1 1 auto;\n            width: 100%;\n            & > canvas {\n                position: absolute;\n                display: block;\n                height: 100%;\n                width: 100%;\n            }\n        }\n        & input {\n            position: relative;\n            display: block;\n            flex: 0 1 auto;\n            text-align: center;\n            background-color: rgba(255, 255, 255, 0.25);\n            margin: 5px auto auto auto;\n            border-width: 0px;\n            border-radius: 4px;\n            height: 5%;\n            max-width: calc(100% - 8px);\n            padding: 2px 4px;\n            -moz-appearance:textfield;\n            &::-webkit-inner-spin-button, \n            &::-webkit-outer-spin-button {\n                -webkit-appearance: none;\n                margin: 0;\n            }\n        }\n    }\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `.faust-ui-component.faust-ui-component-vslider {
+  align-items: center;
+}
+.faust-ui-component.faust-ui-component-vslider > .faust-ui-component-label {
+  flex: 0 0 auto;
+}
+.faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  width: 100%;
+  height: auto;
+}
+.faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv > .faust-ui-component-vslider-canvasdiv {
+  position: relative;
+  display: block;
+  flex: 1 1 auto;
+  width: 100%;
+}
+.faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv > .faust-ui-component-vslider-canvasdiv > canvas {
+  position: absolute;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv input {
+  position: relative;
+  display: block;
+  flex: 0 1 auto;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.25);
+  margin: 5px auto auto auto;
+  border-width: 0px;
+  border-radius: 4px;
+  height: 5%;
+  max-width: calc(100% - 8px);
+  padding: 2px 4px;
+  -moz-appearance: textfield;
+}
+.faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv input::-webkit-inner-spin-button, .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}`, "",{"version":3,"sources":["webpack://./src/components/VSlider.scss"],"names":[],"mappings":"AAAA;EACI,mBAAA;AACJ;AAAI;EACI,cAAA;AAER;AAAI;EACI,kBAAA;EACA,aAAA;EACA,sBAAA;EACA,cAAA;EACA,WAAA;EACA,YAAA;AAER;AADQ;EACI,kBAAA;EACA,cAAA;EACA,cAAA;EACA,WAAA;AAGZ;AAFY;EACI,kBAAA;EACA,cAAA;EACA,YAAA;EACA,WAAA;AAIhB;AADQ;EACI,kBAAA;EACA,cAAA;EACA,cAAA;EACA,kBAAA;EACA,2CAAA;EACA,0BAAA;EACA,iBAAA;EACA,kBAAA;EACA,UAAA;EACA,2BAAA;EACA,gBAAA;EACA,0BAAA;AAGZ;AAFY;EAEI,wBAAA;EACA,SAAA;AAGhB","sourcesContent":[".faust-ui-component.faust-ui-component-vslider {\n    align-items: center;\n    & > .faust-ui-component-label {\n        flex: 0 0 auto;\n    }\n    & > .faust-ui-component-vslider-flexdiv {\n        position: relative;\n        display: flex;\n        flex-direction: column;\n        flex: 1 1 auto;\n        width: 100%;\n        height: auto;\n        & > .faust-ui-component-vslider-canvasdiv {\n            position: relative;\n            display: block;\n            flex: 1 1 auto;\n            width: 100%;\n            & > canvas {\n                position: absolute;\n                display: block;\n                height: 100%;\n                width: 100%;\n            }\n        }\n        & input {\n            position: relative;\n            display: block;\n            flex: 0 1 auto;\n            text-align: center;\n            background-color: rgba(255, 255, 255, 0.25);\n            margin: 5px auto auto auto;\n            border-width: 0px;\n            border-radius: 4px;\n            height: 5%;\n            max-width: calc(100% - 8px);\n            padding: 2px 4px;\n            -moz-appearance:textfield;\n            &::-webkit-inner-spin-button, \n            &::-webkit-outer-spin-button {\n                -webkit-appearance: none;\n                margin: 0;\n            }\n        }\n    }\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -511,7 +897,14 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".faust-ui-root {\n  margin: 0px auto;\n  flex: 1 0 auto;\n  position: relative !important;\n  background-color: transparent !important;\n  border: none !important;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\";\n}", "",{"version":3,"sources":["webpack://./src/index.scss"],"names":[],"mappings":"AAAA;EACI,gBAAA;EACA,cAAA;EACA,6BAAA;EACA,wCAAA;EACA,uBAAA;EACA,kMAAA;AACJ","sourcesContent":[".faust-ui-root {\n    margin: 0px auto;\n    flex: 1 0 auto;\n    position: relative !important;\n    background-color: transparent !important;\n    border: none !important;\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\";\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `.faust-ui-root {
+  margin: 0px auto;
+  flex: 1 0 auto;
+  position: relative !important;
+  background-color: transparent !important;
+  border: none !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}`, "",{"version":3,"sources":["webpack://./src/index.scss"],"names":[],"mappings":"AAAA;EACI,gBAAA;EACA,cAAA;EACA,6BAAA;EACA,wCAAA;EACA,uBAAA;EACA,kMAAA;AACJ","sourcesContent":[".faust-ui-root {\n    margin: 0px auto;\n    flex: 1 0 auto;\n    position: relative !important;\n    background-color: transparent !important;\n    border: none !important;\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\";\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -531,68 +924,55 @@ ___CSS_LOADER_EXPORT___.push([module.id, ".faust-ui-root {\n  margin: 0px auto;\
   Author Tobias Koppers @sokra
 */
 module.exports = function (cssWithMappingToString) {
-  var list = []; // return the list of modules as css string
+  var list = [];
 
+  // return the list of modules as css string
   list.toString = function toString() {
     return this.map(function (item) {
       var content = "";
       var needLayer = typeof item[5] !== "undefined";
-
       if (item[4]) {
         content += "@supports (".concat(item[4], ") {");
       }
-
       if (item[2]) {
         content += "@media ".concat(item[2], " {");
       }
-
       if (needLayer) {
         content += "@layer".concat(item[5].length > 0 ? " ".concat(item[5]) : "", " {");
       }
-
       content += cssWithMappingToString(item);
-
       if (needLayer) {
         content += "}";
       }
-
       if (item[2]) {
         content += "}";
       }
-
       if (item[4]) {
         content += "}";
       }
-
       return content;
     }).join("");
-  }; // import a list of modules into the list
+  };
 
-
+  // import a list of modules into the list
   list.i = function i(modules, media, dedupe, supports, layer) {
     if (typeof modules === "string") {
       modules = [[null, modules, undefined]];
     }
-
     var alreadyImportedModules = {};
-
     if (dedupe) {
       for (var k = 0; k < this.length; k++) {
         var id = this[k][0];
-
         if (id != null) {
           alreadyImportedModules[id] = true;
         }
       }
     }
-
     for (var _k = 0; _k < modules.length; _k++) {
       var item = [].concat(modules[_k]);
-
       if (dedupe && alreadyImportedModules[item[0]]) {
         continue;
       }
-
       if (typeof layer !== "undefined") {
         if (typeof item[5] === "undefined") {
           item[5] = layer;
@@ -601,7 +981,6 @@ module.exports = function (cssWithMappingToString) {
           item[5] = layer;
         }
       }
-
       if (media) {
         if (!item[2]) {
           item[2] = media;
@@ -610,7 +989,6 @@ module.exports = function (cssWithMappingToString) {
           item[2] = media;
         }
       }
-
       if (supports) {
         if (!item[4]) {
           item[4] = "".concat(supports);
@@ -619,11 +997,9 @@ module.exports = function (cssWithMappingToString) {
           item[4] = supports;
         }
       }
-
       list.push(item);
     }
   };
-
   return list;
 };
 
@@ -640,21 +1016,15 @@ module.exports = function (cssWithMappingToString) {
 module.exports = function (item) {
   var content = item[1];
   var cssMapping = item[3];
-
   if (!cssMapping) {
     return content;
   }
-
   if (typeof btoa === "function") {
     var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(cssMapping))));
     var data = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(base64);
     var sourceMapping = "/*# ".concat(data, " */");
-    var sourceURLs = cssMapping.sources.map(function (source) {
-      return "/*# sourceURL=".concat(cssMapping.sourceRoot || "").concat(source, " */");
-    });
-    return [content].concat(sourceURLs).concat([sourceMapping]).join("\n");
+    return [content].concat([sourceMapping]).join("\n");
   }
-
   return [content].join("\n");
 };
 
@@ -677,8 +1047,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class FaustUI {
+  /**
+   * Calculate incoming UI's layout, bind window events
+   */
   constructor(options) {
     this.componentMap = {};
+    /**
+     * Can be overriden, called by components when its value is changed by user.
+     */
     this.paramChangeByUI = (path, value) => {
       if (!this.hostWindow)
         return;
@@ -708,6 +1084,9 @@ class FaustUI {
       });
     }
   }
+  /**
+   * Render the UI to DOM root
+   */
   mount() {
     this.componentMap = {};
     this.DOMroot.innerHTML = "";
@@ -731,28 +1110,43 @@ class FaustUI {
     this.DOMroot.appendChild(this.faustUIRoot.container);
     this.faustUIRoot.componentDidMount();
   }
+  /**
+   * This method should be called by components to register itself to map.
+   */
   register(path, item) {
     if (this.componentMap[path])
       this.componentMap[path].push(item);
     else
       this.componentMap[path] = [item];
   }
+  /**
+   * Notify the component to change its value.
+   */
   paramChangeByDSP(path, value) {
     if (this.componentMap[path])
       this.componentMap[path].forEach((item) => item.setState({ value }));
   }
+  /**
+   * Calculate UI layout in grid then calculate grid size.
+   */
   calc() {
     const { items, layout } = _layout_Layout__WEBPACK_IMPORTED_MODULE_0__["default"].calc(this.ui);
     this._ui = items;
     this._layout = layout;
     this.calcGrid();
   }
+  /**
+   * Calculate grid size by DOM root size and layout size in grids.
+   */
   calcGrid() {
     const { width, height } = this.DOMroot.getBoundingClientRect();
     const grid = Math.max(40, Math.min(width / this._layout.width, height / this._layout.height));
     this.grid = grid;
     return grid;
   }
+  /**
+   * Force recalculate grid size and resize UI
+   */
   resize() {
     if (!this.faustUIRoot)
       return;
@@ -810,10 +1204,22 @@ var __spreadValues = (a, b) => {
 };
 
 class AbstractComponent extends _shren_typed_event_emitter__WEBPACK_IMPORTED_MODULE_0__["default"] {
+  /**
+   * Initiate default state with incoming state.
+   */
   constructor(props) {
     super();
+    /**
+     * Frame count in order to reduce frame rate
+     */
     this.$frame = 0;
+    /**
+     * Frame reducing factor, 1 = render at every browser rendering tick, 2 will skip one every two ticks.
+     */
     this.frameReduce = 1;
+    /**
+     * `requestAnimationFrame` callback
+     */
     this.raf = () => {
       this.$frame++;
       if (this.$frame % this.frameReduce !== 0) {
@@ -824,12 +1230,18 @@ class AbstractComponent extends _shren_typed_event_emitter__WEBPACK_IMPORTED_MOD
       this.tasks.forEach((f) => f());
       this.tasks = [];
     };
+    /**
+     * tasks to execute in next redering tick
+     */
     this.tasks = [];
     this.state = __spreadValues(__spreadValues({}, this.defaultProps), props);
   }
   get defaultProps() {
     return this.constructor.defaultProps;
   }
+  /**
+   * set internal state and fire events for UI parts subscribed
+   */
   setState(newState) {
     let shouldUpdate = false;
     for (const stateKey in newState) {
@@ -843,6 +1255,10 @@ class AbstractComponent extends _shren_typed_event_emitter__WEBPACK_IMPORTED_MOD
         this.emit(stateKey, this.state[stateKey]);
     }
   }
+  /**
+   * Use this method to request a new rendering
+   * schedule what you need to do in next render tick in `raf` callback
+   */
   schedule(func) {
     if (this.tasks.indexOf(func) === -1)
       this.tasks.push(func);
@@ -851,6 +1267,9 @@ class AbstractComponent extends _shren_typed_event_emitter__WEBPACK_IMPORTED_MOD
     this.$raf = window.requestAnimationFrame(this.raf);
   }
 }
+/**
+ * The default state of the component.
+ */
 AbstractComponent.defaultProps = {};
 
 
@@ -889,9 +1308,16 @@ var __spreadValues = (a, b) => {
 
 
 const _AbstractItem = class extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["default"] {
+  /**
+   * Initiate default state with incoming state.
+   */
   constructor(props) {
     super(props);
     this.frameReduce = 3;
+    /**
+     * Default DOM event listeners, unify mousedown and touchstart events
+     * For mouse or touch events, please use `handlePointerDown` `handlePointerUp` `handlePointerDrag` callbacks
+     */
     this.handleKeyDown = (e) => {
     };
     this.handleKeyUp = (e) => {
@@ -975,6 +1401,9 @@ const _AbstractItem = class extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_
     if (this.state.emitter)
       this.state.emitter.register(this.state.address, this);
   }
+  /**
+   * Get a nearest valid number
+   */
   toValidNumber(value) {
     const { min, max, step } = this.state;
     if (typeof min !== "number" || typeof max !== "number")
@@ -984,6 +1413,9 @@ const _AbstractItem = class extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_
       return v;
     return min + Math.floor((v - min) / step) * step;
   }
+  /**
+   * Use this method if you want the emitter to send value to DSP
+   */
   setValue(valueIn) {
     const value = this.toValidNumber(valueIn);
     const changed = this.setState({ value });
@@ -991,10 +1423,18 @@ const _AbstractItem = class extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_
       this.change(value);
     return changed;
   }
+  /**
+   * Send value to DSP
+   */
   change(valueIn) {
     if (this.state.emitter)
       this.state.emitter.paramChangeByUI(this.state.address, typeof valueIn === "number" ? valueIn : this.state.value);
   }
+  /**
+   * set internal state and fire events for UI parts subscribed
+   * This will not send anything to DSP
+   * @returns is state updated
+   */
   setState(newState) {
     let shouldUpdate = false;
     for (const key in newState) {
@@ -1017,6 +1457,10 @@ const _AbstractItem = class extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_
     }
     return shouldUpdate;
   }
+  /**
+   * Create container with class name
+   * override it with `super.componentWillMount();`
+   */
   componentWillMount() {
     this.container = document.createElement("div");
     this.container.className = ["faust-ui-component", "faust-ui-component-" + this.className].join(" ");
@@ -1030,6 +1474,9 @@ const _AbstractItem = class extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_
     this.labelCtx = this.labelCanvas.getContext("2d");
     return this;
   }
+  /**
+   * Here append all child DOM to container
+   */
   mount() {
     this.label.appendChild(this.labelCanvas);
     return this;
@@ -1058,6 +1505,9 @@ const _AbstractItem = class extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_
     ctx.fillText(label, align === "left" ? 0 : align === "right" ? width : width / 2, height / 2, width);
     return this;
   }
+  /**
+   * will call this method when mounted
+   */
   componentDidMount() {
     const handleResize = () => {
       const { grid, left, top, width, height } = this.state.style;
@@ -1072,6 +1522,9 @@ const _AbstractItem = class extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_
     handleResize();
     return this;
   }
+  /**
+   * Count steps in range min-max with step
+   */
   get stepsCount() {
     const { type, max, min, step, enums } = this.state;
     const maxSteps = type === "enum" ? enums.length : type === "int" ? max - min : (max - min) / step;
@@ -1084,6 +1537,9 @@ const _AbstractItem = class extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_
     }
     return maxSteps;
   }
+  /**
+   * Normalized value between 0 - 1.
+   */
   get distance() {
     const { type, max, min, value, enums, scale } = this.state;
     return _AbstractItem.getDistance({ type, max, min, value, enums, scale });
@@ -1095,6 +1551,9 @@ const _AbstractItem = class extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_
     const v = scale === "exp" ? (0,_utils__WEBPACK_IMPORTED_MODULE_1__.normLog)(value, min, max) : scale === "log" ? (0,_utils__WEBPACK_IMPORTED_MODULE_1__.normExp)(value, min, max) : value;
     return (0,_utils__WEBPACK_IMPORTED_MODULE_1__.normalize)(v, min, max);
   }
+  /**
+   * Mousemove pixels for each step
+   */
   get stepRange() {
     const full = 100;
     const stepsCount = this.stepsCount;
@@ -1102,6 +1561,9 @@ const _AbstractItem = class extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_
   }
 };
 let AbstractItem = _AbstractItem;
+/**
+ * The default state of the component.
+ */
 AbstractItem.defaultProps = {
   value: 0,
   active: true,
@@ -1263,17 +1725,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _HSlider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HSlider */ "./src/components/HSlider.ts");
 /* harmony import */ var _VSlider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./VSlider */ "./src/components/VSlider.ts");
 /* harmony import */ var _Nentry__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Nentry */ "./src/components/Nentry.ts");
-/* harmony import */ var _Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Button */ "./src/components/Button.ts");
-/* harmony import */ var _Checkbox__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Checkbox */ "./src/components/Checkbox.ts");
-/* harmony import */ var _Knob__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Knob */ "./src/components/Knob.ts");
-/* harmony import */ var _Menu__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Menu */ "./src/components/Menu.ts");
-/* harmony import */ var _Radio__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Radio */ "./src/components/Radio.ts");
-/* harmony import */ var _Led__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Led */ "./src/components/Led.ts");
-/* harmony import */ var _Numerical__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Numerical */ "./src/components/Numerical.ts");
-/* harmony import */ var _HBargraph__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./HBargraph */ "./src/components/HBargraph.ts");
-/* harmony import */ var _VBargraph__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./VBargraph */ "./src/components/VBargraph.ts");
-/* harmony import */ var _layout_Layout__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../layout/Layout */ "./src/layout/Layout.ts");
-/* harmony import */ var _Group_scss__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Group.scss */ "./src/components/Group.scss");
+/* harmony import */ var _Soundfile__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Soundfile */ "./src/components/Soundfile.ts");
+/* harmony import */ var _Button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Button */ "./src/components/Button.ts");
+/* harmony import */ var _Checkbox__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Checkbox */ "./src/components/Checkbox.ts");
+/* harmony import */ var _Knob__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Knob */ "./src/components/Knob.ts");
+/* harmony import */ var _Menu__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Menu */ "./src/components/Menu.ts");
+/* harmony import */ var _Radio__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Radio */ "./src/components/Radio.ts");
+/* harmony import */ var _Led__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Led */ "./src/components/Led.ts");
+/* harmony import */ var _Numerical__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Numerical */ "./src/components/Numerical.ts");
+/* harmony import */ var _HBargraph__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./HBargraph */ "./src/components/HBargraph.ts");
+/* harmony import */ var _VBargraph__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./VBargraph */ "./src/components/VBargraph.ts");
+/* harmony import */ var _layout_Layout__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../layout/Layout */ "./src/layout/Layout.ts");
+/* harmony import */ var _Group_scss__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Group.scss */ "./src/components/Group.scss");
+
 
 
 
@@ -1374,7 +1838,7 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["default"] {
     return { metaObject };
   }
   static getComponent(item, emitter, grid) {
-    const type = _layout_Layout__WEBPACK_IMPORTED_MODULE_13__["default"].predictType(item);
+    const type = _layout_Layout__WEBPACK_IMPORTED_MODULE_14__["default"].predictType(item);
     if (type.endsWith("group")) {
       const { label: label2, items, type: type2, layout: layout2 } = item;
       const props2 = {
@@ -1419,29 +1883,31 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["default"] {
       value: "init" in item ? +item.init || 0 : 0
     };
     if (type === "button")
-      return new _Button__WEBPACK_IMPORTED_MODULE_4__["default"](props);
+      return new _Button__WEBPACK_IMPORTED_MODULE_5__["default"](props);
     if (type === "checkbox")
-      return new _Checkbox__WEBPACK_IMPORTED_MODULE_5__["default"](props);
+      return new _Checkbox__WEBPACK_IMPORTED_MODULE_6__["default"](props);
     if (type === "nentry")
       return new _Nentry__WEBPACK_IMPORTED_MODULE_3__["default"](props);
+    if (type === "soundfile")
+      return new _Soundfile__WEBPACK_IMPORTED_MODULE_4__["default"](props);
     if (type === "knob")
-      return new _Knob__WEBPACK_IMPORTED_MODULE_6__["default"](props);
+      return new _Knob__WEBPACK_IMPORTED_MODULE_7__["default"](props);
     if (type === "menu")
-      return new _Menu__WEBPACK_IMPORTED_MODULE_7__["default"](props);
+      return new _Menu__WEBPACK_IMPORTED_MODULE_8__["default"](props);
     if (type === "radio")
-      return new _Radio__WEBPACK_IMPORTED_MODULE_8__["default"](props);
+      return new _Radio__WEBPACK_IMPORTED_MODULE_9__["default"](props);
     if (type === "hslider")
       return new _HSlider__WEBPACK_IMPORTED_MODULE_1__["default"](props);
     if (type === "vslider")
       return new _VSlider__WEBPACK_IMPORTED_MODULE_2__["default"](props);
     if (type === "hbargraph")
-      return new _HBargraph__WEBPACK_IMPORTED_MODULE_11__["default"](props);
+      return new _HBargraph__WEBPACK_IMPORTED_MODULE_12__["default"](props);
     if (type === "vbargraph")
-      return new _VBargraph__WEBPACK_IMPORTED_MODULE_12__["default"](props);
+      return new _VBargraph__WEBPACK_IMPORTED_MODULE_13__["default"](props);
     if (type === "numerical")
-      return new _Numerical__WEBPACK_IMPORTED_MODULE_10__["default"](props);
+      return new _Numerical__WEBPACK_IMPORTED_MODULE_11__["default"](props);
     if (type === "led")
-      return new _Led__WEBPACK_IMPORTED_MODULE_9__["default"](props);
+      return new _Led__WEBPACK_IMPORTED_MODULE_10__["default"](props);
     return null;
   }
   setState(newState) {
@@ -2510,6 +2976,102 @@ class Radio extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["default"] {
 
 /***/ }),
 
+/***/ "./src/components/Soundfile.ts":
+/*!*************************************!*\
+  !*** ./src/components/Soundfile.ts ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Soundfile)
+/* harmony export */ });
+/* harmony import */ var _AbstractItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AbstractItem */ "./src/components/AbstractItem.ts");
+/* harmony import */ var _Soundfile_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Soundfile.scss */ "./src/components/Soundfile.scss");
+var __defProp = Object.defineProperty;
+var __defProps = Object.defineProperties;
+var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
+var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
+
+
+class Soundfile extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["default"] {
+  constructor() {
+    super(...arguments);
+    this.className = "soundfile";
+    this.setStyle = () => {
+      const { value, style } = this.state;
+      const { height, grid, fontsize, fontname, fontface, textcolor, textoncolor, bgoncolor, bgcolor, bordercolor, borderoncolor } = style;
+      this.btn.style.backgroundColor = value ? bgoncolor : bgcolor;
+      this.btn.style.borderColor = value ? borderoncolor : bordercolor;
+      this.btn.style.color = value ? textoncolor : textcolor;
+      this.btn.style.fontSize = `${fontsize || height * grid / 4}px`;
+      this.btn.style.fontFamily = `${fontname}, sans-serif`;
+      this.btn.style.fontStyle = fontface;
+    };
+    this.handlePointerDown = () => {
+    };
+    this.handlePointerUp = () => {
+    };
+  }
+  static get defaultProps() {
+    const inherited = super.defaultProps;
+    return __spreadProps(__spreadValues({}, inherited), {
+      style: __spreadProps(__spreadValues({}, inherited.style), {
+        fontname: "Arial",
+        fontsize: void 0,
+        fontface: "normal",
+        bgcolor: "rgba(40, 40, 40, 1)",
+        bgoncolor: "rgba(18, 18, 18, 1)",
+        bordercolor: "rgba(80, 80, 80, 1)",
+        borderoncolor: "rgba(255, 165, 0, 1)",
+        textcolor: "rgba(226, 222, 255, 0.5)",
+        textoncolor: "rgba(255, 165, 0, 1)"
+      })
+    });
+  }
+  componentWillMount() {
+    super.componentWillMount();
+    this.btn = document.createElement("div");
+    this.span = document.createElement("span");
+    this.span.innerText = this.state.label;
+    this.setStyle();
+    return this;
+  }
+  mount() {
+    this.btn.appendChild(this.span);
+    this.container.appendChild(this.btn);
+    return super.mount();
+  }
+  componentDidMount() {
+    super.componentDidMount();
+    this.btn.addEventListener("mousedown", this.handleMouseDown);
+    this.btn.addEventListener("touchstart", this.handleTouchStart);
+    this.on("style", () => this.schedule(this.setStyle));
+    const labelChange = () => this.span.innerText = this.state.label;
+    this.on("label", () => this.schedule(labelChange));
+    this.on("value", () => this.schedule(this.setStyle));
+    return this;
+  }
+}
+
+
+/***/ }),
+
 /***/ "./src/components/VBargraph.ts":
 /*!*************************************!*\
   !*** ./src/components/VBargraph.ts ***!
@@ -3077,6 +3639,9 @@ const _AbstractGroup = class {
       sizing
     };
   }
+  /**
+   * find recursively if the group has horizontal-sizable item
+   */
   get hasHSizingDesc() {
     return !!this.items.find((item) => {
       if (item instanceof _AbstractGroup)
@@ -3084,6 +3649,9 @@ const _AbstractGroup = class {
       return item.layout.sizing === "horizontal" || item.layout.sizing === "both";
     });
   }
+  /**
+   * find recursively if the group has vertical-sizable item
+   */
   get hasVSizingDesc() {
     return !!this.items.find((item) => {
       if (item instanceof _AbstractGroup)
@@ -3395,18 +3963,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _HSlider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HSlider */ "./src/layout/HSlider.ts");
 /* harmony import */ var _VSlider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VSlider */ "./src/layout/VSlider.ts");
 /* harmony import */ var _Nentry__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Nentry */ "./src/layout/Nentry.ts");
-/* harmony import */ var _Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Button */ "./src/layout/Button.ts");
-/* harmony import */ var _Checkbox__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Checkbox */ "./src/layout/Checkbox.ts");
-/* harmony import */ var _Knob__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Knob */ "./src/layout/Knob.ts");
-/* harmony import */ var _Menu__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Menu */ "./src/layout/Menu.ts");
-/* harmony import */ var _Radio__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Radio */ "./src/layout/Radio.ts");
-/* harmony import */ var _Led__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Led */ "./src/layout/Led.ts");
-/* harmony import */ var _Numerical__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Numerical */ "./src/layout/Numerical.ts");
-/* harmony import */ var _HBargraph__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./HBargraph */ "./src/layout/HBargraph.ts");
-/* harmony import */ var _VBargraph__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./VBargraph */ "./src/layout/VBargraph.ts");
-/* harmony import */ var _HGroup__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./HGroup */ "./src/layout/HGroup.ts");
-/* harmony import */ var _VGroup__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./VGroup */ "./src/layout/VGroup.ts");
-/* harmony import */ var _TGroup__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./TGroup */ "./src/layout/TGroup.ts");
+/* harmony import */ var _Soundfile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Soundfile */ "./src/layout/Soundfile.ts");
+/* harmony import */ var _Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Button */ "./src/layout/Button.ts");
+/* harmony import */ var _Checkbox__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Checkbox */ "./src/layout/Checkbox.ts");
+/* harmony import */ var _Knob__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Knob */ "./src/layout/Knob.ts");
+/* harmony import */ var _Menu__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Menu */ "./src/layout/Menu.ts");
+/* harmony import */ var _Radio__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Radio */ "./src/layout/Radio.ts");
+/* harmony import */ var _Led__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Led */ "./src/layout/Led.ts");
+/* harmony import */ var _Numerical__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Numerical */ "./src/layout/Numerical.ts");
+/* harmony import */ var _HBargraph__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./HBargraph */ "./src/layout/HBargraph.ts");
+/* harmony import */ var _VBargraph__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./VBargraph */ "./src/layout/VBargraph.ts");
+/* harmony import */ var _HGroup__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./HGroup */ "./src/layout/HGroup.ts");
+/* harmony import */ var _VGroup__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./VGroup */ "./src/layout/VGroup.ts");
+/* harmony import */ var _TGroup__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./TGroup */ "./src/layout/TGroup.ts");
+
 
 
 
@@ -3423,8 +3993,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class Layout {
+  /**
+   * Get the rendering type of an item by parsing its metadata
+   */
   static predictType(item) {
-    if (item.type === "vgroup" || item.type === "hgroup" || item.type === "tgroup" || item.type === "button" || item.type === "checkbox")
+    if (item.type === "vgroup" || item.type === "hgroup" || item.type === "tgroup" || item.type === "button" || item.type === "checkbox" || item.type === "soundfile")
       return item.type;
     if (item.type === "hbargraph" || item.type === "vbargraph") {
       if (item.meta && item.meta.find((meta) => meta.style && meta.style.startsWith("led")))
@@ -3443,23 +4016,27 @@ class Layout {
     }
     return item.type;
   }
+  /**
+   * Get the Layout class constructor of an item
+   */
   static getItem(item) {
     const Ctor = {
       hslider: _HSlider__WEBPACK_IMPORTED_MODULE_0__["default"],
       vslider: _VSlider__WEBPACK_IMPORTED_MODULE_1__["default"],
       nentry: _Nentry__WEBPACK_IMPORTED_MODULE_2__["default"],
-      button: _Button__WEBPACK_IMPORTED_MODULE_3__["default"],
-      checkbox: _Checkbox__WEBPACK_IMPORTED_MODULE_4__["default"],
-      knob: _Knob__WEBPACK_IMPORTED_MODULE_5__["default"],
-      menu: _Menu__WEBPACK_IMPORTED_MODULE_6__["default"],
-      radio: _Radio__WEBPACK_IMPORTED_MODULE_7__["default"],
-      led: _Led__WEBPACK_IMPORTED_MODULE_8__["default"],
-      numerical: _Numerical__WEBPACK_IMPORTED_MODULE_9__["default"],
-      hbargraph: _HBargraph__WEBPACK_IMPORTED_MODULE_10__["default"],
-      vbargraph: _VBargraph__WEBPACK_IMPORTED_MODULE_11__["default"],
-      hgroup: _HGroup__WEBPACK_IMPORTED_MODULE_12__["default"],
-      vgroup: _VGroup__WEBPACK_IMPORTED_MODULE_13__["default"],
-      tgroup: _TGroup__WEBPACK_IMPORTED_MODULE_14__["default"]
+      soundfile: _Soundfile__WEBPACK_IMPORTED_MODULE_3__["default"],
+      button: _Button__WEBPACK_IMPORTED_MODULE_4__["default"],
+      checkbox: _Checkbox__WEBPACK_IMPORTED_MODULE_5__["default"],
+      knob: _Knob__WEBPACK_IMPORTED_MODULE_6__["default"],
+      menu: _Menu__WEBPACK_IMPORTED_MODULE_7__["default"],
+      radio: _Radio__WEBPACK_IMPORTED_MODULE_8__["default"],
+      led: _Led__WEBPACK_IMPORTED_MODULE_9__["default"],
+      numerical: _Numerical__WEBPACK_IMPORTED_MODULE_10__["default"],
+      hbargraph: _HBargraph__WEBPACK_IMPORTED_MODULE_11__["default"],
+      vbargraph: _VBargraph__WEBPACK_IMPORTED_MODULE_12__["default"],
+      hgroup: _HGroup__WEBPACK_IMPORTED_MODULE_13__["default"],
+      vgroup: _VGroup__WEBPACK_IMPORTED_MODULE_14__["default"],
+      tgroup: _TGroup__WEBPACK_IMPORTED_MODULE_15__["default"]
     };
     const layoutType = this.predictType(item);
     return new Ctor[layoutType](item);
@@ -3472,7 +4049,7 @@ class Layout {
     });
   }
   static calc(ui) {
-    const rootGroup = new _VGroup__WEBPACK_IMPORTED_MODULE_13__["default"]({ items: this.getItems(ui), type: "vgroup", label: "" }, true);
+    const rootGroup = new _VGroup__WEBPACK_IMPORTED_MODULE_14__["default"]({ items: this.getItems(ui), type: "vgroup", label: "" }, true);
     rootGroup.adjust();
     rootGroup.expand(0, 0);
     rootGroup.offset();
@@ -3610,7 +4187,35 @@ class Radio extends _AbstractInputItem__WEBPACK_IMPORTED_MODULE_0__["default"] {
       type: "radio",
       width: 2,
       height: 2,
+      // TODO: vradio and hradio
       sizing: "both"
+    };
+  }
+}
+
+
+/***/ }),
+
+/***/ "./src/layout/Soundfile.ts":
+/*!*********************************!*\
+  !*** ./src/layout/Soundfile.ts ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Soundfile)
+/* harmony export */ });
+/* harmony import */ var _AbstractInputItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AbstractInputItem */ "./src/layout/AbstractInputItem.ts");
+
+class Soundfile extends _AbstractInputItem__WEBPACK_IMPORTED_MODULE_0__["default"] {
+  constructor() {
+    super(...arguments);
+    this.layout = {
+      type: "soundfile",
+      width: 2,
+      height: 1,
+      sizing: "horizontal"
     };
   }
 }
@@ -4449,6 +5054,60 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./src/components/Soundfile.scss":
+/*!***************************************!*\
+  !*** ./src/components/Soundfile.scss ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_Soundfile_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/dist/cjs.js!./Soundfile.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/Soundfile.scss");
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_Soundfile_scss__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_Soundfile_scss__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_Soundfile_scss__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_Soundfile_scss__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ }),
+
 /***/ "./src/components/VBargraph.scss":
 /*!***************************************!*\
   !*** ./src/components/VBargraph.scss ***!
@@ -4620,24 +5279,19 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 var stylesInDOM = [];
-
 function getIndexByIdentifier(identifier) {
   var result = -1;
-
   for (var i = 0; i < stylesInDOM.length; i++) {
     if (stylesInDOM[i].identifier === identifier) {
       result = i;
       break;
     }
   }
-
   return result;
 }
-
 function modulesToDom(list, options) {
   var idCountMap = {};
   var identifiers = [];
-
   for (var i = 0; i < list.length; i++) {
     var item = list[i];
     var id = options.base ? item[0] + options.base : item[0];
@@ -4652,7 +5306,6 @@ function modulesToDom(list, options) {
       supports: item[4],
       layer: item[5]
     };
-
     if (indexByIdentifier !== -1) {
       stylesInDOM[indexByIdentifier].references++;
       stylesInDOM[indexByIdentifier].updater(obj);
@@ -4665,59 +5318,45 @@ function modulesToDom(list, options) {
         references: 1
       });
     }
-
     identifiers.push(identifier);
   }
-
   return identifiers;
 }
-
 function addElementStyle(obj, options) {
   var api = options.domAPI(options);
   api.update(obj);
-
   var updater = function updater(newObj) {
     if (newObj) {
       if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap && newObj.supports === obj.supports && newObj.layer === obj.layer) {
         return;
       }
-
       api.update(obj = newObj);
     } else {
       api.remove();
     }
   };
-
   return updater;
 }
-
 module.exports = function (list, options) {
   options = options || {};
   list = list || [];
   var lastIdentifiers = modulesToDom(list, options);
   return function update(newList) {
     newList = newList || [];
-
     for (var i = 0; i < lastIdentifiers.length; i++) {
       var identifier = lastIdentifiers[i];
       var index = getIndexByIdentifier(identifier);
       stylesInDOM[index].references--;
     }
-
     var newLastIdentifiers = modulesToDom(newList, options);
-
     for (var _i = 0; _i < lastIdentifiers.length; _i++) {
       var _identifier = lastIdentifiers[_i];
-
       var _index = getIndexByIdentifier(_identifier);
-
       if (stylesInDOM[_index].references === 0) {
         stylesInDOM[_index].updater();
-
         stylesInDOM.splice(_index, 1);
       }
     }
-
     lastIdentifiers = newLastIdentifiers;
   };
 };
@@ -4733,12 +5372,13 @@ module.exports = function (list, options) {
 
 
 var memo = {};
-/* istanbul ignore next  */
 
+/* istanbul ignore next  */
 function getTarget(target) {
   if (typeof memo[target] === "undefined") {
-    var styleTarget = document.querySelector(target); // Special case to return head of iframe instead of iframe itself
+    var styleTarget = document.querySelector(target);
 
+    // Special case to return head of iframe instead of iframe itself
     if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
       try {
         // This will throw an exception if access to iframe is blocked
@@ -4749,25 +5389,19 @@ function getTarget(target) {
         styleTarget = null;
       }
     }
-
     memo[target] = styleTarget;
   }
-
   return memo[target];
 }
+
 /* istanbul ignore next  */
-
-
 function insertBySelector(insert, style) {
   var target = getTarget(insert);
-
   if (!target) {
     throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");
   }
-
   target.appendChild(style);
 }
-
 module.exports = insertBySelector;
 
 /***/ }),
@@ -4787,7 +5421,6 @@ function insertStyleElement(options) {
   options.insert(element, options.options);
   return element;
 }
-
 module.exports = insertStyleElement;
 
 /***/ }),
@@ -4803,12 +5436,10 @@ module.exports = insertStyleElement;
 /* istanbul ignore next  */
 function setAttributesWithoutAttributes(styleElement) {
   var nonce =  true ? __webpack_require__.nc : 0;
-
   if (nonce) {
     styleElement.setAttribute("nonce", nonce);
   }
 }
-
 module.exports = setAttributesWithoutAttributes;
 
 /***/ }),
@@ -4824,59 +5455,51 @@ module.exports = setAttributesWithoutAttributes;
 /* istanbul ignore next  */
 function apply(styleElement, options, obj) {
   var css = "";
-
   if (obj.supports) {
     css += "@supports (".concat(obj.supports, ") {");
   }
-
   if (obj.media) {
     css += "@media ".concat(obj.media, " {");
   }
-
   var needLayer = typeof obj.layer !== "undefined";
-
   if (needLayer) {
     css += "@layer".concat(obj.layer.length > 0 ? " ".concat(obj.layer) : "", " {");
   }
-
   css += obj.css;
-
   if (needLayer) {
     css += "}";
   }
-
   if (obj.media) {
     css += "}";
   }
-
   if (obj.supports) {
     css += "}";
   }
-
   var sourceMap = obj.sourceMap;
-
   if (sourceMap && typeof btoa !== "undefined") {
     css += "\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))), " */");
-  } // For old IE
+  }
 
+  // For old IE
   /* istanbul ignore if  */
-
-
   options.styleTagTransform(css, styleElement, options.options);
 }
-
 function removeStyleElement(styleElement) {
   // istanbul ignore if
   if (styleElement.parentNode === null) {
     return false;
   }
-
   styleElement.parentNode.removeChild(styleElement);
 }
+
 /* istanbul ignore next  */
-
-
 function domAPI(options) {
+  if (typeof document === "undefined") {
+    return {
+      update: function update() {},
+      remove: function remove() {}
+    };
+  }
   var styleElement = options.insertStyleElement(options);
   return {
     update: function update(obj) {
@@ -4887,7 +5510,6 @@ function domAPI(options) {
     }
   };
 }
-
 module.exports = domAPI;
 
 /***/ }),
@@ -4908,11 +5530,9 @@ function styleTagTransform(css, styleElement) {
     while (styleElement.firstChild) {
       styleElement.removeChild(styleElement.firstChild);
     }
-
     styleElement.appendChild(document.createTextNode(css));
   }
 }
-
 module.exports = styleTagTransform;
 
 /***/ })

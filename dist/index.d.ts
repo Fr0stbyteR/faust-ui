@@ -281,6 +281,29 @@ declare class VSlider extends AbstractItem<FaustUISliderStyle> {
 	handlePointerDown: (e: PointerDownEvent) => void;
 	handlePointerDrag: (e: PointerDragEvent) => void;
 }
+export interface FaustUISoundfileStyle extends FaustUIItemStyle {
+	fontname?: string;
+	fontsize?: number;
+	fontface?: "normal" | "bold" | "italic" | "bold italic";
+	bgcolor?: string;
+	bgoncolor?: string;
+	bordercolor?: string;
+	borderoncolor?: string;
+	textcolor?: string;
+	textoncolor?: string;
+}
+declare class Soundfile extends AbstractItem<FaustUISoundfileStyle> {
+	static get defaultProps(): FaustUIItemProps<FaustUISoundfileStyle>;
+	className: string;
+	btn: HTMLDivElement;
+	span: HTMLSpanElement;
+	componentWillMount(): this;
+	setStyle: () => void;
+	mount(): this;
+	componentDidMount(): this;
+	handlePointerDown: () => void;
+	handlePointerUp: () => void;
+}
 export interface FaustUIButtonStyle extends FaustUIItemStyle {
 	fontname?: string;
 	fontsize?: number;
@@ -431,7 +454,7 @@ export interface LayoutProps {
 	height: number;
 	sizing: "horizontal" | "vertical" | "both" | "none";
 }
-export type TLayoutType = "vgroup" | "hgroup" | "tgroup" | "hbargraph" | "vbargraph" | "vslider" | "hslider" | "button" | "checkbox" | "nentry" | "knob" | "menu" | "radio" | "led" | "numerical";
+export type TLayoutType = "vgroup" | "hgroup" | "tgroup" | "hbargraph" | "vbargraph" | "vslider" | "hslider" | "button" | "checkbox" | "nentry" | "soundfile" | "knob" | "menu" | "radio" | "led" | "numerical";
 export interface IItem {
 	/**
 	 * Initial type of item given by Faust compiler
@@ -465,6 +488,7 @@ declare abstract class AbstractItem$1 implements IItem {
 	type: FaustUIInputType | FaustUIOutputType;
 	label: string;
 	address: string;
+	url: string;
 	index: number;
 	init: number;
 	min: number;
@@ -516,7 +540,7 @@ declare class Group extends AbstractComponent<FaustUIGroupProps> {
 			[key: string]: number;
 		};
 	};
-	static getComponent(item: AbstractGroup | AbstractInputItem | AbstractOutputItem, emitter: FaustUI, grid: number): Nentry | VSlider | Button | Knob | Menu | Radio | Led | Numerical | VBargraph | Group;
+	static getComponent(item: AbstractGroup | AbstractInputItem | AbstractOutputItem, emitter: FaustUI, grid: number): Nentry | VSlider | Soundfile | Button | Knob | Menu | Radio | Led | Numerical | VBargraph | Group;
 	/**
 	 * DOM Div container of the group
 	 */
