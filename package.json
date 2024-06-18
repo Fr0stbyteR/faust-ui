@@ -18,19 +18,19 @@
   "author": "Fr0stbyteR",
   "license": "GPL-3.0-or-later",
   "devDependencies": {
-    "@grame/faustwasm": "^0.0.67",
+    "@grame/faustwasm": "^0.4.0",
     "@shren/typed-event-emitter": "^1.1.1",
-    "@types/emscripten": "^1.39.10",
-    "css-loader": "^6.5.1",
-    "dts-bundle-generator": "^9.3.1",
-    "esbuild-loader": "^2.16.0",
-    "mini-css-extract-plugin": "^2.4.5",
+    "@types/emscripten": "^1.39.13",
+    "css-loader": "^7.1.2",
+    "dts-bundle-generator": "^9.5.1",
+    "esbuild-loader": "^4.2.0",
+    "mini-css-extract-plugin": "^2.9.0",
     "raw-loader": "^4.0.2",
-    "sass": "^1.43.4",
-    "sass-loader": "^12.3.0",
-    "style-loader": "^3.3.1",
-    "typescript": "^5.4.2",
-    "webpack": "^5.64.2",
-    "webpack-cli": "^4.9.1"
+    "sass": "^1.77.6",
+    "sass-loader": "^14.2.1",
+    "style-loader": "^4.0.0",
+    "typescript": "^5.4.5",
+    "webpack": "^5.92.0",
+    "webpack-cli": "^5.1.4"
   }
 }

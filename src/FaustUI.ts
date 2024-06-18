@@ -1,4 +1,4 @@
-import type { FaustUIDescriptor, FaustUIItem } from "@grame/faustwasm";
+import type { FaustUIDescriptor, FaustUIInputItem, FaustUIItem, FaustUIOutputItem } from "@grame/faustwasm";
 import Layout from "./layout/Layout";
 import AbstractItem from "./components/AbstractItem";
 import Group from "./components/Group";
@@ -126,11 +126,25 @@ export default class FaustUI {
         this.calcGrid();
         this.faustUIRoot.setState({ style: { grid: this.grid } });
     }
+    /** Filter out items with `hidden` metadata and `soundfile` items */
+    filter(ui: FaustUIItem[]) {
+        const callback = (items: FaustUIItem[], item: FaustUIItem) => {
+            if (item.type === "soundfile") return items;
+            if (item.type === "hgroup" || item.type === "vgroup" || item.type === "tgroup") {
+                items.push({ ...item, items: item.items.reduce(callback, [] as FaustUIItem[]) });
+                return items;
+            }
+            if ((item as FaustUIInputItem | FaustUIOutputItem).meta.find(m => m.hidden && m.hidden === "1")) return items;
+            items.push(item);
+            return items;
+        }
+        return ui.reduce(callback, []);
+    }
     get ui() {
         return this._ui;
     }
     set ui(uiIn) {
-        this._ui = uiIn;
+        this._ui = this.filter(uiIn);
         this.calc();
         this.mount();
     }
