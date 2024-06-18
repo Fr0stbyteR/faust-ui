@@ -255,12 +255,13 @@ class FaustUI {
   /** Filter out items with `hidden` metadata and `soundfile` items */
   filter(ui) {
     const callback = (items, item) => {
+      var _a;
       if (item.type === "soundfile") return items;
       if (item.type === "hgroup" || item.type === "vgroup" || item.type === "tgroup") {
         items.push(__spreadProps(__spreadValues({}, item), { items: item.items.reduce(callback, []) }));
         return items;
       }
-      if (item.meta.find((m) => m.hidden && m.hidden === "1")) return items;
+      if ((_a = item.meta) == null ? void 0 : _a.find((m) => m.hidden && m.hidden === "1")) return items;
       items.push(item);
       return items;
     };
@@ -1058,6 +1059,7 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["default"] {
     return this;
   }
   componentDidMount() {
+    var _a;
     const handleResize = () => {
       const { grid, left, top, width, height } = this.state.style;
       if (!this.state.isRoot) this.label.style.height = `${grid * 0.3}px`;
@@ -1091,7 +1093,7 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["default"] {
     };
     this.on("label", () => this.schedule(labelChange));
     this.paintLabel();
-    if (this.tabs && this.tabs.children.length) this.tabs.children[0].click();
+    if ((_a = this.tabs) == null ? void 0 : _a.children.length) this.tabs.children[0].click();
     this.children.forEach((item) => item.componentDidMount());
     return this;
   }
@@ -3012,16 +3014,31 @@ class Layout {
    * Get the rendering type of an item by parsing its metadata
    */
   static predictType(item) {
-    if (item.type === "vgroup" || item.type === "hgroup" || item.type === "tgroup" || item.type === "button" || item.type === "checkbox" || item.type === "soundfile") return item.type;
+    var _a, _b, _c, _d, _e;
     if (item.type === "hbargraph" || item.type === "vbargraph") {
-      if (item.meta && item.meta.find((meta) => meta.style && meta.style.startsWith("led"))) return "led";
-      if (item.meta && item.meta.find((meta) => meta.style && meta.style.startsWith("numerical"))) return "numerical";
+      if ((_a = item.meta) == null ? void 0 : _a.find((meta) => {
+        var _a2;
+        return (_a2 = meta.style) == null ? void 0 : _a2.startsWith("led");
+      })) return "led";
+      if ((_b = item.meta) == null ? void 0 : _b.find((meta) => {
+        var _a2;
+        return (_a2 = meta.style) == null ? void 0 : _a2.startsWith("numerical");
+      })) return "numerical";
       return item.type;
     }
     if (item.type === "hslider" || item.type === "nentry" || item.type === "vslider") {
-      if (item.meta && item.meta.find((meta) => meta.style && meta.style.startsWith("knob"))) return "knob";
-      if (item.meta && item.meta.find((meta) => meta.style && meta.style.startsWith("menu"))) return "menu";
-      if (item.meta && item.meta.find((meta) => meta.style && meta.style.startsWith("radio"))) return "radio";
+      if ((_c = item.meta) == null ? void 0 : _c.find((meta) => {
+        var _a2;
+        return (_a2 = meta.style) == null ? void 0 : _a2.startsWith("knob");
+      })) return "knob";
+      if ((_d = item.meta) == null ? void 0 : _d.find((meta) => {
+        var _a2;
+        return (_a2 = meta.style) == null ? void 0 : _a2.startsWith("menu");
+      })) return "menu";
+      if ((_e = item.meta) == null ? void 0 : _e.find((meta) => {
+        var _a2;
+        return (_a2 = meta.style) == null ? void 0 : _a2.startsWith("radio");
+      })) return "radio";
     }
     return item.type;
   }

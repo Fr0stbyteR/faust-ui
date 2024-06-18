@@ -134,7 +134,7 @@ export default class FaustUI {
                 items.push({ ...item, items: item.items.reduce(callback, [] as FaustUIItem[]) });
                 return items;
             }
-            if ((item as FaustUIInputItem | FaustUIOutputItem).meta.find(m => m.hidden && m.hidden === "1")) return items;
+            if ((item as FaustUIInputItem | FaustUIOutputItem).meta?.find(m => m.hidden && m.hidden === "1")) return items;
             items.push(item);
             return items;
         }

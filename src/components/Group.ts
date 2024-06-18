@@ -283,7 +283,7 @@ export default class Group extends AbstractComponent<FaustUIGroupProps> {
         };
         this.on("label", () => this.schedule(labelChange));
         this.paintLabel();
-        if (this.tabs && this.tabs.children.length) (this.tabs.children[0] as HTMLSpanElement).click();
+        if (this.tabs?.children.length) (this.tabs.children[0] as HTMLSpanElement).click();
         this.children.forEach(item => item.componentDidMount());
         return this;
     }

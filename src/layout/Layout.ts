@@ -24,22 +24,15 @@ export default class Layout {
      * Get the rendering type of an item by parsing its metadata
      */
     static predictType(item: FaustUIItem): TLayoutType {
-        if (item.type === "vgroup"
-            || item.type === "hgroup"
-            || item.type === "tgroup"
-            || item.type === "button"
-            || item.type === "checkbox"
-            || item.type === "soundfile"
-        ) return item.type;
         if (item.type === "hbargraph" || item.type === "vbargraph") {
-            if (item.meta && item.meta.find(meta => meta.style && meta.style.startsWith("led"))) return "led";
-            if (item.meta && item.meta.find(meta => meta.style && meta.style.startsWith("numerical"))) return "numerical";
+            if (item.meta?.find(meta => meta.style?.startsWith("led"))) return "led";
+            if (item.meta?.find(meta => meta.style?.startsWith("numerical"))) return "numerical";
             return item.type;
         }
         if (item.type === "hslider" || item.type === "nentry" || item.type === "vslider") {
-            if (item.meta && item.meta.find(meta => meta.style && meta.style.startsWith("knob"))) return "knob";
-            if (item.meta && item.meta.find(meta => meta.style && meta.style.startsWith("menu"))) return "menu";
-            if (item.meta && item.meta.find(meta => meta.style && meta.style.startsWith("radio"))) return "radio";
+            if (item.meta?.find(meta => meta.style?.startsWith("knob"))) return "knob";
+            if (item.meta?.find(meta => meta.style?.startsWith("menu"))) return "menu";
+            if (item.meta?.find(meta => meta.style?.startsWith("radio"))) return "radio";
         }
         return item.type;
     }
