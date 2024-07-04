@@ -35,11 +35,13 @@ export interface FaustUIItemStyle {
     labelcolor?: string;
 }
 export interface PointerDownEvent {
+    pointerId: number;
     x: number;
     y: number;
     originalEvent: MouseEvent | TouchEvent;
 }
 export interface PointerDragEvent {
+    pointerId: number;
     prevValue: number;
     x: number;
     y: number;
@@ -50,6 +52,7 @@ export interface PointerDragEvent {
     originalEvent: MouseEvent | TouchEvent;
 }
 export interface PointerUpEvent {
+    pointerId: number;
     x: number;
     y: number;
     originalEvent: MouseEvent | TouchEvent;

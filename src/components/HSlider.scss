@@ -20,6 +20,7 @@
                 display: block;
                 height: 100%;
                 width: 100%;
+                touch-action: none;
             }
         }
         & > input {
@@ -33,7 +34,7 @@
             border-radius: 4px;
             width: calc(20% - 13px);
             padding: 2px 4px;
-            -moz-appearance:textfield;
+            -moz-appearance: textfield;
             &::-webkit-inner-spin-button, 
             &::-webkit-outer-spin-button {
                 -webkit-appearance: none;

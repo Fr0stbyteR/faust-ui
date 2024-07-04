@@ -58,7 +58,7 @@ export default class Knob extends AbstractItem<FaustUIKnobStyle> {
     handleChange = (e: Event) => {
         const value = parseFloat((e.currentTarget as HTMLInputElement).value);
         if (isFinite(value)) {
-            const changed = this.setValue(+this.inputNumber.value);
+            const changed = this.setValue(+value);
             if (changed) return;
         }
         this.input.value = this.inputNumber.value + (this.state.unit || "");
@@ -73,8 +73,9 @@ export default class Knob extends AbstractItem<FaustUIKnobStyle> {
     componentDidMount() {
         super.componentDidMount();
         this.input.addEventListener("change", this.handleChange);
-        this.canvas.addEventListener("mousedown", this.handleMouseDown);
-        this.canvas.addEventListener("touchstart", this.handleTouchStart, { passive: false });
+        this.canvas.addEventListener("pointerdown", this.handlePointerDown);
+        // this.canvas.addEventListener("mousedown", this.handleMouseDown);
+        // this.canvas.addEventListener("touchstart", this.handleTouchStart, { passive: false });
         this.on("style", () => {
             this.schedule(this.setStyle);
             this.schedule(this.paint);
@@ -181,7 +182,7 @@ export default class Knob extends AbstractItem<FaustUIKnobStyle> {
         if (type === "int") return Math.round(steps * step + min);
         return steps * step + min;
     }
-    handlePointerDrag = (e: PointerDragEvent) => {
+    handleMouseOrTouchMove = (e: PointerDragEvent) => {
         const newValue = this.getValueFromDelta(e);
         if (newValue !== this.state.value) this.setValue(newValue);
     };

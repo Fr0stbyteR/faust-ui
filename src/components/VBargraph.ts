@@ -67,8 +67,9 @@ export default class VBargraph extends AbstractItem<FaustUIBargraphStyle> {
     };
     componentDidMount() {
         super.componentDidMount();
-        this.canvas.addEventListener("mousedown", this.handleMouseDown);
-        this.canvas.addEventListener("touchstart", this.handleTouchStart, { passive: false });
+        this.canvas.addEventListener("pointerdown", this.handlePointerDown);
+        // this.canvas.addEventListener("mousedown", this.handleMouseDown);
+        // this.canvas.addEventListener("touchstart", this.handleTouchStart, { passive: false });
         this.on("style", () => {
             this.schedule(this.setStyle);
             this.schedule(this.paint);

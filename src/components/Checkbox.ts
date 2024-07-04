@@ -4,9 +4,9 @@ import "./Checkbox.scss";
 export default class Checkbox extends Button {
     className = "checkbox";
 
-    handlePointerDown = () => {
+    handleMouseOrTouchDown = () => {
         this.setValue(1 - this.state.value);
     };
-    handlePointerUp = () => {
+    handleMouseOrTouchUp = () => {
     };
 }

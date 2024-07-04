@@ -63,8 +63,9 @@ export default class Led extends AbstractItem<FaustUILedStyle> {
     };
     componentDidMount() {
         super.componentDidMount();
-        this.canvas.addEventListener("mousedown", this.handleMouseDown);
-        this.canvas.addEventListener("touchstart", this.handleTouchStart, { passive: false });
+        this.canvas.addEventListener("pointerdown", this.handlePointerDown);
+        // this.canvas.addEventListener("mousedown", this.handleMouseDown);
+        // this.canvas.addEventListener("touchstart", this.handleTouchStart, { passive: false });
         this.on("style", () => this.schedule(this.setStyle));
         this.on("label", () => this.schedule(this.paintLabel));
         this.on("value", () => this.schedule(this.paint));

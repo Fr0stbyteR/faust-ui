@@ -61,18 +61,23 @@ export default class Button extends AbstractItem<FaustUIButtonStyle> {
     }
     componentDidMount() {
         super.componentDidMount();
-        this.btn.addEventListener("mousedown", this.handleMouseDown);
-        this.btn.addEventListener("touchstart", this.handleTouchStart);
+        this.btn.addEventListener("pointerdown", this.handlePointerDown);
+        this.btn.addEventListener("contextmenu", this.handleContextMenu);
+        // this.btn.addEventListener("mousedown", this.handleMouseDown);
+        // this.btn.addEventListener("touchstart", this.handleTouchStart);
         this.on("style", () => this.schedule(this.setStyle));
         const labelChange = () => this.span.innerText = this.state.label;
         this.on("label", () => this.schedule(labelChange));
         this.on("value", () => this.schedule(this.setStyle));
         return this;
     }
-    handlePointerDown = () => {
+    handleContextMenu = (e: MouseEvent) => {
+        e.preventDefault();
+    };
+    handleMouseOrTouchDown = () => {
         this.setValue(1);
     };
-    handlePointerUp = () => {
+    handleMouseOrTouchUp = () => {
         this.setValue(0);
     };
 }

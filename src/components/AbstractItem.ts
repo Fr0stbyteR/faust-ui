@@ -1,6 +1,6 @@
 import AbstractComponent from "./AbstractComponent";
 import { normalize, normExp, normLog } from "./utils";
-import type { FaustUIItemStyle, FaustUIItemProps, PointerDownEvent, PointerDragEvent, PointerUpEvent } from "./types";
+import type { FaustUIItemStyle, FaustUIItemProps, PointerDownEvent as MouseOrTouchDownEvent, PointerDragEvent as MouseOrTouchMoveEvent, PointerUpEvent as MouseOrTouchUpEvent } from "./types";
 import "./Base.scss";
 
 /**
@@ -66,7 +66,7 @@ export default abstract class AbstractItem<T extends FaustUIItemStyle> extends A
         const fromX = prevX - rect.left;
         const fromY = prevY - rect.top;
         const prevValue = this.state.value;
-        this.handlePointerDown({ x: fromX, y: fromY, originalEvent: e });
+        this.handleMouseOrTouchDown({ pointerId: -1, x: fromX, y: fromY, originalEvent: e });
         const handleTouchMove = (e: TouchEvent) => {
             e.preventDefault();
             const clientX = e.changedTouches[0].clientX;
@@ -77,13 +77,13 @@ export default abstract class AbstractItem<T extends FaustUIItemStyle> extends A
             prevY = clientY;
             const x = clientX - rect.left;
             const y = clientY - rect.top;
-            this.handlePointerDrag({ prevValue, x, y, fromX, fromY, movementX, movementY, originalEvent: e });
+            this.handleMouseOrTouchMove({ pointerId: -1, prevValue, x, y, fromX, fromY, movementX, movementY, originalEvent: e });
         };
         const handleTouchEnd = (e: TouchEvent) => {
             e.preventDefault();
             const x = e.changedTouches[0].clientX - rect.left;
             const y = e.changedTouches[0].clientY - rect.top;
-            this.handlePointerUp({ x, y, originalEvent: e });
+            this.handleMouseOrTouchUp({ pointerId: -1, x, y, originalEvent: e });
             document.removeEventListener("touchmove", handleTouchMove);
             document.removeEventListener("touchend", handleTouchEnd);
         };
@@ -99,18 +99,18 @@ export default abstract class AbstractItem<T extends FaustUIItemStyle> extends A
         const fromX = e.clientX - rect.left;
         const fromY = e.clientY - rect.top;
         const prevValue = this.state.value;
-        this.handlePointerDown({ x: fromX, y: fromY, originalEvent: e });
+        this.handleMouseOrTouchDown({ pointerId: -1, x: fromX, y: fromY, originalEvent: e });
         const handleMouseMove = (e: MouseEvent) => {
             e.preventDefault();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            this.handlePointerDrag({ prevValue, x, y, fromX, fromY, movementX: e.movementX, movementY: e.movementY, originalEvent: e });
+            this.handleMouseOrTouchMove({ pointerId: -1, prevValue, x, y, fromX, fromY, movementX: e.movementX, movementY: e.movementY, originalEvent: e });
         };
         const handleMouseUp = (e: MouseEvent) => {
             e.preventDefault();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            this.handlePointerUp({ x, y, originalEvent: e });
+            this.handleMouseOrTouchUp({ pointerId: -1, x, y, originalEvent: e });
             document.removeEventListener("mousemove", handleMouseMove);
             document.removeEventListener("mouseup", handleMouseUp);
         };
@@ -120,9 +120,38 @@ export default abstract class AbstractItem<T extends FaustUIItemStyle> extends A
     handleMouseOver = (e: MouseEvent) => {};
     handleMouseOut = (e: MouseEvent) => {};
     handleContextMenu = (e: MouseEvent) => {};
-    handlePointerDown = (e: PointerDownEvent) => {};
-    handlePointerDrag = (e: PointerDragEvent) => {};
-    handlePointerUp = (e: PointerUpEvent) => {};
+    handlePointerDown = (e: PointerEvent) => {
+        e.preventDefault();
+        (e.currentTarget as HTMLElement).focus();
+        const { pointerId } = e;
+        const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+        const fromX = e.clientX - rect.left;
+        const fromY = e.clientY - rect.top;
+        const prevValue = this.state.value;
+        this.handleMouseOrTouchDown({ pointerId, x: fromX, y: fromY, originalEvent: e });
+        const handlePointerMove = (e: PointerEvent) => {
+            if (e.pointerId !== pointerId) return;
+            e.preventDefault();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            this.handleMouseOrTouchMove({ pointerId, prevValue, x, y, fromX, fromY, movementX: e.movementX, movementY: e.movementY, originalEvent: e });
+        };
+        const handlePointerUp = (e: PointerEvent) => {
+            if (e.pointerId !== pointerId) return;
+            e.preventDefault();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            this.handleMouseOrTouchUp({ pointerId, x, y, originalEvent: e });
+            document.removeEventListener("pointermove", handlePointerMove);
+            document.removeEventListener("pointerup", handlePointerUp);
+        };
+        document.addEventListener("pointermove", handlePointerMove);
+        document.addEventListener("pointerup", handlePointerUp);
+        
+    };
+    handleMouseOrTouchDown = (e: MouseOrTouchDownEvent) => {};
+    handleMouseOrTouchMove = (e: MouseOrTouchMoveEvent) => {};
+    handleMouseOrTouchUp = (e: MouseOrTouchUpEvent) => {};
     handleFocusIn = (e: FocusEvent) => this.setState({ focus: true });
     handleFocusOut = (e: FocusEvent) => this.setState({ focus: false });
 

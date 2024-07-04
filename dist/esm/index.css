@@ -53,6 +53,7 @@
   display: block;
   height: 100%;
   width: 100%;
+  touch-action: none;
 }
 .faust-ui-component.faust-ui-component-vslider > .faust-ui-component-vslider-flexdiv input {
   position: relative;
@@ -98,6 +99,7 @@
   display: block;
   height: 100%;
   width: 100%;
+  touch-action: none;
 }
 .faust-ui-component.faust-ui-component-hslider > .faust-ui-component-hslider-flexdiv > input {
   position: relative;
@@ -162,6 +164,7 @@
   border-radius: 4px;
   flex: 1 0 auto;
   border-style: solid;
+  touch-action: none;
 }
 .faust-ui-component.faust-ui-component-button > div > span {
   user-select: none;
@@ -179,6 +182,7 @@
   border-radius: 1px;
   flex: 1 0 auto;
   border-style: solid;
+  touch-action: none;
 }
 .faust-ui-component.faust-ui-component-checkbox > div > span {
   margin: auto;
@@ -196,6 +200,7 @@
   flex: 1 1 auto;
   min-height: 50%;
   width: 100%;
+  touch-action: none;
 }
 .faust-ui-component.faust-ui-component-knob > input {
   position: relative;
@@ -271,6 +276,7 @@
   display: block;
   height: 100%;
   width: 100%;
+  touch-action: none;
 }
 /*!************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/Numerical.scss ***!
@@ -318,6 +324,7 @@
   display: block;
   height: 100%;
   width: 100%;
+  touch-action: none;
 }
 .faust-ui-component.faust-ui-component-vbargraph > .faust-ui-component-vbargraph-flexdiv > input {
   position: relative;
@@ -358,6 +365,7 @@
   display: block;
   height: 100%;
   width: 100%;
+  touch-action: none;
 }
 .faust-ui-component.faust-ui-component-hbargraph > .faust-ui-component-hbargraph-flexdiv > input {
   position: relative;

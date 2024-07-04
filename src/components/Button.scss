@@ -8,6 +8,7 @@
         border-radius: 4px;
         flex: 1 0 auto;
         border-style: solid;
+        touch-action: none;
         & > span {
             user-select: none;
             margin: auto;

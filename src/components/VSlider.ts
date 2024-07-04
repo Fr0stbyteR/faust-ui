@@ -81,8 +81,9 @@ export default class VSlider extends AbstractItem<FaustUISliderStyle> {
     componentDidMount() {
         super.componentDidMount();
         this.input.addEventListener("change", this.handleChange);
-        this.canvas.addEventListener("mousedown", this.handleMouseDown);
-        this.canvas.addEventListener("touchstart", this.handleTouchStart, { passive: false });
+        this.canvas.addEventListener("pointerdown", this.handlePointerDown);
+        // this.canvas.addEventListener("mousedown", this.handleMouseDown);
+        // this.canvas.addEventListener("touchstart", this.handleTouchStart, { passive: false });
         this.on("style", () => {
             this.schedule(this.setStyle);
             this.schedule(this.paint);
@@ -184,7 +185,7 @@ export default class VSlider extends AbstractItem<FaustUISliderStyle> {
         if (type === "int") return Math.round(steps * step + min);
         return steps * step + min;
     }
-    handlePointerDown = (e: PointerDownEvent) => {
+    handleMouseOrTouchDown = (e: PointerDownEvent) => {
         const { value } = this.state;
         if (
             e.x < this.interactionRect[0]
@@ -195,7 +196,7 @@ export default class VSlider extends AbstractItem<FaustUISliderStyle> {
         const newValue = this.getValueFromPos(e);
         if (newValue !== value) this.setValue(this.getValueFromPos(e));
     };
-    handlePointerDrag = (e: PointerDragEvent) => {
+    handleMouseOrTouchMove = (e: PointerDragEvent) => {
         const newValue = this.getValueFromPos(e);
         if (newValue !== this.state.value) this.setValue(newValue);
     };

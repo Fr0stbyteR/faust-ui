@@ -110,11 +110,13 @@ export interface FaustUIItemStyle {
 	labelcolor?: string;
 }
 export interface PointerDownEvent {
+	pointerId: number;
 	x: number;
 	y: number;
 	originalEvent: MouseEvent | TouchEvent;
 }
 export interface PointerDragEvent {
+	pointerId: number;
 	prevValue: number;
 	x: number;
 	y: number;
@@ -125,6 +127,7 @@ export interface PointerDragEvent {
 	originalEvent: MouseEvent | TouchEvent;
 }
 export interface PointerUpEvent {
+	pointerId: number;
 	x: number;
 	y: number;
 	originalEvent: MouseEvent | TouchEvent;
@@ -165,9 +168,10 @@ declare abstract class AbstractItem<T extends FaustUIItemStyle> extends Abstract
 	handleMouseOver: (e: MouseEvent) => void;
 	handleMouseOut: (e: MouseEvent) => void;
 	handleContextMenu: (e: MouseEvent) => void;
-	handlePointerDown: (e: PointerDownEvent) => void;
-	handlePointerDrag: (e: PointerDragEvent) => void;
-	handlePointerUp: (e: PointerUpEvent) => void;
+	handlePointerDown: (e: PointerEvent) => void;
+	handleMouseOrTouchDown: (e: PointerDownEvent) => void;
+	handleMouseOrTouchMove: (e: PointerDragEvent) => void;
+	handleMouseOrTouchUp: (e: PointerUpEvent) => void;
 	handleFocusIn: (e: FocusEvent) => boolean;
 	handleFocusOut: (e: FocusEvent) => boolean;
 	/**
@@ -278,8 +282,8 @@ declare class VSlider extends AbstractItem<FaustUISliderStyle> {
 		x: number;
 		y: number;
 	}): number;
-	handlePointerDown: (e: PointerDownEvent) => void;
-	handlePointerDrag: (e: PointerDragEvent) => void;
+	handleMouseOrTouchDown: (e: PointerDownEvent) => void;
+	handleMouseOrTouchMove: (e: PointerDragEvent) => void;
 }
 export interface FaustUISoundfileStyle extends FaustUIItemStyle {
 	fontname?: string;
@@ -301,8 +305,8 @@ declare class Soundfile extends AbstractItem<FaustUISoundfileStyle> {
 	setStyle: () => void;
 	mount(): this;
 	componentDidMount(): this;
-	handlePointerDown: () => void;
-	handlePointerUp: () => void;
+	handleMouseOrTouchDown: () => void;
+	handleMouseOrTouchUp: () => void;
 }
 export interface FaustUIButtonStyle extends FaustUIItemStyle {
 	fontname?: string;
@@ -324,8 +328,9 @@ declare class Button extends AbstractItem<FaustUIButtonStyle> {
 	setStyle: () => void;
 	mount(): this;
 	componentDidMount(): this;
-	handlePointerDown: () => void;
-	handlePointerUp: () => void;
+	handleContextMenu: (e: MouseEvent) => void;
+	handleMouseOrTouchDown: () => void;
+	handleMouseOrTouchUp: () => void;
 }
 export interface FaustUIKnobStyle extends FaustUINentryStyle {
 	knobwidth?: number;
@@ -347,7 +352,7 @@ declare class Knob extends AbstractItem<FaustUIKnobStyle> {
 	mount(): this;
 	paint: () => void;
 	getValueFromDelta(e: PointerDragEvent): number;
-	handlePointerDrag: (e: PointerDragEvent) => void;
+	handleMouseOrTouchMove: (e: PointerDragEvent) => void;
 }
 export interface FaustUIMenuStyle extends FaustUIItemStyle {
 	fontname?: string;
