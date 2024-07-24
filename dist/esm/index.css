@@ -244,12 +244,13 @@
   margin-top: auto;
 }
 .faust-ui-component.faust-ui-component-radio > .faust-ui-component-radio-group {
-  flex: 0 0 auto;
+  flex: 0 1 auto;
   margin-bottom: auto;
   border-width: 1px;
   border-radius: 4px;
   padding: 2px 4px;
   width: calc(100% - 8px);
+  overflow: auto;
 }
 .faust-ui-component.faust-ui-component-radio > .faust-ui-component-radio-group > div {
   text-overflow: ellipsis;

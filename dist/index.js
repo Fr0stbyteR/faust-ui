@@ -694,18 +694,19 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.faust-ui-component.faust-ui-component
   margin-top: auto;
 }
 .faust-ui-component.faust-ui-component-radio > .faust-ui-component-radio-group {
-  flex: 0 0 auto;
+  flex: 0 1 auto;
   margin-bottom: auto;
   border-width: 1px;
   border-radius: 4px;
   padding: 2px 4px;
   width: calc(100% - 8px);
+  overflow: auto;
 }
 .faust-ui-component.faust-ui-component-radio > .faust-ui-component-radio-group > div {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-}`, "",{"version":3,"sources":["webpack://./src/components/Radio.scss"],"names":[],"mappings":"AAAA;EACI,mBAAA;AACJ;AAAI;EACI,cAAA;EACA,gBAAA;AAER;AAAI;EACI,cAAA;EACA,mBAAA;EACA,iBAAA;EACA,kBAAA;EACA,gBAAA;EACA,uBAAA;AAER;AADQ;EACI,uBAAA;EACA,mBAAA;EACA,gBAAA;AAGZ","sourcesContent":[".faust-ui-component.faust-ui-component-radio {\n    align-items: center;\n    & > .faust-ui-component-label {\n        flex: 0 0 auto;\n        margin-top: auto;\n    }\n    & > .faust-ui-component-radio-group {\n        flex: 0 0 auto;\n        margin-bottom: auto;\n        border-width: 1px;\n        border-radius: 4px;\n        padding: 2px 4px;\n        width: calc(100% - 8px);\n        & > div {\n            text-overflow: ellipsis;\n            white-space: nowrap;\n            overflow: hidden;\n        }\n    }\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/components/Radio.scss"],"names":[],"mappings":"AAAA;EACI,mBAAA;AACJ;AAAI;EACI,cAAA;EACA,gBAAA;AAER;AAAI;EACI,cAAA;EACA,mBAAA;EACA,iBAAA;EACA,kBAAA;EACA,gBAAA;EACA,uBAAA;EACA,cAAA;AAER;AADQ;EACI,uBAAA;EACA,mBAAA;EACA,gBAAA;AAGZ","sourcesContent":[".faust-ui-component.faust-ui-component-radio {\n    align-items: center;\n    & > .faust-ui-component-label {\n        flex: 0 0 auto;\n        margin-top: auto;\n    }\n    & > .faust-ui-component-radio-group {\n        flex: 0 1 auto;\n        margin-bottom: auto;\n        border-width: 1px;\n        border-radius: 4px;\n        padding: 2px 4px;\n        width: calc(100% - 8px);\n        overflow: auto;\n        & > div {\n            text-overflow: ellipsis;\n            white-space: nowrap;\n            overflow: hidden;\n        }\n    }\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1083,7 +1084,8 @@ class FaustUI {
      * Can be overriden, called by components when its value is changed by user.
      */
     this.paramChangeByUI = (path, value) => {
-      if (!this.hostWindow) return;
+      if (!this.hostWindow)
+        return;
       this.hostWindow.postMessage({ path, value, type: "param" }, "*");
     };
     const { root, ui: uiIn, listenWindowResize, listenWindowMessage } = options;
@@ -1099,7 +1101,8 @@ class FaustUI {
         const { data, source } = e;
         this.hostWindow = source;
         const { type } = data;
-        if (!type) return;
+        if (!type)
+          return;
         if (type === "ui") {
           this.ui = data.ui;
         } else if (type === "param") {
@@ -1139,14 +1142,17 @@ class FaustUI {
    * This method should be called by components to register itself to map.
    */
   register(path, item) {
-    if (this.componentMap[path]) this.componentMap[path].push(item);
-    else this.componentMap[path] = [item];
+    if (this.componentMap[path])
+      this.componentMap[path].push(item);
+    else
+      this.componentMap[path] = [item];
   }
   /**
    * Notify the component to change its value.
    */
   paramChangeByDSP(path, value) {
-    if (this.componentMap[path]) this.componentMap[path].forEach((item) => item.setState({ value }));
+    if (this.componentMap[path])
+      this.componentMap[path].forEach((item) => item.setState({ value }));
   }
   /**
    * Calculate UI layout in grid then calculate grid size.
@@ -1170,7 +1176,8 @@ class FaustUI {
    * Force recalculate grid size and resize UI
    */
   resize() {
-    if (!this.faustUIRoot) return;
+    if (!this.faustUIRoot)
+      return;
     this.calcGrid();
     this.faustUIRoot.setState({ style: { grid: this.grid } });
   }
@@ -1178,12 +1185,14 @@ class FaustUI {
   filter(ui) {
     const callback = (items, item) => {
       var _a;
-      if (item.type === "soundfile") return items;
+      if (item.type === "soundfile")
+        return items;
       if (item.type === "hgroup" || item.type === "vgroup" || item.type === "tgroup") {
         items.push(__spreadProps(__spreadValues({}, item), { items: item.items.reduce(callback, []) }));
         return items;
       }
-      if ((_a = item.meta) == null ? void 0 : _a.find((m) => m.hidden && m.hidden === "1")) return items;
+      if ((_a = item.meta) == null ? void 0 : _a.find((m) => m.hidden && m.hidden === "1"))
+        return items;
       items.push(item);
       return items;
     };
@@ -1285,8 +1294,10 @@ class AbstractComponent extends _shren_typed_event_emitter__WEBPACK_IMPORTED_MOD
       if (stateKey in this.state && this.state[stateKey] !== stateValue) {
         this.state[stateKey] = stateValue;
         shouldUpdate = true;
-      } else return;
-      if (shouldUpdate) this.emit(stateKey, this.state[stateKey]);
+      } else
+        return;
+      if (shouldUpdate)
+        this.emit(stateKey, this.state[stateKey]);
     }
   }
   /**
@@ -1294,8 +1305,10 @@ class AbstractComponent extends _shren_typed_event_emitter__WEBPACK_IMPORTED_MOD
    * schedule what you need to do in next render tick in `raf` callback
    */
   schedule(func) {
-    if (this.tasks.indexOf(func) === -1) this.tasks.push(func);
-    if (this.$raf) return;
+    if (this.tasks.indexOf(func) === -1)
+      this.tasks.push(func);
+    if (this.$raf)
+      return;
     this.$raf = window.requestAnimationFrame(this.raf);
   }
 }
@@ -1339,7 +1352,7 @@ var __spreadValues = (a, b) => {
 
 
 
-const _AbstractItem = class _AbstractItem extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["default"] {
+const _AbstractItem = class extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["default"] {
   /**
    * Initiate default state with incoming state.
    */
@@ -1431,14 +1444,16 @@ const _AbstractItem = class _AbstractItem extends _AbstractComponent__WEBPACK_IM
       const prevValue = this.state.value;
       this.handleMouseOrTouchDown({ pointerId, x: fromX, y: fromY, originalEvent: e });
       const handlePointerMove = (e2) => {
-        if (e2.pointerId !== pointerId) return;
+        if (e2.pointerId !== pointerId)
+          return;
         e2.preventDefault();
         const x = e2.clientX - rect.left;
         const y = e2.clientY - rect.top;
         this.handleMouseOrTouchMove({ pointerId, prevValue, x, y, fromX, fromY, movementX: e2.movementX, movementY: e2.movementY, originalEvent: e2 });
       };
       const handlePointerUp = (e2) => {
-        if (e2.pointerId !== pointerId) return;
+        if (e2.pointerId !== pointerId)
+          return;
         e2.preventDefault();
         const x = e2.clientX - rect.left;
         const y = e2.clientY - rect.top;
@@ -1458,16 +1473,19 @@ const _AbstractItem = class _AbstractItem extends _AbstractComponent__WEBPACK_IM
     this.handleFocusIn = (e) => this.setState({ focus: true });
     this.handleFocusOut = (e) => this.setState({ focus: false });
     this.state.style = __spreadValues(__spreadValues({}, this.defaultProps.style), props.style);
-    if (this.state.emitter) this.state.emitter.register(this.state.address, this);
+    if (this.state.emitter)
+      this.state.emitter.register(this.state.address, this);
   }
   /**
    * Get a nearest valid number
    */
   toValidNumber(value) {
     const { min, max, step } = this.state;
-    if (typeof min !== "number" || typeof max !== "number") return value;
+    if (typeof min !== "number" || typeof max !== "number")
+      return value;
     const v = Math.min(max, Math.max(min, value));
-    if (!step) return v;
+    if (!step)
+      return v;
     return min + Math.floor((v - min) / step) * step;
   }
   /**
@@ -1476,14 +1494,16 @@ const _AbstractItem = class _AbstractItem extends _AbstractComponent__WEBPACK_IM
   setValue(valueIn) {
     const value = this.toValidNumber(valueIn);
     const changed = this.setState({ value });
-    if (changed) this.change(value);
+    if (changed)
+      this.change(value);
     return changed;
   }
   /**
    * Send value to DSP
    */
   change(valueIn) {
-    if (this.state.emitter) this.state.emitter.paramChangeByUI(this.state.address, typeof valueIn === "number" ? valueIn : this.state.value);
+    if (this.state.emitter)
+      this.state.emitter.paramChangeByUI(this.state.address, typeof valueIn === "number" ? valueIn : this.state.value);
   }
   /**
    * set internal state and fire events for UI parts subscribed
@@ -1505,8 +1525,10 @@ const _AbstractItem = class _AbstractItem extends _AbstractComponent__WEBPACK_IM
       } else if (stateKey in this.state && this.state[stateKey] !== stateValue) {
         this.state[stateKey] = stateValue;
         shouldUpdate = true;
-      } else return false;
-      if (shouldUpdate) this.emit(stateKey, this.state[stateKey]);
+      } else
+        return false;
+      if (shouldUpdate)
+        this.emit(stateKey, this.state[stateKey]);
     }
     return shouldUpdate;
   }
@@ -1519,7 +1541,8 @@ const _AbstractItem = class _AbstractItem extends _AbstractComponent__WEBPACK_IM
     this.container.className = ["faust-ui-component", "faust-ui-component-" + this.className].join(" ");
     this.container.tabIndex = 1;
     this.container.id = this.state.address;
-    if (this.state.tooltip) this.container.title = this.state.tooltip;
+    if (this.state.tooltip)
+      this.container.title = this.state.tooltip;
     this.label = document.createElement("div");
     this.label.className = "faust-ui-component-label";
     this.labelCanvas = document.createElement("canvas");
@@ -1540,7 +1563,8 @@ const _AbstractItem = class _AbstractItem extends _AbstractComponent__WEBPACK_IM
     const canvas = this.labelCanvas;
     const ratio = window.devicePixelRatio || 1;
     let { width, height } = this.label.getBoundingClientRect();
-    if (!width || !height) return this;
+    if (!width || !height)
+      return this;
     width = Math.floor(width);
     height = Math.floor(height);
     const scaledWidth = Math.floor(width * ratio);
@@ -1580,8 +1604,10 @@ const _AbstractItem = class _AbstractItem extends _AbstractComponent__WEBPACK_IM
     const { type, max, min, step, enums } = this.state;
     const maxSteps = type === "enum" ? enums.length : type === "int" ? max - min : (max - min) / step;
     if (step) {
-      if (type === "enum") return enums.length;
-      if (type === "int") return Math.min(Math.floor((max - min) / (Math.round(step) || 1)), maxSteps);
+      if (type === "enum")
+        return enums.length;
+      if (type === "int")
+        return Math.min(Math.floor((max - min) / (Math.round(step) || 1)), maxSteps);
       return Math.floor((max - min) / step);
     }
     return maxSteps;
@@ -1595,7 +1621,8 @@ const _AbstractItem = class _AbstractItem extends _AbstractComponent__WEBPACK_IM
   }
   static getDistance(state) {
     const { type, max, min, value, enums, scale } = state;
-    if (type === "enum") return value / (enums.length - 1);
+    if (type === "enum")
+      return value / (enums.length - 1);
     const v = scale === "exp" ? (0,_utils__WEBPACK_IMPORTED_MODULE_1__.normLog)(value, min, max) : scale === "log" ? (0,_utils__WEBPACK_IMPORTED_MODULE_1__.normExp)(value, min, max) : value;
     return (0,_utils__WEBPACK_IMPORTED_MODULE_1__.normalize)(v, min, max);
   }
@@ -1608,10 +1635,11 @@ const _AbstractItem = class _AbstractItem extends _AbstractComponent__WEBPACK_IM
     return full / stepsCount;
   }
 };
+let AbstractItem = _AbstractItem;
 /**
  * The default state of the component.
  */
-_AbstractItem.defaultProps = {
+AbstractItem.defaultProps = {
   value: 0,
   active: true,
   focus: false,
@@ -1626,7 +1654,6 @@ _AbstractItem.defaultProps = {
   step: 0.01,
   style: { width: 45, height: 15, left: 0, top: 0, labelcolor: "rgba(226, 222, 255, 0.5)" }
 };
-let AbstractItem = _AbstractItem;
 
 
 
@@ -1811,7 +1838,8 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["default"] {
       this.children = [];
       const { style, type, items, emitter, isRoot } = this.state;
       const { grid, left, top, width, height } = style;
-      if (!this.state.isRoot) this.label.style.height = `${grid * 0.3}px`;
+      if (!this.state.isRoot)
+        this.label.style.height = `${grid * 0.3}px`;
       this.container.style.left = `${left * grid}px`;
       this.container.style.top = `${top * grid}px`;
       this.container.style.width = `${width * grid}px`;
@@ -1820,11 +1848,13 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["default"] {
       items.forEach((item) => {
         if (item.type.endsWith("group")) {
           const component = Group.getComponent(item, emitter, grid);
-          if (component) this.children.push(component);
+          if (component)
+            this.children.push(component);
         } else {
           const ioItem = item;
           const itemComponent = Group.getComponent(ioItem, this.state.emitter, grid);
-          if (itemComponent) this.children.push(itemComponent);
+          if (itemComponent)
+            this.children.push(itemComponent);
         }
       });
       if (type === "tgroup") {
@@ -1844,7 +1874,8 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["default"] {
             const groups = [];
             for (let j = 0; j < this.container.children.length; j++) {
               const element = this.container.children[j];
-              if (j > 1) groups.push(element);
+              if (j > 1)
+                groups.push(element);
             }
             for (let j = 0; j < groups.length; j++) {
               const element = groups[j];
@@ -1853,8 +1884,10 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["default"] {
             for (let j = 0; j < this.tabs.children.length; j++) {
               const e = this.tabs.children[j];
               if (i !== j) {
-                if (e.classList.contains("active")) e.classList.remove("active");
-              } else e.classList.add("active");
+                if (e.classList.contains("active"))
+                  e.classList.remove("active");
+              } else
+                e.classList.add("active");
             }
           });
           this.tabs.appendChild(tab);
@@ -1864,7 +1897,8 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["default"] {
   }
   static parseMeta(metaIn) {
     const metaObject = {};
-    if (!metaIn) return { metaObject };
+    if (!metaIn)
+      return { metaObject };
     metaIn.forEach((m) => Object.assign(metaObject, m));
     if (metaObject.style) {
       const enumsRegex = /\{(?:(?:'|_|-)(.+?)(?:'|_|-):([-+]?[0-9]*\.?[0-9]+?);)+(?:(?:'|_|-)(.+?)(?:'|_|-):([-+]?[0-9]*\.?[0-9]+?))\}/;
@@ -1926,19 +1960,32 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["default"] {
       step: "step" in item ? +item.step : 1,
       value: "init" in item ? +item.init || 0 : 0
     };
-    if (type === "button") return new _Button__WEBPACK_IMPORTED_MODULE_5__["default"](props);
-    if (type === "checkbox") return new _Checkbox__WEBPACK_IMPORTED_MODULE_6__["default"](props);
-    if (type === "nentry") return new _Nentry__WEBPACK_IMPORTED_MODULE_3__["default"](props);
-    if (type === "soundfile") return new _Soundfile__WEBPACK_IMPORTED_MODULE_4__["default"](props);
-    if (type === "knob") return new _Knob__WEBPACK_IMPORTED_MODULE_7__["default"](props);
-    if (type === "menu") return new _Menu__WEBPACK_IMPORTED_MODULE_8__["default"](props);
-    if (type === "radio") return new _Radio__WEBPACK_IMPORTED_MODULE_9__["default"](props);
-    if (type === "hslider") return new _HSlider__WEBPACK_IMPORTED_MODULE_1__["default"](props);
-    if (type === "vslider") return new _VSlider__WEBPACK_IMPORTED_MODULE_2__["default"](props);
-    if (type === "hbargraph") return new _HBargraph__WEBPACK_IMPORTED_MODULE_12__["default"](props);
-    if (type === "vbargraph") return new _VBargraph__WEBPACK_IMPORTED_MODULE_13__["default"](props);
-    if (type === "numerical") return new _Numerical__WEBPACK_IMPORTED_MODULE_11__["default"](props);
-    if (type === "led") return new _Led__WEBPACK_IMPORTED_MODULE_10__["default"](props);
+    if (type === "button")
+      return new _Button__WEBPACK_IMPORTED_MODULE_5__["default"](props);
+    if (type === "checkbox")
+      return new _Checkbox__WEBPACK_IMPORTED_MODULE_6__["default"](props);
+    if (type === "nentry")
+      return new _Nentry__WEBPACK_IMPORTED_MODULE_3__["default"](props);
+    if (type === "soundfile")
+      return new _Soundfile__WEBPACK_IMPORTED_MODULE_4__["default"](props);
+    if (type === "knob")
+      return new _Knob__WEBPACK_IMPORTED_MODULE_7__["default"](props);
+    if (type === "menu")
+      return new _Menu__WEBPACK_IMPORTED_MODULE_8__["default"](props);
+    if (type === "radio")
+      return new _Radio__WEBPACK_IMPORTED_MODULE_9__["default"](props);
+    if (type === "hslider")
+      return new _HSlider__WEBPACK_IMPORTED_MODULE_1__["default"](props);
+    if (type === "vslider")
+      return new _VSlider__WEBPACK_IMPORTED_MODULE_2__["default"](props);
+    if (type === "hbargraph")
+      return new _HBargraph__WEBPACK_IMPORTED_MODULE_12__["default"](props);
+    if (type === "vbargraph")
+      return new _VBargraph__WEBPACK_IMPORTED_MODULE_13__["default"](props);
+    if (type === "numerical")
+      return new _Numerical__WEBPACK_IMPORTED_MODULE_11__["default"](props);
+    if (type === "led")
+      return new _Led__WEBPACK_IMPORTED_MODULE_10__["default"](props);
     return null;
   }
   setState(newState) {
@@ -1957,8 +2004,10 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["default"] {
       } else if (stateKey in this.state && this.state[stateKey] !== stateValue) {
         this.state[stateKey] = stateValue;
         shouldUpdate = true;
-      } else return;
-      if (shouldUpdate) this.emit(stateKey, this.state[stateKey]);
+      } else
+        return;
+      if (shouldUpdate)
+        this.emit(stateKey, this.state[stateKey]);
     }
   }
   componentWillMount() {
@@ -1976,14 +2025,16 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["default"] {
     return this;
   }
   paintLabel() {
-    if (this.state.isRoot) return this;
+    if (this.state.isRoot)
+      return this;
     const label = this.state.label;
     const color = this.state.style.labelcolor;
     const ctx = this.labelCtx;
     const canvas = this.labelCanvas;
     const ratio = window.devicePixelRatio || 1;
     let { width, height } = this.label.getBoundingClientRect();
-    if (!width || !height) return this;
+    if (!width || !height)
+      return this;
     width = Math.floor(width);
     height = Math.floor(height);
     const scaledWidth = Math.floor(width * ratio);
@@ -2004,7 +2055,8 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["default"] {
       this.label.appendChild(this.labelCanvas);
       this.container.appendChild(this.label);
     }
-    if (this.tabs.children.length) this.container.appendChild(this.tabs);
+    if (this.tabs.children.length)
+      this.container.appendChild(this.tabs);
     this.children.forEach((item) => {
       item.mount();
       this.container.appendChild(item.container);
@@ -2015,7 +2067,8 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["default"] {
     var _a;
     const handleResize = () => {
       const { grid, left, top, width, height } = this.state.style;
-      if (!this.state.isRoot) this.label.style.height = `${grid * 0.3}px`;
+      if (!this.state.isRoot)
+        this.label.style.height = `${grid * 0.3}px`;
       this.container.style.width = `${width * grid}px`;
       this.container.style.height = `${height * grid}px`;
       this.container.style.left = `${left * grid}px`;
@@ -2046,7 +2099,8 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["default"] {
     };
     this.on("label", () => this.schedule(labelChange));
     this.paintLabel();
-    if ((_a = this.tabs) == null ? void 0 : _a.children.length) this.tabs.children[0].click();
+    if ((_a = this.tabs) == null ? void 0 : _a.children.length)
+      this.tabs.children[0].click();
     this.children.forEach((item) => item.componentDidMount());
     return this;
   }
@@ -2104,7 +2158,8 @@ class HBargraph extends _VBargraph__WEBPACK_IMPORTED_MODULE_1__["default"] {
       const paintValue = this.paintValue;
       if (paintValue > this.maxValue) {
         this.maxValue = paintValue;
-        if (this.maxTimer) window.clearTimeout(this.maxTimer);
+        if (this.maxTimer)
+          window.clearTimeout(this.maxTimer);
         this.maxTimer = window.setTimeout(() => {
           this.maxValue = this.paintValue;
           this.maxTimer = void 0;
@@ -2124,15 +2179,23 @@ class HBargraph extends _VBargraph__WEBPACK_IMPORTED_MODULE_1__["default"] {
       const hotStop = (-3 - min) / (max - min);
       const overloadStop = Math.max(0, -min / (max - min));
       const gradient = ctx.createLinearGradient(left, 0, drawWidth, 0);
-      if (coldStop <= 1 && coldStop >= 0) gradient.addColorStop(coldStop, coldcolor);
-      else if (coldStop > 1) gradient.addColorStop(1, coldcolor);
-      if (warmStop <= 1 && warmStop >= 0) gradient.addColorStop(warmStop, warmcolor);
-      if (hotStop <= 1 && hotStop >= 0) gradient.addColorStop(hotStop, hotcolor);
-      if (overloadStop <= 1 && overloadStop >= 0) gradient.addColorStop(overloadStop, overloadcolor);
-      else if (overloadStop < 0) gradient.addColorStop(0, coldcolor);
+      if (coldStop <= 1 && coldStop >= 0)
+        gradient.addColorStop(coldStop, coldcolor);
+      else if (coldStop > 1)
+        gradient.addColorStop(1, coldcolor);
+      if (warmStop <= 1 && warmStop >= 0)
+        gradient.addColorStop(warmStop, warmcolor);
+      if (hotStop <= 1 && hotStop >= 0)
+        gradient.addColorStop(hotStop, hotcolor);
+      if (overloadStop <= 1 && overloadStop >= 0)
+        gradient.addColorStop(overloadStop, overloadcolor);
+      else if (overloadStop < 0)
+        gradient.addColorStop(0, coldcolor);
       ctx.fillStyle = barbgcolor;
-      if (paintValue < 0) ctx.fillRect(left, top, drawWidth * overloadStop, drawHeight);
-      if (paintValue < max) ctx.fillRect(left + drawWidth * overloadStop + 1, top, drawWidth * (1 - overloadStop) - 1, drawHeight);
+      if (paintValue < 0)
+        ctx.fillRect(left, top, drawWidth * overloadStop, drawHeight);
+      if (paintValue < max)
+        ctx.fillRect(left + drawWidth * overloadStop + 1, top, drawWidth * (1 - overloadStop) - 1, drawHeight);
       ctx.fillStyle = gradient;
       if (paintValue > min) {
         const distance = Math.max(0, _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["default"].getDistance({ type, max, min, enums, scale, value: Math.min(0, paintValue) }));
@@ -2269,7 +2332,8 @@ class Knob extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["default"] {
       const value = parseFloat(e.currentTarget.value);
       if (isFinite(value)) {
         const changed = this.setValue(+value);
-        if (changed) return;
+        if (changed)
+          return;
       }
       this.input.value = this.inputNumber.value + (this.state.unit || "");
     };
@@ -2324,7 +2388,8 @@ class Knob extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["default"] {
     };
     this.handleMouseOrTouchMove = (e) => {
       const newValue = this.getValueFromDelta(e);
-      if (newValue !== this.state.value) this.setValue(newValue);
+      if (newValue !== this.state.value)
+        this.setValue(newValue);
     };
   }
   static get defaultProps() {
@@ -2416,8 +2481,10 @@ class Knob extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["default"] {
     const v = scale === "exp" ? (0,_utils__WEBPACK_IMPORTED_MODULE_1__.normExp)(denormalized, min, max) : scale === "log" ? (0,_utils__WEBPACK_IMPORTED_MODULE_1__.normLog)(denormalized, min, max) : denormalized;
     let steps = Math.round((0,_utils__WEBPACK_IMPORTED_MODULE_1__.normalize)(v, min, max) * range / stepRange);
     steps = Math.min(stepsCount, Math.max(0, steps));
-    if (type === "enum") return steps;
-    if (type === "int") return Math.round(steps * step + min);
+    if (type === "enum")
+      return steps;
+    if (type === "int")
+      return Math.round(steps * step + min);
     return steps * step + min;
   }
 }
@@ -2489,19 +2556,29 @@ class Led extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["default"] {
       const hotStop = (-3 - min) / (max - min);
       const overloadStop = -min / (max - min);
       const gradient = tempCtx.createLinearGradient(0, 0, tempCanvas.width, 0);
-      if (coldStop <= 1 && coldStop >= 0) gradient.addColorStop(coldStop, coldcolor);
-      else if (coldStop > 1) gradient.addColorStop(1, coldcolor);
-      if (warmStop <= 1 && warmStop >= 0) gradient.addColorStop(warmStop, warmcolor);
-      if (hotStop <= 1 && hotStop >= 0) gradient.addColorStop(hotStop, hotcolor);
-      if (overloadStop <= 1 && overloadStop >= 0) gradient.addColorStop(overloadStop, overloadcolor);
-      else if (overloadStop < 0) gradient.addColorStop(0, coldcolor);
+      if (coldStop <= 1 && coldStop >= 0)
+        gradient.addColorStop(coldStop, coldcolor);
+      else if (coldStop > 1)
+        gradient.addColorStop(1, coldcolor);
+      if (warmStop <= 1 && warmStop >= 0)
+        gradient.addColorStop(warmStop, warmcolor);
+      if (hotStop <= 1 && hotStop >= 0)
+        gradient.addColorStop(hotStop, hotcolor);
+      if (overloadStop <= 1 && overloadStop >= 0)
+        gradient.addColorStop(overloadStop, overloadcolor);
+      else if (overloadStop < 0)
+        gradient.addColorStop(0, coldcolor);
       tempCtx.fillStyle = gradient;
       tempCtx.fillRect(0, 0, tempCanvas.width, 10);
       const d = tempCtx.getImageData(Math.min(tempCanvas.width - 1, distance * tempCanvas.width), 0, 1, 1).data;
-      if (distance) ctx.fillStyle = `rgb(${d[0]}, ${d[1]}, ${d[2]})`;
-      else ctx.fillStyle = ledbgcolor;
-      if (shape === "circle") ctx.arc(width / 2, height / 2, width / 2 - left, 0, 2 * Math.PI);
-      else ctx.rect(left, top, drawWidth, drawHeight);
+      if (distance)
+        ctx.fillStyle = `rgb(${d[0]}, ${d[1]}, ${d[2]})`;
+      else
+        ctx.fillStyle = ledbgcolor;
+      if (shape === "circle")
+        ctx.arc(width / 2, height / 2, width / 2 - left, 0, 2 * Math.PI);
+      else
+        ctx.rect(left, top, drawWidth, drawHeight);
       ctx.fill();
     };
   }
@@ -2641,7 +2718,8 @@ class Menu extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["default"] {
         const option = document.createElement("option");
         option.value = enums[key].toString();
         option.text = key;
-        if (i === 0) option.selected = true;
+        if (i === 0)
+          option.selected = true;
         this.select.appendChild(option);
         i++;
       }
@@ -2656,7 +2734,8 @@ class Menu extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["default"] {
     const valueChange = () => {
       for (let i = this.select.children.length - 1; i >= 0; i--) {
         const option = this.select.children[i];
-        if (+option.value === this.state.value) this.select.selectedIndex = i;
+        if (+option.value === this.state.value)
+          this.select.selectedIndex = i;
       }
     };
     this.on("value", () => this.schedule(valueChange));
@@ -2904,9 +2983,11 @@ class Radio extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["default"] {
           input.value = enums[key].toString();
           input.name = address;
           input.type = "radio";
-          if (i === 0) input.checked = true;
+          if (i === 0)
+            input.checked = true;
           input.addEventListener("change", () => {
-            if (input.checked) this.setValue(enums[key]);
+            if (input.checked)
+              this.setValue(enums[key]);
           });
           div.appendChild(input);
           div.append(key);
@@ -2954,7 +3035,8 @@ class Radio extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["default"] {
     const valueChange = () => {
       for (let i = this.group.children.length - 1; i >= 0; i--) {
         const input = this.group.children[i].querySelector("input");
-        if (+input.value === this.state.value) input.checked = true;
+        if (+input.value === this.state.value)
+          input.checked = true;
       }
     };
     this.on("value", () => this.schedule(valueChange));
@@ -3135,7 +3217,8 @@ class VBargraph extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["default"] {
       const paintValue = this.paintValue;
       if (paintValue > this.maxValue) {
         this.maxValue = paintValue;
-        if (this.maxTimer) window.clearTimeout(this.maxTimer);
+        if (this.maxTimer)
+          window.clearTimeout(this.maxTimer);
         this.maxTimer = window.setTimeout(() => {
           this.maxValue = this.paintValue;
           this.maxTimer = void 0;
@@ -3155,15 +3238,23 @@ class VBargraph extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["default"] {
       const hotStop = (-3 - min) / (max - min);
       const overloadStop = Math.max(0, -min / (max - min));
       const gradient = ctx.createLinearGradient(0, drawHeight, 0, top);
-      if (coldStop <= 1 && coldStop >= 0) gradient.addColorStop(coldStop, coldcolor);
-      else if (coldStop > 1) gradient.addColorStop(1, coldcolor);
-      if (warmStop <= 1 && warmStop >= 0) gradient.addColorStop(warmStop, warmcolor);
-      if (hotStop <= 1 && hotStop >= 0) gradient.addColorStop(hotStop, hotcolor);
-      if (overloadStop <= 1 && overloadStop >= 0) gradient.addColorStop(overloadStop, overloadcolor);
-      else if (overloadStop < 0) gradient.addColorStop(0, coldcolor);
+      if (coldStop <= 1 && coldStop >= 0)
+        gradient.addColorStop(coldStop, coldcolor);
+      else if (coldStop > 1)
+        gradient.addColorStop(1, coldcolor);
+      if (warmStop <= 1 && warmStop >= 0)
+        gradient.addColorStop(warmStop, warmcolor);
+      if (hotStop <= 1 && hotStop >= 0)
+        gradient.addColorStop(hotStop, hotcolor);
+      if (overloadStop <= 1 && overloadStop >= 0)
+        gradient.addColorStop(overloadStop, overloadcolor);
+      else if (overloadStop < 0)
+        gradient.addColorStop(0, coldcolor);
       ctx.fillStyle = barbgcolor;
-      if (paintValue < 0) ctx.fillRect(left, top + (1 - overloadStop) * drawHeight, drawWidth, drawHeight * overloadStop);
-      if (paintValue < max) ctx.fillRect(left, top, drawWidth, (1 - overloadStop) * drawHeight - 1);
+      if (paintValue < 0)
+        ctx.fillRect(left, top + (1 - overloadStop) * drawHeight, drawWidth, drawHeight * overloadStop);
+      if (paintValue < max)
+        ctx.fillRect(left, top, drawWidth, (1 - overloadStop) * drawHeight - 1);
       ctx.fillStyle = gradient;
       if (paintValue > min) {
         const distance = Math.max(0, _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["default"].getDistance({ type, max, min, enums, scale, value: Math.min(0, paintValue) }));
@@ -3297,7 +3388,8 @@ class VSlider extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["default"] {
       const value = parseFloat(e.currentTarget.value);
       if (isFinite(value)) {
         const changed = this.setValue(+value);
-        if (changed) return;
+        if (changed)
+          return;
       }
       this.input.value = this.inputNumber.value + (this.state.unit || "");
     };
@@ -3339,13 +3431,16 @@ class VSlider extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["default"] {
     };
     this.handleMouseOrTouchDown = (e) => {
       const { value } = this.state;
-      if (e.x < this.interactionRect[0] || e.x > this.interactionRect[0] + this.interactionRect[2] || e.y < this.interactionRect[1] || e.y > this.interactionRect[1] + this.interactionRect[3]) return;
+      if (e.x < this.interactionRect[0] || e.x > this.interactionRect[0] + this.interactionRect[2] || e.y < this.interactionRect[1] || e.y > this.interactionRect[1] + this.interactionRect[3])
+        return;
       const newValue = this.getValueFromPos(e);
-      if (newValue !== value) this.setValue(this.getValueFromPos(e));
+      if (newValue !== value)
+        this.setValue(this.getValueFromPos(e));
     };
     this.handleMouseOrTouchMove = (e) => {
       const newValue = this.getValueFromPos(e);
-      if (newValue !== this.state.value) this.setValue(newValue);
+      if (newValue !== this.state.value)
+        this.setValue(newValue);
     };
   }
   static get defaultProps() {
@@ -3435,8 +3530,10 @@ class VSlider extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["default"] {
     const { type, max, min, step, enums } = this.state;
     const maxSteps = type === "enum" ? enums.length : type === "int" ? max - min : (max - min) / step;
     if (step) {
-      if (type === "enum") return enums.length;
-      if (type === "int") return Math.min(Math.floor((max - min) / (Math.round(step) || 0)), maxSteps);
+      if (type === "enum")
+        return enums.length;
+      if (type === "int")
+        return Math.min(Math.floor((max - min) / (Math.round(step) || 0)), maxSteps);
       return Math.floor((max - min) / step);
     }
     return maxSteps;
@@ -3457,8 +3554,10 @@ class VSlider extends _AbstractItem__WEBPACK_IMPORTED_MODULE_0__["default"] {
     const v = scale === "exp" ? (0,_utils__WEBPACK_IMPORTED_MODULE_1__.normExp)(denormalized, min, max) : scale === "log" ? (0,_utils__WEBPACK_IMPORTED_MODULE_1__.normLog)(denormalized, min, max) : denormalized;
     let steps = Math.round((0,_utils__WEBPACK_IMPORTED_MODULE_1__.normalize)(v, min, max) * range / stepRange);
     steps = Math.min(stepsCount, Math.max(0, steps));
-    if (type === "enum") return steps;
-    if (type === "int") return Math.round(steps * step + min);
+    if (type === "enum")
+      return steps;
+    if (type === "int")
+      return Math.round(steps * step + min);
     return steps * step + min;
   }
 }
@@ -3513,8 +3612,10 @@ const normExp = iNormLog;
 const iNormExp = normLog;
 const roundedRect = (ctx, x, y, width, height, radius) => {
   const radii = [0, 0, 0, 0];
-  if (typeof radius === "number") radii.fill(radius);
-  else radius.forEach((v, i) => radii[i] = v);
+  if (typeof radius === "number")
+    radii.fill(radius);
+  else
+    radius.forEach((v, i) => radii[i] = v);
   ctx.beginPath();
   ctx.moveTo(x + radii[0], y);
   ctx.lineTo(x + width - radii[1], y);
@@ -3530,8 +3631,10 @@ const roundedRect = (ctx, x, y, width, height, radius) => {
 };
 const fillRoundedRect = (ctx, x, y, width, height, radius) => {
   const radii = [0, 0, 0, 0];
-  if (typeof radius === "number") radii.fill(radius);
-  else radius.forEach((v, i) => radii[i] = v);
+  if (typeof radius === "number")
+    radii.fill(radius);
+  else
+    radius.forEach((v, i) => radii[i] = v);
   ctx.beginPath();
   ctx.moveTo(x + radii[0], y);
   ctx.lineTo(x + width - radii[1], y);
@@ -3573,10 +3676,12 @@ const instantiate = () => {
     host = source;
   });
   window.addEventListener("keydown", (e) => {
-    if (host) host.postMessage({ type: "keydown", key: e.key }, "*");
+    if (host)
+      host.postMessage({ type: "keydown", key: e.key }, "*");
   });
   window.addEventListener("keyup", (e) => {
-    if (host) host.postMessage({ type: "keyup", key: e.key }, "*");
+    if (host)
+      host.postMessage({ type: "keyup", key: e.key }, "*");
   });
   window.faustUI = faustUI;
 };
@@ -3595,7 +3700,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ AbstractGroup)
 /* harmony export */ });
-const _AbstractGroup = class _AbstractGroup {
+const _AbstractGroup = class {
   constructor(group, isRoot) {
     this.isRoot = !!isRoot;
     Object.assign(this, group);
@@ -3613,7 +3718,8 @@ const _AbstractGroup = class _AbstractGroup {
    */
   get hasHSizingDesc() {
     return !!this.items.find((item) => {
-      if (item instanceof _AbstractGroup) return item.hasHSizingDesc;
+      if (item instanceof _AbstractGroup)
+        return item.hasHSizingDesc;
       return item.layout.sizing === "horizontal" || item.layout.sizing === "both";
     });
   }
@@ -3622,7 +3728,8 @@ const _AbstractGroup = class _AbstractGroup {
    */
   get hasVSizingDesc() {
     return !!this.items.find((item) => {
-      if (item instanceof _AbstractGroup) return item.hasVSizingDesc;
+      if (item instanceof _AbstractGroup)
+        return item.hasVSizingDesc;
       return item.layout.sizing === "vertical" || item.layout.sizing === "both";
     });
   }
@@ -3636,10 +3743,10 @@ const _AbstractGroup = class _AbstractGroup {
     return this;
   }
 };
-_AbstractGroup.padding = 0.2;
-_AbstractGroup.labelHeight = 0.25;
-_AbstractGroup.spaceBetween = 0.1;
 let AbstractGroup = _AbstractGroup;
+AbstractGroup.padding = 0.2;
+AbstractGroup.labelHeight = 0.25;
+AbstractGroup.spaceBetween = 0.1;
 
 
 
@@ -3817,13 +3924,15 @@ class HGroup extends _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"] {
       this.layout.height = Math.max(this.layout.height, item.layout.height + 2 * _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"].padding + (this.isRoot ? 0 : _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"].labelHeight));
     });
     this.layout.width += _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"].spaceBetween * (this.items.length - 1);
-    if (this.layout.width < 1) this.layout.width += 1;
+    if (this.layout.width < 1)
+      this.layout.width += 1;
     return this;
   }
   expand(dX) {
     let hExpandItems = 0;
     this.items.forEach((item) => {
-      if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") hExpandItems++;
+      if (item.layout.sizing === "both" || item.layout.sizing === "horizontal")
+        hExpandItems++;
     });
     this.items.forEach((item) => {
       let dX$ = 0;
@@ -3967,26 +4076,31 @@ class Layout {
       if ((_a = item.meta) == null ? void 0 : _a.find((meta) => {
         var _a2;
         return (_a2 = meta.style) == null ? void 0 : _a2.startsWith("led");
-      })) return "led";
+      }))
+        return "led";
       if ((_b = item.meta) == null ? void 0 : _b.find((meta) => {
         var _a2;
         return (_a2 = meta.style) == null ? void 0 : _a2.startsWith("numerical");
-      })) return "numerical";
+      }))
+        return "numerical";
       return item.type;
     }
     if (item.type === "hslider" || item.type === "nentry" || item.type === "vslider") {
       if ((_c = item.meta) == null ? void 0 : _c.find((meta) => {
         var _a2;
         return (_a2 = meta.style) == null ? void 0 : _a2.startsWith("knob");
-      })) return "knob";
+      }))
+        return "knob";
       if ((_d = item.meta) == null ? void 0 : _d.find((meta) => {
         var _a2;
         return (_a2 = meta.style) == null ? void 0 : _a2.startsWith("menu");
-      })) return "menu";
+      }))
+        return "menu";
       if ((_e = item.meta) == null ? void 0 : _e.find((meta) => {
         var _a2;
         return (_a2 = meta.style) == null ? void 0 : _a2.startsWith("radio");
-      })) return "radio";
+      }))
+        return "radio";
     }
     return item.type;
   }
@@ -4017,7 +4131,8 @@ class Layout {
   }
   static getItems(items) {
     return items.map((item) => {
-      if ("items" in item) item.items = this.getItems(item.items);
+      if ("items" in item)
+        item.items = this.getItems(item.items);
       return this.getItem(item);
     });
   }
@@ -4208,7 +4323,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AbstractGroup */ "./src/layout/AbstractGroup.ts");
 
-const _TGroup = class _TGroup extends _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"] {
+const _TGroup = class extends _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"] {
   adjust() {
     this.items.forEach((item) => {
       item.adjust();
@@ -4218,7 +4333,8 @@ const _TGroup = class _TGroup extends _AbstractGroup__WEBPACK_IMPORTED_MODULE_0_
     const tabsCount = this.items.length;
     this.layout.width = Math.max(this.layout.width, tabsCount * _TGroup.tabLayout.width);
     this.layout.height += _TGroup.tabLayout.height;
-    if (this.layout.width < 1) this.layout.width += 1;
+    if (this.layout.width < 1)
+      this.layout.width += 1;
     return this;
   }
   expand() {
@@ -4226,8 +4342,10 @@ const _TGroup = class _TGroup extends _AbstractGroup__WEBPACK_IMPORTED_MODULE_0_
     this.items.forEach((item) => {
       let dY$ = 0;
       let dX$ = 0;
-      if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") dX$ = this.layout.width - 2 * _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"].padding - item.layout.width;
-      if (item.layout.sizing === "both" || item.layout.sizing === "vertical") dY$ = this.layout.height - 2 * _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"].padding - (this.isRoot ? 0 : _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"].labelHeight) - (tabsCount ? _TGroup.tabLayout.height : 0) - item.layout.height;
+      if (item.layout.sizing === "both" || item.layout.sizing === "horizontal")
+        dX$ = this.layout.width - 2 * _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"].padding - item.layout.width;
+      if (item.layout.sizing === "both" || item.layout.sizing === "vertical")
+        dY$ = this.layout.height - 2 * _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"].padding - (this.isRoot ? 0 : _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"].labelHeight) - (tabsCount ? _TGroup.tabLayout.height : 0) - item.layout.height;
       item.expand(dX$, dY$);
     });
     return this;
@@ -4246,11 +4364,11 @@ const _TGroup = class _TGroup extends _AbstractGroup__WEBPACK_IMPORTED_MODULE_0_
     return this;
   }
 };
-_TGroup.tabLayout = {
+let TGroup = _TGroup;
+TGroup.tabLayout = {
   width: 2,
   height: 1
 };
-let TGroup = _TGroup;
 
 
 
@@ -4303,13 +4421,15 @@ class VGroup extends _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"] {
       this.layout.height += item.layout.height;
     });
     this.layout.height += _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"].spaceBetween * (this.items.length - 1);
-    if (this.layout.width < 1) this.layout.width += 1;
+    if (this.layout.width < 1)
+      this.layout.width += 1;
     return this;
   }
   expand(dX, dY) {
     let vExpandItems = 0;
     this.items.forEach((item) => {
-      if (item.layout.sizing === "both" || item.layout.sizing === "vertical") vExpandItems++;
+      if (item.layout.sizing === "both" || item.layout.sizing === "vertical")
+        vExpandItems++;
     });
     this.items.forEach((item) => {
       let dX$ = 0;
@@ -4412,7 +4532,9 @@ var options = {};
 
 options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
 options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
-options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
 options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
 options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
 
@@ -4464,7 +4586,9 @@ var options = {};
 
 options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
 options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
-options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
 options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
 options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
 
@@ -4516,7 +4640,9 @@ var options = {};
 
 options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
 options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
-options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
 options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
 options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
 
@@ -4568,7 +4694,9 @@ var options = {};
 
 options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
 options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
-options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
 options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
 options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
 
@@ -4620,7 +4748,9 @@ var options = {};
 
 options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
 options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
-options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
 options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
 options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
 
@@ -4672,7 +4802,9 @@ var options = {};
 
 options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
 options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
-options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
 options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
 options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
 
@@ -4724,7 +4856,9 @@ var options = {};
 
 options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
 options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
-options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
 options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
 options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
 
@@ -4776,7 +4910,9 @@ var options = {};
 
 options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
 options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
-options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
 options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
 options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
 
@@ -4828,7 +4964,9 @@ var options = {};
 
 options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
 options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
-options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
 options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
 options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
 
@@ -4880,7 +5018,9 @@ var options = {};
 
 options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
 options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
-options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
 options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
 options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
 
@@ -4932,7 +5072,9 @@ var options = {};
 
 options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
 options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
-options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
 options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
 options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
 
@@ -4984,7 +5126,9 @@ var options = {};
 
 options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
 options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
-options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
 options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
 options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
 
@@ -5036,7 +5180,9 @@ var options = {};
 
 options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
 options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
-options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
 options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
 options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
 
@@ -5088,7 +5234,9 @@ var options = {};
 
 options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
 options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
-options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
 options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
 options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
 
@@ -5140,7 +5288,9 @@ var options = {};
 
 options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
 options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
-options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
 options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
 options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
 
@@ -5192,7 +5342,9 @@ var options = {};
 
 options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
 options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
-options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
 options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
 options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
 
@@ -5547,6 +5699,8 @@ module.exports = styleTagTransform;
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
 /*!**********************!*\
   !*** ./src/index.ts ***!
   \**********************/
@@ -5559,6 +5713,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _instantiate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./instantiate */ "./src/instantiate.ts");
 
 
+
+})();
 
 /******/ 	return __webpack_exports__;
 /******/ })()
