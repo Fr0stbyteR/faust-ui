@@ -42,9 +42,10 @@ export default class FaustUI {
         if (typeof listenWindowMessage === "undefined" || listenWindowMessage === true) {
             window.addEventListener("message", (e) => {
                 const { data, source } = e;
-                this.hostWindow = source as Window;
+                if (!data) return;
                 const { type } = data;
                 if (!type) return;
+                this.hostWindow = source as Window;
                 if (type === "ui") {
                     this.ui = data.ui;
                 } else if (type === "param") {

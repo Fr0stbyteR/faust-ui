@@ -8,7 +8,10 @@ const instantiate = () => {
     });
     let host: Window;
     window.addEventListener("message", (e) => {
-        const { source } = e;
+        const { data, source } = e;
+        if (!data) return;
+        const { type } = data;
+        if (!type) return;
         host = source as Window;
     });
 
