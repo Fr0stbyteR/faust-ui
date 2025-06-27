@@ -51,13 +51,19 @@ export default abstract class AbstractItem<T extends FaustUIItemStyle> extends A
      * Override this to get css work
      */
     className: string;
+
+    /**
+     * The initial value of the component, stored on creation.
+     */
+    initialValue: number;
+
     frameReduce = 3;
     /**
      * Default DOM event listeners, unify mousedown and touchstart events
      * For mouse or touch events, please use `handlePointerDown` `handlePointerUp` `handlePointerDrag` callbacks
      */
-    handleKeyDown = (e: KeyboardEvent) => {};
-    handleKeyUp = (e: KeyboardEvent) => {};
+    handleKeyDown = (e: KeyboardEvent) => { };
+    handleKeyUp = (e: KeyboardEvent) => { };
     handleTouchStart = (e: TouchEvent) => {
         e.preventDefault();
         const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
@@ -90,8 +96,8 @@ export default abstract class AbstractItem<T extends FaustUIItemStyle> extends A
         document.addEventListener("touchmove", handleTouchMove, { passive: false });
         document.addEventListener("touchend", handleTouchEnd, { passive: false });
     };
-    handleWheel = (e: WheelEvent) => {};
-    handleClick = (e: MouseEvent) => {};
+    handleWheel = (e: WheelEvent) => { };
+    handleClick = (e: MouseEvent) => { };
     handleMouseDown = (e: MouseEvent) => {
         e.preventDefault();
         (e.currentTarget as HTMLElement).focus();
@@ -117,9 +123,20 @@ export default abstract class AbstractItem<T extends FaustUIItemStyle> extends A
         document.addEventListener("mousemove", handleMouseMove);
         document.addEventListener("mouseup", handleMouseUp);
     };
-    handleMouseOver = (e: MouseEvent) => {};
-    handleMouseOut = (e: MouseEvent) => {};
-    handleContextMenu = (e: MouseEvent) => {};
+    handleMouseOver = (e: MouseEvent) => { };
+    handleMouseOut = (e: MouseEvent) => { };
+    handleContextMenu = (e: MouseEvent) => { };
+
+    /**
+     * Handle double-click events to reset the value to its initial state.
+     */
+    handleDoubleClick = (e: MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log("Double-click detected, resetting value to initial state, initialValue:", this.initialValue);
+        this.setValue(this.initialValue);
+    };
+
     handlePointerDown = (e: PointerEvent) => {
         e.preventDefault();
         (e.currentTarget as HTMLElement).focus();
@@ -147,11 +164,10 @@ export default abstract class AbstractItem<T extends FaustUIItemStyle> extends A
         };
         document.addEventListener("pointermove", handlePointerMove);
         document.addEventListener("pointerup", handlePointerUp);
-        
     };
-    handleMouseOrTouchDown = (e: MouseOrTouchDownEvent) => {};
-    handleMouseOrTouchMove = (e: MouseOrTouchMoveEvent) => {};
-    handleMouseOrTouchUp = (e: MouseOrTouchUpEvent) => {};
+    handleMouseOrTouchDown = (e: MouseOrTouchDownEvent) => { };
+    handleMouseOrTouchMove = (e: MouseOrTouchMoveEvent) => { };
+    handleMouseOrTouchUp = (e: MouseOrTouchUpEvent) => { };
     handleFocusIn = (e: FocusEvent) => this.setState({ focus: true });
     handleFocusOut = (e: FocusEvent) => this.setState({ focus: false });
 
@@ -160,6 +176,7 @@ export default abstract class AbstractItem<T extends FaustUIItemStyle> extends A
      */
     constructor(props?: FaustUIItemProps<T>) {
         super(props);
+        this.initialValue = typeof props.value === "number" ? props.value : AbstractItem.defaultProps.value;
         this.state.style = { ...this.defaultProps.style, ...props.style };
         if (this.state.emitter) this.state.emitter.register(this.state.address, this);
     }
@@ -265,6 +282,7 @@ export default abstract class AbstractItem<T extends FaustUIItemStyle> extends A
      * will call this method when mounted
      */
     componentDidMount() {
+        this.container.addEventListener("dblclick", this.handleDoubleClick);
         const handleResize = () => {
             const { grid, left, top, width, height } = this.state.style;
             this.container.style.width = `${width * grid}px`;
