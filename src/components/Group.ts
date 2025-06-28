@@ -32,14 +32,14 @@ export default class Group extends AbstractComponent<FaustUIGroupProps> {
         if (!metaIn) return { metaObject };
         metaIn.forEach(m => Object.assign(metaObject, m));
         if (metaObject.style) {
-            const enumsRegex = /\{(?:(?:'|_|-)(.+?)(?:'|_|-):([-+]?[0-9]*\.?[0-9]+);)+(?:(?:'|_|-)(.+?)(?:'|_|-):([-+]?[0-9]*\.?[0-9]+))\}/;
+            const enumsRegex = /\{\s*(?:['_\-](.+?)['_\-]\s*:\s*([-+]?[0-9]*\.?[0-9]+)\s*;\s*)+(?:['_\-](.+?)['_\-]\s*:\s*([-+]?[0-9]*\.?[0-9]+))\s*\}/;
             const matched = metaObject.style.match(enumsRegex);
             if (matched) {
-                const itemsRegex = /(?:(?:'|_|-)(.+?)(?:'|_|-):([-+]?[0-9]*\.?[0-9]+))/g;
+                const itemsRegex = /['_\-](.+?)['_\-]\s*:\s*([-+]?[0-9]*\.?[0-9]+)\s*/g;
                 const enums: { [key: string]: number } = {};
                 let item;
                 // eslint-disable-next-line no-cond-assign
-                while (item = itemsRegex.exec(matched[0])) {
+                while ((item = itemsRegex.exec(matched[0]))) {
                     enums[item[1]] = +item[2];
                 }
                 return { metaObject, enums };
