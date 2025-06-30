@@ -946,10 +946,10 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["default"] {
     if (!metaIn) return { metaObject };
     metaIn.forEach((m) => Object.assign(metaObject, m));
     if (metaObject.style) {
-      const enumsRegex = /\{(?:(?:'|_|-)(.+?)(?:'|_|-):([-+]?[0-9]*\.?[0-9]+);)+(?:(?:'|_|-)(.+?)(?:'|_|-):([-+]?[0-9]*\.?[0-9]+))\}/;
+      const enumsRegex = /\{\s*(?:['_\-](.+?)['_\-]\s*:\s*([-+]?[0-9]*\.?[0-9]+)\s*;\s*)+(?:['_\-](.+?)['_\-]\s*:\s*([-+]?[0-9]*\.?[0-9]+))\s*\}/;
       const matched = metaObject.style.match(enumsRegex);
       if (matched) {
-        const itemsRegex = /(?:(?:'|_|-)(.+?)(?:'|_|-):([-+]?[0-9]*\.?[0-9]+))/g;
+        const itemsRegex = /['_\-](.+?)['_\-]\s*:\s*([-+]?[0-9]*\.?[0-9]+)\s*/g;
         const enums = {};
         let item;
         while (item = itemsRegex.exec(matched[0])) {
