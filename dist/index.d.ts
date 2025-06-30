@@ -82,6 +82,7 @@ export interface FaustUIItemProps<T extends FaustUIItemStyle> {
 	address: string;
 	min?: number;
 	max?: number;
+	init: number;
 	step?: number;
 	tooltip?: string;
 	enums?: {
@@ -164,6 +165,10 @@ declare abstract class AbstractItem<T extends FaustUIItemStyle> extends Abstract
 	handleTouchStart: (e: TouchEvent) => void;
 	handleWheel: (e: WheelEvent) => void;
 	handleClick: (e: MouseEvent) => void;
+	/**
+	 * Handle double-click events to reset the value to its initial state.
+	 */
+	handleDoubleClick: (e: MouseEvent) => void;
 	handleMouseDown: (e: MouseEvent) => void;
 	handleMouseOver: (e: MouseEvent) => void;
 	handleMouseOut: (e: MouseEvent) => void;
@@ -186,6 +191,7 @@ declare abstract class AbstractItem<T extends FaustUIItemStyle> extends Abstract
 	 * Use this method if you want the emitter to send value to DSP
 	 */
 	setValue(valueIn: number): boolean;
+	setToInitialValue(): void;
 	/**
 	 * Send value to DSP
 	 */
@@ -562,6 +568,11 @@ declare class Group extends AbstractComponent<FaustUIGroupProps> {
 	tabs: HTMLDivElement;
 	children: (AbstractItem<FaustUIItemStyle> | Group)[];
 	layout: LayoutProps;
+	/**
+	 * Handle double-click events to reset all children's value to its initial state.
+	 */
+	handleDoubleClick: (e: MouseEvent) => void;
+	setToInitialValue(): void;
 	setState(newState: {
 		[key in keyof FaustUIGroupProps]?: FaustUIGroupProps[key];
 	}): void;

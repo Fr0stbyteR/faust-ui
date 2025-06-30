@@ -27,6 +27,7 @@ export default abstract class AbstractItem<T extends FaustUIItemStyle> extends A
         address: "",
         min: 0,
         max: 1,
+        init: 0,
         enums: {},
         type: "float",
         unit: "",
@@ -92,6 +93,14 @@ export default abstract class AbstractItem<T extends FaustUIItemStyle> extends A
     };
     handleWheel = (e: WheelEvent) => {};
     handleClick = (e: MouseEvent) => {};
+    /**
+     * Handle double-click events to reset the value to its initial state.
+     */
+    handleDoubleClick = (e: MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        this.setToInitialValue();
+    };
     handleMouseDown = (e: MouseEvent) => {
         e.preventDefault();
         (e.currentTarget as HTMLElement).focus();
@@ -181,6 +190,9 @@ export default abstract class AbstractItem<T extends FaustUIItemStyle> extends A
         const changed = this.setState({ value });
         if (changed) this.change(value);
         return changed;
+    }
+    setToInitialValue() {
+        this.setValue(this.state.init);
     }
     /**
      * Send value to DSP

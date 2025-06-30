@@ -9,6 +9,7 @@ export interface FaustUIItemProps<T extends FaustUIItemStyle> {
     address: string;
     min?: number;
     max?: number;
+    init: number;
     step?: number;
     tooltip?: string;
     enums?: { [key: string]: number };

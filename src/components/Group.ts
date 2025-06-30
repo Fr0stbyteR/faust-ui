@@ -90,7 +90,8 @@ export default class Group extends AbstractComponent<FaustUIGroupProps> {
             min: isFinite(min) ? min : 0,
             max: isFinite(max) ? max : 1,
             step: "step" in item ? +item.step : 1,
-            value: "init" in item ? +item.init || 0 : 0
+            value: "init" in item ? +item.init || 0 : 0,
+            init: "init" in item ? +item.init || 0 : 0
         };
         if (type === "button") return new Button(props);
         if (type === "checkbox") return new Checkbox(props);
@@ -123,6 +124,17 @@ export default class Group extends AbstractComponent<FaustUIGroupProps> {
     tabs: HTMLDivElement;
     children: (AbstractItem<FaustUIItemStyle> | Group)[];
     layout: LayoutProps;
+    /**
+     * Handle double-click events to reset all children's value to its initial state.
+     */
+    handleDoubleClick = (e: MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        this.setToInitialValue();
+    };
+    setToInitialValue() {
+        this.children.forEach(item => item.setToInitialValue());
+    }
     setState(newState: { [key in keyof FaustUIGroupProps]?: FaustUIGroupProps[key] }) {
         let shouldUpdate = false;
         for (const key in newState) {
@@ -283,6 +295,7 @@ export default class Group extends AbstractComponent<FaustUIGroupProps> {
         };
         this.on("label", () => this.schedule(labelChange));
         this.paintLabel();
+        this.labelCanvas?.addEventListener("dblclick", this.handleDoubleClick);
         if (this.tabs?.children.length) (this.tabs.children[0] as HTMLSpanElement).click();
         this.children.forEach(item => item.componentDidMount());
         return this;

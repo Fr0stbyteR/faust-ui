@@ -82,6 +82,7 @@ export default class VSlider extends AbstractItem<FaustUISliderStyle> {
         super.componentDidMount();
         this.input.addEventListener("change", this.handleChange);
         this.canvas.addEventListener("pointerdown", this.handlePointerDown);
+        this.canvas.addEventListener("dblclick", this.handleDoubleClick);
         // this.canvas.addEventListener("mousedown", this.handleMouseDown);
         // this.canvas.addEventListener("touchstart", this.handleTouchStart, { passive: false });
         this.on("style", () => {
