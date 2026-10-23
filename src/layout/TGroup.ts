@@ -24,6 +24,10 @@ export default class TGroup extends AbstractGroup {
             let dX$ = 0;
             if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") dX$ = this.layout.width - 2 * AbstractGroup.padding - item.layout.width;
             if (item.layout.sizing === "both" || item.layout.sizing === "vertical") dY$ = this.layout.height - 2 * AbstractGroup.padding - (this.isRoot ? 0 : AbstractGroup.labelHeight) - (tabsCount ? TGroup.tabLayout.height : 0) - item.layout.height;
+            // The tab takes the space it is given, as in HGroup and VGroup: otherwise its
+            // flexible children expand into space the tab's frame does not cover.
+            item.layout.width += dX$;
+            item.layout.height += dY$;
             item.expand(dX$, dY$);
         });
         return this;

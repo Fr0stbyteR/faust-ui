@@ -236,7 +236,10 @@ export default class Group extends AbstractComponent<FaustUIGroupProps> {
                     }
                     for (let j = 0; j < groups.length; j++) {
                         const element = groups[j] as HTMLDivElement;
-                        element.style.visibility = i === j ? "visible" : "hidden";
+                        // "inherit", not "visible": a visible descendant overrides a hidden
+                        // ancestor, so the active tab of a tgroup nested in a hidden tab
+                        // would show through.
+                        element.style.visibility = i === j ? "inherit" : "hidden";
                     }
                     for (let j = 0; j < this.tabs.children.length; j++) {
                         const e = this.tabs.children[j];

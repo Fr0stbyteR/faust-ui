@@ -947,7 +947,7 @@ class Group extends _AbstractComponent__WEBPACK_IMPORTED_MODULE_0__["default"] {
             }
             for (let j = 0; j < groups.length; j++) {
               const element = groups[j];
-              element.style.visibility = i === j ? "visible" : "hidden";
+              element.style.visibility = i === j ? "inherit" : "hidden";
             }
             for (let j = 0; j < this.tabs.children.length; j++) {
               const e = this.tabs.children[j];
@@ -3337,6 +3337,8 @@ const _TGroup = class _TGroup extends _AbstractGroup__WEBPACK_IMPORTED_MODULE_0_
       let dX$ = 0;
       if (item.layout.sizing === "both" || item.layout.sizing === "horizontal") dX$ = this.layout.width - 2 * _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"].padding - item.layout.width;
       if (item.layout.sizing === "both" || item.layout.sizing === "vertical") dY$ = this.layout.height - 2 * _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"].padding - (this.isRoot ? 0 : _AbstractGroup__WEBPACK_IMPORTED_MODULE_0__["default"].labelHeight) - (tabsCount ? _TGroup.tabLayout.height : 0) - item.layout.height;
+      item.layout.width += dX$;
+      item.layout.height += dY$;
       item.expand(dX$, dY$);
     });
     return this;
